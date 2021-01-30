@@ -1,0 +1,404 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Operation Black Atlas Endangers In-Store Card Payments and SMBs Worldwide; Switches between BlackPOS and Other Tools
+
+
+Trend Micro About TrendLabs Security Intelligence Blog
+
+Home   »   Botnets   »   Operation Black Atlas Endangers In-Store Card Payments and SMBs Worldwide; Switches
+
+between BlackPOS and Other Tools
+
+Featured Stories
+
+2016 Predictions: The Fine Line Between Business
+and Personal
+
+Pawn Storm Targets MH17 Investigation Team
+
+FBI, Security Vendors Partner for DRIDEX
+Takedown
+
+Japanese Cybercriminals New Addition To
+Underground Arena
+
+Follow the Data: Dissecting Data Breaches and
+Debunking the Myths
+
+Recent Posts
+
+Operation Black Atlas, Part 2: Tools and Malware
+Used and How to Detect Them
+
+New Targeted Attack Group Buys BIFROSE Code,
+Works in Teams
+
+Adobe Flash Player Fixes 79 Bugs; Microsoft Issues
+12 Patches in December Patch Tuesday
+
+Blog of News Site “The Independent” Hacked,
+Leads to TeslaCrypt Ransomware
+
+The German Underground: Buying and Selling
+Goods via Droppers
+
+2016 Security Predictions
+
+From new extortion schemes and IoT
+threats to improved cybercrime
+legislation, Trend Micro predicts how the
+security landscape is going to look like in
+2016.
+Read more
+
+Popular Posts
+
+Blog of News Site “The Independent” Hacked,
+Leads to TeslaCrypt Ransomware
+
+High-Profile Mobile Apps At Risk Due to Three-Year-
+Old Vulnerability
+
+Trend Micro, NCA Partnership Leads to Arrests and
+Shutdown of Refud.me and Cryptex Reborn
+
+Cybercriminals Improve Android Malware Stealth
+Routines with OBAD
+
+Hacking Team Flash Zero-Day Integrated Into
+Exploit Kits
+
+Latest Tweets
+
+#PoS systems can be attacked with #PoS
+skimmers: bit.ly/1NVgYcR
+about 49 mins ago
+
+Operation Black Atlas Endangers In-Store Card Payments
+and SMBs Worldwide; Switches between BlackPOS and Other
+Tools
+Posted on: December 1, 2015 at 12:31 am Posted in: Botnets, Malware
+Author: Jay Yaneza (Threats Analyst)
+
+With the coming holidays also come news of various credit card breaches that endanger the data of
+many industries and their customers. High-profile breaches, such as that of the Hilton Hotel and other
+similar establishments, were accomplished using point-of-sale (PoS) malware, leading many to fear
+digital threats on brick-and-mortar retailers this Thanksgiving, Black Friday, Cyber Monday, and the rest
+of the holiday season. Researchers also found a broad campaign that uses the modular ModPOS
+malware to steal payment card data from retailers in the US.
+
+However, from what we have seen, it is not only retailers in the US that are at risk of breaches. Our
+researchers recently found an early version of a potentially powerful, adaptable, and invisible botnet
+that seeks out PoS systems within networks. It has already extended its reach to small and medium
+sized business networks all over the world, including a healthcare organization in the US. We are
+calling this operation Black Atlas, in reference to BlackPOS, the malware primarily used in this
+operation.
+
+Operation Black Atlas has been around since September 2015, just in time to plant its seeds before the
+holiday season. Its targets include businesses in the healthcare, retail, and more industries which rely
+on card payment systems.
+
+The operation is run by technically sophisticated cybercriminals who are knowledgeable in a variety of
+penetration testing tools and possess a wide network of connections to PoS malware in the
+underground market. Its operators built a set of tools much like a Swiss army knife, with each tool
+offering a different functionality. Malware utilized in Black Atlas included (but were not limited to)
+variants of Alina, NewPOSThings, a Kronos backdoor, and BlackPOS. BlackPOS, also known as
+ Kaptoxa, was the malware used during the Target breach in 2013 and attacks on retail accounts in
+2014.
+
+Similar to GamaPoS, the Black Atlas operators employed a “shotgun” approach to infiltrate networks as
+opposed to zeroing in on specific targets. They basically checked available ports on the Internet to see
+if they can get in, ending up with multiple targets around the world. The following graph shows where
+these targets are located:
+
+Figure 1. Distribution of Gorynych targets in Operation Black Atlas
+
+35 156
+
+Go to… ▼
+
+http://www.trendmicro.com
+http://blog.trendmicro.com/trendlabs-security-intelligence/about-us/
+https://twitter.com/trendlabs
+http://www.facebook.com/trendmicro
+http://www.linkedin.com/company/trend-micro
+http://www.youtube.com/user/TrendMicroInc
+http://feeds.trendmicro.com/Anti-MalwareBlog
+http://blog.trendmicro.com/trendlabs-security-intelligence/
+http://blog.trendmicro.com/trendlabs-security-intelligence/
+http://blog.trendmicro.com/trendlabs-security-intelligence/category/botnets/
+http://blog.trendmicro.com/trendlabs-security-intelligence/2015/12/
+http://blog.trendmicro.com/trendlabs-security-intelligence/category/botnets/
+http://blog.trendmicro.com/trendlabs-security-intelligence/category/malware/
+http://blog.trendmicro.com/trendlabs-security-intelligence/author/jayyaneza/
+http://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/starwood-hotels-hit-by-pos-malware
+http://www.darkreading.com/vulnerabilities---threats/black-friday-security-brick-and-mortar-retailers-have-cyber-threats-too/d/d-id/1323235
+http://blog.trendmicro.com/trendlabs-security-intelligence/two-new-pos-malware-affecting-us-smbs/
+http://blog.trendmicro.com/trendlabs-security-intelligence/newposthings-has-new-pos-things/
+http://money.cnn.com/2014/02/11/news/companies/retail-breach-timeline/
+http://blog.trendmicro.com/trendlabs-security-intelligence/new-blackpos-malware-emerges-in-the-wild-targets-retail-accounts/
+http://blog.trendmicro.com/trendlabs-security-intelligence/new-gamapos-threat-spreads-in-the-us-via-andromeda-botnet/
+http://blog.trendmicro.com/trendlabs-security-intelligence/2016-predictions-the-fine-line-between-business-and-personal/
+http://blog.trendmicro.com/trendlabs-security-intelligence/pawn-storm-targets-mh17-investigation-team/
+http://blog.trendmicro.com/trendlabs-security-intelligence/us-law-enforcement-takedown-dridex-botnet/
+http://blog.trendmicro.com/trendlabs-security-intelligence/japanese-cybercriminals-new-addition-to-underground-arena/
+http://blog.trendmicro.com/trendlabs-security-intelligence/follow-the-data-dissecting-data-breaches-and-debunking-the-myths/
+http://blog.trendmicro.com/trendlabs-security-intelligence/operation-black-atlas-part-2-tools-and-malware-used-and-how-to-detect-them/
+http://blog.trendmicro.com/trendlabs-security-intelligence/new-targeted-attack-group-buys-bifrose-code-works-in-teams/
+http://blog.trendmicro.com/trendlabs-security-intelligence/adobe-flash-player-fixes-79-bugs-microsoft-issues-12-patches-in-december-patch-tuesday/
+http://blog.trendmicro.com/trendlabs-security-intelligence/blog-of-news-site-the-independent-hacked-leads-to-teslacrypto-ransomware/
+http://blog.trendmicro.com/trendlabs-security-intelligence/the-german-underground-buying-and-selling-goods-via-droppers/
+http://www.trendmicro.com/vinfo/us/security/research-and-analysis/predictions/2016
+http://blog.trendmicro.com/trendlabs-security-intelligence/blog-of-news-site-the-independent-hacked-leads-to-teslacrypto-ransomware/
+http://blog.trendmicro.com/trendlabs-security-intelligence/high-profile-mobile-apps-at-risk-due-to-three-year-old-vulnerability/
+http://blog.trendmicro.com/trendlabs-security-intelligence/trend-micro-nca-partnership-lead-to-arrests-and-shutdown-of-refud-me-and-cryptex-reborn/
+http://blog.trendmicro.com/trendlabs-security-intelligence/cybercriminals-improve-android-malware-stealth-routines-with-obad/
+http://blog.trendmicro.com/trendlabs-security-intelligence/hacking-team-flash-zero-day-integrated-into-exploit-kits/
+https://t.co/UpRbY6eXph
+http://twitter.com/TrendLabs/status/679104064001548293
+
+
+The rise of user awareness on ad-blocking
+is driving malvertisters to be even more
+creative: bit.ly/1QrUzX6 
+
+about 5 hours ago
+
+It's tricky for Law enforcement to keep up
+with North American cybercriminals’ erratic
+nature: bit.ly/1YNuO4t #DeepWeb
+about 10 hours ago
+
+Stay Updated
+
+Email Subscription
+
+Your email hereSubscribeSo far, the Black Atlas operators have been able to steal user credentials to websites that containsensitive information, email accounts, and Facebook. The most interesting data we found was that of alive video feed of closed-circuit television (CCTV) cameras in a gasoline station. Either this is takingreconnaissance to another real-time level or the cybercriminals simply captured whatever information isavailable.How Operation Black Atlas WorksOur analysis of the attacks against these targets gave us further insights on how the Black Atlasoperators seek out PoS systems from networks. In one particular case, which involved a healthcareorganization in the US, we found out how the Black Atlas operators operate.Similar to a targeted attack, Black Atlas involves an intelligence gathering or reconnaissance periodwhere cybercriminals use a set of tools similar to a Swiss army knife to check how best to infiltratesystems. It also involves the use of tools such as brute force or dictionary attack tools, SMTP scanners,and remote desktop viewers. Networks with weak password practices are likely to fall victim to thisinitial penetration testing stage. Many of these tools are easily downloaded from various sites on theInternet.
+Figure 2. Operation Black Atlas infection chain
+
+The cybercriminals will then create a test plan based on the initial probe, and then use a second set of
+tools to execute the said plan. In the case of the healthcare organization, the Black Atlas operators
+utilized remote access tools to steal more information and move laterally within the network. The use of
+remote access tools at this stage depends on how the target environment is configured, with the
+method of gaining remote access also varying based on the target.
+
+Once inside, cybercriminals then familiarize themselves with the environment. What follows is the
+introduction of PoS threats, which the cybercriminals source from the operation’s broad Swiss army
+knife toolbox.The favored way to introduce other tools and threats is via the built-in command-line FTP
+since antimalware solutions had already blocked the initial site we had reported last September that
+hosted Katrina and CenterPoS.
+
+Black Atlas operators used the modular botnet Gorynych or Diamond Fox in some installations.
+Gorynich was used to download a repurposed BlackPOS malware with RAM scraping functionality and
+upload all the dumped credit card numbers in memory. As the original BlackPOS used a text file to store
+pilfered credit card data, Gorynych now grabs that text file and does an HTTP POST to complete the
+data exfiltration:
+
+Figure 3. Gorynych data exfiltration stage
+
+In our next blog entry, we will discuss the steps of our investigation, how cybercriminals retrofitted the
+new Gorynych backdoor to use BlackPOS, and how the whole operation puts a variety of old and new
+PoS malware at the cybercriminals’ fingertips to easily gather financial information. We will also provide
+technical details, best practices, and recommendations to help IT managers and business owners
+evade or resolve this PoS threat.
+
+With additional analysis by Erika Mendoza
+
+http://www.trendmicro.com/vinfo/us/security/news/cyber-attacks/targeted-attacks-six-components
+http://blog.trendmicro.com/trendlabs-security-intelligence/two-new-pos-malware-affecting-us-smbs/
+https://t.co/t6BQIC2FeT
+http://twitter.com/TrendLabs/status/679043669320720385
+https://t.co/ldur39zSdA
+http://twitter.com/TrendLabs/status/678968171680940033
+
+
+Comments
+for
+this
+thread
+are
+now
+closed.
+
+Trend
+Micro,
+NCA
+Partnership
+Leads
+to
+Arrests
+and
+Shutdown
+of
+Refud.me
+…
+16 comments • a month ago
+
+LegitBytes — This is a bunch of Bullshit,
+worry about Zeus, Betabot and other
+Banking Trojans rather than fucking …
+
+Targeted
+Attacks
+versus
+APTs:
+What’s
+The
+Difference?�
+3 comments • 3 months ago
+
+TrendLabs — Whether or not the Sony
+attack was an APT is still up for debate. As
+I explained in the entry, APTs are known …
+
+Blog
+of
+News
+Site
+“The
+Independent”
+Hacked,
+Leads
+to
+TeslaCrypt
+…
+3 comments • 13 days ago
+
+Jérôme Segura — You're welcome. I
+sincerely hope the 'bad ad' they report is
+not a way to divert attention and blame …
+
+Latest
+Flash
+Exploit
+Used
+in
+Pawn
+Storm
+Circumvents
+Mitigation
+Techniques
+…
+2 comments • 2 months ago
+
+TrendLabs — Yes, EMET 5.x can be
+bypassed. Note though that not every
+exploit will be implemented to bypass …
+
+ALSO
+ON
+TRENDLABS
+
+0
+Comments TrendLabs 
+Login1
+
+
+Share Sort
+by
+Best
+
+Subscribe Add
+Disqus
+to
+your
+site Privacy�
+
+
+Recommend
+
+HOME AND HOME OFFICE  |  FOR BUSINESS  |  SECURITY INTELLIGENCE  |  ABOUT TREND MICRO
+
+Asia Pacific Region (APAC): Australia / New Zealand, 中国, ⽇本, 대한민국 , 台灣 Latin America Region (LAR): Brasil, México North America Region (NABU): United States, Canada 
+
+Europe, Middle East, & Africa Region (EMEA): France, Deutschland / Österreich / Schweiz, Italia, Россия, España, United Kingdom / Ireland
+
+Privacy Statement  Legal Policies Copyright © 2015 Trend Micro Incorporated. All rights reserved.
+
+Tags: Botnets SMB healthcare
+
+POS point-of-sale
+
+Related Posts:
+Operation Black Atlas, Part 2: Tools and Malware Used and How to Detect Them
+
+One-Man PoS Malware Operation Captures 22,000 Credit Card Details in Brazil
+
+Two New PoS Malware Affecting US SMBs
+
+Credit Card-Scraping Kasidet Builder Leads to Spike in Detections
+
+http://blog.trendmicro.com/trendlabs-security-intelligence/operation-black-atlas-part-2-tools-and-malware-used-and-how-to-detect-them/
+http://blog.trendmicro.com/trendlabs-security-intelligence/fighterpos-fighting-a-new-pos-malware-family/
+http://blog.trendmicro.com/trendlabs-security-intelligence/two-new-pos-malware-affecting-us-smbs/
+http://blog.trendmicro.com/trendlabs-security-intelligence/credit-card-scraping-kasidet-builder-leads-to-spike-in-detections/
+http://www.trendmicro.com/vinfo/us/security/threat-intelligence-center/targeted-attacks/
+http://blog.trendmicro.com/trendlabs-security-intelligence/tag/botnets/
+http://blog.trendmicro.com/trendlabs-security-intelligence/tag/smb/
+http://blog.trendmicro.com/trendlabs-security-intelligence/tag/healthcare/
+http://blog.trendmicro.com/trendlabs-security-intelligence/tag/pos/
+http://blog.trendmicro.com/trendlabs-security-intelligence/tag/point-of-sale/
+http://www.trendmicro.com/us/home/index.html
+http://www.trendmicro.com/us/business/index.html
+http://www.trendmicro.com/us/security-intelligence/index.html
+http://www.trendmicro.com/us/about-us/index.html
+http://www.trendmicro.com.au/au/home/index.html
+http://www.trendmicro.co.nz/nz/home/index.html
+http://cn.trendmicro.com/cn/home/index.html
+http://jp.trendmicro.com/jp/home/index.html
+http://www.trendmicro.co.kr/index.html
+http://tw.trendmicro.com/tw/home/index.html
+http://br.trendmicro.com/br/home/index.html
+http://la.trendmicro.com/la/home/index.html
+http://www.trendmicro.com/us/index.html
+http://ca.trendmicro.com/ca/home/index.html
+http://www.trendmicro.fr/
+http://www.trendmicro.de/
+http://www.trendmicro.it/
+http://www.trendmicro.com.ru/
+http://www.trendmicro.es/
+http://www.trendmicro.co.uk/
+http://www.trendmicro.com/us/about-us/legal-policies/privacy-statement/index.html
+http://www.trendmicro.com/us/about-us/legal-policies/index.html
+
+
+
+	Featured Stories
+	Operation Black Atlas Endangers In-Store Card Payments and SMBs Worldwide; Switches between BlackPOS and Other Tools
+	Recent Posts
+	2016 Security Predictions
+	Popular Posts
+	Latest Tweets
+	Stay Updated
+	Related Posts:
+
+

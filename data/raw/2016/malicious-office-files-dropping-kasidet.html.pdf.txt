@@ -1,0 +1,1248 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zscaler Research: Malicious Office files dropping Kasidet and Dridex
+
+
+F R I D A Y ,  J A N U A R Y  2 9 ,  2 0 1 6
+
+Malicious Office files dropping Kasidet and Dridex
+
+Introduction 
+We have covered Dridex Banking Trojan being delivered via various campaigns involving Office
+documents with malicious VBA macros in the past. However, over the past two weeks we are seeing
+these malicious VBA macros leveraged to drop Kasidet backdoor in addition to Dridex on the infected
+systems. These malicious Office documents are being spread as an attachment using spear phishing
+emails as described here. The malicious macro inside the Office document is obfuscated as shown in
+the code snapshot below -
+
+Macro code
+
+The macro downloads malware payload from the hardcoded URL. We have seen following URLs used
+in different document payloads that we captured for this campaign:
+
+      armandosofsalem[.]com/l9k7hg4/b4387kfd[.]exe
+      trinity.ad-ventures[.]es/l9k7hg4/b4387kfd[.]exe
+      188.226.152[.]172/l9k7hg4/b4387kfd[.]exe
+
+In this blog, we will provide a detailed analysis for the Kasidet variant that we spotted in this campaign.
+
+Kasidet Analysis
+Installation: 
+Kasidet installs itself into %APPDATA% folder. It creates a new folder there with the name
+"Y1FeZFVYXllb", this string is hardcoded in the malware. The same string is used as mutex name and
+in creating a Registry key for ensuring persistence upon system reboot.
+
+AntiVM Check:
+Kasidet tries to detect analysis systems during execution through following checks.
+Checking Dubugger through "IsDebuggerPresent" and "CheckRemoteDebuggerPresent" Windows
+APIs. It also checks for the following popular sandbox related strings:
+
+User Name: "MALTEST",  "TEQUILABOOMBOOM", "SANDBOX", "VIRUS", "MALWARE"
+File Name: "SAMPLE", "VIRUS", "SANDBOX"
+
+It tries to detect wine software by checking if kernel32.dll is exporting "wine_get_unix_file_name"
+function or not. It detects Vmware, VirtualBox, QEMU and Bochs by checking for following registry
+entries:
+
+	Vmware
+
+"SOFTWARE\\VMware,	Inc.\\VMware	Tools"
+
+"HARDWARE\DEVICEMAP\Scsi\Scsi	Port\Scsi	Bus\Target	Id\Logical	Unit	Id",	
+"Iden fier"	,	Vmware"��
+
+L I N K S
+
+Zscaler Homepage
+
+Zscaler Analyst Scrapbook
+
+S E A R C H  T H I S  B L O G
+
+S U B S C R I B E  T O
+
+B L O G  A R C H I V E
+
+▼  2016 (5)
+
+►  February (1)
+
+▼  January (4)
+
+Malicious Office files dropping
+Kasidet and Dridex...
+
+Music-themed Malvertising Lead
+to Angler
+
+There Goes The Neighborhood -
+Bad Actors on GMHOS...
+
+Yet Another Signed Malware -
+Spymel
+
+►  2015 (48)
+
+►  2014 (44)
+
+►  2013 (59)
+
+►  2012 (67)
+
+►  2011 (116)
+
+►  2010 (148)
+
+►  2009 (75)
+
+►  2008 (31)
+
+L A B E L S
+
+0-day (7)
+
+0day (3)
+
+302 Cushioning (2)
+
+abuse (13)
+
+ActiveX (5)
+
+AdFraud (3)
+
+Adobe (3)
+
+Adobe Flash (3)
+
+Adobe Flash vulnerability  (2)
+
+Adobe vulnerabilities (1)
+
+Adobe vulnerabilties (10)
+
+adware (4)
+
+affiliates (6)
+
+analysis (48)
+
+analytics (1)
+
+ Posts
+
+ Comments
+
+http://research.zscaler.com/
+http://research.zscaler.com/2015/10/dridex-activity-continues.html
+http://blog.dynamoo.com/2016/01/malware-spam-scanned-document-color-mrh.html
+http://1.bp.blogspot.com/-8hx-j-gqDzw/VqYJRRmTRSI/AAAAAAAAAPU/2KDtIsQwYFk/s1600/kasidet_macro.png
+http://2.bp.blogspot.com/-iEBT-5IAFks/VqYJar0j5zI/AAAAAAAAAPg/V92hAwioqVM/s1600/kasidet_macro1.png
+http://www.zscaler.com/
+http://scrapbook.zscaler.com/
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2016-01-01T00:00:00-08:00&updated-max=2017-01-01T00:00:00-08:00&max-results=5
+javascript:void(0)
+http://research.zscaler.com/2016_02_01_archive.html
+javascript:void(0)
+http://research.zscaler.com/2016_01_01_archive.html
+http://research.zscaler.com/2016/01/music-themed-malvertising-lead-to-angler.html
+http://research.zscaler.com/2016/01/there-goes-neighborhood-bad-actors-on.html
+http://research.zscaler.com/2016/01/yet-another-signed-malware-spymel.html
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2015-01-01T00:00:00-08:00&updated-max=2016-01-01T00:00:00-08:00&max-results=48
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2014-01-01T00:00:00-08:00&updated-max=2015-01-01T00:00:00-08:00&max-results=44
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2013-01-01T00:00:00-08:00&updated-max=2014-01-01T00:00:00-08:00&max-results=50
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2012-01-01T00:00:00-08:00&updated-max=2013-01-01T00:00:00-08:00&max-results=50
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2011-01-01T00:00:00-08:00&updated-max=2012-01-01T00:00:00-08:00&max-results=50
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2010-01-01T00:00:00-08:00&updated-max=2011-01-01T00:00:00-08:00&max-results=50
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2009-01-01T00:00:00-08:00&updated-max=2010-01-01T00:00:00-08:00&max-results=50
+javascript:void(0)
+http://research.zscaler.com/search?updated-min=2008-01-01T00:00:00-08:00&updated-max=2009-01-01T00:00:00-08:00&max-results=31
+http://research.zscaler.com/search/label/0-day
+http://research.zscaler.com/search/label/0day
+http://research.zscaler.com/search/label/302 Cushioning
+http://research.zscaler.com/search/label/abuse
+http://research.zscaler.com/search/label/ActiveX
+http://research.zscaler.com/search/label/AdFraud
+http://research.zscaler.com/search/label/Adobe
+http://research.zscaler.com/search/label/Adobe Flash
+http://research.zscaler.com/search/label/Adobe Flash vulnerability
+http://research.zscaler.com/search/label/Adobe vulnerabilities
+http://research.zscaler.com/search/label/Adobe vulnerabilties
+http://research.zscaler.com/search/label/adware
+http://research.zscaler.com/search/label/affiliates
+http://research.zscaler.com/search/label/analysis
+http://research.zscaler.com/search/label/analytics
+
+
+"HARDWARE\DEVICEMAP\Scsi\Scsi	Port\Scsi	Bus\Target	Id\Logical	Unit	Id",	
+"Iden fier"	,	"VBOX"��
+
+VirtualBox
+"HARDWARE\\Descrip on\\System",	"SystemBiosVersion"	,	"VBOX"�
+
+SOFTWARE\\Oracle\\VirtualBox	Guest	Addi ons"�
+
+"HARDWARE\\Descrip on\\System",	"VideoBiosVersion"	,	"VIRTUALBOX"�
+
+QEMU "HARDWARE\DEVICEMAP\Scsi\Scsi	Port	\Scsi	Bus	\Target	Id	\Logical	Unit	Id	",	
+"Iden fier"	,	"QEMU"��
+
+"HARDWARE\\Descrip on\\System"	,	"SystemBiosVersion"	,	"QEMU"�
+
+Bochs "HARDWARE\\Descrip on\\System"	,	"SystemBiosVersion"	,	"BOCHS”�
+
+Information Stealing capabilities:
+
+Kasidet uses following two methods for stealing information from the victim's machine:
+
+1. Memory Scraping – This allows Kasidet to steal credit card data from the memory of Point-Of-Sale
+(POS) systems. It scans the memory of all the running processes except the operating system
+processes listed below:
+System
+smss.exe
+csrss.exe
+winlogon.exe
+lsass.exe
+spoolsv.exe
+devenv.exe
+
+The stolen information is relayed back to the attacker using following URI format – 
+
+d=1&id=<MachineID>&name=<SystemName>&type=<Track1 or Track2 data>&data=<stolen data>&p=
+< Process elevation status >
+
+2. Browser Hooking –  This allows Kasidet to steal data from Web browsers. It can inject code into
+FireFox, Chrome, and Internet Explorer (IE). Browser names are not saved in plain text and instead this
+variant uses the same hash function as used by Carberp malware to encrypt the browser names. The
+following APIs are hooked in the web browser for stealing sensitive data: 
+
+Browser API
+FireFox PR_Write
+Chrome WSASend
+IE H pSendRequestW	,	InternetWriteFile�
+
+The stolen information is relayed back to the attacker using following URI format – 
+
+ff=1&id=<MachineID>&name=<SystemName>&host=<Base64 encoded host name>&form=< Base64
+encoded HTTP header data>&browser=<Browser name>
+
+The information stealing feature of this Kasidet variant were deactivated if the system locale or
+GeoUserID corresponds to Russia.
+
+Network communication:
+Kasidet contains a hardcoded list of Command & Control (C&C) server locations. It uses
+CryptStringToBinary API call to decrypt the embedded C&C URLs as seen below:
+
+android (7)
+
+Android malware (9)
+
+Angler (2)
+
+Angler Exploit Kit  (6)
+
+anti-debug (2)
+
+antivirus (22)
+
+App behaviour (1)
+
+App Economy (1)
+
+Apple (1)
+
+APT (7)
+
+assassins creed (1)
+
+Asymmetric encryption (1)
+
+Aurora (1)
+
+BA (1)
+
+backdoor (3)
+
+Baidu Search (1)
+
+Banking Trojan (6)
+
+Base64 encode/decode (5)
+
+bash (2)
+
+BatteryBotPro (1)
+
+Bedep (3)
+
+black friday (1)
+
+blackhole (4)
+
+BlueBotnet (1)
+
+Botnet (3)
+
+botnets (10)
+
+browser (1)
+
+captcha (2)
+
+certificates (1)
+
+Chanitor (1)
+
+Chinese APT (1)
+
+Chinese malware (4)
+
+Clear text authentication (5)
+
+Clicker (1)
+
+ClickFaud (1)
+
+ClickFraud (1)
+
+cloud (3)
+
+Cloud Services (1)
+
+CNN App (1)
+
+Compromised (25)
+
+Compromised WordPress (2)
+
+Confidentiality (1)
+
+credentials leak (1)
+
+crypt4 (1)
+
+CryptoWall (3)
+
+CryptoWall 3.0 (1)
+
+Cutwail (1)
+
+CVE (7)
+
+CVE-2013-0074 (2)
+
+CVE-2013-2460 (1)
+
+CVE-2013-2551 (2)
+
+CVE-2013-3896 (1)
+
+CVE-2014-0515 (1)
+
+CVE-2014-4130 (1)
+
+CVE-2014-6271 (2)
+
+CVE-2014-6332 (1)
+
+CVE-2015-0311 (1)
+
+CVE-2015-0313 (1)
+
+CVE-2015-0336 (1)
+
+http://research.zscaler.com/search/label/android
+http://research.zscaler.com/search/label/Android malware
+http://research.zscaler.com/search/label/Angler
+http://research.zscaler.com/search/label/Angler Exploit Kit
+http://research.zscaler.com/search/label/anti-debug
+http://research.zscaler.com/search/label/antivirus
+http://research.zscaler.com/search/label/App behaviour
+http://research.zscaler.com/search/label/App Economy
+http://research.zscaler.com/search/label/Apple
+http://research.zscaler.com/search/label/APT
+http://research.zscaler.com/search/label/assassins creed
+http://research.zscaler.com/search/label/Asymmetric encryption
+http://research.zscaler.com/search/label/Aurora
+http://research.zscaler.com/search/label/BA
+http://research.zscaler.com/search/label/backdoor
+http://research.zscaler.com/search/label/Baidu Search
+http://research.zscaler.com/search/label/Banking Trojan
+http://research.zscaler.com/search/label/Base64 encode%2Fdecode
+http://research.zscaler.com/search/label/bash
+http://research.zscaler.com/search/label/BatteryBotPro
+http://research.zscaler.com/search/label/Bedep
+http://research.zscaler.com/search/label/black friday
+http://research.zscaler.com/search/label/blackhole
+http://research.zscaler.com/search/label/BlueBotnet
+http://research.zscaler.com/search/label/Botnet
+http://research.zscaler.com/search/label/botnets
+http://research.zscaler.com/search/label/browser
+http://research.zscaler.com/search/label/captcha
+http://research.zscaler.com/search/label/certificates
+http://research.zscaler.com/search/label/Chanitor
+http://research.zscaler.com/search/label/Chinese APT
+http://research.zscaler.com/search/label/Chinese malware
+http://research.zscaler.com/search/label/Clear text authentication
+http://research.zscaler.com/search/label/Clicker
+http://research.zscaler.com/search/label/ClickFaud
+http://research.zscaler.com/search/label/ClickFraud
+http://research.zscaler.com/search/label/cloud
+http://research.zscaler.com/search/label/Cloud Services
+http://research.zscaler.com/search/label/CNN App
+http://research.zscaler.com/search/label/Compromised
+http://research.zscaler.com/search/label/Compromised WordPress
+http://research.zscaler.com/search/label/Confidentiality
+http://research.zscaler.com/search/label/credentials leak
+http://research.zscaler.com/search/label/crypt4
+http://research.zscaler.com/search/label/CryptoWall
+http://research.zscaler.com/search/label/CryptoWall 3.0
+http://research.zscaler.com/search/label/Cutwail
+http://research.zscaler.com/search/label/CVE
+http://research.zscaler.com/search/label/CVE-2013-0074
+http://research.zscaler.com/search/label/CVE-2013-2460
+http://research.zscaler.com/search/label/CVE-2013-2551
+http://research.zscaler.com/search/label/CVE-2013-3896
+http://research.zscaler.com/search/label/CVE-2014-0515
+http://research.zscaler.com/search/label/CVE-2014-4130
+http://research.zscaler.com/search/label/CVE-2014-6271
+http://research.zscaler.com/search/label/CVE-2014-6332
+http://research.zscaler.com/search/label/CVE-2015-0311
+http://research.zscaler.com/search/label/CVE-2015-0313
+http://research.zscaler.com/search/label/CVE-2015-0336
+
+
+Kasidet	C&C	list
+
+Upon successful infection, Kasidet sends a HTTP POST request with data “enter=1” (without quotes).
+All HTTP header fields (User-Agent, Content-type and Cookie) are hard coded in the payload itself.
+
+Kasidet	Hardcoded	HTTP	fields�
+
+C&C Server will not return required data if HTTP header fields are different.  The server sends a fake
+404 response code and html data stating that page is not found but the C&C commands will be hidden
+in the response HTML comment tag as seen below:
+
+Kasidet		-	First	communica on	with�	
+C&C
+
+Kasidet will request for additional commands from the C&C server with the following POST request:
+
+CVE-2015-310 (1)
+
+CVE-2015-311 (1)
+
+CVE-2015-5119 (3)
+
+CVE-2015-5122 (1)
+
+CVE-2015-5123 (1)
+
+CWE (1)
+
+Cyber espionage (2)
+
+cyber monday (1)
+
+data breach (2)
+
+Data Loss Prevention (1)
+
+DDoS (1)
+
+de-obfuscation (1)
+
+decoding (3)
+
+diassembly (3)
+
+Domain Shadowing (1)
+
+Dorkbot (1)
+
+Downloader (1)
+
+Dridex (3)
+
+drive-by-downlad (1)
+
+dropper (1)
+
+dynamic DNS (1)
+
+Dyre (1)
+
+Dyreza (1)
+
+Emissary Panda (1)
+
+encryption (8)
+
+exploit (9)
+
+Exploit Kit (7)
+
+exploit kits (18)
+
+Extrat Xtreme RAT (1)
+
+facebook (19)
+
+Fake AV (19)
+
+Fake codec (2)
+
+fake Dubsmash app (1)
+
+fake flash (6)
+
+fake porn (1)
+
+Fake porn site (1)
+
+fareit (1)
+
+Fiesta (1)
+
+financial firm (1)
+
+FLASH (1)
+
+Flash vulnerabilities (5)
+
+Flash vulnerability (3)
+
+FlashPack (1)
+
+Gamarue (1)
+
+Gameover (1)
+
+google (54)
+
+Google Cloud Server (1)
+
+Google code (1)
+
+Google Play store (1)
+
+H-Worm (1)
+
+Hacking Team (3)
+
+hacktivism (2)
+
+Hencitor (1)
+
+heuristics (4)
+
+HttpBrowser (2)
+
+IFRAME (18)
+
+iframe trampolining (1)
+
+incognito (1)
+
+infected (32)
+
+http://research.zscaler.com/search/label/CVE-2015-310
+http://research.zscaler.com/search/label/CVE-2015-311
+http://research.zscaler.com/search/label/CVE-2015-5119
+http://research.zscaler.com/search/label/CVE-2015-5122
+http://research.zscaler.com/search/label/CVE-2015-5123
+http://research.zscaler.com/search/label/CWE
+http://research.zscaler.com/search/label/Cyber espionage
+http://research.zscaler.com/search/label/cyber monday
+http://research.zscaler.com/search/label/data breach
+http://research.zscaler.com/search/label/Data Loss Prevention
+http://research.zscaler.com/search/label/DDoS
+http://research.zscaler.com/search/label/de-obfuscation
+http://research.zscaler.com/search/label/decoding
+http://research.zscaler.com/search/label/diassembly
+http://research.zscaler.com/search/label/Domain Shadowing
+http://research.zscaler.com/search/label/Dorkbot
+http://research.zscaler.com/search/label/Downloader
+http://research.zscaler.com/search/label/Dridex
+http://research.zscaler.com/search/label/drive-by-downlad
+http://research.zscaler.com/search/label/dropper
+http://research.zscaler.com/search/label/dynamic DNS
+http://research.zscaler.com/search/label/Dyre
+http://research.zscaler.com/search/label/Dyreza
+http://research.zscaler.com/search/label/Emissary Panda
+http://research.zscaler.com/search/label/encryption
+http://research.zscaler.com/search/label/exploit
+http://research.zscaler.com/search/label/Exploit Kit
+http://research.zscaler.com/search/label/exploit kits
+http://research.zscaler.com/search/label/Extrat Xtreme RAT
+http://research.zscaler.com/search/label/facebook
+http://research.zscaler.com/search/label/Fake AV
+http://research.zscaler.com/search/label/Fake codec
+http://research.zscaler.com/search/label/fake Dubsmash app
+http://research.zscaler.com/search/label/fake flash
+http://research.zscaler.com/search/label/fake porn
+http://research.zscaler.com/search/label/Fake porn site
+http://research.zscaler.com/search/label/fareit
+http://research.zscaler.com/search/label/Fiesta
+http://research.zscaler.com/search/label/financial firm
+http://research.zscaler.com/search/label/FLASH
+http://research.zscaler.com/search/label/Flash vulnerabilities
+http://research.zscaler.com/search/label/Flash vulnerability
+http://research.zscaler.com/search/label/FlashPack
+http://research.zscaler.com/search/label/Gamarue
+http://research.zscaler.com/search/label/Gameover
+http://research.zscaler.com/search/label/google
+http://research.zscaler.com/search/label/Google Cloud Server
+http://research.zscaler.com/search/label/Google code
+http://research.zscaler.com/search/label/Google Play store
+http://research.zscaler.com/search/label/H-Worm
+http://research.zscaler.com/search/label/Hacking Team
+http://research.zscaler.com/search/label/hacktivism
+http://research.zscaler.com/search/label/Hencitor
+http://research.zscaler.com/search/label/heuristics
+http://research.zscaler.com/search/label/HttpBrowser
+http://research.zscaler.com/search/label/IFRAME
+http://research.zscaler.com/search/label/iframe trampolining
+http://research.zscaler.com/search/label/incognito
+http://research.zscaler.com/search/label/infected
+
+
+Newer Post Older Post
+
+Kasidet		request	for	addi onal	commands�
+
+Variable Descriptions
+cmd Command. It is hardcoded in the malware payload as '1'.
+id MachineGuid value fetched  from Software\Microsoft\Cryptography registry key
+name System Name
+
+os Operating system version
+p Process elevation status
+av Antivirus installed on the infected system
+v Version of the bot. It is hardcoded in the malware. Current version that we analysed is 4.4
+w Flag that indicates whether the system locale and UserGeoID is Russia
+
+Like browser names, all the command strings are also encrypted using a hash function. Below are some
+of the important commands:
+
+Command Hash Description
+0x0E587A65 (rate
+
+<number>)
+It is used in sleep function
+
+0x89127D3 DDOS using HTTP protocol
+0x0B37A84B6 Start keylogging and screen capture threads
+0x89068E8h Download and execute additional component. This file can be DLL, EXE
+
+or VBS.
+0x4A9981B7 Search for given process name in current running processes in the
+
+system
+0x8D26744 Find given file in system and upload to the server
+0CAB1E64A Drop setting.bin file,  change firewall settings to download and execute
+
+plugin component
+0x10E6C4 Execute given command using windows cmd.exe
+
+Conclusion 
+Malicious Office document file is a popular vector for malware authors to deliver their payloads. Dridex
+authors have leveraged this technique for over a year and it was interesting to see the same campaign
+and URLs being leveraged to deliver Kasidet payloads. While this does not establish any links between
+the two malware family authors, it reaffirms the fact that a lot of the underlying infrastructure and delivery
+mechanisms are often shared by these cyber criminals.
+
+ThreatLabZ is actively monitoring this threat and ensuring signature coverage for Zscaler customers.
+
+Analysis by - Abhay Yadav, Avinash Kumar and Nirmal Singh
+
+P O S T E D  B Y  N I R M A L  S I N G H A T  6 : 4 6  A M
+
+L A B E L S :  D R I D E X,  K A S I D E T,  M A L I C I O U S  D O C U M E N T
+
+N O  C O M M E N T S :
+
+Post a Comment
+
+Home
+
+Information Disclosure Vulnerability
+(1)
+
+Information Stealer (1)
+
+information stealing (2)
+
+Infostealer (2)
+
+internet explorer (18)
+
+iOS (5)
+
+IRC Botnet (1)
+
+iTunes (1)
+
+itunes app store  (1)
+
+Jar (2)
+
+Java (10)
+
+Java Vulnerability (1)
+
+javascript (19)
+
+Kasidet (1)
+
+Kelihos Botnet  (1)
+
+Keylogger (1)
+
+KINS (1)
+
+legal (1)
+
+Lethic (1)
+
+linux (1)
+
+lock out malware (1)
+
+lollipop (1)
+
+Machine Translation (1)
+
+Magnitude (2)
+
+malcious JavaScrip (2)
+
+malcious JavaScript (11)
+
+Malicious APK (1)
+
+Malicious Code (24)
+
+Malicious Document (1)
+
+malicious JavaScript (8)
+
+malvertising (6)
+
+malware (47)
+
+Malzilla (4)
+
+March Madness (1)
+
+MediaFire (1)
+
+Microsoft Word (1)
+
+mobile (10)
+
+Mobile apps category (1)
+
+mobile malware (3)
+
+Mobile Porn (1)
+
+MS06-014 (1)
+
+MultiPlug (1)
+
+NCAA (1)
+
+Necurs (1)
+
+Neutrino (2)
+
+ngrBot (1)
+
+njRAT (1)
+
+Nuclear (2)
+
+Nuclear Exploit Kit (4)
+
+obfuscation (22)
+
+OllyDbg (3)
+
+Olympics (4)
+
+openads (1)
+
+openx (1)
+
+OS X (1)
+
+p2p (1)
+
+patches (2)
+
+PDF exploits (5)
+
+pharm (2)
+
+Recommend this on Google
+
+http://1.bp.blogspot.com/-2twzzo92beQ/VqnGXiKOKMI/AAAAAAAAAQE/8KqQSikw1nc/s1600/kasidet4.PNG
+https://www.blogger.com/share-post.g?blogID=5262423634906095657&postID=1857387187894861304&target=email
+https://www.blogger.com/share-post.g?blogID=5262423634906095657&postID=1857387187894861304&target=blog
+https://www.blogger.com/share-post.g?blogID=5262423634906095657&postID=1857387187894861304&target=twitter
+https://www.blogger.com/share-post.g?blogID=5262423634906095657&postID=1857387187894861304&target=facebook
+https://www.blogger.com/share-post.g?blogID=5262423634906095657&postID=1857387187894861304&target=pinterest
+http://research.zscaler.com/search/label/Dridex
+http://research.zscaler.com/search/label/Kasidet
+http://research.zscaler.com/search/label/Malicious Document
+https://www.blogger.com/comment.g?blogID=5262423634906095657&postID=1857387187894861304
+http://research.zscaler.com/2016/02/fake-security-app-for-alipay-customers.html
+http://research.zscaler.com/2016/01/music-themed-malvertising-lead-to-angler.html
+http://research.zscaler.com/
+http://research.zscaler.com/search/label/Information Disclosure Vulnerability
+http://research.zscaler.com/search/label/Information Stealer
+http://research.zscaler.com/search/label/information stealing
+http://research.zscaler.com/search/label/Infostealer
+http://research.zscaler.com/search/label/internet explorer
+http://research.zscaler.com/search/label/iOS
+http://research.zscaler.com/search/label/IRC Botnet
+http://research.zscaler.com/search/label/iTunes
+http://research.zscaler.com/search/label/itunes app store
+http://research.zscaler.com/search/label/Jar
+http://research.zscaler.com/search/label/Java
+http://research.zscaler.com/search/label/Java Vulnerability
+http://research.zscaler.com/search/label/javascript
+http://research.zscaler.com/search/label/Kasidet
+http://research.zscaler.com/search/label/Kelihos Botnet
+http://research.zscaler.com/search/label/Keylogger
+http://research.zscaler.com/search/label/KINS
+http://research.zscaler.com/search/label/legal
+http://research.zscaler.com/search/label/Lethic
+http://research.zscaler.com/search/label/linux
+http://research.zscaler.com/search/label/lock out malware
+http://research.zscaler.com/search/label/lollipop
+http://research.zscaler.com/search/label/Machine Translation
+http://research.zscaler.com/search/label/Magnitude
+http://research.zscaler.com/search/label/malcious JavaScrip
+http://research.zscaler.com/search/label/malcious JavaScript
+http://research.zscaler.com/search/label/Malicious APK
+http://research.zscaler.com/search/label/Malicious Code
+http://research.zscaler.com/search/label/Malicious Document
+http://research.zscaler.com/search/label/malicious JavaScript
+http://research.zscaler.com/search/label/malvertising
+http://research.zscaler.com/search/label/malware
+http://research.zscaler.com/search/label/Malzilla
+http://research.zscaler.com/search/label/March Madness
+http://research.zscaler.com/search/label/MediaFire
+http://research.zscaler.com/search/label/Microsoft Word
+http://research.zscaler.com/search/label/mobile
+http://research.zscaler.com/search/label/Mobile apps category
+http://research.zscaler.com/search/label/mobile malware
+http://research.zscaler.com/search/label/Mobile Porn
+http://research.zscaler.com/search/label/MS06-014
+http://research.zscaler.com/search/label/MultiPlug
+http://research.zscaler.com/search/label/NCAA
+http://research.zscaler.com/search/label/Necurs
+http://research.zscaler.com/search/label/Neutrino
+http://research.zscaler.com/search/label/ngrBot
+http://research.zscaler.com/search/label/njRAT
+http://research.zscaler.com/search/label/Nuclear
+http://research.zscaler.com/search/label/Nuclear Exploit Kit
+http://research.zscaler.com/search/label/obfuscation
+http://research.zscaler.com/search/label/OllyDbg
+http://research.zscaler.com/search/label/Olympics
+http://research.zscaler.com/search/label/openads
+http://research.zscaler.com/search/label/openx
+http://research.zscaler.com/search/label/OS X
+http://research.zscaler.com/search/label/p2p
+http://research.zscaler.com/search/label/patches
+http://research.zscaler.com/search/label/PDF exploits
+http://research.zscaler.com/search/label/pharm
+
+
+Subscribe to: Post Comments (Atom) phishing (32)
+
+Phorpiex (1)
+
+plugins (17)
+
+PlugX (1)
+
+Porn (1)
+
+Porn Droid (1)
+
+Potentially Unwanted Application (1)
+
+predictions (2)
+
+privacy (14)
+
+PUA (1)
+
+quikr mobile app (1)
+
+Radamant (1)
+
+Ragebot (1)
+
+ransomware (9)
+
+RAT (3)
+
+RCS (1)
+
+Redirections (3)
+
+reverse engineering (7)
+
+Rig (2)
+
+RIG EK (2)
+
+Rogue software (7)
+
+SaaS (2)
+
+scam (22)
+
+scamware (1)
+
+SDLC (1)
+
+security features (1)
+
+SEO (58)
+
+Shaadi.com app (1)
+
+Shellcode (3)
+
+Shellshock (2)
+
+Signed malware (2)
+
+SilverLight (2)
+
+SilverLight vulnerability  (1)
+
+skype (3)
+
+SMS stealer (3)
+
+SMS trojan (2)
+
+social (5)
+
+spam (30)
+
+sports (1)
+
+Spy Banker Telax (1)
+
+Spyware (1)
+
+ssl (12)
+
+storm worm (1)
+
+Style tag (1)
+
+Sundown (1)
+
+SWF (2)
+
+thanksgiving (1)
+
+Thanksgiving scam (1)
+
+Threat Finder (1)
+
+Tinba (1)
+
+Tinychat (1)
+
+tool (6)
+
+Traffic Analysis (2)
+
+Trends (39)
+
+Trojan (17)
+
+troldesh (1)
+
+Tsunami (1)
+
+twitter (4)
+
+UDID (1)
+
+http://research.zscaler.com/feeds/1857387187894861304/comments/default
+http://research.zscaler.com/search/label/phishing
+http://research.zscaler.com/search/label/Phorpiex
+http://research.zscaler.com/search/label/plugins
+http://research.zscaler.com/search/label/PlugX
+http://research.zscaler.com/search/label/Porn
+http://research.zscaler.com/search/label/Porn Droid
+http://research.zscaler.com/search/label/Potentially Unwanted Application
+http://research.zscaler.com/search/label/predictions
+http://research.zscaler.com/search/label/privacy
+http://research.zscaler.com/search/label/PUA
+http://research.zscaler.com/search/label/quikr mobile app
+http://research.zscaler.com/search/label/Radamant
+http://research.zscaler.com/search/label/Ragebot
+http://research.zscaler.com/search/label/ransomware
+http://research.zscaler.com/search/label/RAT
+http://research.zscaler.com/search/label/RCS
+http://research.zscaler.com/search/label/Redirections
+http://research.zscaler.com/search/label/reverse engineering
+http://research.zscaler.com/search/label/Rig
+http://research.zscaler.com/search/label/RIG EK
+http://research.zscaler.com/search/label/Rogue software
+http://research.zscaler.com/search/label/SaaS
+http://research.zscaler.com/search/label/scam
+http://research.zscaler.com/search/label/scamware
+http://research.zscaler.com/search/label/SDLC
+http://research.zscaler.com/search/label/security features
+http://research.zscaler.com/search/label/SEO
+http://research.zscaler.com/search/label/Shaadi.com app
+http://research.zscaler.com/search/label/Shellcode
+http://research.zscaler.com/search/label/Shellshock
+http://research.zscaler.com/search/label/Signed malware
+http://research.zscaler.com/search/label/SilverLight
+http://research.zscaler.com/search/label/SilverLight vulnerability
+http://research.zscaler.com/search/label/skype
+http://research.zscaler.com/search/label/SMS stealer
+http://research.zscaler.com/search/label/SMS trojan
+http://research.zscaler.com/search/label/social
+http://research.zscaler.com/search/label/spam
+http://research.zscaler.com/search/label/sports
+http://research.zscaler.com/search/label/Spy Banker Telax
+http://research.zscaler.com/search/label/Spyware
+http://research.zscaler.com/search/label/ssl
+http://research.zscaler.com/search/label/storm worm
+http://research.zscaler.com/search/label/Style tag
+http://research.zscaler.com/search/label/Sundown
+http://research.zscaler.com/search/label/SWF
+http://research.zscaler.com/search/label/thanksgiving
+http://research.zscaler.com/search/label/Thanksgiving scam
+http://research.zscaler.com/search/label/Threat Finder
+http://research.zscaler.com/search/label/Tinba
+http://research.zscaler.com/search/label/Tinychat
+http://research.zscaler.com/search/label/tool
+http://research.zscaler.com/search/label/Traffic Analysis
+http://research.zscaler.com/search/label/Trends
+http://research.zscaler.com/search/label/Trojan
+http://research.zscaler.com/search/label/troldesh
+http://research.zscaler.com/search/label/Tsunami
+http://research.zscaler.com/search/label/twitter
+http://research.zscaler.com/search/label/UDID
+
+
+Upatre (2)
+
+Vawtrak (2)
+
+VBScipt (1)
+
+vbscript (1)
+
+Vulnerability (1)
+
+Vulnerabilties (2)
+
+wattpad (1)
+
+Whitepaper (2)
+
+wikileaks (2)
+
+Wordpress (2)
+
+worm (2)
+
+Youdao (1)
+
+Youdao Dictionary (1)
+
+Zbot (2)
+
+Zegost (1)
+
+Zeus (2)
+
+zulu (2)
+
+信息披露 (1)
+有道 (1)
+有道词典 (1)
+
+A B O U T  U S
+
+Julien Sobrier
+
+rubin azad
+
+Uday Pratap Singh
+
+Pradeep Mp
+
+Loren Weith
+
+Jithin Nair
+
+Abhaykant Yadav
+
+Tarun Dewan
+
+Dhruval Gandhi
+
+Unknown
+
+Amandeep Kumar
+
+Dhanalakshmi Pk
+
+Ed Miles
+
+viral
+
+Chris Mannon
+
+Sameer Patil
+
+Webmaster
+
+Kuldeep Kumar
+
+Deepen Desai
+
+Nirmal Singh
+
+John Mancuso
+
+Amit Sinha
+
+Shivang Desai
+
+Avinash kumar
+
+Lenart Brave
+
+Manish Mukherjee
+
+Michael Sutton
+
+ 
+
+S U B S C R I B E  T O
+
+ P O S T S
+
+ C O M M E N T S
+
+http://research.zscaler.com/search/label/Upatre
+http://research.zscaler.com/search/label/Vawtrak
+http://research.zscaler.com/search/label/VBScipt
+http://research.zscaler.com/search/label/vbscript
+http://research.zscaler.com/search/label/Vulnerability
+http://research.zscaler.com/search/label/Vulnerabilties
+http://research.zscaler.com/search/label/wattpad
+http://research.zscaler.com/search/label/Whitepaper
+http://research.zscaler.com/search/label/wikileaks
+http://research.zscaler.com/search/label/Wordpress
+http://research.zscaler.com/search/label/worm
+http://research.zscaler.com/search/label/Youdao
+http://research.zscaler.com/search/label/Youdao Dictionary
+http://research.zscaler.com/search/label/Zbot
+http://research.zscaler.com/search/label/Zegost
+http://research.zscaler.com/search/label/Zeus
+http://research.zscaler.com/search/label/zulu
+http://research.zscaler.com/search/label/%E4%BF%A1%E6%81%AF%E6%8A%AB%E9%9C%B2
+http://research.zscaler.com/search/label/%E6%9C%89%E9%81%93
+http://research.zscaler.com/search/label/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8
+https://www.blogger.com/profile/06741851635998994926
+https://www.blogger.com/profile/14499731653620781078
+https://plus.google.com/108707720779438285631
+https://plus.google.com/110759999578946368781
+https://plus.google.com/117840357114415530287
+https://www.blogger.com/profile/09270979470282714044
+https://plus.google.com/105133806916425804796
+https://www.blogger.com/profile/00242448932457148165
+https://plus.google.com/105220683935822081170
+https://www.blogger.com/profile/17576982822462026125
+https://www.blogger.com/profile/11347957209466787165
+https://plus.google.com/115768477447212759443
+https://www.blogger.com/profile/15928350762546654244
+https://www.blogger.com/profile/05388605593074919812
+https://www.blogger.com/profile/14013814933540483983
+https://plus.google.com/103830792876802810198
+https://www.blogger.com/profile/14952917787057908066
+https://plus.google.com/109257244104955170408
+https://plus.google.com/104799054674960248904
+https://www.blogger.com/profile/04167674147535264668
+https://www.blogger.com/profile/04816524404352314235
+https://plus.google.com/104255170714136948216
+https://www.blogger.com/profile/17410460930764640047
+https://www.blogger.com/profile/02462213577458903701
+https://plus.google.com/107311571316175032095
+https://plus.google.com/107265512701397545143
+https://www.blogger.com/profile/12614648693197428321
+
+	LINKS
+	FRIDAY, JANUARY 29, 2016
+	Malicious Office files dropping Kasidet and Dridex
+	Introduction
+
+	SEARCH THIS BLOG
+	SUBSCRIBE TO
+	BLOG ARCHIVE
+	Kasidet Analysis
+
+	LABELS
+	Conclusion
+	NO COMMENTS:
+
+
+	ABOUT US
+	SUBSCRIBE TO
+

@@ -1,0 +1,3381 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>
+Exposing One of <COUNTRY>China</COUNTRY>’s Cyber 
+Espionage Units
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR>  www.mandiant.com
+
+Contents
+
+Executive Summary .......................................................................................................... 2
+
+<COUNTRY>China</COUNTRY>’s Computer Network Operations Tasking to <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR> (61398部队) .................... 7
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: Years of Espionage  ............................................................................................... 20
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: Attack Lifecycle .................................................................................................... 27
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: Infrastructure ....................................................................................................... 39
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: Identities ............................................................................................................. 51
+
+Conclusion ..................................................................................................................... 59
+
+Appendix A: How Does <ORG>Mandiant</ORG> Distinguish Threat Groups? .............................................. 61
+
+Appendix B: <THREAT_ACTOR>APT</THREAT_ACTOR> and the Attack Lifecycle......................................................................... 63
+
+Appendix C (Digital): The Malware Arsenal ........................................................................ 66
+
+Appendix D (Digital): FQDNs ............................................................................................ 67
+
+Appendix E (Digital): MD5 Hashes ................................................................................... 68
+
+Appendix F (Digital): SSL Certificates ............................................................................... 69
+
+Appendix G (Digital): IOCs ............................................................................................... 70
+
+Appendix H (Digital): Video .............................................................................................. 74
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 1 www.mandiant.com
+
+“<COUNTRY>China</COUNTRY>’s economic espionage has reached an intolerable level and I believe that the <COUNTRY>United States</COUNTRY> and our allies in <COUNTRY>Europe</COUNTRY> and 
+<COUNTRY>Asia</COUNTRY> have an obligation to confront <CITY>Beijing</CITY> and demand that they 
+put a stop to this piracy. 
+
+<CITY>Beijing</CITY> is waging a massive trade war on us all, and we should 
+band together to pressure them to stop. Combined, the <COUNTRY>United States</COUNTRY> and our allies in <COUNTRY>Europe</COUNTRY> and <COUNTRY>Asia</COUNTRY> have significant 
+diplomatic and economic leverage over <COUNTRY>China</COUNTRY>, and we should 
+use this to our advantage to put an end to this scourge.”1
+
+— <COUNTRY>U.S.</COUNTRY> Rep. <IDENTITY>Mike Rogers</IDENTITY>, <TIMESTAMP>October, 2011</TIMESTAMP>
+
+“ It is unprofessional and groundless to accuse the <ORG>Chinese military</ORG> of launching cyber attacks 
+without any conclusive evidence.”2
+
+— <ORG>Chinese Defense Ministry</ORG>, <TIMESTAMP>January, 2013</TIMESTAMP>
+
+1 “<IDENTITY>Mike Rogers</IDENTITY>, Statement to the <COUNTRY>U.S.</COUNTRY> House, Permanent Select Committee on Intelligence, Open Hearing: Cyber Threats and Ongoing Efforts to 
+Protect the Nation, Hearing, <TIMESTAMP>October 4, 2011</TIMESTAMP>, http://intelligence.house.gov/sites/intelligence.house.gov/files/documents/100411CyberHearingRogers.
+pdf, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+2 “Chinese hackers suspected in attack on The Post’s computers.” The <ORG>Washington Post</ORG>, <TIMESTAMP>Feb. 1, 2013</TIMESTAMP>, http://www.washingtonpost.com/business/
+technology/chinese-hackers-suspected-in-attack-on-the-posts-computers/2013/02/01/d5a44fde-6cb1-11e2-bd36-c0fe61a205f6_story.html, 
+accessed <TIMESTAMP>Feb. 1, 2013</TIMESTAMP>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 2 www.mandiant.com
+
+exeCutIve suMMary
+
+<TIMESTAMP>Since 2004</TIMESTAMP>, <ORG>Mandiant</ORG> has investigated computer security breaches at hundreds of organizations around the world. 
+The majority of these security breaches are attributed to advanced threat actors referred to as the “Advanced Persistent 
+Threat” (<THREAT_ACTOR>APT</THREAT_ACTOR>). We first published details about the <THREAT_ACTOR>APT</THREAT_ACTOR> in our <TIMESTAMP>January 2010</TIMESTAMP> <ORG>M-Trends</ORG> report. As we stated in the 
+report, our position was that “The <ORG>Chinese government</ORG> may authorize this activity, but there’s no way to determine the 
+extent of its involvement.” Now, three years later, we have the evidence required to change our assessment. The details 
+we have analyzed during hundreds of investigations convince us that the groups conducting these activities are based 
+primarily in <COUNTRY>China</COUNTRY> and that the <ORG>Chinese Government</ORG> is aware of them.3 
+
+<ORG>Mandiant</ORG> continues to track dozens of <THREAT_ACTOR>APT</THREAT_ACTOR> groups around the world; however, this report is focused on the most 
+prolific of these groups. We refer to this group as “<THREAT_ACTOR>APT1</THREAT_ACTOR>” and it is one of more than 20 <THREAT_ACTOR>APT</THREAT_ACTOR> groups with origins in 
+<COUNTRY>China</COUNTRY>. <THREAT_ACTOR>APT1</THREAT_ACTOR> is a single organization of operators that has conducted a cyber espionage campaign against a broad 
+range of victims <TIMESTAMP>since at least 2006</TIMESTAMP>. From our observations, it is one of the most prolific cyber espionage groups in 
+terms of the sheer quantity of information stolen. The scale and impact of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s operations compelled us to write this 
+report.
+
+The activity we have directly observed likely represents only a small fraction of the cyber espionage that <THREAT_ACTOR>APT1</THREAT_ACTOR> has 
+conducted. Though our visibility of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s activities is incomplete, we have analyzed the group’s intrusions against 
+nearly 150 victims over seven years. From our unique vantage point responding to victims, we tracked <THREAT_ACTOR>APT1</THREAT_ACTOR> back 
+to four large networks in <CITY>Shanghai</CITY>, two of which are allocated directly to the Pudong New Area. We uncovered a 
+substantial amount of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s attack infrastructure, command and control, and modus operandi (tools, tactics, and 
+procedures). In an effort to underscore there are actual individuals behind the keyboard, <ORG>Mandiant</ORG> is revealing three 
+personas we have attributed to <THREAT_ACTOR>APT1</THREAT_ACTOR>. These operators, like soldiers, may merely be following orders given to them by 
+others.
+
+Our analysis has led us to conclude that <THREAT_ACTOR>APT1</THREAT_ACTOR> is likely government-sponsored and one of the most persistent of <COUNTRY>China</COUNTRY>’s 
+cyber threat actors. We believe that <THREAT_ACTOR>APT1</THREAT_ACTOR> is able to wage such a long-running and extensive cyber espionage campaign 
+in large part because it receives direct government support. In seeking to identify the organization behind this activity, 
+our research found that <ORG>People’s Liberation Army</ORG> (<ORG>PLA</ORG>’s) <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> is similar to <THREAT_ACTOR>APT1</THREAT_ACTOR> in its mission, capabilities, and 
+resources. <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR> is also located in precisely the same area from which <THREAT_ACTOR>APT1</THREAT_ACTOR> activity appears to originate.
+
+3 Our conclusions are based exclusively on unclassified, open source information derived from <ORG>Mandiant</ORG> observations. None of the information in 
+this report involves access to or confirmation by classified intelligence.
+
+https://www.mandiant.com/resources/m-trends/
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 3 www.mandiant.com
+
+KEY FINDINGS
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> is believed to be the 2nd Bureau of the <ORG>People’s Liberation army</ORG> (<ORG>PLA</ORG>) <ORG>General Staff Department</ORG>’s 
+(<ORG>GSD</ORG>) 3rd Department (总参三部二局), which is most commonly known by its <ORG>Military unit Cover Designator</ORG> (<ORG>MUCD</ORG>) as <THREAT_ACTOR>unit 61398</THREAT_ACTOR> (61398部队).
+»» The nature of “<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s” work is considered by <COUNTRY>China</COUNTRY> to be a state secret; however, we believe it engages in 
+
+harmful “Computer Network Operations.” 
+
+»» <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> is partially situated on Datong Road (大同路) in <CITY>Gaoqiaozhen</CITY> (高桥镇), which is located in the Pudong 
+New Area (浦东新区) of <CITY>Shanghai</CITY> (上海). The central building in this compound is a 130,663 square foot facility 
+that is 12 stories high and was built <TIMESTAMP>in early 2007</TIMESTAMP>.
+
+»» We estimate that <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> is staffed by hundreds, and perhaps thousands of people based on the size of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s physical infrastructure. 
+
+»» <ORG>China Telecom</ORG> provided special fiber optic communications infrastructure for the unit in the name of national 
+defense.
+
+»» <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> requires its personnel to be trained in computer security and computer network operations and also 
+requires its personnel to be proficient in the English language. 
+
+»» <ORG>Mandiant</ORG> has traced <THREAT_ACTOR>APT1</THREAT_ACTOR>’s activity to four large networks in <CITY>Shanghai</CITY>, two of which serve the Pudong New Area 
+where <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> is based.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has systematically stolen hundreds of terabytes of data from at least 141 organizations, and has 
+demonstrated the capability and intent to steal from dozens of organizations simultaneously.4
+
+»» <TIMESTAMP>Since 2006</TIMESTAMP>, <ORG>Mandiant</ORG> has observed <THREAT_ACTOR>APT1</THREAT_ACTOR> compromise 141 companies spanning 20 major industries.
+
+»» <THREAT_ACTOR>APT1</THREAT_ACTOR> has a well-defined attack methodology, honed over years and designed to steal large volumes of valuable 
+intellectual property.
+
+»» Once <THREAT_ACTOR>APT1</THREAT_ACTOR> has established access, they periodically revisit the victim’s network over several months or years 
+and steal broad categories of intellectual property, including technology blueprints, proprietary manufacturing 
+processes, test results, business plans, pricing documents, partnership agreements, and emails and contact lists 
+from victim organizations’ leadership. 
+
+»» <THREAT_ACTOR>APT1</THREAT_ACTOR> uses some tools and techniques that we have not yet observed being used by other groups including two 
+utilities designed to steal email — <MALWARE>GETMAIL</MALWARE> and <MALWARE>MAPIGET</MALWARE>.
+
+»» <THREAT_ACTOR>APT1</THREAT_ACTOR> maintained access to victim networks for an average of 356 days.5 The longest time period <THREAT_ACTOR>APT1</THREAT_ACTOR> maintained 
+access to a victim’s network was 1,764 days, or four years and ten months.
+
+»» Among other large-scale thefts of intellectual property, we have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> stealing 6.5 terabytes of 
+compressed data from a single organization over a ten-month time period. 
+
+»» <TIMESTAMP>In the first month of 2011</TIMESTAMP>, <THREAT_ACTOR>APT1</THREAT_ACTOR> successfully compromised at least 17 new victims operating in 10 different 
+industries.
+
+4  We believe that the extensive activity we have directly observed represents only a small fraction of the cyber espionage that <THREAT_ACTOR>APT1</THREAT_ACTOR> has conducted. 
+Therefore, <ORG>Mandiant</ORG> is establishing the lower bounds of <THREAT_ACTOR>APT1</THREAT_ACTOR> activities in this report.
+5  This is based on 91 of the 141 victim organizations. In the remaining cases, <THREAT_ACTOR>APT1</THREAT_ACTOR> activity is either ongoing or else we do not have visibility into 
+the last known date of <THREAT_ACTOR>APT1</THREAT_ACTOR> activity in the network.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 4 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> focuses on compromising organizations across a broad range of industries in english-speaking 
+countries. 
+»» Of the 141 <THREAT_ACTOR>APT1</THREAT_ACTOR> victims, 87% of them are headquartered in countries where English is the native language. 
+
+»» The industries <THREAT_ACTOR>APT1</THREAT_ACTOR> targets match industries that <COUNTRY>China</COUNTRY> has identified as strategic to their growth, including four of 
+the seven strategic emerging industries that <COUNTRY>China</COUNTRY> identified in its 12th Five Year Plan. 
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> maintains an extensive infrastructure of computer systems around the world.
+»» <THREAT_ACTOR>APT1</THREAT_ACTOR> controls thousands of systems in support of their computer intrusion activities. 
+
+»» In the last two years we have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> establish a minimum of 937 Command and Control (C2) servers 
+hosted on 849 distinct IP addresses in 13 countries. The majority of these 849 unique IP addresses were 
+registered to organizations in <COUNTRY>China</COUNTRY> (709), followed by the <COUNTRY>U.S.</COUNTRY> (109). 
+
+»» In the last three years we have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> use fully qualified domain names (FQDNs) resolving to 988 unique 
+IP addresses.
+
+»» <TIMESTAMP>Over a two-year period</TIMESTAMP> (<TIMESTAMP>January 2011 to January 2013</TIMESTAMP>) we confirmed 1,905 instances of <THREAT_ACTOR>APT1</THREAT_ACTOR> actors logging into 
+their attack infrastructure from 832 different IP addresses with <SOFTWARE>Remote Desktop</SOFTWARE>, a tool that provides a remote user 
+with an interactive graphical interface to a system.
+
+»» In the last several years we have confirmed 2,551 FQDNs attributed to <THREAT_ACTOR>APT1</THREAT_ACTOR>. 
+
+In over 97% of the 1,905 times <ORG>Mandiant</ORG> observed <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders connecting to their attack 
+infrastructure, <THREAT_ACTOR>APT1</THREAT_ACTOR> used IP addresses registered in <CITY>Shanghai</CITY> and systems set to use the simplified 
+Chinese language.
+»» In 1,849 of the 1,905 (97%) of the <SOFTWARE>Remote Desktop</SOFTWARE> sessions <THREAT_ACTOR>APT1</THREAT_ACTOR> conducted under our observation, the <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+
+operator’s keyboard layout setting was “Chinese (Simplified) — US Keyboard”. <SOFTWARE>Microsoft’s Remote Desktop</SOFTWARE> client 
+configures this setting automatically based on the selected language on the client system. Therefore, the <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+attackers likely have their <ORG>Microsoft</ORG>® operating system configured to display Simplified Chinese fonts.
+
+»» 817 of the 832 (98%) IP addresses logging into <THREAT_ACTOR>APT1</THREAT_ACTOR> controlled systems using <SOFTWARE>Remote Desktop</SOFTWARE> resolved back to 
+<COUNTRY>China</COUNTRY>.
+
+»» We observed 767 separate instances in which <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders used the “<TOOL>HUC Packet Transmit Tool</TOOL>” or <TOOL>HTRAN</TOOL> 
+to communicate between 614 distinct routable IP addresses and their victims’ systems using their attack 
+infrastructure. Of the 614 distinct IP addresses used for <TOOL>HTRAN</TOOL> communications: 
+
+»− 614 of 614 (100%) were registered in <COUNTRY>China</COUNTRY>.
+
+»− 613 (99.8%) were registered to one of four <CITY>Shanghai</CITY> net blocks. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 5 www.mandiant.com
+
+the size of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s infrastructure implies a large organization with at least dozens, but potentially 
+hundreds of human operators. 
+»» We conservatively estimate that <THREAT_ACTOR>APT1</THREAT_ACTOR>’s current attack infrastructure includes over 1,000 servers.
+
+»» Given the volume, duration and type of attack activity we have observed, <THREAT_ACTOR>APT1</THREAT_ACTOR> operators would need to be directly 
+supported by linguists, open source researchers, malware authors, industry experts who translate task requests 
+from requestors to the operators, and people who then transmit stolen information to the requestors. 
+
+»» <THREAT_ACTOR>APT1</THREAT_ACTOR> would also need a sizable IT staff dedicated to acquiring and maintaining computer equipment, people who 
+handle <INDUSTRY>finances</INDUSTRY>, <INDUSTRY>facility management</INDUSTRY>, and <INDUSTRY>logistics</INDUSTRY> (e.g., <INDUSTRY>shipping</INDUSTRY>).
+
+In an effort to underscore that there are actual individuals behind the keyboard, <ORG>Mandiant</ORG> is revealing 
+three personas that are associated with <THREAT_ACTOR>APT1</THREAT_ACTOR> activity. 
+»» The first persona, “<IDENTITY>UglyGorilla</IDENTITY>”, has been active in computer network operations since <TIMESTAMP>October 2004</TIMESTAMP>. His activities 
+
+include registering domains attributed to <THREAT_ACTOR>APT1</THREAT_ACTOR> and authoring malware used in <THREAT_ACTOR>APT1</THREAT_ACTOR> campaigns. “<IDENTITY>UglyGorilla</IDENTITY>” 
+publicly expressed his interest in <COUNTRY>China</COUNTRY>’s “cyber troops” in <TIMESTAMP>January 2004</TIMESTAMP>.
+
+»» The second persona, an actor we call “<IDENTITY>DOTA</IDENTITY>”, has registered dozens of email accounts used to conduct <TECHNIQUE>social engineering</TECHNIQUE> and <TECHNIQUE>spear phishing</TECHNIQUE> attacks in support of <THREAT_ACTOR>APT1</THREAT_ACTOR> campaigns. “<IDENTITY>DOTA</IDENTITY>” used a <CITY>Shanghai</CITY> phone number 
+while registering these accounts.
+
+»» We have observed both the “<IDENTITY>UglyGorilla</IDENTITY>” persona and the “<IDENTITY>DOTA</IDENTITY>” persona using the same shared infrastructure, 
+including FQDNs and IP ranges that we have attributed to <THREAT_ACTOR>APT1</THREAT_ACTOR>. 
+
+»» The third persona, who uses the nickname “<IDENTITY>SUPERHARD</IDENTITY>,” is the creator or a significant contributor to the <MALWARE>AURIGA</MALWARE> 
+and <MALWARE>BANGAT</MALWARE> malware families which we have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> and other <THREAT_ACTOR>APT</THREAT_ACTOR> groups use. “<IDENTITY>SUPERHARD</IDENTITY>” discloses 
+his location to be the Pudong New Area of <CITY>Shanghai</CITY>.
+
+<ORG>Mandiant</ORG> is releasing more than 3,000 indicators to bolster defenses against <THREAT_ACTOR>APT1</THREAT_ACTOR> operations. 
+»» Specifically, <ORG>Mandiant</ORG> is providing the following: 
+
+»− Digital delivery of over 3,000 <THREAT_ACTOR>APT1</THREAT_ACTOR> indicators, such as domain names, IP addresses, and MD5 hashes of 
+malware.
+
+»− Sample Indicators of Compromise (IOCs) and detailed descriptions of over 40 families of malware in <THREAT_ACTOR>APT1</THREAT_ACTOR>’s 
+arsenal of digital weapons. 
+
+»− Thirteen (13) X.509 encryption certificates used by <THREAT_ACTOR>APT1</THREAT_ACTOR>.
+
+»− A compilation of videos showing actual attacker sessions and their intrusion activities.
+
+»» While existing customers of <ORG>Mandiant</ORG>’s enterprise-level products, <SOFTWARE>Mandiant Managed Defense</SOFTWARE> and <SOFTWARE>Mandiant Intelligent Response</SOFTWARE>®, have had prior access to these <THREAT_ACTOR>APT1</THREAT_ACTOR> Indicators, we are also making them available for use 
+with <SOFTWARE>RedLine</SOFTWARE>™, our free host-based investigative tool. <SOFTWARE>RedLine</SOFTWARE> can be downloaded at http://www.mandiant.com/
+resources/download/redline.
+
+http://www.mandiant.com/products/mcirt-managed-defense/
+http://www.mandiant.com/products/platform/
+http://www.mandiant.com/products/platform/
+http://www.mandiant.com/resources/download/redline
+http://www.mandiant.com/resources/download/redline
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 6 www.mandiant.com
+
+Conclusion
+
+The sheer scale and duration of sustained attacks against such a wide set of industries from a singularly identified 
+group based in <COUNTRY>China</COUNTRY> leaves little doubt about the organization behind <THREAT_ACTOR>APT1</THREAT_ACTOR>. We believe the totality of the evidence 
+we provide in this document bolsters the claim that <THREAT_ACTOR>APT1</THREAT_ACTOR> is <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. However, we admit there is one other unlikely 
+possibility:
+
+A secret, resourced organization full of mainland Chinese speakers with direct access to <CITY>Shanghai</CITY>-based 
+<INDUSTRY>telecommunications</INDUSTRY> infrastructure is engaged in a multi-year, enterprise scale computer espionage campaign 
+right outside of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s gates, performing tasks similar to <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s known mission.
+
+Why We Are Exposing <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+
+The decision to publish a significant part of our intelligence about <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> was a painstaking one. What started as 
+a “what if” discussion about our traditional non-disclosure policy quickly turned into the realization that the positive 
+impact resulting from our decision to expose <THREAT_ACTOR>APT1</THREAT_ACTOR> outweighed the risk to our ability to collect intelligence on this 
+particular <THREAT_ACTOR>APT</THREAT_ACTOR> group. It is time to acknowledge the threat is originating in <COUNTRY>China</COUNTRY>, and we wanted to do our part to arm 
+and prepare security professionals to combat that threat effectively. The issue of attribution has always been a missing 
+link in publicly understanding the landscape of <THREAT_ACTOR>APT</THREAT_ACTOR> cyber espionage. Without establishing a solid connection to <COUNTRY>China</COUNTRY>, 
+there will always be room for observers to dismiss <THREAT_ACTOR>APT</THREAT_ACTOR> actions as uncoordinated, solely criminal in nature, or peripheral 
+to larger national security and global economic concerns. We hope that this report will lead to increased understanding 
+and coordinated action in countering <THREAT_ACTOR>APT</THREAT_ACTOR> network breaches.
+
+At the same time, there are downsides to publishing all of this information publicly. Many of the techniques and 
+technologies described in this report are vastly more effective when attackers are not aware of them. Additionally, 
+publishing certain kinds of indicators dramatically shortens their lifespan. When <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> changes their techniques 
+after reading this report, they will undoubtedly force us to work harder to continue tracking them with such accuracy. It 
+is our sincere hope, however, that this report can temporarily increase the costs of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s operations and impede 
+their progress in a meaningful way.
+
+We are acutely aware of the risk this report poses for us. We expect reprisals from <COUNTRY>China</COUNTRY> as well as an onslaught of 
+criticism. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 7 www.mandiant.com
+
+<COUNTRY>China</COUNTRY>’s CoMPuter network 
+oPeratIons taskInG to <THREAT_ACTOR>PLa unIt 61398</THREAT_ACTOR> (61398部队 )
+
+Our research and observations indicate that <ORG>the Communist Party</ORG> of  
+<COUNTRY>China</COUNTRY> (<ORG>CPC</ORG>,中国共产党) is tasking the <ORG>Chinese People’s Liberation Army</ORG>  
+(<ORG>PLA</ORG>,中国人民解放军) to commit systematic cyber espionage and data theft 
+against organizations around the world. This section provides photos and details 
+of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> facilities, Chinese references discussing the unit’s training and 
+coursework requirements, and internal Chinese communications documenting 
+the nature of the unit’s relationship with at least one state-owned enterprise. 
+These details will be particularly relevant when we discuss <THREAT_ACTOR>APT1</THREAT_ACTOR>’s expertise, 
+personnel, location, and infrastructure, which parallel those of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>.
+
+<ORG>the Communist Party</ORG> of <COUNTRY>China</COUNTRY>
+
+The <ORG>PLA</ORG>’s cyber command is fully institutionalized within the <ORG>CPC</ORG> and able to draw upon the resources of <COUNTRY>China</COUNTRY>’s state-
+owned enterprises to support its operations. The <ORG>CPC</ORG> is the ultimate authority in Mainland <COUNTRY>China</COUNTRY>; unlike in Western 
+societies, in which political parties are subordinate to the government, the military and government in <COUNTRY>China</COUNTRY> are 
+subordinate to the <ORG>CPC</ORG>. In fact, the <ORG>PLA</ORG> reports directly to the <ORG>CPC</ORG>’s <ORG>Central Military Commission</ORG> (CMC, 中央军事委
+员会).6 This means that any enterprise cyber espionage campaign within the <ORG>PLA</ORG> is occurring at the direction of senior 
+members of the <ORG>CPC</ORG>.
+
+We believe that the <ORG>PLA</ORG>’s strategic cyber command is situated in the <ORG>PLA</ORG>’s <ORG>General Staff Department</ORG> (<ORG>GSD</ORG>,总参谋
+部), specifically its 3rd Department (总参三部).7 The <ORG>GSD</ORG> is the most senior <ORG>PLA</ORG> department. Similar to the <COUNTRY>U.S.</COUNTRY> 
+<ORG>Joint Chiefs of Staff</ORG>, the <ORG>GSD</ORG> establishes doctrine and provides operational guidance for the <ORG>PLA</ORG>. Within the <ORG>GSD</ORG>, the 
+3rd Department has a combined focus on signals intelligence, foreign language proficiency, and defense information 
+
+6 <IDENTITY>James C. Mulvenon</IDENTITY> and <IDENTITY>Andrew N. D. Yang</IDENTITY>, editors, <ORG>The People’s Liberation Army</ORG> as Organization: Reference Volume v1.0, (<CITY>Santa Monica</CITY>, CA: <ORG>RAND Corporation</ORG>, <TIMESTAMP>2002</TIMESTAMP>), 96, http://www.rand.org/pubs/conf_proceedings/CF182.html, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+7 <IDENTITY>Bryan Krekel</IDENTITY>, <IDENTITY>Patton Adams</IDENTITY>, and <IDENTITY>George Bakos</IDENTITY>, “Occupying the Information High Ground: Chinese Capabilities for Computer Network Operations 
+and Cyber Espionage,” Prepared for the <COUNTRY>U.S.</COUNTRY>-<COUNTRY>China</COUNTRY> Economic and Security Review Commission by <ORG>Northrop Grumman Corp</ORG> (<TIMESTAMP>2012</TIMESTAMP>): 10, http://www.
+uscc.gov/RFP/2012/USCC%20Report_Chinese_CapabilitiesforComputer_NetworkOperationsandCyberEspionage.pdf, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 8 www.mandiant.com
+
+systems.8 It is estimated to have 130,0009 personnel divided between 12 bureaus (局), three research institutes, and 
+16 regional and functional bureaus.10 We believe that the <ORG>GSD</ORG> 3rd Department, 2nd Bureau (总参三部二局), is the 
+<THREAT_ACTOR>APT group</THREAT_ACTOR> that we are tracking as <THREAT_ACTOR>APT1</THREAT_ACTOR>. Figure 1 shows how close the 2nd Bureau sits to the highest levels of the 
+<ORG>CPC</ORG>. At this level, the 2nd Bureau also sits atop a large-scale organization of subordinate offices.
+
+<ORG>Communist Party</ORG> of <COUNTRY>China</COUNTRY>
+(<ORG>Central Military Commission</ORG>,
+
+)
+
+<ORG>PLA</ORG> <ORG>General Staff Department</ORG>
+( )
+
+<ORG>PLA</ORG> <ORG>General Political Department</ORG>
+( )
+
+<ORG>PLA</ORG> <ORG>General Logistics Department</ORG>
+( )
+
+<ORG>PLA</ORG> <ORG>General Armaments Department</ORG>
+( )
+
+<ORG>GSD</ORG> 1st Department 
+( )
+Operations
+
+<ORG>GSD</ORG> 2nd Department
+( )
+Intelligence
+
+<ORG>GSD</ORG> 3rd Department
+( )
+
+<ORG>SIGINT</ORG>/<ORG>CNO</ORG>
+
+7 Military Regions
+<ORG>PLA Airforce</ORG> (<ORG>PLAA</ORG>)
+<ORG>PLA Navy</ORG> (<ORG>PLAN</ORG>)
+
+1st Bureau
+(总参三部一局)
+
+2nd Bureau
+(总参三部二局)
+
+<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>
+
+12 Total Bureaus
+3 Research Institutes
+
+FIGure 1: <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s position within the <ORG>PLa11</ORG> 
+
+8 The 3rd department’s mission is roughly a blend of the missions assigned to the <COUNTRY>U.S.</COUNTRY> <ORG>National Security Agency</ORG>, <ORG>the Defense Language Institute</ORG>, 
+and parts of <ORG>the Defense Information Systems Agency</ORG>.
+9 <IDENTITY>Bryan Krekel</IDENTITY>, <IDENTITY>Patton Adams</IDENTITY>, and <IDENTITY>George Bakos</IDENTITY>, “Occupying the Information High Ground: Chinese Capabilities for Computer Network Operations 
+and Cyber Espionage,” Prepared for the <COUNTRY>U.S.</COUNTRY>-<COUNTRY>China</COUNTRY> Economic and Security Review Commission by <ORG>Northrop Grumman Corp</ORG> (<TIMESTAMP>2012</TIMESTAMP>): 47, http://www.
+uscc.gov/RFP/2012/USCC%20Report_Chinese_CapabilitiesforComputer_NetworkOperationsandCyberEspionage.pdf, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+10 <IDENTITY>Ian Easton</IDENTITY> and <IDENTITY>Mark A. Stokes</IDENTITY>, “<COUNTRY>China</COUNTRY>’s Electronic Intelligence Satellite Developments: Implications for <COUNTRY>U.S.</COUNTRY> Air and Naval Operations,” <ORG>Project 2049 Institute</ORG> (<TIMESTAMP>2011</TIMESTAMP>): 5, http://project2049.net/documents/<COUNTRY>China</COUNTRY>_electronic_intelligence_elint_satellite_developments_easton_stokes.pdf, accessed 
+<TIMESTAMP>February 6, 2013</TIMESTAMP>.
+11 <IDENTITY>James C. Mulvenon</IDENTITY> and <IDENTITY>Andrew N. D. Yang</IDENTITY>, editors, The <ORG>People’s Liberation Army</ORG> as Organization: Reference Volume v1.0, (<CITY>Santa Monica</CITY>, CA: 
+<ORG>RAND Corporation</ORG>, <TIMESTAMP>2002</TIMESTAMP>), 96, http://www.rand.org/pubs/conf_proceedings/CF182.html, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 9 www.mandiant.com
+
+Inferring the Computer Network 
+Operations Mission and Capabilities 
+of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> (61398部队) 
+
+Publicly available references confirm that the 
+<ORG>PLA</ORG> <ORG>GSD</ORG>’s 3rd Department, 2nd Bureau, is 
+<ORG>Military Unit Cover Designator</ORG> (<ORG>MUCD</ORG>) 61398, 
+more commonly known as <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>.12 They 
+also clearly indicate that <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> is tasked 
+with computer network operations (<ORG>CNO</ORG>).13 
+<ORG>The Project 2049 Institute</ORG> reported in <TIMESTAMP>2011</TIMESTAMP> 
+that <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> “appears to function as the 
+Third Department`s premier entity targeting the 
+<COUNTRY>United States</COUNTRY> and <COUNTRY>Canada</COUNTRY>, most likely focusing 
+on <INDUSTRY>political</INDUSTRY>, <INDUSTRY>economic</INDUSTRY>, and military-related 
+intelligence.”14 Our research supports this and 
+also suggests <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s <ORG>CNO</ORG> activities are 
+not limited to the <COUNTRY>U.S.</COUNTRY> and <COUNTRY>Canada</COUNTRY>, but likely 
+extend to any organization where English is the 
+primary language. 
+
+Identifying <ORG>GSD</ORG> 3rd Department, 2nd Bureau as <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>
+The care with which the <ORG>PLA</ORG> maintains the separation between the <ORG>GSD</ORG> 3rd Department, 2nd Bureau, and the <ORG>MUCD</ORG> 
+61398 can be partially observed by searching the Internet for official documents from the <ORG>Chinese government</ORG> that 
+refer to both the 2nd Bureau and <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. Figure 2 shows the results of one of these queries.
+
+FIGure 2: no results found for searching for “<ORG>GSD</ORG> 3rd Department 2nd Bureau” and “<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>” on any 
+<ORG>Chinese government</ORG> websites
+
+Despite our challenges finding a link between the <ORG>Chinese Government</ORG> and <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> online, our searches did find 
+references online indicating that the <ORG>GSD</ORG> 3rd Department, 2nd Bureau, is actually <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. Specifically, <ORG>Google</ORG> 
+indexed references to <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> in forums and resumes. Once these references were discovered by <ORG>CPC</ORG> censors, 
+these postings and documents were likely modified or removed from the Internet. Figure 3 shows <ORG>Google</ORG> search results 
+
+12 <IDENTITY>Mark A. Stokes</IDENTITY>, <IDENTITY>Jenny Lin</IDENTITY>, and <IDENTITY>L.C. Russell Hsiao</IDENTITY>, “<ORG>The Chinese People’s Liberation Army</ORG> Signals Intelligence and Cyber Reconnaissance 
+Infrastructure,” <ORG>Project 2049 Institute</ORG> (<TIMESTAMP>2011</TIMESTAMP>): 8, http://project2049.net/documents/pla_third_department_sigint_cyber_stokes_lin_hsiao.pdf, 
+accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+13 <COUNTRY>U.S.</COUNTRY> <ORG>Department of Defense</ORG> defines Computer Network Operations as “Comprised of computer network attack, computer network defense, and 
+related computer network exploitation enabling operations. Also called <ORG>CNO</ORG>. 
+ • computer network attack. Actions taken through the use of computer networks to disrupt, deny, degrade, or destroy information resident in  
+  computers and computer networks, or the computers and networks themselves. Also called <ORG>CNA</ORG>. 
+ • computer network defense. Actions taken to protect, monitor, analyze, detect, and respond to unauthorized activity within the Department of  
+  Defense information systems and computer networks. Also called <ORG>CND</ORG>. 
+ • computer network exploitation. Enabling operations and intelligence collection capabilities conducted through the use of computer networks to  
+  gather data from target or adversary automated information systems or networks. Also called <ORG>CNE</ORG>.” 
+<COUNTRY>U.S.</COUNTRY> <ORG>Department of Defense</ORG>, The Dictionary of Military Terms (<CITY>New York</CITY>: <ORG>Skyhorse Publishing, Inc.</ORG>), 112.
+14 <IDENTITY>Mark A. Stokes</IDENTITY>, <IDENTITY>Jenny Lin</IDENTITY>, and <IDENTITY>L.C. Russell Hsiao</IDENTITY>, “<ORG>The Chinese People’s Liberation Army</ORG> Signals Intelligence and Cyber Reconnaissance 
+Infrastructure,” <ORG>Project 2049 Institute</ORG> (<TIMESTAMP>2011</TIMESTAMP>): 8, http://project2049.net/documents/pla_third_department_sigint_cyber_stokes_lin_hsiao.pdf, 
+accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+what is a <ORG>MUCD</ORG>?
+<ORG>Chinese military</ORG> units are given <ORG>MUCD</ORG>s, five-digit 
+numerical sequences, to provide basic anonymity for the 
+unit in question and as a standardized reference that 
+facilitates communications and operations (e.g., “Unit 
+81356 is moving to the objective,” versus “1st Battalion, 
+125th Regiment, 3rd Division, 14th Group Army is 
+moving to the objective”). <ORG>Military Unit Cover Designators</ORG>
+are also used in official publications and on the Internet 
+to refer to the unit in question. The <ORG>MUCD</ORG> numbers are 
+typically displayed outside a unit’s barracks, as well as on 
+the unit’s clothing, flags, and stationary.
+
+Source: The <ORG>Chinese Army</ORG> Today: Tradition and Transformation 
+for the 21st Century — <IDENTITY>Dennis J. Blasko</IDENTITY>
+
+http://project2049.net/documents/pla_third_department_sigint_cyber_stokes_lin_hsiao.pdf
+http://project2049.net/documents/pla_third_department_sigint_cyber_stokes_lin_hsiao.pdf
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 10 www.mandiant.com
+
+for <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> and some responsive “hits” (note that the links that appear in these search results will likely have been 
+removed by the time you read this report):
+
+FIGure 3: <ORG>Google</ORG> search results that show <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> attribution “leaks”
+
+<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s Personnel requirements
+<THREAT_ACTOR>Unit 61398</THREAT_ACTOR> appears to be actively soliciting and training English speaking personnel specializing in a wide variety 
+of cyber topics. Former and current personnel from the unit have publicly alluded to these areas of emphasis. For 
+example, a graduate student of covert communications, <IDENTITY>Li Bingbing</IDENTITY> (李兵兵), who openly acknowledged his affiliation 
+with <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>, published a paper in <TIMESTAMP>2010</TIMESTAMP> that discussed embedding covert communications within <SOFTWARE>Microsoft® Word</SOFTWARE> 
+documents. Another example is English linguist <IDENTITY>Wang Weizhong</IDENTITY>’s (王卫忠) biographical information, provided to the 
+<ORG>Hebei Chamber of Commerce</ORG>, which describes the training he received as an English linguist while assigned to 
+<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. These and other examples that demonstrate <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s areas of expertise are listed in Table 1 below.15
+
+taBLe 1: Chinese sources referring to the areas of expertise contained in <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>.16.17.18.19
+
+type of expertise in <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> (部队) source Describing that expertise in <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>
+Covert Communications Article in <ORG>Chinese academic journal</ORG>. Second author <IDENTITY>Li Bingbing</IDENTITY> (李兵兵) 
+
+references <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> as the source of his expertise on the topic.15
+
+English Linguistics Bio of <ORG>Hebei Chamber of Commerce</ORG> member <IDENTITY>Wang Weizhong</IDENTITY> (王卫忠). 
+He describes that he received his training as an English linguist during his 
+service in <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. (Hebei is a borough in <CITY>Shanghai</CITY>.)16
+
+Operating System Internals Article in <ORG>Chinese academic journal</ORG>. Second author <IDENTITY>Yu Yunxiang</IDENTITY> (虞云翔) 
+references <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> as the source of his expertise on the topic.17
+
+Digital Signal Processing Article in <ORG>Chinese academic journal</ORG>. Second author <IDENTITY>Peng Fei</IDENTITY> (彭飞) 
+references <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> as the source of his expertise on the topic.18
+
+Network Security Article in <ORG>Chinese academic journal</ORG>. Third author <IDENTITY>Chen Yiqun</IDENTITY> (陈依群) 
+references <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> as the source of his expertise on the topic.19
+
+15 <IDENTITY>Li Bing-bing</IDENTITY>, <IDENTITY>Wang Yan-Bo</IDENTITY>, and <IDENTITY>Xu Ming</IDENTITY>, “An information hiding method of <SOFTWARE>Word 2007</SOFTWARE> based on image covering,” <ORG>Journal of Sichuan University</ORG> 
+(Natural Science Edition) 47 (<TIMESTAMP>2010</TIMESTAMP>), http://www.paper.edu.cn/journal/downCount/0490-6756(2010)S1-0031-06, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+16 <ORG>Hebei Chamber of Commerce</ORG>, Bio of member <IDENTITY>Wang Weizhong</IDENTITY> (<TIMESTAMP>2012</TIMESTAMP>), http://www.hbsh.org/shej_ejsheqmsg.
+aspx?mid=26&uid=06010000&aid=06, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+17 <IDENTITY>Zeng Fan-jing</IDENTITY>, <IDENTITY>Yu Yun-xiang</IDENTITY>, and <IDENTITY>Chang Li</IDENTITY>, “The Implementation of Overlay File System in Embedded Linux,” <ORG>Journal of Information Engineering University</ORG> 7 (<TIMESTAMP>2006</TIMESTAMP>), http://file.lw23.com/9/98/984/98401889-9da6-4c38-b9d2-5a5202fd1a33.pdf, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+18 <IDENTITY>Zhao Ji-yong</IDENTITY>, <IDENTITY>Peng Fei</IDENTITY>, and <IDENTITY>Geng Chang-suo</IDENTITY>, “ADC’s Performance and Selection Method of Sampling Number of Bits,” <ORG>Journal of Military Communications Technology</ORG> 26, (<TIMESTAMP>2005</TIMESTAMP>), http://file.lw23.com/f/f1/f14/f14e7b60-3d60-4184-a48f-4a50dd21927c.pdf, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+19 <IDENTITY>Chen Qiyun</IDENTITY>, <IDENTITY>Chen Xiuzhen</IDENTITY>, <IDENTITY>Chen Yiqun</IDENTITY>, and <IDENTITY>Fan Lei</IDENTITY>, “Quantization Evaluation Algorithm for Attack Graph Based on Node Score,” Computer Engineering 36 (<TIMESTAMP>2010</TIMESTAMP>), http://www.ecice06.com/CN/article/downloadArticleFile.do?attachType=PDF&id=19627, accessed <TIMESTAMP>February 7, 2013</TIMESTAMP>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 11 www.mandiant.com
+
+Additionally, there is evidence that <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> aggressively recruits new talent from the Science and Engineering 
+departments of universities such as <ORG>Harbin Institute of Technology</ORG> (哈尔滨工业大学) and <ORG>Zhejiang University School of Computer Science and Technology</ORG> (浙江大学计算机学院). The majority of the “profession codes” (专业代码) 
+describing positions that <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> is seeking to fill require highly technical computer skills. The group also appears 
+to have a frequent requirement for strong English proficiency. Table 2 provides two examples of profession codes for 
+positions in <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>, along with the required university courses and proficiencies associated with each profession.20
+
+taBLe 2: two profession codes and university recommended courses for students intending to apply for positions 
+in <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>
+
+Profession Code required Proficiencies
+
+080902 — Circuits and Systems »» 101 — Political
+
+»» 201 — English
+
+»» 301 — Mathematics
+
+»» 842 — Signal and Digital Circuits (or) 840 - Circuits
+
+»» Interview plus a small written test:
+
+»− Circuits and Systems-based professional knowledge and comprehensive 
+capacity
+
+»− Team spirit and ability to work with others to coordinate
+
+»− English proficiency
+
+081000 — <INDUSTRY>Information and Communications Engineering</INDUSTRY>
+
+»» 101 - Political
+
+»» 201 – British [English]
+
+»» 301 - Mathematics
+
+»» 844 - Signal Circuit Basis
+
+size and Location of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s Personnel and Facilities
+Based on the size of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s physical infrastructure, we estimate that the unit is staffed by hundreds, and 
+perhaps thousands. This is an extrapolation based on public disclosures from within <COUNTRY>China</COUNTRY> describing the location 
+and physical installations associated with <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. For example, public sources confirm that <TIMESTAMP>in early 2007</TIMESTAMP>, <ORG>Jiangsu Longhai Construction Engineering Group</ORG> (江苏龙海建工集团有限公司) completed work on a new building for
+<THREAT_ACTOR>Unit 61398</THREAT_ACTOR> located at Datong Road 208 within the Pudong New Area of <CITY>Shanghai</CITY> (上海市浦东新区高桥镇大同路208号),21 
+which is referred to as the “<THREAT_ACTOR>Unit 61398</THREAT_ACTOR> Center Building” (61398部队中心大楼). At 12 stories in height, and offering 
+130,663 square feet of space, we estimate that this building houses offices for approximately 2,000 people. Figure 4 
+through Figure 7 provide overhead views and street-level views of the building and its location, showing its size. This is 
+only one of the unit’s several buildings, some of which are even larger.
+
+20 Two Chinese universities hosting <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> recruiting events: 
+ • <ORG>Zhejiang University</ORG>: http://www.cs.zju.edu.cn/chinese/redir.php?catalog_id=101913&object_id=106021 
+ • <ORG>Harbin Institute of Technology</ORG>: http://today.hit.edu.cn/articles/2004/2-23/12619.htm
+21 See http://www.czzbb.net/czzb/YW_Info/YW_ZiGeYS/BaoMingInfo.aspx?YW_RowID=41726&BiaoDuanBH=CZS20091202901&enterprise_
+id=70362377-3 for documentation of the contract award to <ORG>Jiangsu Langhai Construction Engineering Group</ORG> for <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s Center Building, 
+among several other buildings; accessed <TIMESTAMP>February 5, 2013</TIMESTAMP>.
+
+http://www.cs.zju.edu.cn/chinese/redir.php?catalog_id=101913&object_id=106021
+http://today.hit.edu.cn/articles/2004/2-23/12619.htm
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 12 www.mandiant.com
+
+FIGure 4: Datong circa <TIMESTAMP>2006</TIMESTAMP> (prior to <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> Center Building construction) Image Copyright <TIMESTAMP>2013</TIMESTAMP> 
+DigitalGlobe
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 13 www.mandiant.com
+
+FIGure 5: Datong Circa <TIMESTAMP>2008</TIMESTAMP> (<THREAT_ACTOR>Unit 61398</THREAT_ACTOR> Center Building visible at 208 Datong) Image Copyright <TIMESTAMP>2013</TIMESTAMP>
+DigitalGlobe
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 14 www.mandiant.com
+
+FIGure 6: <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> Center Building (main gate, soldiers visible) Image Copyright <TIMESTAMP>2013</TIMESTAMP> city8.com
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 15 www.mandiant.com
+
+FIGure 7: <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> Center Building 208 Datong (rear view, possible generator exhausts visible) Image 
+Copyright <TIMESTAMP>2013</TIMESTAMP> city8.com
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 16 www.mandiant.com
+
+<THREAT_ACTOR>Unit 61398</THREAT_ACTOR> also has a full assortment of support units and associated physical infrastructure, much of which is located 
+on a stretch of Datong Road (大同路) in <CITY>Gaoqiaozhen</CITY> (高桥镇), in the Pudong New Area (浦东新区) of <CITY>Shanghai</CITY> (上
+海).22 These support units include a logistics support unit, outpatient clinic, and kindergarten, as well as guesthouses 
+located both in <CITY>Gaoqiaozhen</CITY> and in other locations in <CITY>Shanghai</CITY>.23 These amenities are usually associated with large 
+military units or units at higher echelons. The close proximity of these amenities supports the contention that <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> occupies a high-level position in the <ORG>PLA</ORG> organizational hierarchy (see Figure 1: <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s positions within 
+the <ORG>PLA</ORG>).24
+
+<THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR> and state-owned enterprise <ORG>China telecom</ORG> are Co-building Computer network 
+operations Infrastructure
+<ORG>Mandiant</ORG> found an internal <ORG>China Telecom</ORG> document online that provides details about the infrastructure provided 
+to <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. The memo (in Figure 8) reveals <ORG>China Telecom</ORG> executives deciding to “co-build” with <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> to 
+justify the use of their own inventory in the construction of fiber optic communication lines “based on the principle that 
+national defense construction is important.” The letter also appears to indicate that this is a special consideration being 
+made outside of <ORG>China Telecom</ORG>’s “normal renting method” for <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. Additionally, the memo clarifies the phrase 
+“<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>” with the comment “(<ORG>GSD</ORG> 3rd Department, 2nd Bureau).” The memo not only supports the identity 
+of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> as <ORG>GSD</ORG>’s 3rd Department 2nd Bureau, but also reveals the relationship between a “very important 
+communication and control department” (<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>) and a state-influenced enterprise.
+
+22 Confirmation of several other <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> support facilities along Datong Road:
+ Address: 上海市浦东新区大同路50号 (Pudong New Area, <CITY>Shanghai</CITY>, Datong Road 50)
+ Building Name: 中国人民解放军第61398部队司令部 (<ORG>People’s Liberation Army</ORG> <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> Headquarters)
+ Source: Chinese phone book listing building name and address; http://114.mingluji.com/minglu/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6 
+
+%B0%91%E8%A7%A3%E6%94%BE%E5%86%9B% E7%AC%AC61398%E9%83%A8%E9%98%9F%E5%8F%B8%E4%B-
+B%A4%E9%83%A8, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+ Address: 上海市浦东新区大同路118弄甲 (Pudong New Area, <CITY>Shanghai</CITY>, Datong Road 118 A)
+ Building Name: 中国人民解放军第61398部队司令部 (<ORG>People’s Liberation Army</ORG> <THREAT_ACTOR>Unit 61398<THREAT_ACTOR> Headquarters)
+
+ Chinese phone book listing building name and address; http://114.mingluji.com/minglu/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%
+91%E8%A7%A3%E6%94%BE%E5%86%9B%E7%AC%AC61398%E9%83%A8%E9%98%9F%E5%8F%B8%E4%BB%A4%E9%83%A8_0, 
+accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+ Address: 上海市浦东新区高桥镇大同路135号 (Pudong New Area, <CITY>Shanghai</CITY> <CITY>Gaoqiao Town</CITY>, Datong Road 135)
+ Building Name: 中国人民解放军第61398部队 (<ORG>People’s Liberation Army</ORG> <THREAT_ACTOR>Unit 61398<THREAT_ACTOR>)
+
+ Chinese phone book listing building name and address; http://114.mingluji.com/minglu/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%9
+1%E8%A7%A3%E6%94%BE%E5%86%9B%E7%AC%AC61398%E9%83%A8%E9%98%9F_0, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+ Address: 上海市浦东新区高桥镇大同路153号 (Pudong New Area, <CITY>Shanghai</CITY> <CITY>Gaoqiao Town</CITY>, Datong Road 153)
+ Building Name: 中国人民解放军第61398部队 (<ORG>People’s Liberation Army</ORG> <THREAT_ACTOR>Unit 61398<THREAT_ACTOR>)
+ Chinese phone book listing building name and address; http://114.mingluji.com/minglu/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%9
+
+1%E8%A7%A3%E6%94%BE%E5%86%9B%E7%AC%AC61398%E9%83%A8%E9%98%9F, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+ Address: 上海市浦东新区大同路305号 (Pudong New Area, <CITY>Shanghai</CITY>, Datong Road 305)
+ Building Name: 中国人民解放军第61398部队后勤部 (Logistics Department of <ORG>The Chinese <ORG>People’s Liberation Army</ORG></ORG> <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>)(
+ Chinese phone book listing building name and address; http://114.mingluji.com/category/%E7%B1%B-
+
+B%E5%9E%8B/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%91%E8%A7%A3%E6%94%BE%E5%86%9B?page=69, accessed 
+<TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+23 <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> Kindergarden Listed in <CITY>Shanghai</CITY> Pudong: http://www.pudong-edu.sh.cn/Web/PD/jyzc_school.aspx?SiteID=45&UnitID=2388
+24 James C. Mulvenon and Andrew N. D. Yang, editors, The <ORG>People’s Liberation Army</ORG> as Organization: Reference Volume v1.0, (<CITY>Santa Monica</CITY>, CA: 
+<ORG>RAND Corporation</ORG>, <TIMESTAMP>2002</TIMESTAMP>), 125, http://www.rand.org/pubs/conf_proceedings/CF182.html, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 17 www.mandiant.com
+
+FIGure 8: <ORG>China telecom</ORG> Memo discussing <THREAT_ACTOR>unit 61398</THREAT_ACTOR> source:  
+http://r9.he3.com.cn/%e8%a7%84%e5%88%92/%e9%81%93%e8%B7%aF%e5%8F%8a%e5%85%B6%e
+4%BB%96%e8%a7%84%e5%88%92%e5%9B%Be%e7%Ba%B8/%e4%BF%a1%e6%81%aF%e5%9B%a
+D%e5%8C%Ba/%e5%85%B3%e4%Ba%8e%e6%80%BB%e5%8F%82%e4%B8%89%e9%83%a8%e4%B
+a%8C%e5%B1%80-%e4%B8%8a%e6%B5%B7005%e4%B8%aD%e5%BF%83%e9%9C%80%e4%BD%B-
+F%e7%94%a8%e6%88%91%e5%85%aC%e5%8F%B8%e9%80%9a%e4%BF%a1.pdf25
+
+25 This link has Chinese characters in it which are represented in URL encoding
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 18 www.mandiant.com
+
+Market Department Examining Control Affairs Division Report
+
+Requesting Concurrence Concerning the <ORG>General Staff Department</ORG> 3rd Department 2nd Bureau 
+Request to Use Our Company’s Communication Channel
+
+Division Leader Wu:
+
+<ORG>The Chinese People’s Liberation Army</ORG> <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> (<ORG>General Staff Department</ORG> 3rd Department 
+2nd Bureau) wrote to us a few days ago saying that, in accordance with their central command 
+“8508” on war strategy construction [or infrastructure] need, the <ORG>General Staff Department</ORG> 
+3rd Department 2nd Bureau (<CITY>Gaoqiao</CITY> Base) needs to communicate with <CITY>Shanghai</CITY> City 005 
+Center (<ORG>Shanghai Intercommunication Network Control Center</ORG> within East Gate Bureau) 
+regarding intercommunication affairs. This bureau already placed fiber-optic cable at the 
+East Gate front entrance [road pole]. They need to use two ports to enter our company’s 
+East Gate communication channel. The length is about 30m. At the same time, the second 
+stage construction (in <CITY>Gaoqiao</CITY> Base) needs to enter into our company’s <CITY>Shanghai</CITY> <ORG>Nanhui Communication Park</ORG> 005 Center (special-use bureau). This military fiber-optic cable has 
+already been placed at the <CITY>Shanghai</CITY> <ORG>Nanhui Communication Park</ORG> entrance. They need to use 
+4 of our company ports inside the <ORG>Nanhui Communication Park</ORG> to enter. The length is 600m. 
+Upon our division’s negotiation with the 3rd Department 2nd Bureau’s communication branch, 
+the military has promised to pay at most 40,000 Yuan for each port. They also hope <ORG>Shanghai Telecom</ORG> will smoothly accomplish this task for the military based on the principle that national 
+defense construction is important. After checking the above areas’ channels, our company has a 
+relatively abundant inventory to satisfy the military’s request.
+
+This is our suggestion: because this is concerning defense construction, and also the 3rd 
+Department 2nd Bureau is a very important communication control department, we agree to 
+provide the requested channels according to the military’s suggested price. Because this is a 
+one-time payment, and it is difficult to use the normal renting method, we suggest our company 
+accept one-time payment using the reason of “Military Co-Construction [with <ORG>China Telecom</ORG>] of 
+Communication Channels” and provide from our inventory. The military’s co-building does not 
+interfere with our proprietary rights. If something breaks, the military is responsible to repair it 
+and pay for the expenses. After you agree with our suggestion, we will sign an agreement with 
+the communication branch of <THREAT_ACTOR>61398</THREAT_ACTOR> and implement it.
+
+Please provide a statement about whether the above suggestion is appropriate or not.
+
+[Handwritten Note]Agree with the Market Department Examining Control Affairs Division 
+suggestion; inside the agreement clearly [...define? (illegible) ...] both party’s responsibilities.
+
+FIGure 9: english translation of <ORG>China telecom</ORG> Memo 
+
+ 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 19 www.mandiant.com
+
+Synopsis of <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR> 
+
+The evidence we have collected on <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR>’s mission and infrastructure reveals an organization that:
+
+»» Employs hundreds, perhaps thousands of personnel
+
+»» Requires personnel trained in computer security and computer network operations
+
+»» Requires personnel proficient in the English language
+
+»» Has large-scale infrastructure and facilities in the “Pudong New Area” of <CITY>Shanghai</CITY>
+
+»» Was the beneficiary of special fiber optic communication infrastructure provided by state-owned enterprise <ORG>China Telecom</ORG> in the name of national defense
+
+The following sections of this report detail <THREAT_ACTOR>APT1</THREAT_ACTOR>’s cyber espionage and data theft operations. The sheer scale and 
+duration of these sustained attacks leave little doubt about the enterprise scale of the organization behind this 
+campaign. We will demonstrate that the nature of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s targeted victims and the group’s infrastructure and tactics 
+align with the mission and infrastructure of <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 20 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: years oF 
+esPIonaGe 
+
+Our evidence indicates that <THREAT_ACTOR>APT1</THREAT_ACTOR> has been stealing hundreds of terabytes of 
+data from at least 141 organizations across a diverse set of industries beginning 
+<TIMESTAMP>as early as 2006</TIMESTAMP>. Remarkably, we have witnessed <THREAT_ACTOR>APT1</THREAT_ACTOR> target dozens of 
+organizations simultaneously. Once the group establishes access to a victim’s 
+network, they continue to access it periodically over several months or years 
+to steal large volumes of valuable intellectual property, including technology 
+blueprints, proprietary manufacturing processes, test results, business plans, 
+pricing documents, partnership agreements, emails and contact lists from victim 
+organizations’ leadership. We believe that the extensive activity we have directly 
+observed represents only a small fraction of the cyber espionage that <THREAT_ACTOR>APT1</THREAT_ACTOR> has 
+committed.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Puts the “Persistent” in <THREAT_ACTOR>APT</THREAT_ACTOR>
+
+<TIMESTAMP>Since 2006</TIMESTAMP> we have seen <THREAT_ACTOR>APT1</THREAT_ACTOR> relentlessly expand its access to new victims. 
+Figure 10 shows the timeline of the 141 compromises we are aware of; each 
+marker in the figure represents a separate victim and indicates the earliest 
+confirmed date of <THREAT_ACTOR>APT1</THREAT_ACTOR> activity in that organization’s network.26
+
+With the ephemeral nature of electronic evidence, many of the dates of earliest 
+known <THREAT_ACTOR>APT1</THREAT_ACTOR> activity shown here underestimate the duration of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s presence in 
+the network.
+
+FIGure 10: timeline showing dates of earliest known <THREAT_ACTOR>APT1</THREAT_ACTOR> activity in the 
+networks of the 141 organizations in which <ORG>Mandiant</ORG> has observed <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+conducting cyber espionage.
+
+26 Figure 10 shows that we have seen <THREAT_ACTOR>APT1</THREAT_ACTOR> compromise an increasing number of organizations each 
+year, which may reflect an increase in <THREAT_ACTOR>APT1</THREAT_ACTOR>’s activity. However, this increase may also simply reflect 
+<ORG>Mandiant</ORG>’s expanding visibility into <THREAT_ACTOR>APT1</THREAT_ACTOR>’s activities as the company has grown and victims’ awareness 
+of cyber espionage activity in their networks has improved.
+
+<TIMESTAMP>2006</TIMESTAMP>
+
+<TIMESTAMP>2007</TIMESTAMP>
+
+<TIMESTAMP>2008</TIMESTAMP>
+
+<TIMESTAMP>2009</TIMESTAMP>
+
+<TIMESTAMP>2010</TIMESTAMP>
+
+<TIMESTAMP>2011</TIMESTAMP>
+
+<TIMESTAMP>2012</TIMESTAMP>
+
+<TIMESTAMP>2013</TIMESTAMP>
+
+Organizations compromised 
+by <THREAT_ACTOR>APT1</THREAT_ACTOR> over time
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 21 www.mandiant.com
+
+Longest time period within
+which <THREAT_ACTOR>APT1</THREAT_ACTOR> has continued 
+to access a victim’s network:
+
+<TIMESTAMP>4 Years, 10 Months</TIMESTAMP>
+
+Once <THREAT_ACTOR>APT1</THREAT_ACTOR> has compromised a network, they repeatedly monitor and steal 
+proprietary data and communications from the victim for months or even 
+years. For the organizations in Figure 10, we found that <THREAT_ACTOR>APT1</THREAT_ACTOR> maintained 
+access to the victim’s network for an average of <TIMESTAMP>356 days</TIMESTAMP>.27 The longest time 
+period <THREAT_ACTOR>APT1</THREAT_ACTOR> maintained access to a victim’s network was at least 1,764 days, 
+or four years and ten months. <THREAT_ACTOR>APT1</THREAT_ACTOR> was not continuously active on a daily 
+basis <TIMESTAMP>during this time period</TIMESTAMP>; however, in the vast majority of cases we 
+observed, <THREAT_ACTOR>APT1</THREAT_ACTOR> continued to commit data theft as long as they had access to 
+the network.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>’s Geographic & Industry Focus
+
+The organizations targeted by <THREAT_ACTOR>APT1</THREAT_ACTOR> primarily conduct their operations in English. However, we have also seen the 
+group target a small number of non-English speaking victims. A full 87% of the <THREAT_ACTOR>APT1</THREAT_ACTOR> victims we have observed are 
+headquartered in countries where English is the native language (see Figure 11). This includes 115 victims located 
+in the <COUNTRY>U.S.</COUNTRY> and seven in <COUNTRY>Canada</COUNTRY> and the <COUNTRY>United Kingdom</COUNTRY>. Of the remaining 19 victims, 17 use English as a primary 
+language for operations. These include international cooperation and development agencies, foreign governments 
+in which English is one of multiple official languages, and multinational conglomerates that primarily conduct their 
+business in English. Only two victims appear to operate using a language other than English. Given that English-
+language proficiency is required for many members of <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR>, we believe that the two non-English speaking 
+victims are anomalies representing instances in which <THREAT_ACTOR>APT1</THREAT_ACTOR> performed tasks outside of their normal activities. 
+
+27  This is based on 91 of the 141 victim organizations shown. In the remaining cases, <THREAT_ACTOR>APT1</THREAT_ACTOR> activity is either ongoing or else we do not have visibility 
+into the last known date of <THREAT_ACTOR>APT1</THREAT_ACTOR> activity in the network.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 22 www.mandiant.com
+
+5 <COUNTRY>United Kingdom</COUNTRY>
+
+1 <COUNTRY>Norway</COUNTRY>
+
+1 <COUNTRY>France</COUNTRY>
+
+1 <COUNTRY>South Africa</COUNTRY>
+
+1 <COUNTRY>Japan</COUNTRY>
+
+2 <COUNTRY>Singapore</COUNTRY>
+
+2 <COUNTRY>Taiwan</COUNTRY>
+
+3 <COUNTRY>India</COUNTRY>
+
+1 <COUNTRY>UAE</COUNTRY>
+
+3 <COUNTRY>Israel</COUNTRY>
+2 <COUNTRY>Switzerland</COUNTRY>
+
+1 <COUNTRY>Luxemborg</COUNTRY>
+
+1 <COUNTRY>Belgium</COUNTRY>
+
+115 <COUNTRY>United States</COUNTRY>
+
+2 <COUNTRY>Canada</COUNTRY>
+
+OBSERVED GLOBAL <THREAT_ACTOR>APT1</THREAT_ACTOR> ACTIVITY
+
+FIGure 11: Geographic location of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s victims. In the case of victims with a multinational presence, the 
+location shown reflects either the branch of the organization that <THREAT_ACTOR>APT1</THREAT_ACTOR> compromised (when known), or else is the 
+location of the organization’s headquarters.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has demonstrated the capability and intent to steal from dozens of organizations across a wide range of 
+industries virtually simultaneously. Figure 12 provides a view of the earliest known date of <THREAT_ACTOR>APT1</THREAT_ACTOR> activity against all of 
+the 141 victims we identified, organized by the 20 major industries they represent. The results suggest that <THREAT_ACTOR>APT1</THREAT_ACTOR>’s 
+mission is extremely broad; the group does not target industries systematically but more likely steals from an enormous 
+range of industries on a continuous basis. Since the organizations included in the figure represent only the fraction 
+of <THREAT_ACTOR>APT1</THREAT_ACTOR> victims that we confirmed directly, the range of industries that <THREAT_ACTOR>APT1</THREAT_ACTOR> targets may be even broader than our 
+findings suggest.
+
+Further, the scope of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s parallel activities implies that the group has significant personnel and technical resources 
+at its disposal. <TIMESTAMP>In the first month of 2011</TIMESTAMP>, for example, Figure 12 shows that <THREAT_ACTOR>APT1</THREAT_ACTOR> successfully compromised 17 
+new victims operating in 10 different industries. Since we have seen that the group remains active in each victim’s 
+network for an average of nearly a year after the initial date of compromise, we infer that <THREAT_ACTOR>APT1</THREAT_ACTOR> committed these 17 
+new breaches while simultaneously maintaining access to and continuing to steal data from a number of previously 
+compromised victims.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 23 www.mandiant.com
+
+<INDUSTRY>Aerospace</INDUSTRY>
+
+<INDUSTRY>Chemicals</INDUSTRY>
+
+<INDUSTRY>Construction and Manufacturing</INDUSTRY>
+
+<INDUSTRY>Education</INDUSTRY>
+
+<INDUSTRY>Energy</INDUSTRY>
+
+<INDUSTRY>Engineering Services</INDUSTRY>
+
+<INDUSTRY>Financial Services</INDUSTRY>
+
+<INDUSTRY>Food and Agriculture</INDUSTRY>
+
+<INDUSTRY>Healthcare</INDUSTRY>
+
+<INDUSTRY>High-Tech Electronics</INDUSTRY>
+
+<INDUSTRY>Information Technology</INDUSTRY>
+
+<INDUSTRY>Legal Services</INDUSTRY>
+
+<INDUSTRY>Media, Advertising and Entertainment</INDUSTRY>
+
+<INDUSTRY>Metals and Mining</INDUSTRY>
+
+<INDUSTRY>Navigation</INDUSTRY>
+
+<INDUSTRY>Public Administration</INDUSTRY>
+
+<INDUSTRY>Satellites and Telecommunications</INDUSTRY>
+
+<INDUSTRY>Scientific Research and Consulting</INDUSTRY>
+
+<INDUSTRY>Transportation</INDUSTRY>
+
+<TIMESTAMP>2006</TIMESTAMP> <TIMESTAMP>2007</TIMESTAMP> <TIMESTAMP>2008</TIMESTAMP> <TIMESTAMP>2009</TIMESTAMP> <TIMESTAMP>2010</TIMESTAMP> <TIMESTAMP>2011</TIMESTAMP> <TIMESTAMP>2012</TIMESTAMP>
+
+TIMELINE OF <THREAT_ACTOR>APT1</THREAT_ACTOR> COMPROMISES BY INDUSTRY SECTOR
+
+International Organizations
+
+FIGure 12: timeframe of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s cyber espionage operations against organizations by industry. the dots within 
+each bar represent the earliest known date on which <THREAT_ACTOR>APT1</THREAT_ACTOR> compromised a new organization within the industry.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 24 www.mandiant.com
+
+We believe that organizations in all industries related to <COUNTRY>China</COUNTRY>’s strategic priorities are potential targets of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s 
+comprehensive cyber espionage campaign. While we have certainly seen the group target some industries more  
+heavily than others (see Figure 13), our observations confirm that <THREAT_ACTOR>APT1</THREAT_ACTOR> has targeted at least four of the seven  
+strategic emerging industries that <COUNTRY>China</COUNTRY> identified in its 12th Five Year Plan.28 
+
+0 5 10 15 20
+
+0 5 10 15 20
+
+<INDUSTRY>Information Technology</INDUSTRY>
+
+<INDUSTRY>Aerospace</INDUSTRY>
+
+<INDUSTRY>Public Administration</INDUSTRY>
+
+<INDUSTRY>Satellites and Telecommunications</INDUSTRY>
+
+<INDUSTRY>Scientific Research and Consulting</INDUSTRY>
+
+<INDUSTRY>Energy</INDUSTRY>
+
+<INDUSTRY>Transportation</INDUSTRY>
+
+<INDUSTRY>Construction and Manufacturing</INDUSTRY>
+
+<INDUSTRY>Engineering Services</INDUSTRY>
+
+<INDUSTRY>High-tech Electronics</INDUSTRY>
+
+<INDUSTRY>International Organizations</INDUSTRY>
+
+<INDUSTRY>Legal Services</INDUSTRY>
+
+<INDUSTRY>Media, Advertising and Entertainment</INDUSTRY>
+
+<INDUSTRY>Navigation</INDUSTRY>
+
+<INDUSTRY>Chemicals</INDUSTRY>
+
+<INDUSTRY>Financial Services</INDUSTRY>
+
+<INDUSTRY>Food and Agriculture</INDUSTRY>
+
+<INDUSTRY>Healthcare</INDUSTRY>
+
+<INDUSTRY>Metals and Mining</INDUSTRY>
+
+<INDUSTRY>Education</INDUSTRY>
+
+Industries Compromised by <THREAT_ACTOR>APT1</THREAT_ACTOR>
+
+FIGure 13: number of <THREAT_ACTOR>APT1</THREAT_ACTOR> victims by industry. we determined each organization’s industry based on reviewing 
+its industry classification in the hoover’s29 system. we also considered the content of the data that <THREAT_ACTOR>APT1</THREAT_ACTOR> stole in 
+each case, to the extent that this information was available.
+
+28  <IDENTITY>Joseph Casey</IDENTITY> and <IDENTITY>Katherine Koleski</IDENTITY>, Backgrounder: <COUNTRY>China</COUNTRY>’s 12th Five-Year Plan, <COUNTRY>U.S.</COUNTRY>-<COUNTRY>China</COUNTRY> Economic & Security Review Commission (<TIMESTAMP>2011</TIMESTAMP>), 
+19, http://www.uscc.gov/researchpapers/2011/12th-FiveYearPlan_062811.pdf, accessed <TIMESTAMP>February 3, 2013</TIMESTAMP>.
+29  http://www.hoovers.com/
+
+http://www.uscc.gov/researchpapers/2011/12th-FiveYearPlan_062811.pdf
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 25 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Data Theft
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> steals a broad range of information from its victims. The types of information the group has stolen relate to:
+
+»» product development and use, including information on test results, system designs, product manuals, parts lists, 
+and simulation technologies;
+
+»» manufacturing procedures, such as descriptions of proprietary processes, standards, and waste management 
+processes;
+
+»» business plans, such as information on contract negotiation positions and product pricing, legal events, mergers, 
+joint ventures, and acquisitions;
+
+»» policy positions and analysis, such as white papers, and agendas and minutes from meetings involving high-
+ranking personnel; 
+
+»» emails of high-ranking employees; and
+
+»» user credentials and network architecture information.
+
+It is often difficult for us to estimate how much data <THREAT_ACTOR>APT1</THREAT_ACTOR> has stolen during their intrusions for several reasons:
+
+»» <THREAT_ACTOR>APT1</THREAT_ACTOR> deletes the compressed archives after they pilfer them, leaving solely trace evidence that is usually 
+overwritten during normal business activities.
+
+»» Pre-existing network security monitoring rarely records or identifies the data theft.
+
+»» The duration of time between the data theft and <ORG>Mandiant</ORG>’s investigation is often too great, and the trace evidence 
+of data theft is overwritten during the normal course of business. 
+
+»» Some victims are more intent on assigning resources to restore the security of their network in lieu of investigating 
+and understanding the impact of the security breach.
+
+Even with these challenges, we have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> steal as much as 6.5 terabytes of compressed data from a 
+single organization over a ten-month time period. Given the scope of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s operations, including the number of 
+organizations and industries we have seen them target, along with the volume of data they are clearly capable of 
+stealing from any single organization, <THREAT_ACTOR>APT1</THREAT_ACTOR> has likely stolen hundreds of terabytes from its victims.
+
+Largest <THREAT_ACTOR>APT1</THREAT_ACTOR> data theft 
+from a single organization:
+
+6.5 Terabytes
+
+over 10 months
+
+Although we do not have direct evidence indicating who receives the information 
+that <THREAT_ACTOR>APT1</THREAT_ACTOR> steals or how the recipient processes such a vast volume of data, we 
+do believe that this stolen information can be used to obvious advantage by the 
+PRC and Chinese state-owned enterprises. As an example, in <TIMESTAMP>2008</TIMESTAMP>, <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+compromised the network of a company involved in a wholesale industry. <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+installed tools to create compressed file archives and to extract emails and 
+attachments. <TIMESTAMP>Over the following 2.5 years</TIMESTAMP>, <THREAT_ACTOR>APT1</THREAT_ACTOR> stole an unknown number of 
+files from the victim and repeatedly accessed the email accounts of several 
+executives, including the CEO and General Counsel. <TIMESTAMP>During this same time period</TIMESTAMP>, major news organizations reported that <COUNTRY>China</COUNTRY> had successfully 
+
+negotiated a double-digit decrease in price per unit with the victim organization for one of its major commodities. This 
+may be coincidental; however, it would be surprising if <THREAT_ACTOR>APT1</THREAT_ACTOR> could continue perpetrating such a broad mandate of 
+cyber espionage and data theft if the results of the group’s efforts were not finding their way into the hands of entities 
+able to capitalize on them. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 26 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> In The News
+
+Public reporting corroborates and extends our observations of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s cyber espionage activity. However, several factors 
+complicate the process of compiling and synthesizing public reports on <THREAT_ACTOR>APT1</THREAT_ACTOR>. For one thing, information security 
+researchers and journalists refer to <THREAT_ACTOR>APT1</THREAT_ACTOR> by a variety of names. In addition, many cyber security analysts focus on 
+writing about tools that are shared between multiple Chinese <THREAT_ACTOR>APT</THREAT_ACTOR> groups without differentiating between the various 
+actors that use them.
+
+To assist researchers in identifying which public reports describe the threat group that we identify as <THREAT_ACTOR>APT1</THREAT_ACTOR>, Table 
+3 provides a list of <THREAT_ACTOR>APT</THREAT_ACTOR> group nicknames that frequently appear in the media and differentiates between those that 
+describe <THREAT_ACTOR>APT1</THREAT_ACTOR> and those that do not. In addition, below is a list of public reports about Chinese threat actors that we 
+have confirmed as referring to <THREAT_ACTOR>APT1</THREAT_ACTOR>.
+
+»» The earliest known public report about <THREAT_ACTOR>APT1</THREAT_ACTOR> infrastructure is a <TIMESTAMP>2006</TIMESTAMP> publication from the Japanese division of 
+<ORG>Symantec</ORG>.30 The report calls out the hostname <IOC>sb.hugesoft.org</IOC>, which is registered to an <THREAT_ACTOR>APT1</THREAT_ACTOR> persona known as 
+<IDENTITY>Ugly Gorilla</IDENTITY> (discussed later in this report).
+
+»» In <TIMESTAMP>September 2012</TIMESTAMP>, <IDENTITY>Brian Krebs</IDENTITY> of the “Krebs on Security” cybercrime blog reported on a security breach at <ORG>Telvent Canada Ltd</ORG> (now <ORG>Schneider Electric</ORG>), which we attributed to <THREAT_ACTOR>APT1</THREAT_ACTOR> based on the tools and infrastructure 
+that the hackers used to exploit and gain access to the system.31
+
+taBLe 3: Identifying <THREAT_ACTOR>APT1</THREAT_ACTOR> nicknames in the news
+
+nickname Verdict
+
+<THREAT_ACTOR>Comment Crew</THREAT_ACTOR> Confirmed <THREAT_ACTOR>APT1</THREAT_ACTOR>
+
+<THREAT_ACTOR>Comment Group</THREAT_ACTOR> Confirmed <THREAT_ACTOR>APT1</THREAT_ACTOR>
+
+<THREAT_ACTOR>Shady Rat</THREAT_ACTOR> Possibly <THREAT_ACTOR>APT1</THREAT_ACTOR> (not confirmed)
+
+<THREAT_ACTOR>nitro</THREAT_ACTOR> attacks Not <THREAT_ACTOR>APT1</THREAT_ACTOR>; Attributed to another tracked <THREAT_ACTOR>APT</THREAT_ACTOR> group
+
+<THREAT_ACTOR>elderwood</THREAT_ACTOR> Not <THREAT_ACTOR>APT1</THREAT_ACTOR>; Attributed to another tracked <THREAT_ACTOR>APT</THREAT_ACTOR> group
+
+<THREAT_ACTOR>sykipot</THREAT_ACTOR> Not <THREAT_ACTOR>APT1</THREAT_ACTOR>; Attributed to another tracked <THREAT_ACTOR>APT</THREAT_ACTOR> group
+
+<THREAT_ACTOR>aurora</THREAT_ACTOR> Not <THREAT_ACTOR>APT1</THREAT_ACTOR>; Attributed to another tracked <THREAT_ACTOR>APT</THREAT_ACTOR> group
+
+<THREAT_ACTOR>night Dragon</THREAT_ACTOR> Not <THREAT_ACTOR>APT1</THREAT_ACTOR>; Attributed to another tracked <THREAT_ACTOR>APT</THREAT_ACTOR> group
+
+»» A <ORG>SCADA</ORG> security company by the name of <ORG>Digital Bond</ORG> published a report of spear phishing against its company 
+<TIMESTAMP>IN June 2012</TIMESTAMP>.32 AlienVault provided analysis on the associated malware.33 Indicators included in the report have 
+been attributed as part of <THREAT_ACTOR>APT1</THREAT_ACTOR> infrastructure.
+
+»» <TIMESTAMP>In November 2012</TIMESTAMP>, <ORG>Bloomberg</ORG>’s <IDENTITY>Chloe Whiteaker</IDENTITY> authored a piece on a Chinese threat group called “<THREAT_ACTOR>Comment Group</THREAT_ACTOR>,” which described the various tools and domains used by <THREAT_ACTOR>APT1</THREAT_ACTOR> persona <IDENTITY>Ugly Gorilla</IDENTITY>.34
+
+30  <ORG>Symantec</ORG>, “Backdoor.Wualess,” <ORG>Symantec</ORG> Security Response (<TIMESTAMP>2007</TIMESTAMP>), http://www.symantec.com/ja/jp/security_response/print_writeup.
+jsp?docid=2006-101116-1723-99, accessed <TIMESTAMP>February 3, 2013</TIMESTAMP>.
+31  <IDENTITY>Brian Krebs</IDENTITY>, “Chinese Hackers Blamed for Intrusion at Energy Industry Giant Telvent,” Krebs on Security (<TIMESTAMP>2012</TIMESTAMP>) http://krebsonsecurity.
+com/2012/09/chinese-hackers-blamed-for-intrusion-at-energy-industry-giant-telvent/, accessed <TIMESTAMP>February 3, 2013</TIMESTAMP>
+32 <IDENTITY>Reid Wightman</IDENTITY>, “Spear Phishing Attempt,” <ORG>Digital Bond</ORG> (<TIMESTAMP>2012</TIMESTAMP>), https://www.digitalbond.com/blog/2012/06/07/spear-phishing-attempt/, accessed 
+<TIMESTAMP>February 3, 2013</TIMESTAMP>.
+33 <IDENTITY>Jaime Blasco</IDENTITY>, “Unveiling a spearphishing campaign and possible ramifications,” <ORG>Alien Vault</ORG> (<TIMESTAMP>2012</TIMESTAMP>), http://labs.alienvault.com/labs/index.
+php/2012/unveiling-a-spearphishing-campaign-and-possible-ramifications/, accessed <TIMESTAMP>February 3, 2013</TIMESTAMP>.
+34 <IDENTITY>Chloe Whiteaker</IDENTITY>, “Following the Hackers’ Trail,” <ORG>Bloomberg</ORG>, (<TIMESTAMP>2012</TIMESTAMP>) http://go.bloomberg.com/multimedia/following-hackers-trail/, accessed 
+<TIMESTAMP>February 3, 2013</TIMESTAMP>.
+
+http://www.symantec.com/ja/jp/security_response/print_writeup.jsp?docid=2006-101116-1723-99
+http://www.symantec.com/ja/jp/security_response/print_writeup.jsp?docid=2006-101116-1723-99
+http://krebsonsecurity.com/2012/09/chinese-hackers-blamed-for-intrusion-at-energy-industry-giant-telvent/
+http://krebsonsecurity.com/2012/09/chinese-hackers-blamed-for-intrusion-at-energy-industry-giant-telvent/
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 27 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: attaCk LIFeCyCLe
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has a well-defined attack methodology, honed over years and designed to steal massive quantities of intellectual 
+property. They begin with aggressive spear phishing, proceed to deploy custom digital weapons, and end by exporting 
+compressed bundles of files to <COUNTRY>China</COUNTRY> – before beginning the cycle again. They employ good English — with acceptable 
+slang — in their socially engineered emails. They have evolved their digital weapons for more than seven years, 
+resulting in continual upgrades as part of their own software release cycle. Their ability to adapt to their environment 
+and spread across systems makes them effective in enterprise environments with trust relationships. 
+
+These attacks fit into a cyclic pattern of activity that we will describe in this section within the framework of <ORG>Mandiant</ORG>’s 
+Attack Lifecycle model. In each stage we will discuss <THREAT_ACTOR>APT1</THREAT_ACTOR>’s specific techniques to illustrate their tenacity and the 
+scale at which they operate. (See Appendix B: “APT and the Attack Lifecycle” for a high-level overview of the steps 
+most <THREAT_ACTOR>APT</THREAT_ACTOR> groups take in each stage of the Attack Lifecycle.)
+
+Initial
+Recon
+
+Initial
+Compromise
+
+Establish
+Foothold
+
+Escalate
+Privileges
+
+Complete
+Mission
+
+Internal
+Recon
+
+Move
+Laterally
+
+Maintain
+Presence
+
+FIGure 14: <ORG>Mandiant</ORG>’s attack Lifecycle Model
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 28 www.mandiant.com
+
+The Initial Compromise
+
+The Initial Compromise represents the methods intruders use to first penetrate a target organization’s network. As with 
+most other <THREAT_ACTOR>APT</THREAT_ACTOR> groups, spear phishing is <THREAT_ACTOR>APT1</THREAT_ACTOR>’s most commonly used technique. The spear phishing emails contain 
+either a malicious attachment or a hyperlink to a malicious file. The subject line and the text in the email body are 
+usually relevant to the recipient. <THREAT_ACTOR>APT1</THREAT_ACTOR> also creates webmail accounts using real peoples’ names — names that are 
+familiar to the recipient, such as a colleague, a company executive, an IT department employee, or company counsel 
+— and uses these accounts to send the emails. As a real-world example, this is an email that <THREAT_ACTOR>APT1</THREAT_ACTOR> sent to <ORG>Mandiant</ORG> 
+employees:
+
+Date: <TIMESTAMP>Wed, 18 Apr 2012 06:31:41</TIMESTAMP> -0700
+From: <IDENTITY>Kevin Mandia</IDENTITY> < <IOC>kevin.mandia@rocketmail.com</IOC> >
+Subject: Internal Discussion on the Press 
+Release
+
+Hello,
+Shall we schedule a time to meet next week?
+We need to finalize the press release.
+Details click here.
+
+<IDENTITY>Kevin Mandia</IDENTITY>
+
+FIGure 15: <THREAT_ACTOR>APT1</THREAT_ACTOR> spear Phishing email 
+
+At first glance, the email appeared to be from <ORG>Mandiant</ORG>’s CEO, <IDENTITY>Kevin Mandia</IDENTITY>. However, further scrutiny shows that 
+the email was not sent from a <ORG>Mandiant</ORG> email account, but from “<IOC>kevin.mandia@rocketmail.com<IOC>”. <SOFTWARE>Rocketmail</SOFTWARE> is a 
+free webmail service. The account “<IOC>kevin.mandia@rocketmail.com<IOC>” does not belong to <IDENTITY>Mr. Mandia</IDENTITY>. Rather, an <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+actor likely signed up for the account specifically for this spear phishing event. If anyone had clicked on the link that 
+day (which no one did, thankfully), their computer would have downloaded a malicious ZIP file named “<IOC>Internal_Discussion_Press_Release_In_Next_Week8.zip</IOC>”. This file contained a malicious executable that installs a custom <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+backdoor that we call <MALWARE>WEBC2-TABLE</MALWARE>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 29 www.mandiant.com
+
+Although the files that <THREAT_ACTOR>APT1</THREAT_ACTOR> actors attach or link to spear phishing emails are not always in ZIP format, this is the 
+predominant trend we have observed in the last several years. Below is a sampling of file names that <THREAT_ACTOR>APT1</THREAT_ACTOR> has used 
+with their malicious ZIP files:
+
+<IOC>2012ChinaUSAviationSymposium.zip</IOC> 
+<IOC>Employee-Benefit-and-Overhead-Adjustment-Keys.zip</IOC>
+<IOC>MARKET-COMMENT-Europe-Ends-Sharply-Lower-On-Data-Yields-Jump.zip</IOC>
+<IOC>Negative_Reports_Of_Turkey.zip</IOC>
+<IOC>New_Technology_For_FPGA_And_Its_Developing_Trend.zip</IOC>
+<IOC>North_Korean_launch.zip</IOC>
+<IOC>Oil-Field-Services-Analysis-And-Outlook.zip</IOC>
+<IOC>POWER_GEN_2012.zip</IOC>
+<IOC>Proactive_Investors_One2One_Energy_Investor_Forum.zip</IOC>
+<IOC>Social-Security-Reform.zip</IOC>
+<IOC>South_China_Sea_Security_Assessment_Report.zip</IOC>
+<IOC>Telephonics_Supplier_Manual_v3.zip</IOC>
+<IOC>The_Latest_Syria_Security_Assessment_Report.zip</IOC>
+<IOC>Updated_Office_Contact_v1.zip</IOC>
+<IOC>Updated_Office_Contact_v2.zip</IOC>
+<IOC>Welfare_Reform_and_Benefits_Development_Plan.zip</IOC>
+
+Spear Phishing Email
+with Attachment
+
+@
+
+What’s this 
+email?
+
+Is this for real?
+
+@
+
+@
+!“It’s legit.”
+
+Okay, thanks!
+
+<THREAT_ACTOR>APT 1</THREAT_ACTOR>
+
+<THREAT_ACTOR>APT 1</THREAT_ACTOR>
+
+<THREAT_ACTOR>APT 1</THREAT_ACTOR>
+
+The example file names include military, 
+economic, and diplomatic themes, 
+suggesting the wide range of industries that 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> targets. Some names are also generic 
+(e.g., “<IOC>updated_office_contact_v1.zip</IOC>”) and 
+could be used for targets in any industry.
+
+On some occasions, unsuspecting email 
+recipients have replied to the spear 
+phishing messages, believing they were 
+communicating with their acquaintances. 
+In one case a person replied, “I’m not sure 
+if this is legit, so I didn’t open it.” Within 20 
+minutes, someone in <THREAT_ACTOR>APT1</THREAT_ACTOR> responded with 
+a terse email back: “It’s legit.” 
+
+ 
+
+FIGure 16: <THREAT_ACTOR>APT1</THREAT_ACTOR>’s interaction with a spear phishing recipient
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 30 www.mandiant.com
+
+would you click on this?
+
+Some <THREAT_ACTOR>APT1</THREAT_ACTOR> actors have gone to the trouble of making the malicious software inside their ZIP files look 
+like benign <ORG>Adobe</ORG> PDF files. Here is an example:
+
+This is not a PDF file. It looks like the filename has a PDF extension but the file name actually includes 
+119 spaces after “.pdf” followed by “.exe” — the real file extension. <THREAT_ACTOR>APT1</THREAT_ACTOR> even went to the trouble of 
+turning the executable’s icon to an <ORG>Adobe</ORG> symbol to complete the ruse. However, this file is actually a 
+dropper for a custom <THREAT_ACTOR>APT1</THREAT_ACTOR> backdoor that we call <MALWARE>WEBC2-QBP</MALWARE>. 
+
+Establishing A Foothold
+
+Establishing a foothold involves actions that ensure control of the target network’s systems from outside the network. 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> establishes a foothold once email recipients open a malicious file and a backdoor is subsequently installed. A 
+backdoor is software that allows an intruder to send commands to the system remotely. In almost every case, <THREAT_ACTOR>APT</THREAT_ACTOR> 
+backdoors initiate outbound connections to the intruder’s “command and control” (C2) server. <THREAT_ACTOR>APT</THREAT_ACTOR> intruders employ 
+this tactic because while network firewalls are generally adept at keeping malware outside the network from initiating 
+communication with systems inside the network, they are less reliable at keeping malware that is already inside the 
+network from communicating to systems outside. 
+
+1001100100011010100                     10010100101110001100100011010100                     
+C2
+
+FIGure 17: Backdoors installed on compromised systems usually initiate connections with C2 servers
+
+While <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders occasionally use publicly available backdoors such as <MALWARE>Poison Ivy</MALWARE> and <MALWARE>Gh0st RAT</MALWARE>, the vast 
+majority of the time they use what appear to be their own custom backdoors. We have documented 42 families of 
+backdoors in “Appendix C: The Malware Arsenal” that <THREAT_ACTOR>APT1</THREAT_ACTOR> uses that we believe are not publicly available. In addition 
+we have provided 1,007 MD5 hashes associated with <THREAT_ACTOR>APT1</THREAT_ACTOR> malware in Appendix E. We will describe <THREAT_ACTOR>APT1</THREAT_ACTOR>’s backdoors 
+in two categories: “<MALWARE>Beachhead Backdoors</MALWARE>” and “<MALWARE>Standard Backdoors</MALWARE>.”
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 31 www.mandiant.com
+
+<MALWARE>Beachhead Backdoors</MALWARE>
+
+<MALWARE>Beachhead Backdoors</MALWARE> are typically minimally 
+featured. They offer the attacker a toe-hold to 
+perform simple tasks like retrieve files, gather 
+basic system information and trigger the 
+execution of other more significant capabilities 
+such as a standard backdoor.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>’s <MALWARE>Beachhead Backdoors</MALWARE> are usually 
+what we call <MALWARE>WEBC2</MALWARE> backdoors. <MALWARE>WEBC2</MALWARE> 
+backdoors are probably the most well-known 
+kind of <THREAT_ACTOR>APT1</THREAT_ACTOR> backdoor, and are the reason 
+why some security companies refer to <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+as the “<THREAT_ACTOR>Comment Crew</THREAT_ACTOR>.” A <MALWARE>WEBC2</MALWARE> backdoor 
+is designed to retrieve a webpage from a C2 
+server. It expects the webpage to contain 
+special HTML tags; the backdoor will attempt 
+to interpret the data between the tags as 
+commands. Older versions of <MALWARE>WEBC2</MALWARE> read 
+data between HTML comments, though over 
+time <MALWARE>WEBC2</MALWARE> variants have evolved to read 
+data contained within other types of tags. 
+From direct observation, we can confirm 
+that <THREAT_ACTOR>APT1</THREAT_ACTOR> was using <MALWARE>WEBC2</MALWARE> backdoors as 
+early as <TIMESTAMP>July 2006</TIMESTAMP>. However, the first compile time35 we have for <MALWARE>WEBC2-KT3</MALWARE> is <TIMESTAMP>2004-01-23</TIMESTAMP>, suggesting that <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+has been crafting <MALWARE>WEBC2</MALWARE> backdoors <TIMESTAMP>since early 2004</TIMESTAMP>. Based on the 400+ samples of <MALWARE>WEBC2</MALWARE> variants that we have 
+accumulated, it appears that <THREAT_ACTOR>APT1</THREAT_ACTOR> has direct access to developers who have continually released new <MALWARE>WEBC2</MALWARE> variants 
+for over six years. 
+
+For example, these two build paths, which were discovered inside <MALWARE>WEBC2-TABLE</MALWARE> samples, help to illustrate how <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+has been steadily building new <MALWARE>WEBC2</MALWARE> variants as part of a continuous development process:
+
+sample a
+MD5: <IOC>d7aa32b7465f55c368230bb52d52d885</IOC>
+Compile date: <TIMESTAMP>2012-02-23</TIMESTAMP>
+<IOC>\work\code\2008-7-8muma\mywork\winInet_winApplication2009-8-7\mywork\aaaaaaa2012-2-23\Release\aaaaaaa.pdb</IOC>
+
+sample B
+MD5: <IOC>c1393e77773a48b1eea117a302138554</IOC>
+Compile date: <TIMESTAMP>2009-08-07</TIMESTAMP>
+<IOC>D:\work\code\2008-7-8muma\mywork\winInet_winApplication2009-8-7\mywork\aaaaaaa\Release\aaaaaaa.pdb</IOC>
+
+ 
+
+35 “Compile” refers to the process of transforming a programmer’s source code into a file that a computer can understand and execute. The compile 
+date is easily accessible in the PE header of the resulting executable file unless the intruder takes additional steps to obfuscate it.
+
+<MALWARE>weBC2</MALWARE> families
+
+<MALWARE>WEBC2-AUSOV</MALWARE>
+<MALWARE>WEBC2-ADSPACE</MALWARE>
+<MALWARE>WEBC2-BOLID</MALWARE>
+<MALWARE>WEBC2-CLOVER</MALWARE>
+<MALWARE>WEBC2-CSON</MALWARE>
+<MALWARE>WEBC2-DIV</MALWARE>
+<MALWARE>WEBC2-GREENCAT</MALWARE>
+<MALWARE>WEBC2-HEAD</MALWARE>
+
+<MALWARE>WEBC2-KT3</MALWARE>
+<MALWARE>WEBC2-QBP</MALWARE>
+<MALWARE>WEBC2-RAVE</MALWARE>
+<MALWARE>WEBC2-TABLE</MALWARE>
+<MALWARE>WEBC2-TOCK</MALWARE>
+<MALWARE>WEBC2-UGX</MALWARE>
+<MALWARE>WEBC2-YAHOO</MALWARE>
+<MALWARE>WEBC2-Y21K</MALWARE>
+
+… and many still uncategorized
+
+what is a malware family?
+A malware family is a collection of malware in which each 
+sample shares a significant amount of code with all of 
+the others. To help illustrate this, consider the following 
+example from the physical world. There is now a vast array 
+of computing tablets for sale. These include <ORG>Apple</ORG>’s iPad, 
+<ORG>Samsung</ORG>’s Galaxy Tab, and <ORG>Microsoft</ORG>’s Surface. Although 
+these are all tablet computers, “under the hood” they are 
+probably quite different. However, one can expect that 
+an iPad 1 and an iPad 2 share a significant number of 
+components — much more than, say, an iPad 1 and a 
+<ORG>Microsoft</ORG> Surface. Thus it makes sense to refer to the iPad 
+“family” and the Surface “family”. 
+
+When it comes to computer programs, in general if they 
+share more than 80% of the same code we consider them 
+part of the same family. There are exceptions: for example, 
+some files contain public and standard code libraries that 
+we do not take into consideration when making a family 
+determination. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 32 www.mandiant.com
+
+A “build path” discloses the directory from which the programmer 
+built and compiled his source code. These samples, compiled 2.5 
+years apart, were compiled within a folder named “work\code\...\
+mywork”. The instances of “work” suggest that working on <MALWARE>WEBC2</MALWARE> is 
+someone’s day job and not a side project or hobby. Furthermore, the 
+Sample A build string includes “<TIMESTAMP>2012-2-23</TIMESTAMP>” — which matches Sample 
+A’s compile date. The Sample B build string lacks “<TIMESTAMP>2012-2-23</TIMESTAMP>” but 
+includes “<TIMESTAMP>2009-8-7</TIMESTAMP>” — which also matches Sample B’s compile date. 
+This suggests that the code used to compile Sample A was modified 
+from code that was used to compile Sample B 2.5 years previously. The 
+existence of “<TIMESTAMP>2008-7-8</TIMESTAMP>” suggests that the code for both samples was 
+modified from a version that existed in <TIMESTAMP>July 2008</TIMESTAMP>, a year before Sample 
+B was created. This series of dates indicates that developing and 
+modifying the <MALWARE>WEBC2</MALWARE> backdoor is an iterative and long-term process.
+
+<MALWARE>WEBC2</MALWARE> backdoors typically give <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers a short and 
+rudimentary set of commands to issue to victim systems, including:
+»» Open an interactive command shell (usually Windows’ cmd.exe)
+»» Download and execute a file
+»» Sleep (i.e. remain inactive) for a specified amount of time
+
+<MALWARE>WEBC2</MALWARE> backdoors are often packaged with spear phishing emails. 
+Once installed, <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders have the option to tell victim systems 
+to download and execute additional malicious software of their choice. 
+<MALWARE>WEBC2</MALWARE> backdoors work for their intended purpose, but they generally 
+have fewer features than the “<MALWARE>Standard Backdoors</MALWARE>” described below. 
+
+<MALWARE>Standard Backdoors</MALWARE>
+The standard, non-WEBC2 <THREAT_ACTOR>APT1</THREAT_ACTOR> backdoor typically communicates 
+using the HTTP protocol (to blend in with legitimate web traffic) or a 
+custom protocol that the malware authors designed themselves. These 
+backdoors give <THREAT_ACTOR>APT</THREAT_ACTOR> intruders a laundry list of ways to control victim 
+systems, including:
+»» Create/modify/delete/execute programs
+»» Upload/download files
+»» Create/delete directories
+»» List/start/stop processes
+»» Modify the system registry 
+»» Take screenshots of the user’s desktop
+»» Capture keystrokes
+»» Capture mouse movement
+»» Start an interactive command shell
+»» Create a Remote desktop (i.e. graphical) interface
+»» Harvest passwords
+»» Enumerate users
+»» Enumerate other systems on the network
+»» Sleep (i.e. go inactive) for a specified amount of time
+»» Log off the current user
+»» Shut down the system
+
+<MALWARE>SEASALT</MALWARE>
+<MALWARE>LONGRUN</MALWARE>
+<MALWARE>WEBC2.TOCK</MALWARE>
+<MALWARE>WEBC2.YAHOO</MALWARE>
+<MALWARE>WARP TABMSGSQL</MALWARE>
+<MALWARE>WEBC2.CSONWEBC2.QBP</MALWARE>
+<MALWARE>COMBOSWEBC2.DIV</MALWARE>
+<MALWARE>COOKIEBAG</MALWARE>
+<MALWARE>GLOOXMAIL</MALWARE>
+<MALWARE>MINIASP</MALWARE>
+<MALWARE>BOUNCER</MALWARE>
+<MALWARE>WEBC2.TABLE</MALWARE>
+<MALWARE>WEBC2.BOLIDKURTON</MALWARE>
+<MALWARE>CALENDAR</MALWARE>
+<MALWARE>GDOCUPLOAD</MALWARE>
+<MALWARE>LIGHTBOLT</MALWARE>
+<MALWARE>WEBC2.Y21K</MALWARE>
+<MALWARE>WEBC2.KT32004</MALWARE>
+<MALWARE>LIGHTDART</MALWARE>
+
+<TIMESTAMP>2005</TIMESTAMP>
+
+<TIMESTAMP>2006</TIMESTAMP>
+
+<MALWARE>MAPIGET</MALWARE>
+<MALWARE>BISCUIT</MALWARE>
+<MALWARE>MANITSMEWEBC2.UGX</MALWARE>
+<MALWARE>STARSYPOUNDTARSIP</MALWARE>
+<MALWARE>DAIRY</MALWARE>
+<MALWARE>SWORD</MALWARE>
+<MALWARE>HELAUTO</MALWARE>
+<MALWARE>WEBC2.AUSOVHACKSFASE</MALWARE>
+<MALWARE>AURIGA</MALWARE>
+<MALWARE>WEBC2.CLOVERGREENCAT</MALWARE>
+<MALWARE>MACROMAILGOGGLES</MALWARE>
+<MALWARE>NEWSREELSWEBC2.RAVE</MALWARE>
+<MALWARE>WEBC2.ADSPACE</MALWARE>
+<MALWARE>WEBC2.HEAD</MALWARE>
+<MALWARE>BANGAT</MALWARE>
+
+<THREAT_ACTOR>APT 1</THREAT_ACTOR> MALWARE FAMILIES
+
+<MALWARE>GETMAIL</MALWARE>
+
+FIRST KNOWN COMPILE TIMES
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 33 www.mandiant.com
+
+The <MALWARE>BISCUIT</MALWARE> backdoor (so named for the command “bdkzt”) is an illustrative example of the range of commands that 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has built into its “standard” backdoors. <THREAT_ACTOR>APT1</THREAT_ACTOR> has used and steadily modified <MALWARE>BISCUIT</MALWARE> since as early as <TIMESTAMP>2007</TIMESTAMP>
+and continues to use it presently. 
+
+taBLe 4: a subset of <MALWARE>BISCUIT</MALWARE> commands
+
+Command Description
+bdkzt Launch a command shell
+
+ckzjqk Get system information
+
+download <file> Transfer a file from the C2 server
+
+exe <file> <user> Launch a program as a specific user
+
+exit Close the connection and sleep
+
+lists <type> List servers on a Windows network. 
+
+ljc Enumerate running processes and identify their owners.
+
+sjc <PID>|<NAME> Terminate a process, either by process ID or by process name.
+
+upload <file> Send a file to the C2 server
+
+zxdosml <input> Send input to the command shell process (launched with “bdkzt”).
+
+These functions are characteristic of most backdoors, and are not limited to <THREAT_ACTOR>APT1</THREAT_ACTOR> or even <THREAT_ACTOR>APT</THREAT_ACTOR>. For example, anyone 
+who wants to control a system remotely will likely put functions like “Upload/download files” into a backdoor.
+
+Covert Communications
+Some <THREAT_ACTOR>APT</THREAT_ACTOR> backdoors attempt to mimic legitimate Internet traffic other than the HTTP protocol. <THREAT_ACTOR>APT1</THREAT_ACTOR> has created a 
+handful of these, including:
+
+taBLe 5: Backdoors that mimic legitimate communication protocols
+
+Backdoor  Mimicked protocol
+
+<MALWARE>MaCroMaIL</MALWARE>  <SOFTWARE>MSN Messenger</SOFTWARE>
+
+<MALWARE>GLooxMaIL</MALWARE>  <SOFTWARE>Jabber/XMPP</SOFTWARE>
+
+<MALWARE>CaLenDar</MALWARE>  <SOFTWARE>Gmail Calendar</SOFTWARE>
+
+When network defenders see the communications between these backdoors and their C2 servers, they might easily 
+dismiss them as legitimate network traffic. Additionally, many of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s backdoors use SSL encryption so that 
+communications are hidden in an encrypted SSL tunnel. We have provided <THREAT_ACTOR>APT1</THREAT_ACTOR>’s public SSL certificates in Appendix 
+F so people can incorporate them into their network signatures.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 34 www.mandiant.com
+
+Privilege Escalation
+
+Escalating privileges involves acquiring items (most often usernames and passwords) that will allow access to more 
+resources within the network. In this and the next two stages, <THREAT_ACTOR>APT1</THREAT_ACTOR> does not differ significantly from other <THREAT_ACTOR>APT</THREAT_ACTOR> 
+intruders (or intruders, generally). <THREAT_ACTOR>APT1</THREAT_ACTOR> predominantly uses publicly available tools to dump password hashes from 
+victim systems in order to obtain legitimate user credentials.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has used these privilege escalation tools:
+
+taBLe 6: Publicly available privilege escalation tools that <THREAT_ACTOR>APT1</THREAT_ACTOR> has used
+
+tool Description  website
+
+<TOOL>cachedump</TOOL> This program extracts cached 
+password hashes from a system’s 
+registry 
+
+ Currently packaged with fgdump (below)
+
+<TOOL>fgdump</TOOL> Windows password hash dumper  http://www.foofus.net/fizzgig/fgdump/
+
+<TOOL>gsecdump</TOOL> Obtains password hashes from the 
+Windows registry, including the SAM 
+file, cached domain credentials, and 
+LSA secrets 
+
+ http://www.truesec.se
+
+<TOOL>lslsass</TOOL> Dump active logon session password 
+hashes from the lsass process 
+
+ http://www.truesec.se
+
+<TOOL>mimikatz</TOOL> A utility primarily used for dumping 
+password hashes 
+
+ http://blog.gentilkiwi.com/mimikatz
+
+<TECHNIQUE>pass-the-hash</TECHNIQUE> toolkit
+
+Allows an intruder to “pass” a 
+password hash (without knowing the 
+original password) to log in to systems 
+
+ http://oss.coresecurity.com/projects/pshtoolkit.htm
+
+<TOOL>pwdump7</TOOL> Dumps password hashes from the 
+Windows registry 
+
+ http://www.tarasco.org/security/pwdump_7/
+
+<TOOL>pwdumpx</TOOL> Dumps password hashes from the 
+Windows registry 
+
+The tool claims its origin as http://reedarvin.thearvins.com/, 
+but the site is not offering this software as of the date of this 
+report 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 35 www.mandiant.com
+
+Internal Reconnaissance
+
+In the Internal Reconnaissance stage, the intruder collects information about the victim environment. Like most <THREAT_ACTOR>APT</THREAT_ACTOR> 
+(and non-APT) intruders, <THREAT_ACTOR>APT1</THREAT_ACTOR> primarily uses built-in operating system commands to explore a compromised system 
+and its networked environment. Although they usually simply type these commands into a command shell, sometimes 
+intruders may use batch scripts to speed up the process. Figure 18 below shows the contents of a batch script that 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> used on at least four victim networks.
+
+@echo off
+ipconfig /all>>”C:\WINNT\Debug\1.txt”
+net start>>”C:\WINNT\Debug\1.txt”
+tasklist /v>>”C:\WINNT\Debug\1.txt”
+net user >>”C:\WINNT\Debug\1.txt”
+net localgroup administrators>>”C:\WINNT\Debug\1.txt”
+netstat -ano>>”C:\WINNT\Debug\1.txt”
+net use>>”C:\WINNT\Debug\1.txt”
+net view>>”C:\WINNT\Debug\1.txt”
+net view /domain>>”C:\WINNT\Debug\1.txt”
+net group /domain>>”C:\WINNT\Debug\1.txt”
+net group “domain users” /domain>>”C:\WINNT\Debug\1.txt”
+net group “domain admins” /domain>>”C:\WINNT\Debug\1.txt”
+net group “domain controllers” /domain>>”C:\WINNT\Debug\1.txt”
+net group “exchange domain servers” /domain>>”C:\WINNT\Debug\1.txt”
+net group “exchange servers” /domain>>”C:\WINNT\Debug\1.txt”
+net group “domain computers” /domain>>”C:\WINNT\Debug\1.txt”
+
+FIGure 18: an <THREAT_ACTOR>APT1</THREAT_ACTOR> batch script that automates reconnaissance
+
+what is a password hash?
+When a person logs in to a computer, website, email server, or any networked resource requiring a password, 
+the supplied password needs to be verified. One way to do this would be to store the person’s actual password 
+on the system that the person is trying to access, and to compare the typed password to the stored password. 
+Although simple, this method is also very insecure: anyone who can access that same system will be able to 
+see the person’s password. Instead, systems that verify passwords usually store password hashes. In simple 
+terms, a password hash is a number that is mathematically generated from the person’s password. The 
+mathematical methods (algorithms) used to generate password hashes will create values that are unique for 
+all practical purposes. When a person supplies their password, the computer generates a hash of the typed 
+password and compares it to the stored hash. If they match, the passwords are presumed to be the same and 
+the person is allowed to log in.
+
+It is supposed to be impossible to “reverse” a hash to obtain the original password. However, it is possible with 
+enough computational resources to “crack” password hashes to discover the original password. (“Cracking” 
+generally consists of guessing a large number of passwords, hashing them, and comparing the generated 
+hashes to the existing hashes to see if any match.) Intruders will steal password hashes from victim systems 
+in hopes that they can either use the hashes as-is (by “passing-the-hash”) or crack them to discover users’ 
+passwords.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 36 www.mandiant.com
+
+This script performs the following functions and saves the results to a text file:
+
+»» Display the victim’s network configuration information
+
+»» List the services that have started on the victim system
+
+»» List currently running processes
+
+»» List accounts on the system
+
+»» List accounts with administrator privileges
+
+»» List current network connections
+
+»» List currently connected network shares
+
+»» List other systems on the network
+
+»» List network computers and accounts according to group (“domain controllers,” “domain users,” “domain 
+admins,” etc.)
+
+Lateral Movement
+
+Once an <THREAT_ACTOR>APT</THREAT_ACTOR> intruder has a foothold inside the network and a set of legitimate credentials,36 it is simple for the intruder 
+to move around the network undetected:
+
+»» They can connect to shared resources on other systems
+
+»» They can execute commands on other systems using the publicly available “<TOOL>psexec</TOOL>” tool from <ORG>Microsoft</ORG> 
+Sysinternals or the built-in Windows Task Scheduler (“at.exe”)
+
+These actions are hard to detect because legitimate system administrators also use these techniques to perform 
+actions around the network.
+
+Maintain Presence
+
+In this stage, the intruder takes actions to ensure continued, long-term control over key systems in the network 
+environment from outside of the network. <THREAT_ACTOR>APT1</THREAT_ACTOR> does this in three ways.
+
+1. Install new backdoors on multiple systems
+Throughout their stay in the network (which could be years), <THREAT_ACTOR>APT1</THREAT_ACTOR> usually installs new backdoors as they claim more 
+systems in the environment. Then, if one backdoor is discovered and deleted, they still have other backdoors they can 
+use. We usually detect multiple families of <THREAT_ACTOR>APT1</THREAT_ACTOR> backdoors scattered around a victim network when <THREAT_ACTOR>APT1</THREAT_ACTOR> has been 
+present for more than a few weeks.
+
+2. use legitimate vPn credentials
+<THREAT_ACTOR>APT</THREAT_ACTOR> actors and hackers in general are always looking for valid credentials in order to impersonate a legitimate user. 
+We have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> using stolen usernames and passwords to log into victim networks’ VPNs when the VPNs are 
+only protected by single-factor authentication. From there they are able to access whatever the impersonated users are 
+allowed to access within the network.
+
+36 <ORG>Mandiant</ORG> uses the term “credentials” to refer to a userid and its corresponding, working password.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 37 www.mandiant.com
+
+3. Log in to web portals
+Once armed with stolen credentials, <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders also attempt to log into web portals that the network offers. This 
+includes not only restricted websites, but also web-based email systems such as Outlook Web Access.
+
+Completing The Mission
+
+Similar to other <THREAT_ACTOR>APT</THREAT_ACTOR> groups we track, once <THREAT_ACTOR>APT1</THREAT_ACTOR> finds files of interest they pack them into archive files before stealing 
+them. <THREAT_ACTOR>APT</THREAT_ACTOR> intruders most commonly use the RAR archiving utility for this task and ensure that the archives are 
+password protected. Sometimes <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders use batch scripts to assist them in the process, as depicted in Figure 
+19. (The instances of “XXXXXXXX” obfuscate the text that was in the actual batch script.)
+
+@echo off
+cd /d c:\windows\tasks
+rar.log a XXXXXXXX.rar -v200m “C:\Documents and Settings\Place\My 
+Documents\XXXXXXXX” -hpsmy123!@#
+del *.vbs
+del %0
+
+FIGure 19: an <THREAT_ACTOR>APT1</THREAT_ACTOR> batch script that bundles stolen files into rar archive files
+
+After creating files compressed via RAR, the <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers will transfer files out of the network in ways that are 
+consistent with other <THREAT_ACTOR>APT</THREAT_ACTOR> groups, including using the File Transfer Protocol (FTP) or their existing backdoors. Many 
+times their RAR files are so large that the attacker splits them into chunks before transferring them. Figure 19 above 
+shows a RAR command with the option “-v200m”, which means that the RAR file should be split up into 200MB 
+portions.
+
+.rar
+
+FIGure 20: <THREAT_ACTOR>APT1</THREAT_ACTOR> bundles stolen files into rar archives before moving data to <COUNTRY>China</COUNTRY>
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 38 www.mandiant.com
+
+Unlike most other <THREAT_ACTOR>APT</THREAT_ACTOR> groups we track, <THREAT_ACTOR>APT1</THREAT_ACTOR> uses two email-stealing utilities that we believe are unique to <THREAT_ACTOR>APT1</THREAT_ACTOR>. The 
+first, <MALWARE>GETMAIL</MALWARE>, was designed specifically to extract email messages, attachments, and folders from within <SOFTWARE>Microsoft Outlook</SOFTWARE> archive (“PST”) files. 
+
+<SOFTWARE>Microsoft Outlook</SOFTWARE> archives can be large, often storing years’ worth of emails. They may be too large to transfer out 
+of a network quickly, and the intruder may not be concerned about stealing every email. The <MALWARE>GETMAIL</MALWARE> utility allows 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> intruders the flexibility to take only the emails between dates of their choice. In one case, we observed an <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+intruder return to a compromised system once a week for four weeks in a row to steal only the past week’s emails.
+
+Whereas <MALWARE>GETMAIL</MALWARE> steals email in Outlook archive files, the second utility, <MALWARE>MAPIGET</MALWARE>, was designed specifically to steal 
+email that has not yet been archived and still resides on a <SOFTWARE>Microsoft Exchange Server</SOFTWARE>. In order to operate successfully, 
+<MALWARE>MAPIGET</MALWARE> requires username/password combinations that the Exchange server will accept. <MALWARE>MAPIGET</MALWARE> extracts email 
+from specified accounts into text files (for the email body) and separate attachments, if there are any. 
+
+english as a second Language
+<THREAT_ACTOR>APT1</THREAT_ACTOR>’s “It’s legit” email should not mislead someone into thinking that <THREAT_ACTOR>APT1</THREAT_ACTOR> personnel are all fluent in English, though 
+some undoubtedly are. Their own digital weapons betray the fact that they were programmed by people whose first 
+language is not English. Here are some examples of grammatically incorrect phrases that have made it into <THREAT_ACTOR>APT1</THREAT_ACTOR>’s 
+tools over the years.
+
+taBLe 7: examples of grammatically incorrect phrases in <THREAT_ACTOR>APT1</THREAT_ACTOR> malware
+
+Phrase tool Compile date
+
+If use it, key is the KEY. <MALWARE>GETMAIL</MALWARE> <TIMESTAMP>2005-08-18</TIMESTAMP>
+
+Wether encrypt or not,Default is NOT. <MALWARE>GETMAIL</MALWARE> <TIMESTAMP>2005-08-18</TIMESTAMP>
+
+ToolHelp API isn’t support on NT versions prior to <SOFTWARE>Windows 2000</SOFTWARE>! <MALWARE>LIGHTDART</MALWARE> <TIMESTAMP>2006-08-03</TIMESTAMP>
+
+No Doubt to Hack You, Writed by <IDENTITY>UglyGorilla</IDENTITY> <MALWARE>MANITSME</MALWARE> <TIMESTAMP>2007-09-06</TIMESTAMP>
+
+Type command disable.Go on! <MALWARE>HELAUTO</MALWARE> <TIMESTAMP>2008-06-16</TIMESTAMP>
+
+File no exist. Simple Downloader 
+(not profiled) 
+
+<TIMESTAMP>2008-11-26</TIMESTAMP>
+
+you specify service name not in Svchost\netsvcs, must be one of following <MALWARE>BISCUIT</MALWARE> <TIMESTAMP>2009-06-02</TIMESTAMP>
+
+Can not found the PID <MALWARE>WEBC2</MALWARE> (Uncat) <TIMESTAMP>2009-08-11</TIMESTAMP>
+
+Doesn’t started! <MALWARE>GREENCAT</MALWARE> <TIMESTAMP>2009-08-18</TIMESTAMP>
+
+Exception Catched <MALWARE>MACROMAIL</MALWARE> <TIMESTAMP>2010-03-15</TIMESTAMP>
+
+Are you sure to FORMAT Disk C With NTFS?(Y/N) <MALWARE>TABMSGSQL</MALWARE> <TIMESTAMP>2010-11-04</TIMESTAMP>
+
+Shell is not exist or stopped! <MALWARE>TARSIP</MALWARE> <TIMESTAMP>2011-03-24</TIMESTAMP>
+
+Reqfile not exist! <MALWARE>COOKIEBAG</MALWARE> <TIMESTAMP>2011-10-12</TIMESTAMP>
+
+the url no respon! <MALWARE>COOKIEBAG</MALWARE> <TIMESTAMP>2011-10-12</TIMESTAMP>
+
+Fail To Execute The Command <MALWARE>WEBC2-TABLE</MALWARE> <TIMESTAMP>2012-02-23</TIMESTAMP>
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 39 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: InFrastruCture
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> maintains an extensive infrastructure of computers around the world. We have evidence suggesting that <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+manually controls thousands of systems in support of their attacks, and have directly observed their control over 
+hundreds of these systems. Although they control systems in dozens of countries, their attacks originate from four large 
+networks in <CITY>Shanghai</CITY> — two of which are allocated directly to the Pudong New Area, the home of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>. The 
+sheer number of <THREAT_ACTOR>APT1</THREAT_ACTOR> IP addresses concentrated in these <CITY>Shanghai</CITY> ranges, coupled with Simplified Chinese keyboard 
+layout settings on <THREAT_ACTOR>APT1</THREAT_ACTOR>’s attack systems, betrays the true location and language of the operators. To help manage the 
+vast number of systems they control, <THREAT_ACTOR>APT1</THREAT_ACTOR> has registered hundreds of domain names, the majority of which also point 
+to a <CITY>Shanghai</CITY> locale. The domain names and IP addresses together comprise <THREAT_ACTOR>APT1</THREAT_ACTOR>’s command and control framework 
+which they manage in concert to camouflage their true origin from their English speaking targets.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Network Origins
+
+We are frequently asked why it is an ineffective security measure to just block all IP addresses in <COUNTRY>China</COUNTRY> from 
+connecting to your network. To put it simply, it is easy for <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers to bounce or “hop” through intermediary 
+systems such that they almost never connect to a victim network directly from their systems in <CITY>Shanghai</CITY>. Using their 
+immense infrastructure, they are able to make it appear to victims that an attack originates from almost any country 
+they choose. The systems in this type of network redirection infrastructure have come to be called “hop points” 
+or “hops.” Hop points are most frequently compromised systems that <THREAT_ACTOR>APT1</THREAT_ACTOR> uses, in some instances for years, as 
+camouflage for their attacks without the knowledge of the systems’ owners. These systems belong to third-party victims 
+who are compromised for access to infrastructure, as opposed to direct victims who are compromised for their data 
+and intellectual property.
+
+FIGure 21: <THREAT_ACTOR>APT1</THREAT_ACTOR> bounces through “hop point” systems before accessing victim systems
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 40 www.mandiant.com
+
+We have observed some of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s activities after they cross into (virtual) <COUNTRY>U.S.</COUNTRY> territory. They access hop points using 
+a variety of techniques, the most popular being <SOFTWARE>Remote Desktop</SOFTWARE> and FTP. <TIMESTAMP>Over a two-year period</TIMESTAMP> (<TIMESTAMP>January 2011 to January 2013</TIMESTAMP>) we confirmed 1,905 instances of <THREAT_ACTOR>APT1</THREAT_ACTOR> actors logging into their hop infrastructure from 832 different 
+IP addresses with <SOFTWARE>Remote Desktop</SOFTWARE>. <SOFTWARE>Remote Desktop</SOFTWARE> provides a remote user with an interactive graphical interface to 
+a system. The experience is similar to the user actually physically sitting at the system and having direct access to the 
+desktop, keyboard, and mouse. Of the 832 IP addresses, 817 (98.2%) were Chinese and belong predominantly to four 
+large net blocks in <CITY>Shanghai</CITY> which we will refer to as <THREAT_ACTOR>APT1</THREAT_ACTOR>’s home networks.
+
+taBLe 8: net blocks corresponding to IP addresses that <THREAT_ACTOR>APT1</THREAT_ACTOR> used to access their hop points
+
+number net block registered owner 
+
+445 <IOC>223.166.0.0 - 223.167.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+217 <IOC>58.246.0.0 - 58.247.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+114 <IOC>112.64.0.0 - 112.65.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+12 <IOC>139.226.0.0 - 139.227.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+1 <IOC>114.80.0.0 - 114.95.255.255</IOC> <ORG>China Telecom</ORG> <CITY>Shanghai</CITY> Network 
+
+1 <IOC>101.80.0.0 - 101.95.255.255</IOC> <ORG>China Telecom</ORG> <CITY>Shanghai</CITY> Network
+
+27 Other (non-<CITY>Shanghai</CITY>) Chinese IPs  
+
+Notably, the registration information for the second and third net blocks above includes this contact information at the 
+end:
+
+person: <IDENTITY>yanling ruan</IDENTITY>
+nic-hdl:  YR194-AP
+e-mail:  <IOC>sh-ipmaster@Chinaunicom.cn</IOC>
+address:  No.900,Pudong Avenue,<CITY>Shanghai</CITY>,<COUNTRY>China</COUNTRY>
+phone:  +086-021-61201616
+fax-no:  +086-021-61201616
+country:  <COUNTRY>cn</COUNTRY>
+
+The registration information for these two net blocks suggests that they serve the Pudong New Area of <CITY>Shanghai</CITY>, where 
+<THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR> is headquartered. 
+
+The other 15 of the 832 IP addresses are registered to organizations in the <COUNTRY>U.S.</COUNTRY> (12), <COUNTRY>Taiwan</COUNTRY> (1), <COUNTRY>Japan</COUNTRY> (1) and <COUNTRY>Korea</COUNTRY> 
+(1). We have confirmed that some of these systems are part of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s hop infrastructure and not legitimately owned 
+by <THREAT_ACTOR>APT1</THREAT_ACTOR> — in other words, <THREAT_ACTOR>APT1</THREAT_ACTOR> accessed one hop from another hop, as opposed to accessing the hop directly from 
+<CITY>Shanghai</CITY>.
+
+In order to make a user’s experience as seamless as possible, the <SOFTWARE>Remote Desktop</SOFTWARE> protocol requires client applications 
+to forward several important details to the server, including their client hostname and the client keyboard layout. 
+In 1,849 of the 1,905 (97%) <THREAT_ACTOR>APT1</THREAT_ACTOR> <SOFTWARE>Remote Desktop</SOFTWARE> sessions we observed in the past two years, the keyboard 
+layout setting was “Chinese (Simplified) — <COUNTRY>US</COUNTRY> Keyboard.” <SOFTWARE>Microsoft’s Remote Desktop</SOFTWARE> client configures this setting 
+automatically based on the selected language on the client system, making it nearly certain that the <THREAT_ACTOR>APT1</THREAT_ACTOR> actors 
+managing the hop infrastructure are doing so with Simplified Chinese (zh-cn) input settings. “Simplified Chinese” is 
+a streamlined set of the traditional Chinese characters that have been in use since the 1950s, originating in mainland 
+<COUNTRY>China</COUNTRY>. <COUNTRY>Taiwan</COUNTRY> and municipalities such as <COUNTRY>Hong Kong</COUNTRY> still use “Traditional Chinese” (zh-tw) character sets.
+
+The overwhelming concentration of <CITY>Shanghai</CITY> IP addresses and Simplified Chinese language settings clearly indicate 
+that <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders are mainland Chinese speakers with ready access to large networks in <CITY>Shanghai</CITY>. The only 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 41 www.mandiant.com
+
+alternative is that <THREAT_ACTOR>APT1</THREAT_ACTOR> has intentionally been conducting a years-long deception campaign to impersonate Chinese 
+speakers from <CITY>Shanghai</CITY> in places where victims are not reasonably expected to have any visibility – and without 
+making a single mistake that might indicate their “true” identity. 
+
+Interaction with Backdoors
+
+As we just mentioned, <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers typically use hops to connect to and control victim systems. Victim backdoors 
+regularly connect out to hop points, waiting for the moment that the attacker is there to give them commands. However, 
+exactly how this works is often specific to the tools they are using. 
+
+MANUAL <MALWARE>WEBC2</MALWARE> UPDATES
+
+As covered in the previous “Attack Lifecycle” section, <MALWARE>WEBC2</MALWARE> backdoor variants download and interpret data stored 
+between tags in HTML pages as commands. They usually download HTML pages from a system within <THREAT_ACTOR>APT1</THREAT_ACTOR>’s hop 
+infrastructure. We have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders logging in to <MALWARE>WEBC2</MALWARE> servers and manually editing the HTML pages 
+that backdoors will download. Because the commands are usually encoded and difficult to spell from memory, <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+intruders typically do not type these strings, but instead copy and paste them into the HTML files. They likely generate 
+the encoded commands on their own systems before pasting them in to an HTML file hosted by the hop point. For 
+example, we observed an <THREAT_ACTOR>APT</THREAT_ACTOR> attacker pasting the string “czo1NA==” into an HTML page. That string is the base64-
+encoded version of “s:54”, meaning “sleep for 54 minutes” (or hours, depending on the particular backdoor). In lieu 
+of manually editing an HTML file on a hop point, we have also observed <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders uploading new (already-edited) 
+HTML files. 
+
+<TOOL>HTRAN</TOOL>
+
+When <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers are not using <MALWARE>WEBC2</MALWARE>, they require a “command and control” (C2) user interface so they can 
+issue commands to the backdoor. This interface sometimes runs on their personal attack system, which is typically 
+in <CITY>Shanghai</CITY>. In these instances, when a victim backdoor makes contact with a hop, the communications need to be 
+forwarded from the hop to the intruder’s <CITY>Shanghai</CITY> system so the backdoor can talk to the C2 server software. We have 
+observed 767 separate instances in which <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders used the publicly available “<TOOL>HUC Packet Transmit Tool</TOOL>” 
+or <TOOL>HTRAN</TOOL> on a hop. As always, keep in mind that these uses are confirmed uses, and likely represent only a small 
+fraction of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s total activity.
+
+The <TOOL>HTRAN</TOOL> utility is merely a middle-man, facilitating connections between the victim and the attacker who is using 
+the hop point.
+
+0100100001 0100100001
+
+01010100010101010001 C2HTRAN
+FIGure 22: the <TOOL>HTRAN</TOOL> tool resides on <THREAT_ACTOR>APT1</THREAT_ACTOR> hop points and acts as a middle-man
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 42 www.mandiant.com
+
+Typical use of <TOOL>HTRAN</TOOL> is fairly simple: the attacker must specify the originating IP address (of his or her workstation in 
+<CITY>Shanghai</CITY>), and a port on which to accept connections. For example, the following command, which was issued by an 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> actor, will listen for incoming connections on port 443 on the hop and automatically proxy them to the <CITY>Shanghai</CITY> 
+IP address <IOC>58.247.242.254</IOC> on port 443:
+
+htran -tran 443 <IOC>58.247.242.254</IOC> 443
+
+In the 767 observed uses of <TOOL>HTRAN</TOOL>, <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders supplied 614 distinct routable IP addresses. In other words, they 
+used their hops to function as middlemen between victim systems and 614 different addresses. Of these addresses, 
+613 of 614 are part of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s home networks:
+
+taBLe 9: net blocks corresponding to IP addresses used to receive <TOOL>HTRAN</TOOL> communications 
+
+number net block registered owner
+
+340 <IOC>223.166.0.0 - 223.167.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+160 <IOC>58.246.0.0 - 58.247.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+102 <IOC>112.64.0.0 - 112.65.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+11 <IOC>139.226.0.0 - 139.227.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+1 <IOC>143.89.0.0 - 143.89.255.255</IOC> <ORG>Hong Kong University of Science and Technology</ORG>
+
+C2 SERVER SOFTWARE ON HOP INFRASTRUCTURE
+
+Occasionally, <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers have installed C2 server components on systems in their hop infrastructure rather than 
+forwarding connections back to C2 servers in <CITY>Shanghai</CITY>. In these instances they do not need to use a proxy tool like 
+<TOOL>HTRAN</TOOL> to interact with victim systems. However, it does mean that the intruders need to be able to interface with the 
+(often graphical) C2 server software running on the hop. We have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders log in to their hop point, 
+start the C2 server, wait for incoming connections, and then proceed to give commands to victim systems.
+
+<MALWARE>WEBC2</MALWARE> variants may include a server component that provides a simple C2 interface to the intruder. This saves the 
+intruder from having to manually edit webpages. That is, this server component receives connections from victim 
+backdoors, displays them to the intruder, and then translates the intruder’s commands into HTML tags that the victim 
+backdoors read.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 43 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Servers
+
+In the last two years alone, we have confirmed 937 <THREAT_ACTOR>APT1</THREAT_ACTOR> C2 servers — that is, actively listening or communicating 
+programs — running on 849 distinct IP addresses. However, we have evidence to suggest that <THREAT_ACTOR>APT1</THREAT_ACTOR> is running 
+hundreds, and likely thousands, of other servers (see the Domains section below). The programs acting as <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+servers have mainly been: (1) <TOOL>FTP</TOOL>, for transferring files; (2) <TOOL>web</TOOL>, primarily for <MALWARE>WEBC2</MALWARE>; (3) <TOOL>RDP</TOOL>, for remote graphical 
+control of a system; (4) <TOOL>HTRAN</TOOL>, for proxying; and (5) C2 servers associated with various backdoor families (covered in 
+Appendix C: The Malware Arsenal). 
+
+<COUNTRY>China</COUNTRY> (709)
+
+US (109)
+
+<COUNTRY>South Korea</COUNTRY> (11) <COUNTRY>Taiwan</COUNTRY> (6)
+<COUNTRY>Canada</COUNTRY> (3)
+<COUNTRY>Australia</COUNTRY> (2)
+<COUNTRY>Mexico</COUNTRY> (2)
+<COUNTRY>Norway</COUNTRY> (2)
+<COUNTRY>Belgium</COUNTRY> (1)
+<COUNTRY>Denmark</COUNTRY> (1)
+<COUNTRY>Indonesia</COUNTRY> (1)
+<COUNTRY>India</COUNTRY> (1)
+<COUNTRY>Singapore</COUNTRY> (1)
+
+Global distribution of confirmed <THREAT_ACTOR>APT1</THREAT_ACTOR> servers
+
+<IOC>223.166.0.0 - 223.167.255.255</IOC>: 406
+(<CITY>Shanghai</CITY>)
+
+<IOC>58.246.0.0 - 58.247.255.255</IOC>: 180
+(<CITY>Shanghai</CITY>) 
+
+<IOC>112.64.0.0 - 112.65.255.255</IOC>: 93
+(<CITY>Shanghai</CITY>) 
+
+<IOC>139.226.0.0 - 139.227.255.255</IOC>: 19
+(<CITY>Shanghai</CITY>) Other: 11 (including 7 in <COUNTRY>Hong Kong</COUNTRY>)
+
+Distribution of confirmed <THREAT_ACTOR>APT1</THREAT_ACTOR> servers in <COUNTRY>China</COUNTRY>
+
+FIGure 23: the global distribution of confirmed <THREAT_ACTOR>APT1</THREAT_ACTOR> servers
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 44 www.mandiant.com
+
+Domain Names
+
+The Domain Name System (DNS) is the phone book of the Internet. In the same way that people program named 
+contacts into their cell phones and no longer need to remember phone numbers, DNS allows people to remember 
+names like “google.com” instead of IP addresses. When a person types “google.com” into a web browser, a DNS 
+translation to an IP address occurs so that the person’s computer can communicate with <ORG>Google</ORG>. Names that can be 
+translated through DNS to IP addresses are referred to as Fully Qualified Domain Names (FQDNs).
+
+0100100001 0100100001
+
+01010100010101010001
+
+<IOC>ug-co.hugesoft.org</IOC>
+
+      1010010010100101
+
+1001100100011010100                     
+
+1001100100011               
+
+DNS QUERY        
+
+“Here’s the IP address”
+
+C2
+
+FIGure 24: Dns queries are used to resolve <THREAT_ACTOR>APT1</THREAT_ACTOR> FQDns to many C2 server IPs
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 45 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>’s infrastructure includes FQDNs in addition 
+to the IP addresses discussed above. The FQDNs 
+play an important role in their intrusion campaigns 
+because <THREAT_ACTOR>APT1</THREAT_ACTOR> embeds FQDNs as C2 addresses 
+within their backdoors. In the last several years 
+we have confirmed 2,551 FQDNs attributed to 
+<THREAT_ACTOR>APT1</THREAT_ACTOR>. Of these, we have redacted FQDNs that 
+implicated victims by name and provided 2,046 in 
+Appendix D. By using FQDNs rather than hard-
+coded IP addresses as C2 addresses, attackers 
+may dynamically decide where to direct C2 
+connections from a given backdoor. That is, if they 
+lose control of a specific hop point (IP address) 
+they can “point” the C2 FQDN address to a 
+different IP address and resume their control over 
+victim backdoors. This flexibility allows the attacker 
+to direct victim systems to myriad C2 servers and 
+avoid being blocked.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> FQDNs can be grouped into three categories: 
+(1) registered zones, (2) third-party zones, and (3) 
+hijacked domains. 
+
+REGISTERED ZONES
+
+A DNS zone represents a collection of FQDNs that 
+end with the same name, and which are usually 
+registered through a domain registration company 
+and controlled by a single owner. For example, 
+“<IOC>hugesoft.org</IOC>” is an FQDN but also represents 
+a zone. The FQDNs “<IOC>ug-co.hugesoft.org</IOC>” and 
+“<IOC>7cback.hugesoft.org</IOC>” are part of the “<IOC>hugesoft.org</IOC>” zone and are called “subdomains” of the zone. 
+The person who registered “<IOC>hugesoft.org</IOC>” may add 
+as many subdomains as they wish and controls the 
+IP resolutions of these FQDNs. <THREAT_ACTOR>APT1</THREAT_ACTOR> has registered 
+at least 107 zones <TIMESTAMP>since 2004</TIMESTAMP>. Within these zones, 
+we know of thousands of FQDNs that have resolved 
+to hundreds of IP addresses (which we suspect are 
+hops) and in some instances to <THREAT_ACTOR>APT1</THREAT_ACTOR>’s source IP 
+addresses in <CITY>Shanghai</CITY>.
+
+The first zone we became aware of was “<IOC>hugesoft.org</IOC>”, which was registered through <ORG>eNom, Inc.</ORG> in <TIMESTAMP>October 2004</TIMESTAMP>. The registrant supplied 
+“<IDENTITY>uglygorilla@163.com</IDENTITY>” as an email address. The 
+supplied registration information, which is still 
+visible in public “whois” data as of <TIMESTAMP>February 3, 2013</TIMESTAMP>, includes the following:
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Zone Registrations
+
+<IOC>hugesoft.org</IOC>
+<IOC>ustvb.com</IOC>
+<IOC>uszzcs.com</IOC>
+<IOC>hvmetal.com</IOC>
+<IOC>hkcastte.com</IOC>
+<IOC>attnpower.com</IOC>
+<IOC>ifexcel.com</IOC>
+<IOC>bpyoyo.com</IOC>
+<IOC>skyswim.net</IOC>
+<IOC>cslisten.com</IOC>
+<IOC>bigish.net</IOC>
+<IOC>chileexe77.com</IOC>
+<IOC>issnbgkit.net</IOC>
+<IOC>progammerli.com</IOC>
+<IOC>idirectech.com</IOC>
+<IOC>livemymsn.com</IOC>
+<IOC>webservicesupdate.com</IOC>
+<IOC>giftnews.org</IOC>
+<IOC>onefastgame.net</IOC>
+<IOC>conferencesinfo.com</IOC>
+
+5 zones created
+
+<IOC>cometoway.org</IOC>
+
+6 zones created
+
+6 zones created
+
+<IOC>usnftc.org</IOC>
+
+<IOC>phoenixtvus.com</IOC>
+
+<IOC>ushongkong.org</IOC>
+<IOC>newsesport.com</IOC>
+<IOC>youipcam.com</IOC>
+<IOC>olmusic100.com</IOC>
+<IOC>todayusa.org</IOC>
+<IOC>bluecoate.com</IOC>
+
+4 zones created
+
+<IOC>bigdepression.net</IOC>
+
+<IOC>arrowservice.net</IOC>
+<IOC>blackcake.net</IOC>
+<IOC>businessconsults.net</IOC>
+<IOC>infosupports.com</IOC>
+<IOC>newsonet.net</IOC>
+<IOC>purpledaily.com</IOC>
+
+<IOC>avvmail.com</IOC>
+<IOC>shepmas.com</IOC>
+
+<IOC>syscation.com</IOC>
+<IOC>tibethome.org</IOC>
+<IOC>microsoft-update-info.com</IOC>
+
+<IOC>busketball.com</IOC>
+<IOC>comrepair.net</IOC>
+<IOC>gmailboxes.com</IOC>
+<IOC>oplaymagzine.com</IOC>
+
+<IOC>maltempata.com</IOC>
+<IOC>nirvanaol.com</IOC>
+
+7 zones created
+
+<IOC>cnndaily.com</IOC>
+<IOC>myyahoonews.com</IOC>
+<IOC>satellitebbs.com</IOC>
+
+<IOC>msnhome.org</IOC>
+<IOC>usabbs.org</IOC>
+
+<IOC>ns06.net</IOC>
+
+6 zones created
+
+<IOC>copporationnews.com</IOC>
+
+7 zones created
+<IOC>nytimesnews.net</IOC>
+<IOC>cnnnewsdaily.com</IOC>
+<IOC>applesoftupdate.com</IOC>
+
+4 zones created
+
+<IOC>micyuisyahooapis.com</IOC>
+<IOC>infobusinessus.org</IOC>
+
+<TIMESTAMP>2004</TIMESTAMP>
+
+<TIMESTAMP>2005</TIMESTAMP>
+
+<TIMESTAMP>2006</TIMESTAMP>
+
+<TIMESTAMP>2007</TIMESTAMP>
+
+<TIMESTAMP>2008</TIMESTAMP>
+
+<TIMESTAMP>2009</TIMESTAMP>
+
+<TIMESTAMP>2010</TIMESTAMP>
+
+<TIMESTAMP>2011</TIMESTAMP>
+
+<TIMESTAMP>2012</TIMESTAMP>
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 46 www.mandiant.com
+
+Domain Name:<IOC>HUGESOFT.ORG</IOC>
+Created On:<TIMESTAMP>25-Oct-2004 09:46:18 UTC</TIMESTAMP> 
+Registrant Name:<IDENTITY>huge soft</IDENTITY>
+Registrant Organization:<IDENTITY>hugesoft</IDENTITY>
+Registrant Street1:<CITY>Shanghai</CITY>
+Registrant City:<CITY>Shanghai</CITY>
+Registrant State/Province:S
+Registrant Postal Code:200001
+Registrant Country:<COUNTRY>CN</COUNTRY>
+Registrant Phone:+86.21000021
+Registrant Email:<IDENTITY>uglygorilla@163.com</IDENTITY>
+
+The supplied registrant information does not need to be accurate for the zone to be registered successfully. For 
+example, “<CITY>Shanghai</CITY>” is not a street name. Nevertheless, it is noteworthy that <CITY>Shanghai</CITY> appeared in the first known 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> domain registration, along with a phone number that begins with <COUNTRY>China</COUNTRY>’s “+86” international code. In fact, 
+<CITY>Shanghai</CITY> was listed as the registrant’s city in at least 24 of the 107 (22%) registrations. Compare this to the frequency 
+with which other cities appeared in <THREAT_ACTOR>APT1</THREAT_ACTOR> zone registration information:
+
+taBLe 10: Locations supplied in registration data other than <CITY>Shanghai</CITY>, <COUNTRY>China</COUNTRY>
+
+number City state Country
+7 <CITY>Beijing</CITY> - <COUNTRY>China</COUNTRY>
+5 <CITY>Calgary</CITY> <COUNTRY>Canada</COUNTRY> 
+4 <CITY>Guizhou</CITY> - <COUNTRY>China</COUNTRY>
+4 <CITY>Pasadena</CITY> CA <COUNTRY>US</COUNTRY>
+4 <CITY>Houston</CITY> TX <COUNTRY>US</COUNTRY>
+3 <CITY>Sydney</CITY> <COUNTRY>Australia</COUNTRY>
+3 <CITY>Salt Lake</CITY> UT <COUNTRY>US</COUNTRY>
+3 <CITY>Washington</CITY>, DC <COUNTRY>US</COUNTRY>
+2 <CITY>Homewood</CITY> AL <COUNTRY>US</COUNTRY>
+2 <CITY>Kalkaska</CITY> MI <COUNTRY>US</COUNTRY>
+2 <CITY>Shallotte</CITY> NC <COUNTRY>US</COUNTRY>
+2 <CITY>Yellow Spring</CITY> OH <COUNTRY>US</COUNTRY>
+2 <CITY>New York</CITY> NY <COUNTRY>US</COUNTRY>
+2 <CITY>Provo</CITY> UT <COUNTRY>US</COUNTRY>
+2 <CITY>Shenzhen</CITY> - <COUNTRY>China</COUNTRY>
+1 <CITY>Birmingham</CITY> AL <COUNTRY>US</COUNTRY>
+1 <CITY>Scottsdale</CITY> AZ <COUNTRY>US</COUNTRY>
+1 <CITY>Sunnyvale</CITY> CA <COUNTRY>US</COUNTRY>
+1 <CITY>Albany</CITY> NY <COUNTRY>US</COUNTRY>
+1 <CITY>Pearl River</CITY> NY <COUNTRY>US</COUNTRY>
+1 <CITY>Chicago</CITY> - <COUNTRY>US</COUNTRY>
+1 <CITY>Moscow</CITY> - <COUNTRY>Guatemala</COUNTRY>
+1 <CITY>Nanning</CITY> - <COUNTRY>China</COUNTRY>
+1 <CITY>Wuhua</CITY> - <COUNTRY>China</COUNTRY>
+27 Registration information blocked or not available 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 47 www.mandiant.com
+
+Some of the supplied registration information is obviously false. For example, consider the registration information 
+supplied for the zone “<IOC>uszzcs.com</IOC>” in <TIMESTAMP>2005</TIMESTAMP>:
+
+  <IDENTITY>Victor</IDENTITY> <IOC>etejedaa@yahoo.com</IOC> +86.8005439436
+  <IDENTITY>Michael Murphy</IDENTITY>
+  795 Livermore St.
+  Yellow Spring,Ohio,<COUNTRY>United States</COUNTRY> 45387
+
+Here, a phone number with a Chinese prefix (“+86”) accompanied an address in the <COUNTRY>United States</COUNTRY>. Since the <COUNTRY>United States</COUNTRY> uses the prefix “+1”, it is highly unlikely that a person living in Ohio would provide a phone number beginning 
+with “+86”. Additionally, the city name is spelled incorrectly, as it should be “<CITY>Yellow Springs</CITY>” instead of “Yellow 
+Spring”. This could have been attributed to a one-time spelling mistake, except the registrant spelled the city name 
+incorrectly multiple times, both for the zones “<IOC>uszzcs.com</IOC>” and “<IOC>attnpower.com</IOC>”. This suggests that the registrant 
+really thought “Yellow Spring” was the correct spelling and that he or she did not, in fact, live or work in <CITY>Yellow Springs</CITY>, 
+Ohio. 
+
+Overall, the combination of a relatively high number of “<CITY>Shanghai</CITY>” registrations with obviously false registration 
+examples in other registrations suggests a partially uncoordinated domain registration campaign <TIMESTAMP>from 2004 until present</TIMESTAMP>, in which some registrants tried to fabricate non-<CITY>Shanghai</CITY> locations but others did not. This is supported by 
+contextual information on the Internet for the email address “<IOC>lfengg@163.com</IOC>,” which was supplied in the registration 
+information for seven of the 107 zones. On the site “www.<COUNTRY>China</COUNTRY>-one.org,” the email address “<IOC>lfengg@163.com</IOC>” 
+appears as the contact for the <CITY>Shanghai</CITY> <ORG>Kai Optical Information Technology Co., Ltd.</ORG>, a website production company 
+located in a part of <CITY>Shanghai</CITY> that is across the river from <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR>. 
+
+FIGure 25: an email address used to register <THREAT_ACTOR>APT1</THREAT_ACTOR> zones is also a contact for a <CITY>Shanghai</CITY> company
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 48 www.mandiant.com
+
+naming themes
+About half of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s known zones were named according to three themes: news, technology and business. These 
+themes cause <THREAT_ACTOR>APT1</THREAT_ACTOR> command and control addresses to appear benign at first glance. However, we believe that the 
+hundreds of FQDNs within these zones were created for the purpose of <THREAT_ACTOR>APT1</THREAT_ACTOR> intrusions. (Note: these themes are not 
+unique to <THREAT_ACTOR>APT1</THREAT_ACTOR> or even <THREAT_ACTOR>APT</THREAT_ACTOR> in general.) 
+
+The news-themed zones include the names of well-known news media outlets such as <ORG>CNN</ORG>, <ORG>Yahoo</ORG> and <ORG>Reuters</ORG>. 
+However, they also include names referencing English-speaking countries, such as “<IOC>aunewsonline.com</IOC>” (<COUNTRY>Australia</COUNTRY>), 
+“<IOC>Canadatvsite.com</IOC>” (<COUNTRY>Canada</COUNTRY>), and “<IOC>todayusa.org</IOC>” (<COUNTRY>U.S.</COUNTRY>). Below is a list of zones registered by <THREAT_ACTOR>APT1</THREAT_ACTOR> that are news-
+themed:
+
+<IOC>aoldaily.com</IOC>
+<IOC>aunewsonline.com</IOC>
+<IOC>Canadatvsite.com</IOC>
+<IOC>canoedaily.com</IOC>
+<IOC>cnndaily.com</IOC>
+<IOC>cnndaily.net</IOC>
+<IOC>cnnnewsdaily.com</IOC>
+<IOC>defenceonline.net</IOC>
+<IOC>freshreaders.net</IOC>
+<IOC>giftnews.org</IOC>
+
+<IOC>issnbgkit.net</IOC>
+<IOC>mediaxsds.net</IOC>
+<IOC>myyahoonews.com</IOC>
+<IOC>newsesport.com</IOC>
+<IOC>newsonet.net</IOC>
+<IOC>newsonlinesite.com</IOC>
+<IOC>newspappers.org</IOC>
+<IOC>nytimesnews.net</IOC>
+<IOC>oplaymagzine.com</IOC>
+<IOC>phoenixtvus.com</IOC>
+
+<IOC>purpledaily.com</IOC>
+<IOC>reutersnewsonline.com</IOC>
+<IOC>rssadvanced.org</IOC>
+<IOC>saltlakenews.org</IOC>
+<IOC>sportreadok.net</IOC>
+<IOC>todayusa.org</IOC>
+<IOC>usapappers.com</IOC>
+<IOC>usnewssite.com</IOC>
+<IOC>yahoodaily.com</IOC>
+
+The technology-themed zones reference well-known technology companies (<ORG>AOL</ORG>, <ORG>Apple</ORG>, <ORG>Google</ORG>, <ORG>Microsoft</ORG>), antivirus 
+vendors (<ORG>McAfee</ORG>, <ORG>Symantec</ORG>), and products (<ORG>Blackberry</ORG>, <ORG>Bluecoat</ORG>). <THREAT_ACTOR>APT1</THREAT_ACTOR> also used more generic names referencing 
+topics like software:
+
+<IOC>aolon1ine.com</IOC>
+<IOC>applesoftupdate.com</IOC>
+<IOC>blackberrycluter.com</IOC>
+<IOC>bluecoate.com</IOC>
+<IOC>comrepair.net</IOC>
+<IOC>dnsweb.org</IOC>
+<IOC>downloadsite.me</IOC>
+<IOC>firefoxupdata.com</IOC>
+
+<IOC>globalowa.com</IOC>
+<IOC>gmailboxes.com</IOC>
+<IOC>hugesoft.org</IOC>
+<IOC>idirectech.com</IOC>
+<IOC>ifexcel.com</IOC>
+<IOC>infosupports.com</IOC>
+<IOC>livemymsn.com</IOC>
+<IOC>mcafeepaying.com</IOC>
+
+<IOC>microsoft-update-info.com</IOC>
+<IOC>micyuisyahooapis.com</IOC>
+<IOC>msnhome.org</IOC>
+<IOC>pcclubddk.net</IOC>
+<IOC>progammerli.com</IOC>
+<IOC>softsolutionbox.net</IOC>
+<IOC>symanteconline.net</IOC>
+<IOC>webservicesupdate.com</IOC>
+
+Finally, some zones used by <THREAT_ACTOR>APT1</THREAT_ACTOR> reflect a business theme. The names suggest websites that professionals might visit:
+
+<IOC>advanbusiness.com</IOC>
+<IOC>businessconsults.net</IOC>
+<IOC>businessformars.com</IOC>
+
+<IOC>companyinfosite.com</IOC>
+<IOC>conferencesinfo.com</IOC>
+<IOC>copporationnews.com</IOC>
+
+<IOC>infobusinessus.org</IOC>
+<IOC>jobsadvanced.com</IOC>
+
+Not every zone stays within <THREAT_ACTOR>APT1</THREAT_ACTOR>’s control forever. Over a campaign lasting for so many years, <THREAT_ACTOR>APT1</THREAT_ACTOR> has not always 
+renewed every zone in their attack infrastructure. Additionally, while some have simply been allowed to expire, 
+others have been transferred to the organizations that the domain names attempted to imitate. For example, <TIMESTAMP>in September 2011</TIMESTAMP>, Yahoo filed a complaint against “<IDENTITY>zheng youjun</IDENTITY>” of “Arizona, <COUNTRY>USA</COUNTRY>”, who registered the <THREAT_ACTOR>APT1</THREAT_ACTOR> 
+zone “<IOC>myyahoonews.com</IOC>”.37 <ORG>Yahoo</ORG> alleged the “< <IOC>myyahoonews.com</IOC> > domain name was confusingly similar to 
+Complainant’s <ORG>YAHOO!</ORG> mark” and that “[<IDENTITY>zheng youjun</IDENTITY>] registered and used the < <IOC>myyahoonews.com</IOC> > domain name 
+in bad faith.” In response, the National Arbitration Forum found that the site “<IOC>myyahoonews.com</IOC>” at the time resolved 
+
+37  <ORG>Yahoo! Inc.</ORG> v. Zheng National Arbitration Forum Claim Number: FA1109001409001, (<TIMESTAMP>October 31, 2011</TIMESTAMP>) (T<IDENTITY>yrus R. Atkinson, Jr.</IDENTITY>, panelist), http://
+domains.adrforum.com/domains/decisions/1409001.htm, accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 49 www.mandiant.com
+
+to “a phishing web page, substantially similar to the actual WorldSID website...in an effort to collect login credentials 
+under false pretenses.” Not surprisingly, “<IDENTITY>zheng youjun</IDENTITY>” did not respond. Subsequently, control of “<IOC>myyahoonews.com</IOC>” was transferred from <THREAT_ACTOR>APT1</THREAT_ACTOR> to <ORG>Yahoo</ORG>.
+
+third-Party services
+The third-party service that <THREAT_ACTOR>APT1</THREAT_ACTOR> has used the most is known as “dynamic DNS.” This is a service that allows people 
+to register subdomains under zones that other people have registered and provided to the service. Over the years, 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has registered hundreds of FQDNs in this manner. When they need to change the IP resolution of an FQDN, they 
+simply log in to these services and update the IP resolution of their FQDN via a web-based interface.
+
+In addition to dynamic DNS, recently we have observed that <THREAT_ACTOR>APT1</THREAT_ACTOR> has been creating FQDNs that end with  
+“<IOC>appspot.com</IOC>”, suggesting that they are using <SOFTWARE>Google’s App Engine</SOFTWARE> service.
+
+hijacked FQDns
+<THREAT_ACTOR>APT1</THREAT_ACTOR> intruders often use the FQDNs that are associated with legitimate websites hosted by their hop points. We 
+consider these domains to be “hijacked” because they were registered by someone for a legitimate reason, but have 
+been leveraged by <THREAT_ACTOR>APT1</THREAT_ACTOR> for malicious purposes. <THREAT_ACTOR>APT1</THREAT_ACTOR> uses hijacked FQDNs for two main purposes. First, they 
+place malware (usually in ZIP files) on the legitimate websites hosted on the hop point and then send spear phishing 
+emails with a link that includes the legitimate FQDN. Second, they embed hijacked FQDNs as C2 addresses in their 
+backdoors. 
+
+EVIDENCE OF A VAST INFRASTRUCTURE
+
+As noted above, we have confirmed the existence of 937 servers (listening applications) hosted on 849 distinct IP 
+addresses, with the majority of IP addresses registered to organizations in <COUNTRY>China</COUNTRY> (709), followed by the <COUNTRY>U.S.</COUNTRY> (109). 
+In the last three years we have observed <THREAT_ACTOR>APT1</THREAT_ACTOR> FQDNs resolving to 988 unique IP addresses that we believe are not 
+“sinkhole”38 or “domain parking”39 IP addresses:
+
+»» <COUNTRY>United States</COUNTRY>: 559
+
+»» <COUNTRY>China</COUNTRY>: 263
+
+»» <COUNTRY>Taiwan</COUNTRY>: 25
+
+»» <COUNTRY>Korea</COUNTRY>: 22
+
+»» <COUNTRY>United Kingdom</COUNTRY>: 14
+
+»» <COUNTRY>Canada</COUNTRY>: 12
+
+»» Other: 83
+
+38  A sinkhole is a server that accepts redirected connections for known malicious domains. Attempted connections to C2 FQDNs are redirected to 
+sinkholes once malicious zones are re-registered by research organizations or security companies in coordination with registration companies.
+39  Some IP addresses are used for “domain parking” once the original registrant loses control of a zone or otherwise-registered FQDN, e.g., when 
+the zone expires. These IP addresses usually host advertisements.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 50 www.mandiant.com
+
+The vast majority of the Chinese IP addresses again belong to <THREAT_ACTOR>APT1</THREAT_ACTOR>’s home networks, meaning that in some instances 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> intruders probably communicated directly to victim systems from their <CITY>Shanghai</CITY> systems, bypassing their hop 
+infrastructure:
+
+taBLe 11: <THREAT_ACTOR>APT1</THREAT_ACTOR> FQDns have resolved to IP addresses within these Chinese net blocks 
+
+number net block registered owner
+
+150 <IOC>223.166.0.0 - 223.167.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+68 <IOC>58.246.0.0 - 58.247.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+10 <IOC>112.64.0.0 - 112.65.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+7 <IOC>114.80.0.0 - 114.95.255.255</IOC> <ORG>China Telecom</ORG> <CITY>Shanghai</CITY> Network
+
+5 <IOC>139.226.0.0 - 139.227.255.255</IOC> <ORG>China Unicom</ORG> <CITY>Shanghai</CITY> Network 
+
+4 <IOC>222.64.0.0 - 222.73.255.25</IOC> <ORG>China Telecom</ORG> <CITY>Shanghai</CITY> Network
+
+3 <IOC>116.224.0.0 – 116.239.255.255</IOC> <ORG>China Telecom</ORG> <CITY>Shanghai</CITY> Network
+
+16 Other (Non-<CITY>Shanghai</CITY>)
+
+These statistics indicate that there are over 400 IP addresses in the <COUNTRY>U.S.</COUNTRY> alone that may have active <THREAT_ACTOR>APT1</THREAT_ACTOR> servers, 
+which are as-yet unconfirmed by <ORG>Mandiant</ORG>. Additionally, although we know of over 2,500 <THREAT_ACTOR>APT1</THREAT_ACTOR> FQDNs, there are 
+many <THREAT_ACTOR>APT1</THREAT_ACTOR> FQDNs that we have not attributed to <THREAT_ACTOR>APT1</THREAT_ACTOR>, which have resolved to even more IP addresses. We estimate 
+(conservatively) that <THREAT_ACTOR>APT1</THREAT_ACTOR>’s current hop infrastructure includes over 1,000 servers. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 51 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR>: IDentItIes
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> is not a ghost in a digital machine. In our effort to underscore that there are actual individuals tasked by the 
+<ORG>PLA</ORG> behind <THREAT_ACTOR>APT1</THREAT_ACTOR>’s keyboards, we have decided to expose the identities of a select number of <THREAT_ACTOR>APT1</THREAT_ACTOR> personas. These 
+actors have made poor operational security choices, facilitating our research and allowing us to track their activities. 
+They are some of the authors of <THREAT_ACTOR>APT1</THREAT_ACTOR>’s digital weapons and the registrants of <THREAT_ACTOR>APT1</THREAT_ACTOR> FQDNs and email accounts. These 
+actors have expressed interest in <COUNTRY>China</COUNTRY>’s cyber warfare efforts, disclosed their locations to be the Pudong New Area 
+of <CITY>Shanghai</CITY>, and have even used a <CITY>Shanghai</CITY> mobile phone number to register email accounts used in spear phishing 
+campaigns.
+
+Methods for attributing <THREAT_ACTOR>APT</THREAT_ACTOR> personnel often involve the synthesis of many small pieces of information into a singular 
+comprehensive picture. Often this unified viewpoint reveals not only the group attribution, but coherent pockets 
+of behavior within the group which we perceive to be either small teams or individual actors. We refer to these as 
+“personas.” As <THREAT_ACTOR>APT1</THREAT_ACTOR> personas manage technical resources such as hops and Fully Qualified Domain Names (FQDNs), 
+they have been observed to de-conflict their actions amongst themselves by coordinating the use of specific hops, 
+FQDNs, <ORG>CNO</ORG> tools (e.g., malware) and ports.
+
+One additional element working in our favor as threat trackers is the Great Firewall of <COUNTRY>China</COUNTRY> (GFWoC). Like many 
+Chinese hackers, <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers do not like to be constrained by the strict rules put in place by <ORG>the Communist Party</ORG> 
+of <COUNTRY>China</COUNTRY> (<ORG>CPC</ORG>), which deployed the GFWoC as a censorship measure to restrict access to web sites such as google.
+com, facebook.com, and twitter.com. Additionally, the nature of the hackers’ work requires them to have control of 
+network infrastructure outside the GFWoC. This creates a situation where the easiest way for them to log into <ORG>Facebook</ORG> 
+and <ORG>Twitter</ORG> is directly from their attack infrastructure. Once noticed, this is an effective way to discover their real 
+identities.
+
+what is the Great Firewall of <COUNTRY>China</COUNTRY>?
+The “Great Firewall” is a term used to describe the various technical methods used by the 
+<ORG>Chinese government</ORG> to censor and block or restrict access to Internet services and content 
+that the government considers sensitive or inappropriate. “Inappropriate” content ranges 
+from pornography to political dissent, and from social media to news sites that may portray 
+
+<COUNTRY>China</COUNTRY> or Chinese officials in a negative light. The “Great Firewall” uses methods such as blocking particular 
+IP addresses; blocking or redirecting specific domain names; filtering or blocking any URL containing target 
+keywords; and rate-limiting or resetting TCP connections. Chinese censors also routinely monitor Chinese 
+websites, blogs, and social media for “inappropriate” content, removing it when found. As a result, Chinese 
+citizens who wish to access censored content must resort to workarounds such as the use of encryption. 
+<COUNTRY>China</COUNTRY> continues to improve and further restrict Internet access, most recently (in <TIMESTAMP>December 2012</TIMESTAMP>) by blocking 
+additional services and limiting or blocking the use of encryption technologies such as Virtual Private Networks. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 52 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Hacker Profile: <IDENTITY>Ugly Gorilla</IDENTITY> (<IDENTITY>Wang Dong</IDENTITY>/汪东)
+
+The story of “<IDENTITY>Ugly Gorilla</IDENTITY>” (<IDENTITY>UG</IDENTITY>) dates <TIMESTAMP>back to 2004</TIMESTAMP>. 
+A then-professor named <IDENTITY>Zhang Zhaozhong</IDENTITY> (张召
+忠), now a retired rear ad<SOFTWARE>MIR</SOFTWARE>al, was in the process 
+of helping to shape the future of <COUNTRY>China</COUNTRY>’s information 
+warfare strategy.40 Professor <IDENTITY>Zhang</IDENTITY> was already a 
+strong advocate for the “informationization” of military 
+units, and had published several works on military 
+strategy including “Network Warfare” (网络战争) and 
+“Winning the Information War” (打赢信息化战争). As 
+Director of the “Military Technology and Equipment” 
+(军事科技与装备) department at <COUNTRY>China</COUNTRY>’s National 
+Defense University (国防大学), professor <IDENTITY>Zhang</IDENTITY> was 
+invited to take part in an event titled “Outlook 2004: 
+The International Strategic Situation” in <TIMESTAMP>January 2004</TIMESTAMP>.
+
+During the online question and answer session 
+hosted by the <ORG>PLA</ORG> Daily’s (解放军报) <COUNTRY>China</COUNTRY> Military 
+Online (中国军网), one young man with the nickname 
+“<IDENTITY>Greenfield</IDENTITY>” (绿野) posed a particularly prescient 
+question.
+
+“Professor <IDENTITY>Zhang</IDENTITY>, I read your book ’network warfare‘ and was deeply impressed 
+by the views and arguments in the book. It is said that the <COUNTRY>U.S.</COUNTRY> military has set up 
+a dedicated network force referred to as a ‘cyber army.’ Does <COUNTRY>China</COUNTRY> have a similar 
+force? Does <COUNTRY>China</COUNTRY> have cyber troops?” 
+
+— <IDENTITY>UglyGorilla</IDENTITY> <TIMESTAMP>16 Jan 2004</TIMESTAMP>
+
+Like all users of the <COUNTRY>China</COUNTRY> Military Online (<COUNTRY>China</COUNTRY>mil) forums, “<IDENTITY>Greenfield</IDENTITY>” was required to sign up with an email 
+address and specify a small bit of information about himself. Thankfully, the Internet’s tendency to immortalize data 
+preserved the profile details for us.
+
+40 http://www.<COUNTRY>China</COUNTRY>mil.com.cn/site1/gflt/2004-09/30/content_705216.htm
+
+FIGure 26: Professor <IDENTITY>Zhang</IDENTITY> (张召忠) <TIMESTAMP>16 Jan 2004</TIMESTAMP>, 
+source http://www.<COUNTRY>China</COUNTRY>mil.com.cn/site1/gflt/2004-09/30/
+content_705216.htm
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 53 www.mandiant.com
+
+FIGure 27: <IDENTITY>uglyGorilla</IDENTITY> Chinamil profile, source: http://bbs.<COUNTRY>China</COUNTRY>mil.com.cn/forum/bbsui.jsp?id=(o)5681
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 54 www.mandiant.com
+
+FIGure 28: <IDENTITY>UglyGorilla</IDENTITY> <COUNTRY>China</COUNTRY>mil profile translated by translate.google.com/
+
+Thus, the persona we call “<IDENTITY>UglyGorilla</IDENTITY>” (<IDENTITY>UG</IDENTITY>) was first documented. In addition to his email address, <IDENTITY>UG</IDENTITY> listed his “real 
+name” as “<IDENTITY>JackWang</IDENTITY>”. 
+
+Within the year, we saw the first evidence of <IDENTITY>UG</IDENTITY> honing the tools of his trade. On <TIMESTAMP>October 25, 2004</TIMESTAMP>, <IDENTITY>UG</IDENTITY> registered the 
+now infamous “<IOC>hugesoft.org</IOC>” zone. The “<IOC>hugesoft>.org</IOC>” zone and its many <THREAT_ACTOR>APT1</THREAT_ACTOR>-attributed hostnames have remained 
+active and under the continuous ownership of <IDENTITY>UG</IDENTITY>, and are still active as of the time of this report. Registration 
+information was most recently updated on <TIMESTAMP>September 10, 2012</TIMESTAMP>, extending the registration period for the zone well into 
+<TIMESTAMP>2013</TIMESTAMP>. We may see <IDENTITY>UG</IDENTITY> relinquish this and other attributed zones as a result of this reporting, in an effort to deter further 
+tracking and attribution.
+
+In <TIMESTAMP>2007</TIMESTAMP>, <IDENTITY>UG</IDENTITY> authored the 
+first known sample of the 
+<MALWARE>MANITSME</MALWARE> family of malware 
+and, like a good artist, left his 
+clearly identifiable signature in 
+the code: “v1.0 No Doubt to 
+Hack You, Writed by <IDENTITY>UglyGorilla</IDENTITY>, 
+<TIMESTAMP>06/29/2007</TIMESTAMP>”[sic]. <IDENTITY>UG</IDENTITY>’s 
+tendency to sign his work is 
+present in the strings he chooses 
+for hostnames and even within 
+the communications protocols 
+his backdoors use. For example, 
+
+what is a meat chicken?!? 
+Chinese Hacker Slang: “rouji” ( 肉鸡 ) — Meat Chicken 
+n. — An infected computer
+
+Example strings from <MALWARE>MANITSME</MALWARE> samples: 
+“<IOC>d:\My Documents\Visual Studio Projects\rouji\SvcMain.pdb</IOC>”
+
+Examples from other malware… 
+ “connecting to rouji” 
+ “welcome to ***(rouji)”
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 55 www.Mandiant.com
+
+hostnames within other <THREAT_ACTOR>APT1</THREAT_ACTOR>-attributed FQDNs such as “<IOC>arrowservice.net</IOC>” and even the newer “<IOC>msnhome.org</IOC>” 
+continue to leave <IDENTITY>UG</IDENTITY>’s imprint (note the “<IDENTITY>ug</IDENTITY>” in the domains):
+»» <IOC>ug-opm.hugesoft.org</IOC>
+»» <IOC>ug-rj.arrowservice.net</IOC>
+»» <IOC>ug-hst.msnhome.org</IOC>
+
+Though these kinds of obvious attribution links tapered off as <IDENTITY>UG</IDENTITY> became more experienced, the protocol signatures of 
+his tools such as <MALWARE>MANITSME</MALWARE> and <MALWARE>WEBC2-UGX</MALWARE> continue to be used by <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers based out of <CITY>Shanghai</CITY>.
+
+<IDENTITY>UG</IDENTITY>’s consistent use of the username “<IDENTITY>UglyGorilla</IDENTITY>” across various Web accounts has left a thin but strong thread of 
+attribution through many online communities. In most instances, content such as hacking tools, information security 
+topics, and association with the <CITY>Shanghai</CITY> locality are reasonable ways to eliminate false positives. For example, <TIMESTAMP>in February of 2011</TIMESTAMP>, the disclosure of all registered “rootkit.com” accounts published by Anonymous included the user 
+“<IDENTITY>UglyGorilla</IDENTITY>” with the registered email address <IDENTITY>uglygorilla@163.com</IDENTITY>. This is the same email used to register for the 
+<TIMESTAMP>2004</TIMESTAMP> <ORG>PLA</ORG> forum and the zone <IOC>hugesoft.org</IOC>. Included in the rootkit.com leaked account information was the IP address 
+<IOC>58.246.255.28</IOC>, which was used to register <IDENTITY>UG</IDENTITY>’s account directly from the previously discussed <THREAT_ACTOR>APT1</THREAT_ACTOR> home range: 
+<IOC>58.246.0.0/15</IOC>.
+
+In a few of these accounts, <IDENTITY>UG</IDENTITY> has listed something other than “<IDENTITY>JackWang</IDENTITY>” as his real name. On <TIMESTAMP>February 2, 2006</TIMESTAMP>, a 
+user named “<IDENTITY>UglyGorilla</IDENTITY>” uploaded a file named “<IOC>mailbomb_1.08.zip</IOC>” (a bulk email tool) to the Chinese developer site 
+PUDN (www.pudn.com). His account details from PUDN included the real name “<IDENTITY>Wang Dong</IDENTITY>” (汪东).
+
+Figure 29: <IDENTITY>Wang Dong</IDENTITY>’s uploaded Files to pudn.com
+
+It is important to note two things at this point. First, Chinese names begin with the surname. So “<IDENTITY>Wang</IDENTITY>” is the last 
+name in 汪东. Second, it is a fairly common practice for the Chinese, even in <COUNTRY>China</COUNTRY>, to choose an English first name. 
+Thus “<IDENTITY>JackWang</IDENTITY>” may not have been an alias at all. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 56 www.mandiant.com
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Hacker Profile: <IDENTITY>DOTA</IDENTITY>
+
+Another <THREAT_ACTOR>APT1</THREAT_ACTOR> persona is “<IDENTITY>DOTA</IDENTITY>” (<IDENTITY>DOTA</IDENTITY>), named for his strong tendency to use variants of that name in almost all 
+accounts he creates and uses from his attack infrastructure. <IDENTITY>DOTA</IDENTITY> may have taken his name from the video game 
+“Defense of the Ancients” which is commonly abbreviated <IDENTITY>DOTA</IDENTITY>, though we have yet to observe any direct link or other 
+direct reference to the game.
+
+We have monitored the creation of dozens of accounts, including <IDENTITY>d0ta010@hotmail.com</IDENTITY> and <IDENTITY>dota.d013@gmail.com</IDENTITY>, 
+and have often seen <IDENTITY>DOTA</IDENTITY> create several sequential accounts (for example <IDENTITY>dota.d001</IDENTITY> through <IDENTITY>dota.d015</IDENTITY>) at web-
+based email services. Most often these accounts are used in social engineering and phishing attacks or as the contact 
+email address when signing up for other services. For example, <IDENTITY>DOTA</IDENTITY> (originating from the <THREAT_ACTOR>APT1</THREAT_ACTOR> home range IP 
+address <IOC>58.247.26.59</IOC>) with a Simplified Chinese keyboard setting used the email address “<IDENTITY>d0ta001@hotmail.com</IDENTITY>” 
+from his US hop to register the <ORG>Facebook</ORG> user “<IDENTITY>do.ta.5011</IDENTITY>”(<ORG>Facebook</ORG> user id: 100002184628208).
+
+Some services, such as <ORG>Google</ORG>’s <SOFTWARE>Gmail</SOFTWARE>, require users to provide a phone number during the registration process to 
+which they send a validation “text message” containing a verification code. The user must then input the verification 
+code on the website to finalize registration. In an observed session on a compromised machine, <IDENTITY>DOTA</IDENTITY> used the phone 
+number “<IDENTITY>159-2193-7229</IDENTITY>” to receive a verification text message from <ORG>Google</ORG>, which he then submitted to their page 
+within seconds. 
+
+Telephone numbers in <COUNTRY>China</COUNTRY> are organized into a hierarchy containing an area code, prefix, and line number similar 
+to phone numbers in the <COUNTRY>United States</COUNTRY>, with the addition that a few area codes are allocated for use by mobile phone 
+providers. The phone number “<IDENTITY>159-2193-7229</IDENTITY>” breaks down into the “159” area code, which indicates a mobile 
+phone provided by <COUNTRY>China</COUNTRY> Mobile, and the prefix “2193”, which indicates a <CITY>Shanghai</CITY> mobile number. This means at the 
+very least that the number was initially allocated by <COUNTRY>China</COUNTRY> Mobile for use in <CITY>Shanghai</CITY>. The speed of <IDENTITY>DOTA</IDENTITY>’s response 
+also indicates that he had the phone with him at the time.
+
+We have also observed <IDENTITY>DOTA</IDENTITY> using the names <IDENTITY>Rodney</IDENTITY> and <IDENTITY>Raith</IDENTITY>, to communicate via email in fluent English 
+with various targets including South East Asian military 
+organizations in <COUNTRY>Malaysia</COUNTRY> and the <COUNTRY>Philippines</COUNTRY>. It is unclear 
+if this <SOFTWARE>Gmail</SOFTWARE> account is used exclusively for facilitating his 
+<ORG>CNO</ORG> mission, but much of the traffic indicates its use in 
+both simple phishing attacks, as well as more sophisticated 
+email based social engineering.
+
+<IDENTITY>DOTA</IDENTITY>: a harry “Poter” fan?
+The <IDENTITY>DOTA</IDENTITY> persona also appears to be a 
+fan of the popular “Harry Potter” character, 
+frequently setting accounts “security 
+questions” such as “Who is your favorite 
+teacher?” and “Who is your best childhood 
+friend?” to the values “Harry” and “Poter” and 
+creating accounts such as <IDENTITY>poter.spo1@gmail.com</IDENTITY> with the alternate email address set to 
+<IDENTITY>dota.sb005@gmail.com</IDENTITY>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 57 www.mandiant.com
+
+Figure 30: <IDENTITY>dota.d001@gmail.com</IDENTITY> (inbox view)41
+
+When creating dozens, or hundreds, of accounts in online communities and on victim systems, password management 
+becomes a significant undertaking. Consequently, most <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers use passwords that are either pattern-based, 
+such as the keyboard pattern “1qaz2wsx” or highly memorable, using “rootkit” as a password on the information 
+security research site rootkit.com. Like many <THREAT_ACTOR>APT1</THREAT_ACTOR> attackers, <IDENTITY>DOTA</IDENTITY> frequently uses keyboard based patterns as 
+passwords such as “1qaz@WSX#EDC”. However, there is one password “2j3c1k” extensively used by <IDENTITY>DOTA</IDENTITY> that is not 
+based on a keyboard pattern, though he may not be the only <THREAT_ACTOR>APT1</THREAT_ACTOR> actor that uses it. A numbered “j”, followed by a 
+numbered “c”, and then a numbered “k” is likely shorthand (“j”/”c”/”k”) for the ju/chu/ke (局／处／科) organizational 
+structure (translated to Bureau/Division (or Office)/Section) widely used within <ORG>PLA</ORG> <ORG>General Staff Department</ORG> 
+organizations. <ORG>Project 2049</ORG> describes the typical <ORG>PLA</ORG> organizational structure as, “Bureau-level directors … oversee 
+between six and 14 subordinate sites or offices [chu; 处]… Sites/offices under bureaus are further divided into sections 
+
+41 This is a screen capture of <IDENTITY>DOTA</IDENTITY> accessing his Gmail account while using a compromised system on <THREAT_ACTOR>APT1</THREAT_ACTOR>’s attack infrastructure.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 58 www.mandiant.com
+
+[ke; 科].42 Given this pattern, it is likely that the password “2j3c1k” stands for 2nd Bureau [<THREAT_ACTOR>Unit 61398</THREAT_ACTOR>], 3rd Division, 
+1st Section, demonstrating that those who use these patterns are working together and affiliate themselves to the 2nd 
+Bureau.
+
+Attempting to track the <IDENTITY>DOTA</IDENTITY> persona back to a particular individual is difficult; the trail of his activity does not link 
+as clearly to a real world identity. However, <ORG>Mandiant</ORG> has been able to establish a clear link between <IDENTITY>UG</IDENTITY> and <IDENTITY>DOTA</IDENTITY>. 
+Specifically, we have observed the two using shared <THREAT_ACTOR>APT1</THREAT_ACTOR> infrastructure, FQDNs, and egress IP address ranges. The 
+coordination of this shared infrastructure, combined with their close proximity and association with <THREAT_ACTOR>Unit 61398</THREAT_ACTOR> makes 
+it highly likely that, at the very least, <IDENTITY>UG</IDENTITY> and <IDENTITY>DOTA</IDENTITY> know each other personally and likely even work together.
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Hacker Profile: <IDENTITY>SUPERHARD</IDENTITY> (<IDENTITY>Mei Qiang</IDENTITY>/梅强)
+
+The third and final persona we are revealing has been dubbed “<IDENTITY>SUPERHARD</IDENTITY>” (<IDENTITY>SH</IDENTITY>). <IDENTITY>SH</IDENTITY> was first observed as a tool 
+author, and is either the creator or a significant contributor to the <MALWARE>AURIGA</MALWARE> and <MALWARE>BANGAT</MALWARE> malware families (covered 
+in Appendix C: The Malware Arsenal). Similarly to <IDENTITY>UG</IDENTITY>, <IDENTITY>SH</IDENTITY> signs much of his work by embedding strings within the 
+tools. In particular, elements of the portable executable (PE) file’s VS_VERSIONINFO structure are frequently set to 
+“<IDENTITY>SUPERHARD</IDENTITY>,” or cmd.exe copies are modified from “<ORG>Microsoft corp.</ORG>” to “<IDENTITY>superhard corp.</IDENTITY>”
+
+Additionally, many of <IDENTITY>SH</IDENTITY>’s tools contain driver modules designed to be loaded into the <SOFTWARE>Windows</SOFTWARE> kernel in order to 
+subvert elements of the system. While not unique for <THREAT_ACTOR>APT1</THREAT_ACTOR> coders, this level of development expertise is certainly 
+a discriminator that puts <IDENTITY>SH</IDENTITY> into a smaller group of highly capable developers within <THREAT_ACTOR>APT1</THREAT_ACTOR>. Often, <IDENTITY>SH</IDENTITY>’s tools are 
+observed in use by other <THREAT_ACTOR>APT1</THREAT_ACTOR> personae and in several instances, other <THREAT_ACTOR>APT</THREAT_ACTOR> groups we track. Given that <IDENTITY>SH</IDENTITY>’s tools 
+are used by other <THREAT_ACTOR>APT1</THREAT_ACTOR> actors, and that there are no indications that <IDENTITY>SH</IDENTITY> is a full-time operator, we believe that <IDENTITY>SH</IDENTITY> is 
+primarily involved in research and development for <THREAT_ACTOR>APT1</THREAT_ACTOR>.
+
+Once again, in tracking <IDENTITY>SH</IDENTITY> we are fortunate to have access to the accounts disclosed from rootkit.com. The rootkit.
+com account “<IDENTITY>SuperHard_M</IDENTITY>” was originally registered from the IP address <IOC>58.247.237.4</IOC>, within one of the known 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> egress ranges, and using the email address “<IDENTITY>mei_qiang_82@sohu.com</IDENTITY>”. We have observed the <IDENTITY>DOTA</IDENTITY> persona 
+emailing someone with the username <IDENTITY>mei_qiang_82</IDENTITY>. The name “<IDENTITY>Mei Qiang</IDENTITY>” (梅强) is a reasonably common Chinese 
+last/first name combination. Additionally, it is a common practice for Chinese netizens to append the last two digits of 
+their birth year, suggesting that <IDENTITY>SUPERHARD</IDENTITY> is in fact <IDENTITY>Mei Qiang</IDENTITY> and was born in <TIMESTAMP>1982</TIMESTAMP>. Unfortunately, there are several 
+“<IDENTITY>Mei Qiang</IDENTITY>” identities online that claim a birth year of <TIMESTAMP>1982</TIMESTAMP>, making attribution to an individual difficult.
+
+Fortunately, we can use <IDENTITY>SH</IDENTITY>’s email address to connect him to a number of Websites and forums on which he 
+registered and contributed using that address. Many of these accounts reveal details that reinforce <IDENTITY>SH</IDENTITY>’s link to the 
+“<IDENTITY>mei_qiang_82@sohu.com</IDENTITY>”43 email address and <THREAT_ACTOR>APT1</THREAT_ACTOR> affiliation, such as <IDENTITY>SH</IDENTITY> offering to write Trojans for money, his 
+involvement with malicious Windows kernel research (incidentally, also commented on by “<IDENTITY>greenfield</IDENTITY>”, possibly <IDENTITY>UG</IDENTITY>), 
+and more recently, being local to <CITY>Shanghai</CITY>’s Pudong New Area.44
+
+42 <IDENTITY>Mark A. Stokes</IDENTITY>, <IDENTITY>Jenny Lin</IDENTITY>, and <IDENTITY>L.C. Russell Hsiao</IDENTITY>, “<ORG>The Chinese People’s Liberation Army</ORG> Signals Intelligence and Cyber Reconnaissance 
+Infrastructure,” <ORG>Project 2049 Institute</ORG> (<TIMESTAMP>2011</TIMESTAMP>): 6-7, http://project2049.net/documents/pla_third_department_sigint_cyber_stokes_lin_hsiao.pdf, 
+accessed <TIMESTAMP>February 6, 2013</TIMESTAMP>.
+43 Sohu.com is a popular Chinese search engine, webmail, and Internet advertising company based out of <CITY>Beijing</CITY> <COUNTRY>China</COUNTRY>.
+44 hxxp://tuziw.com/index.php?m=ta&id=1864863532
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 59 www.mandiant.com
+
+ConCLusIon
+
+In a State that rigorously monitors Internet use, it is highly unlikely that the <ORG>Chinese Government</ORG> is unaware of an 
+attack group that operates from the Pudong New Area of <CITY>Shanghai</CITY>. The detection and awareness of <THREAT_ACTOR>APT1</THREAT_ACTOR> is made 
+even more probable by the sheer scale and sustainment of attacks that we have observed and documented in this 
+report. Therefore the most probable conclusion is that <THREAT_ACTOR>APT1</THREAT_ACTOR> is able to wage such a long-running and extensive cyber 
+espionage campaign because it is acting with the full knowledge and cooperation of the government. Given the 
+mission, resourcing, and location of <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR>, we conclude that <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR> is <THREAT_ACTOR>APT1</THREAT_ACTOR>. Table 12 summarizes 
+the parallels between <THREAT_ACTOR>APT1</THREAT_ACTOR> and <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR>.
+
+taBLe 12: Matching characteristics between <THREAT_ACTOR>APT1</THREAT_ACTOR> and <THREAT_ACTOR>unit 61398</THREAT_ACTOR>
+
+Characteristic <THREAT_ACTOR>APT1</THREAT_ACTOR> (as directly observed) <THREAT_ACTOR>unit 61398</THREAT_ACTOR> (as reported)
+
+Mission area »» Steals intellectual property from English-
+speaking organizations
+
+»» Targets strategic emerging industries 
+identified in <COUNTRY>China</COUNTRY>’s 12th Five Year Plan
+
+»» Conducts computer network operations 
+against English-speaking targets
+
+tools, tactics, and 
+Procedures (ttPs)
+
+»» Organized, funded, disciplined operators 
+with specific targeting objectives and a 
+code of ethics (e.g., we have not witnessed 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> destroy property or steal money 
+which contrasts most “hackers” and even 
+the most sophisticated organize crime 
+syndicates)
+
+»» Conducts military-grade computer network 
+operations
+
+scale of operations »» Continuously stealing hundreds of terabytes 
+from 141 organizations <TIMESTAMP>since at least 2006</TIMESTAMP>; 
+simultaneously targeting victims across at 
+least 20 major industries
+
+»» Size of “hop” infrastructure and continuous 
+malware updates suggest at least dozens 
+(but probably hundreds) of operators with 
+hundreds of support personnel 
+
+»» As part of the <ORG>PLA</ORG>, has the resources 
+(people, money, influence) necessary to 
+orchestrate operation at <THREAT_ACTOR>APT1</THREAT_ACTOR>’s scale
+
+»» Has hundreds, perhaps thousands of 
+people, as suggested by the size for their 
+facilities and position within the <ORG>PLA</ORG>
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 60 www.mandiant.com
+
+Characteristic <THREAT_ACTOR>APT1</THREAT_ACTOR> (as directly observed) <THREAT_ACTOR>unit 61398</THREAT_ACTOR> (as reported)
+
+expertise of 
+personnel
+
+»» English language proficiency
+
+»» Malware authoring
+
+»» Computer hacking
+
+»» Ability to identify data worth stealing in 20 
+industries
+
+»» English language requirements
+
+»» Operating system internals, digital signal 
+processing, steganography
+
+»» Recruiting from Chinese technology 
+universities
+
+Location »» <THREAT_ACTOR>APT1</THREAT_ACTOR> actor used a <CITY>Shanghai</CITY> phone 
+number to register email accounts
+
+»» Two of four “home” <CITY>Shanghai</CITY> net blocks 
+are assigned to the Pudong New Area
+
+»» Systems used by <THREAT_ACTOR>APT1</THREAT_ACTOR> intruders have 
+Simplified Chinese language settings
+
+»» An <THREAT_ACTOR>APT1</THREAT_ACTOR> persona’s self-identified location 
+is the Pudong New Area
+
+»» Headquarters and other facilities spread 
+throughout the Pudong New Area of 
+<CITY>Shanghai</CITY>, <COUNTRY>China</COUNTRY>
+
+Infrastructure »» Ready access to four main net blocks in 
+<CITY>Shanghai</CITY>, hosted by <ORG>China Unicom</ORG> (one of 
+two Tier 1 ISPs in <COUNTRY>China</COUNTRY>)
+
+»» Some use of <ORG>China Telecom</ORG> IP addresses 
+(the other Tier 1 ISP)
+
+»» Co-building network infrastructure with 
+<ORG>China Telecom</ORG> in the name of national 
+defense
+
+Combining our direct observations with carefully researched and correlated findings; we believe the facts dictate only 
+two possibilities:
+
+either
+
+A secret, resourced organization full of mainland Chinese speakers with direct access to <CITY>Shanghai</CITY>-based 
+telecommunications infrastructure is engaged in a multi-year, enterprise scale computer espionage campaign 
+right outside of <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s gates, performing tasks similar to <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>’s known mission.
+
+or
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> is <THREAT_ACTOR>Unit 61398</THREAT_ACTOR>.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 61 www.mandiant.com
+
+aPPenDIx a:  
+how Does <ORG>Mandiant</ORG>  
+
+DIstInGuIsh threat GrouPs?
+
+<ORG>Mandiant</ORG> uses the term threat group to refer to a collection of intruders who are working together to target and 
+penetrate networks of interest. These individuals may share the same set of tasks, coordinate their targets, and 
+share tools and methodology. They work together to gain access to their targets and steal data. Therefore, a group is 
+ultimately defined by people and not by methodology.
+
+However, defining a threat group based on observed intrusion activity is not so simple. Without seeing who is sitting 
+behind the keyboard it may be difficult to determine whether two different intrusion events were conducted by the 
+same person, by two people who are working together, by two unrelated people who independently compromised the 
+same network, or even the same computer. Different groups may use similar intrusion methodology and common tools, 
+particularly those that are widely available on the Internet, such as <TOOL>pwdump</TOOL>, <TOOL>HTRAN</TOOL>, or <MALWARE>Gh0st RAT</MALWARE>. Furthermore, there 
+may be overlaps between groups caused by the sharing of malware or exploits they have authored, or even the sharing 
+of personnel. Individual intruders may move between groups either temporarily or permanently. An intruder may be a 
+private citizen who is hired by multiple groups. Finally, multiple groups may work together on occasion to compromise 
+the same target.
+
+Nevertheless, distinguishing one threat group from another is possible with enough information, analytical experience, 
+and the technological tools to piece it all together. Consider an analogy with the physical world: imagine a thief who 
+leaves behind traces of his crime at various crime scenes. Individual robberies may vary in many details:
+
+»» The method the thief used to break in;
+
+»» The tools used to open the safe;
+
+»» Whether the thief carefully selected a particular item to steal, or took everything in the hope that he managed to 
+grab something of value;
+
+»» Whether the thief carefully researched their target, disabled alarms, and attempted to remove evidence such as 
+fingerprints; or whether he was not very careful, but simply relied on being “stealthy enough” to not get caught.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 62 www.mandiant.com
+
+Forensic scientists can analyze multiple crime scenes and be able to tell by the evidence left behind that a given crime 
+scene was the result of one thief and not another. 
+
+In a similar way, cyber intruders leave behind various digital “fingerprints.” They may send spear-phishing emails from 
+a specific IP address or email address. Their emails may contain certain patterns of subject lines. Their files have 
+specific names, MD5 hashes, timestamps, custom functions, and encryption algorithms. Their backdoors may have 
+command and control IP addresses or domain names embedded. These are just a few examples of the myriad of 
+linkages that computer forensic analysts consider when trying to distinguish one cyber threat group from another.
+
+Digital “fingerprints” do not all carry equal weight in attribution analysis. Their validity or value as indicators of a specific 
+threat group depends largely on their likelihood of uniqueness. For example, the use of a widely available tool such as 
+<TOOL>HTRAN</TOOL> is not unique and not useful — by itself — as an indicator of a specific threat group. In contrast, the use of 
+a specific, custom backdoor not observed elsewhere is a much stronger indicator — although it is generally still not 
+sufficient, on its own, for positive attribution.
+
+At the most basic level, we say that two intrusion events are attributed to the same group when we have collected 
+enough indicators to show beyond a reasonable doubt that the same person or group of people were involved.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 63 www.mandiant.com
+
+aPPenDIx B:  
+aPt anD the attaCk LIFeCyCLe
+
+While most computer intrusions follow a generic, high-level series of steps in the attack lifecycle, the Chinese <THREAT_ACTOR>APT</THREAT_ACTOR> 
+lifecycle differs slightly because of their unique long-term objectives. The sections below correspond to the stages 
+of <ORG>Mandiant</ORG>’s Attack Lifecycle model and give an overview of what <THREAT_ACTOR>APT</THREAT_ACTOR> activity looks like in each stage. The stages 
+between “Establish Foothold” and “Complete Mission” do not have to occur in this order every time. In fact, once 
+established within a network, <THREAT_ACTOR>APT</THREAT_ACTOR> groups will continually repeat the cycle of conducting reconnaissance, identifying 
+data of interest, moving laterally to access that data, and “completing mission” by stealing the data. This will generally 
+continue indefinitely until they are removed entirely from the network. 
+
+Initial Compromise
+
+The Initial Compromise stage represents the methods that intruders use to penetrate a target organization’s network. 
+<THREAT_ACTOR>APT</THREAT_ACTOR> intruders frequently target individual users within a victim environment. As such, the most commonly observed 
+method of initial compromise is spear phishing. Spear phishing messages may contain malicious attachments, a link to 
+a malicious file, or a link to a malicious website. Less commonly, <THREAT_ACTOR>APT</THREAT_ACTOR> intruders may attempt to contact potential victims 
+and send malicious content via social networking sites or instant messaging. Another common tactic is strategic web 
+compromise, in which the attacker places malicious code on websites that people in targeted organizations will likely 
+visit. When they visit these websites in the course of their normal duties, they will be compromised if their computer 
+is vulnerable to the attacker’s exploit code. <THREAT_ACTOR>APT</THREAT_ACTOR> groups may also look for vulnerable Internet-facing web servers and 
+upload webshells in order to gain access to a targets internal network, or look for other technical vulnerabilities in 
+public-facing infrastructure.
+
+Establish Foothold
+
+Establishing a foothold ensures that <THREAT_ACTOR>APT</THREAT_ACTOR> threat groups can access and control one or more computers within the 
+victim organization from outside the network. <THREAT_ACTOR>APT</THREAT_ACTOR> groups can utilize public backdoors (<MALWARE>Gh0st RAT</MALWARE> and <MALWARE>Poison Ivy</MALWARE> are 
+common examples), “underground” backdoors found in hacker websites or obtained through personal connections, 
+and “custom” backdoors that they developed themselves. These backdoors usually establish an outbound connection 
+from the victim network to a computer controlled by the attackers. The communication methods used by the backdoors 
+vary from clear text or simple encoding to the use of more advanced encoding or encryption. The backdoors will give 
+the <THREAT_ACTOR>APT</THREAT_ACTOR> groups basic access to a system, typically through a command shell or graphical user interface.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 64 www.mandiant.com
+
+Escalate Privileges
+
+Escalating privileges involves acquiring items that will allow access to more resources within the victim environment. 
+Most often this consists of obtaining usernames and passwords, but it may also include gaining access to PKI 
+certificates, VPN client software, privileged computers, or other resources required to access data or systems of 
+interest. <THREAT_ACTOR>APT</THREAT_ACTOR> intruders (and intruders in general) prefer to leverage privileged accounts where possible, such as 
+Domain Administrators, service accounts with Domain privileges, local Administrator accounts, and privileged user 
+accounts. This is typically accomplished by first “dumping” password hashes from a computer, server, or (preferably) 
+Domain Controller. The attacker may be able to obtain legitimate account passwords by “cracking” password hashes. 
+Alternately, the attacker may leverage the hashes themselves in a “pass-the-hash” attack, where the hashed password 
+itself may be used for authentication in lieu of the actual password. A number of publicly available tools can be readily 
+leveraged for both password dumping and pass-the-hash attacks.
+
+Internal Reconnaissance
+
+In the Internal Reconnaissance stage, the intruder collects information about the victim environment. <THREAT_ACTOR>APT</THREAT_ACTOR> threat 
+actors use built-in operating system commands (such as the Windows “net” commands) to obtain information about 
+the internal network, including computers, trust relationships, users, and groups. In order to identify data of interest, 
+they may perform directory or network share listings, or search for data by file extension, key word, or last modified 
+date. Data of interest may take many forms, but most commonly consists of documents, the contents of user email 
+accounts, or databases. Therefore file servers, email servers, and domain controllers are customary targets of internal 
+reconnaissance. Some <THREAT_ACTOR>APT</THREAT_ACTOR> groups utilize custom scripts in order to automate the process of reconnaissance and 
+identification of data of interest. 
+
+Move Laterally
+
+In most cases, the systems that the intruders initially compromise do not contain the data that they want. Therefore 
+they must move laterally within a network to other computers that either contain that data or allow them to access it. 
+<THREAT_ACTOR>APT</THREAT_ACTOR> groups leverage compromised user credentials or pass-the-hash tools to gain access to additional computers and 
+devices inside of a victim network. They commonly use compromised credentials with PsExec and / or the <SOFTWARE>Windows</SOFTWARE> 
+Task Scheduler (“at” command) to execute commands and install malware on remote systems.
+
+Maintain Presence
+
+In this stage, the intruders take actions to ensure continued control over key systems in the network environment from 
+outside of the network. <THREAT_ACTOR>APT</THREAT_ACTOR> groups often install new backdoors (e.g., different backdoors than the ones installed in the 
+Establish Foothold phase) in the environment during the course of the campaign. They may install different families of 
+malware on multiple computers and use a variety of command and control addresses, presumably for redundancy and 
+to make it difficult to identify and remove all of their access points. Additionally, <THREAT_ACTOR>APT</THREAT_ACTOR> groups may establish methods of 
+network access that do not involve backdoors, so that they can maintain a presence even if network security personnel 
+discover and remove their malware. These methods may include the use of valid PKI or VPN credentials, allowing the 
+intruders to masquerade as a legitimate user to gain access to a corporate network and internal resources. In some 
+instances <THREAT_ACTOR>APT</THREAT_ACTOR> threat actors have been able to circumvent two-factor authentication to maintain access to a victim 
+network and its resources.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 65 www.mandiant.com
+
+Complete Mission
+
+The main goal of <THREAT_ACTOR>APT</THREAT_ACTOR> intrusions is to steal data, including intellectual property, business contracts or negotiations, 
+policy papers or internal memoranda. Once <THREAT_ACTOR>APT</THREAT_ACTOR> groups find files of interest on compromised systems, they often pack 
+them into archive files before stealing them. They most commonly use the RAR archiving utility for this task, but may 
+also use other publicly available utilities such as ZIP or 7-ZIP. <THREAT_ACTOR>APT</THREAT_ACTOR> threat actors not only compress data, but frequently 
+password-protect the archive. From there they use a variety of methods to transfer files out of the victim network, 
+including FTP, custom file transfer tools, or existing backdoors.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 66 www.mandiant.com
+
+aPPenDIx C (DIGItaL): 
+the MaLware arsenaL
+
+This appendix is digital and can be found at http://www.mandiant.com/<THREAT_ACTOR>APT1</THREAT_ACTOR>. It includes profiles of malware families that 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has used. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 67 www.mandiant.com
+
+aPPenDIx D (DIGItaL):  
+FQDns
+
+This appendix is digital and can be found accompanying this report. It includes fully qualified domain names (FQDNs) 
+that <THREAT_ACTOR>APT1</THREAT_ACTOR> has used as part of their attack infrastructure. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 68 www.mandiant.com
+
+aPPenDIx e (DIGItaL):  
+MD5 hashes
+
+This appendix is digital and can be found at http://www.mandiant.com/<THREAT_ACTOR>APT1</THREAT_ACTOR>. It includes MD5 hashes of malware that 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> has used as part of their attack methodology.In Appendix G: IOCs, the IOC named <IOC>8dd23e0a-a659-45b4-a168-67e4b00944fb</IOC>.ioc contains all of the MD5 hashes provided in this appendix for use in conjunction with <SOFTWARE>RedLine</SOFTWARE>™, 
+<ORG>Mandiant</ORG>’s free host-based investigative tool, or with <SOFTWARE>Mandiant Intelligent Response</SOFTWARE>® (<SOFTWARE>MIR</SOFTWARE>), <ORG>Mandiant</ORG>’s commercal 
+host-based investigative tool.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 69 www.mandiant.com
+
+aPPenDIx F (DIGItaL):  
+ssL CertIFICates
+
+This appendix is digital and can be found at http://www.mandiant.com/<THREAT_ACTOR>APT1</THREAT_ACTOR>. It includes <THREAT_ACTOR>APT1</THREAT_ACTOR> SSL certificates used on 
+servers that are part of their command and control infrastructure.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 70 www.mandiant.com
+
+aPPenDIx G (DIGItaL):  
+IoCs
+
+The portion of this appendix that includes the Indicators of Compromise (IOCs) is digital and can be found at http://
+www.mandiant.com/<THREAT_ACTOR>APT1</THREAT_ACTOR>. 
+
+<THREAT_ACTOR>APT1</THREAT_ACTOR> Indicators and Using <SOFTWARE>RedLine</SOFTWARE>™ 
+
+With the release of <ORG>Mandiant</ORG>’s report, <THREAT_ACTOR>APT1</THREAT_ACTOR>: Exposing One of <COUNTRY>China</COUNTRY>’s Cyber Espionage Units, we are providing a set of 
+<THREAT_ACTOR>APT1</THREAT_ACTOR> IOCs in the digital portion of Appendix G to help detect malware described in Appendix C: The Malware Arsenal. 
+IOCs can be used in investigations to find unknown evils or for detection of already known threats. The IOCs included 
+in Appendix G fit the latter; however, keep in mind that <THREAT_ACTOR>APT1</THREAT_ACTOR> does update their tools, and there are certainly malware 
+variants and new families of malware that will not be detected with this set of IOCs. To find out more about the report or 
+the digital appendices (to include downloading the set of <THREAT_ACTOR>APT1</THREAT_ACTOR> IOCs in Appendix G: IOCs) go to http://www.mandiant.
+com/<THREAT_ACTOR>APT1</THREAT_ACTOR>. 
+
+IOCs can be used in conjunction with <SOFTWARE>RedLine</SOFTWARE>, <ORG>Mandiant</ORG>’s free host-based investigative tool, or with <SOFTWARE>Mandiant Intelligent Response</SOFTWARE>® (<SOFTWARE>MIR</SOFTWARE>), <ORG>Mandiant</ORG>’s commercial host-based investigative tool. <ORG>Mandiant</ORG>’s customers who have 
+licensed <SOFTWARE>MIR</SOFTWARE> can simply import a zip file of the IOCs into their controllers. For those without <SOFTWARE>MIR</SOFTWARE>, <SOFTWARE>RedLine</SOFTWARE> can be 
+downloaded from <ORG>Mandiant</ORG>’s web site at http://www.mandiant.com/resources/download/redline.
+
+Remember to always test new IOCs before using them in a production environment.
+
+What Are IOCs?
+
+<ORG>Mandiant</ORG> has developed an open, extendable standard for defining and sharing threat information in a machine-
+readable format. Going well beyond static signature analysis, IOCs combine over 500 types of forensic evidence with 
+grouping and logical operators to provide advanced threat detection capability. 
+
+If you are not familiar with IOCs, go to the OpenIOC site for a description at http://openioc.org. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 71 www.mandiant.com
+
+What Is <SOFTWARE>REDLINE</SOFTWARE>?
+
+<SOFTWARE>REDLINE</SOFTWARE> is <ORG>Mandiant</ORG>’s free tool for investigating hosts for signs of malicious activity through memory and file analysis, 
+and subsequently developing a threat assessment profile. <SOFTWARE>REDLINE</SOFTWARE> provides several benefits including the following:
+
+RAPID TRIAGE
+
+When confronted with a potentially compromised host, responders must first assess whether the system has active 
+malware. Without installing software or disrupting the current state of the host, <SOFTWARE>REDLINE</SOFTWARE> thoroughly audits all currently-
+running processes and drivers on the system for a quick analysis; for a detailed analysis, it also collects the entire 
+file structure, network state, and system memory. <SOFTWARE>RedLine</SOFTWARE> will also compare any MD5 value it collects, analyzes, and 
+visualizes against an MD5 whitelist. Users can further analyze and view imported audit data using <SOFTWARE>RedLine</SOFTWARE>’s Timeline 
+functionality, which includes capabilities to narrow and filter results around a given timeframe with the <SOFTWARE>TimeWrinkles</SOFTWARE>™ 
+and <SOFTWARE>TimeCrunches</SOFTWARE>™ features. 
+
+REVEALS HIDDEN MALWARE
+
+The <SOFTWARE>RedLine</SOFTWARE> Portable Agent can collect and analyze a complete memory image, working below the level at which 
+kernel <TECHNIQUE>rootkits</TECHNIQUE> and other malware-hiding techniques operate. Many hiding techniques become extremely obvious when 
+examined at the physical memory level, making memory analysis a powerful tool for finding malware. It also reveals 
+“memory only” malware that is not present on disk.
+
+GUIDED ANALYSIS
+
+<ORG>Mandiant</ORG>’s <SOFTWARE>RedLine</SOFTWARE> tool streamlines memory analysis by providing a proven workflow for analyzing malware based on 
+relative priority. This takes the guesswork out of task and time allocation, allowing investigators to provide a focused 
+response to the threats that matter most. 
+
+<SOFTWARE>RedLine</SOFTWARE> calculates a “Malware Risk Index” that highlights processes more likely to be worth investigating, and 
+encourages users to follow investigative steps that suggest how to start. As users review more audits from clean and 
+compromised systems, they build up the experience to recognize malicious activity more quickly.
+
+As you investigate a system, here’s how <SOFTWARE>RedLine</SOFTWARE> will help you focus your attention on the most productive data:
+
+INVESTIGATIVE STEPS
+
+<SOFTWARE>RedLine</SOFTWARE> can collect a daunting amount of raw information. Its investigative steps help provide a starting place by 
+highlighting specific data and providing views that are most commonly productive in identifying malicious processes. 
+Unless you are pursuing a specific “lead”, we recommend working through the steps in order, examining the 
+information for entries that don’t match your expectations.
+
+The key to becoming an effective investigator is to review <SOFTWARE>RedLine</SOFTWARE> data from a variety of “clean” and “compromised” 
+systems. Over time, your sense of which entries are normal and which are of concern will develop quickly as you view 
+more data.
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 72 www.mandiant.com
+
+MALWARE RISK INDEx SCORING
+
+<SOFTWARE>RedLine</SOFTWARE> analyzes each process and memory section using a variety of rules and techniques to calculate a “Malware 
+Risk Index” for each process. This score is a helpful guide to identifying those processes that are more likely to be 
+worth investigating. Processes at the highest risk of being compromised by malware are highlighted with a red badge. 
+Those with some risk factors have a grey badge, and low-risk processes have no badge.
+
+The MRI is not an absolute indication of malware. During an investigation you can refine the MRI scoring by adjusting 
+specific hits (identifying false positives and false negatives) for each process, adding your own hits, and generally 
+tuning the results.
+
+IOCs
+
+<SOFTWARE>RedLine</SOFTWARE> provides the option of performing IOC analysis in addition to MRI scoring. Supplied a set of IOCs, the <SOFTWARE>RedLine</SOFTWARE> 
+Portable Agent will be automatically configured to gather the data required to perform a subsequent IOC analysis; after 
+the analysis is run, IOC hit results are available for further investigation.
+
+In addition, <SOFTWARE>RedLine</SOFTWARE> provides the ability to create an IOC Collector. This feature enables the collection of data types 
+required for matching a set of IOCs. 
+
+WORKS WITH <SOFTWARE>MIR</SOFTWARE>
+
+Combined with <SOFTWARE>MIR</SOFTWARE>, <SOFTWARE>RedLine</SOFTWARE> is a powerful tool for accelerated live response. Here’s a typical case:
+
+»» IDS or other system detects suspicious activity on a host
+
+»» From <SOFTWARE>MIR</SOFTWARE>, an investigator launches a remote live response script
+
+»» The <SOFTWARE>MIR</SOFTWARE> Agent running on the host captures and analyzes memory locally, streaming back a small XML audit that 
+downloads in minutes rather than hours
+
+»» From <SOFTWARE>MIR</SOFTWARE>, the user can open the audit directly in <SOFTWARE>RedLine</SOFTWARE>
+
+»» Using <SOFTWARE>RedLine</SOFTWARE>, the investigator quickly identifies a malicious process, and writes an IOC describing the forensic 
+attributes found in <SOFTWARE>RedLine</SOFTWARE>
+
+»» Using <SOFTWARE>MIR</SOFTWARE> and MCIC, the investigator is quickly able to sweep for that IOC and discover all other systems on the 
+network with the same (or similar) malware running
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 73 www.mandiant.com
+
+Have <SOFTWARE>MIR</SOFTWARE> Customers had Access to these IOCs Before?
+
+These IOCs are new! However, much of the detection capability in this set of indicators has already been available to 
+our <SOFTWARE>MIR</SOFTWARE> customers. The IOCs may look different though as a result of improvements in creation and testing. <ORG>Mandiant</ORG> 
+started <TIMESTAMP>2013</TIMESTAMP> with a focus on taking better advantage of our threat intelligence. We plan to continue to improve the 
+synthesis of our threat intelligence and our IOCs by improving our breadth, IOC creation process, IOC management 
+process, and IOC testing. The majority of these indicators, or modified versions of them, will be integrated into the next 
+IOC release.
+
+What Is the FAMILY Designator in This Set of IOCs?
+
+We are using a new IOC designator in these IOCs called “(FAMILY).” <ORG>Mandiant</ORG>’s Threat Intelligence Unit tracks 
+malware by common features seen in groups of binaries. We call those groupings of binaries “families.” The IOCs 
+included in this appendix are representatives of families of malware used by <THREAT_ACTOR>APT1</THREAT_ACTOR>. The new designator follows the 
+family name in the “Name” field of the IOC, and the presence of (FAMILY) implies that that IOC applies to the whole 
+family, not just one sample.
+
+Why Do These IOCs Look Somewhat Different Than Other IOCs I Have Seen From 
+<ORG>Mandiant</ORG>?
+
+In many cases we have combined information that previously would have been in several indicators into a single 
+indicator. Additionally, we have removed certain types of intelligence, since they are being released in separate 
+appendices (such as FQDNs and IPs).
+
+Additionally, some IOCs in this set are using file permutation blocks to catch variants of malware that might not be 
+detected otherwise.
+
+What Is a File Permutation block? 
+
+It is a different way to structure lists of File Item attributes to look for an entire family of malware versus only one or two 
+pieces. For more information on this topic or most any other IOC questions go to https://forums.mandiant.com.
+
+Will You Update These IOCs?
+
+It is likely that we will make some changes to the IOCs in Appendix G as we get feedback. If updated, the updates will 
+be available in the same location as the report http://www.mandiant.com/<THREAT_ACTOR>APT1</THREAT_ACTOR>.
+
+Will You Be Releasing More IOCs Like This?
+
+Currently, there are no plans for additional public releases of this magnitude. 
+
+
+
+<ORG>Mandiant</ORG> <THREAT_ACTOR>APT1</THREAT_ACTOR> 74 www.mandiant.com
+
+aPPenDIx h (DIGItaL):  
+vIDeo
+
+This appendix is digital and can be found at http://www.mandiant.com/<THREAT_ACTOR>APT1</THREAT_ACTOR>. It includes a compilation of videos showing 
+actual attacker sessions and their intrusion activities. 
+
+
+	
+	Executive Summary
+	<COUNTRY>China</COUNTRY>’s Computer Network Operations Tasking to <THREAT_ACTOR>PLA Unit 61398</THREAT_ACTOR> (61398部队)
+	<THREAT_ACTOR>APT1</THREAT_ACTOR>: Years of Espionage 
+	<THREAT_ACTOR>APT1</THREAT_ACTOR>: Attack Lifecycle
+	<THREAT_ACTOR>APT1</THREAT_ACTOR>: Infrastructure
+	<THREAT_ACTOR>APT1</THREAT_ACTOR>: Identities
+	Conclusion
+	Appendix A: 
+How Does <ORG>Mandiant</ORG> 
+Distinguish Threat Groups?
+	Appendix B: 
+APT and the Attack Lifecycle
+	Appendix C (Digital):
+The Malware Arsenal
+	Appendix D (Digital): 
+FQDNs
+	Appendix E (Digital): 
+MD5 Hashes
+	Appendix F (Digital): 
+SSL Certificates
+	Appendix G (Digital): 
+IOCs
+	Appendix H (Digital): 
+Video
+

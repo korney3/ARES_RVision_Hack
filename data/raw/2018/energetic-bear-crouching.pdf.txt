@@ -1,0 +1,1040 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Energetic Bear/Crouching Yeti: attacks on servers - Securelist
+
+
+Energetic Bear/Crouching Yeti is a widely known APT group active since at least 2010. The group tends
+
+to attack different companies with a strong focus on the energy and industrial sectors. Companies
+
+attacked by Energetic Bear/Crouching Yeti are geographically distributed worldwide with a more obvious
+
+concentration in Europe and the US. In 2016-2017, the number of attacks on companies in Turkey
+
+increased significantly.
+
+The main tactics of the group include sending phishing emails with malicious documents and infecting
+
+various servers. The group uses some of the infected servers for auxiliary purposes – to host tools and
+
+logs. Others are deliberately infected to use them in waterhole attacks in order to reach the group’s main
+
+targets.
+
+Recent activity of the group against US organizations was discussed in a US-CERT advisory, which linked
+
+the actor to the Russian government, as well as an advisory by the UK National Cyber Security Centre.
+
+This report by Kaspersky Lab ICS CERT presents information on identified servers that have been infected
+
+and used by the group. The report also includes the findings of an analysis of several webservers
+
+compromised by the Energetic Bear group during 2016 and in early 2017.
+
+Energetic Bear: more like a Crouching Yeti
+
+CVE-2015-2545: overview of current threats
+
+SambaCry is coming
+
+The Epic Turla Operation
+
+New activity of the Blue Termite APT
+
+APT  REPORT S  INDUST RIAL T HREAT S
+
+Energetic Bear/CrouchingEnergetic Bear/Crouching
+Yeti: attacks on serversYeti: attacks on servers
+By Kaspersky Lab ICS CERT on April 23, 2018. 10:00 am
+
+CONTENTS
+
+THREATS CATEGORIES TAGS ENCYCLOPEDIA STATIST ICS DESCRIPTIONS English
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://securelist.com/
+https://securelist.com/encyclopedia/
+https://securelist.com/statistics/
+https://threats.kaspersky.com/
+https://securelist.com/all?category=908
+https://securelist.com/all?category=910
+https://securelist.com/author/icscert/
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/08080817/EB-YetiJuly2014-Public.pdf
+https://www.us-cert.gov/ncas/alerts/TA18-074A
+https://www.ncsc.gov.uk/alerts/hostile-state-actors-compromising-uk-organisations-focus-engineering-and-industrial-control
+https://ics-cert.kaspersky.com/
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/18124232/180418-energetic-bear-crouching-yeti-1.png
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/18124233/180418-energetic-bear-crouching-yeti-2.png
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/18124232/180418-energetic-bear-crouching-yeti-3.png
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/18124231/180418-energetic-bear-crouching-yeti-4.png
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/18124231/180418-energetic-bear-crouching-yeti-5.png
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/18124232/180418-energetic-bear-crouching-yeti-6.png
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/18124231/180418-energetic-bear-crouching-yeti-7.png
+https://securelist.com/energetic-bear-more-like-a-crouching-yeti/65240/
+https://securelist.com/cve-2015-2545-overview-of-current-threats/74828/
+https://securelist.com/sambacry-is-coming/78674/
+https://securelist.com/the-epic-turla-operation/65545/
+https://securelist.com/new-activity-of-the-blue-termite-apt/71876/
+https://www.kaspersky.com/blog/a-platinum-award-from-our-customers/19817/?utm_source=smm_sl&utm_medium=ww_slban_o_171017
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Attack victimsAttack victims
+The table below shows the distribution of compromised servers (based on the language of website
+
+content and/or the origins of the company renting the server at the time of compromise) by
+
+countries, attacked company types and the role of each server in the overall attack scheme. Victims
+
+of the threat actor’s attacks were not limited to industrial companies.
+
+T able  1 . Co m pr o m ise d se r ve r sT able  1 . Co m pr o m ise d se r ve r s
+
+Co unt r yCo unt r y De scr ipt io nDe scr ipt io n Ro le  in t he  at t ackRo le  in t he  at t ack
+
+RussiaRussia
+
+Opposition political website Waterhole
+
+Real estate agency
+Auxiliary (collecting user data
+
+in the waterhole attack)
+
+Football club Waterhole
+
+Developer and integrator of
+
+secure automation systems
+
+and IS consultant
+
+Waterhole
+
+Developers of software and
+
+equipment
+
+Auxiliary (collecting user data
+
+in the waterhole attack, tool
+
+hosting)
+
+Investment website
+Auxiliary (collecting user data
+
+in the waterhole attack)
+
+Ukr aineUkr aine
+
+Electric power sector
+
+company
+Waterhole
+
+Bank Waterhole
+
+UKUK Aerospace company Waterhole
+
+Ge r m anyGe r m any
+
+Software developer and
+
+integrator
+Waterhole
+
+Unknown
+Auxiliary (collecting user data
+
+in the waterhole attack)
+
+Oil and gas sector enterprise Waterhole
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+T ur ke yT ur ke y Industrial group Waterhole
+
+Investment group Waterhole
+
+Gr e e ceGr e e ce Server of a university
+Auxiliary (collecting user data
+
+in the waterhole attack)
+
+US AUS A Oil and gas sector enterprise Waterhole
+
+Unkno wnUnkno wn Affiliate network site
+Auxiliary (collecting user data
+
+in the waterhole attack)
+
+WaterholeWaterhole
+All waterhole servers are infected following the same pattern: injecting a link into a web page or JS f ile
+
+with the following f ile scheme: f ile://IP/f ilename.png.
+
+Injected l ink with the f ile schemeInjected l ink with the f ile scheme
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The link is used to initiate a request for an image, as a result of which the user connects to the
+
+remote server over the SMB protocol. In this attack type, the attackers’ goal is to extract the
+
+following data from the session:
+
+user IP,
+
+user name,
+
+domain name,
+
+NTLM hash of the user’s password.
+
+It should be noted that the image requested using the link is not physically located on the remote
+
+server.
+
+Scanned resourcesScanned resources
+Compromised servers are in some cases used to conduct attacks on other resources. In the process
+
+of analyzing infected servers, numerous websites and servers were identif ied that the attackers had
+
+scanned with various tools, such as nmap, dirsearch, sqlmap, etc. (tool descriptions are provided
+
+below).
+
+T able  2 . Re so ur ce s t hat  we r e  scanne d f r o m  o ne  o f  t he  inf e ct e d se r ve r sT able  2 . Re so ur ce s t hat  we r e  scanne d f r o m  o ne  o f  t he  inf e ct e d se r ve r s
+
+Co unt r yCo unt r y
+
+(base d o n t he(base d o n t he
+
+co nt e nt )co nt e nt )
+
+De scr ipt io nDe scr ipt io n
+
+RussiaRussia
+
+Non-profit organization
+
+Sale of drugs
+
+Travel/maps
+
+Resources based on the Bump platform (platform for corporate
+
+social networks) – non-profit organization, social network for
+
+college/university alumni, communication platform for NGOs, etc.
+
+Business – photographic studio
+
+Industrial enterprise, construction company
+
+Door manufacturing
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Cryptocurrency exchange
+
+Construction information and analysis portal
+
+Personal website of a developer
+
+Vainah Telecom IPs and Subnets (Chechen Republic)
+
+Various Chechen resources (governmental organizations,
+
+universities, industrial enterprises, etc.)
+
+Web server with numerous sites (alumni sites, sites of industrial and
+
+engineering companies, etc.)
+
+Muslim dating site
+
+Br az ilBr az il Water treatment
+
+T ur ke yT ur ke y
+
+Hotels
+
+Embassy in Turkey
+
+Software developer
+
+Airport website
+
+City council website
+
+Cosmetics manufacturer
+
+Religious website
+
+Turktelekom subnet with a large number of sites
+
+Telnet Telecom subnet with a large number of sites
+
+Ge o r giaGe o r gia Personal website of a journalist
+
+Kaz akhst anKaz akhst an Unknown web server
+
+Ukr aineUkr aine
+
+Office supplies online store
+
+Floral business
+
+Image hosting service
+
+Online course on sales
+
+Dealer of farming equipment and spare parts
+
+Ukrainian civil servant’s personal website
+
+Online store of parts for household appliance repair
+
+T imber sales, construction
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Tennis club website
+
+Online store for farmers
+
+Online store of massage equipment
+
+Online clothes store
+
+Website development and promotion
+
+Online air conditioner store
+
+S wit z e r landS wit z e r land Analytical company
+
+USUS Web server with many domains
+
+Fr anceFr ance Web server with many domains
+
+Vie t namVie t nam Unknown server
+
+Int e r nat io nalInt e r nat io nal Flight tracker
+
+The sites and servers on this list do not seem to have anything in common. Even though the scanned
+
+servers do not necessarily look like potential f inal victims, it is likely that the attackers scanned
+
+different resources to f ind a server that could be used to establish a foothold for hosting the
+
+attackers’ tools and, subsequently, to develop the attack.
+
+Part of the sites scanned may have been of interest to the attackers as candidates for hosting
+
+waterhole resources.
+
+In some cases, the domains scanned were hosted on the same server; sometimes the attackers went
+
+through the list of possible domains matching a given IP.
+
+In most cases, multiple attempts to compromise a specif ic target were not identif ied – with the
+
+possible exception of sites on the Bump platform, f light tracker servers and servers of a Turkish hotel
+
+chain.
+
+Curiously, the sites scanned included a web developer’s website, kashey.ru, and resources links to
+
+which were found on this site. These may have been links to resources developed by the site’s owner:
+
+www.esodedi.ru, www.i-stroy.ru, www.saledoor.ru
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+http://www.esodedi.ru
+http://www.i-stroy.ru
+http://www.saledoor.ru
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Toolset usedToolset used
+
+UtilitiesUtilities
+
+Utilities found on compromised servers are open-source and publicly available on GitHub:
+
+Nmap – an open-source utility for analyzing the network and verifying its security.
+
+Dirsearch — a simple command-line tool for brute forcing (performing exhaustive searches of)
+
+directories and f iles on websites.
+
+Sqlmap — an open-source penetration testing tool, which automates the process of identifying
+
+and exploiting SQL injection vulnerabilities and taking over database servers.
+
+Sublist3r — a tool written in Python designed to enumerate website subdomains. The tool uses
+
+open-source intelligence (OSINT). Sublist3r supports many different search engines, such as
+
+Google, Yahoo, Bing, Baidu and Ask, as well as such services as Netcraft, Virustotal, ThreatCrowd,
+
+DNSdumpster and ReverseDNS. The tool helps penetration testers to collect information on the
+
+subdomains of the domain they are researching.
+
+Wpscan — a WordPress vulnerability scanner that uses the blackbox principle, i.e., works without
+
+access to the source code. It can be used to scan remote WordPress sites in search of security
+
+issues.
+
+Impacket — a toolset for working with various network protocols, which is required by SMBTrap.
+
+SMBTrap — a tool for logging data received over the SMB protocol (user IP address, user name,
+
+domain name, password NTLM hash).
+
+Commix — a vulnerability search and command injection and exploitation tool written in Python.
+
+Subbrute – a subdomain enumeration tool available for Python and Windows that uses an open
+
+name resolver as a proxy and does not send traff ic to the target DNS server.
+
+PHPMailer – a mail sending tool.
+
+In addition, a custom Python script named ftpChecker.py was found on one of the servers. The script
+
+was designed to check FTP hosts from an incoming list.
+
+Malicious php filesMalicious php files
+
+The following malicious php f iles were found in different directories in the nginx folder and in a
+
+working directory created by the attackers on an infected web servers:
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://github.com/maurosoria/dirsearch
+https://github.com/sqlmapproject/sqlmap
+https://github.com/aboul3la/Sublist3r
+https://ru.wikipedia.org/wiki/OSINT
+https://github.com/wpscanteam/wpscan
+https://github.com/CoreSecurity/impacket
+https://github.com/CylanceSPEAR/SMBTrap
+https://github.com/commixproject/commix
+https://github.com/TheRook/subbrute
+https://github.com/PHPMailer/PHPMailer
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+File  nam eFile  nam e
+Br ie fBr ie f
+
+de scr ipt io nde scr ipt io n
+m d5summ d5sum
+
+T im e  o f  t heT im e  o f  t he
+
+lat e st  f ilelat e st  f ile
+
+change  (MS K)change  (MS K)
+
+S iz e , byt e sS iz e , byt e s
+
+ini.php wso shell+ mail
+
+f3e3e25a822012
+
+023c6e81b2067
+
+11865
+
+2016-07-01
+
+15:57:38
+28786
+
+mysql.php wso shell+ mail
+
+f3e3e25a822012
+
+023c6e81b2067
+
+11865
+
+2016-06-12
+
+13:35:30
+28786
+
+opts.php wso shell
+
+c76470e85b7f3
+
+da46539b40e5c
+
+552712
+
+2016-06-12
+
+12:23:28
+36623
+
+error_ log.php wso shell
+
+155385cc19e309
+
+2765bcfed034b
+
+82ccb
+
+2016-06-12
+
+10:59:39
+36636
+
+code29.php web shell
+
+1644af9b6424e
+
+8f58f39c7fa5e7
+
+6de51
+
+2016-06-12
+
+11:10:40
+10724
+
+proxy87.php web shell
+
+1644af9b6424e
+
+8f58f39c7fa5e7
+
+6de51
+
+2016-06-12
+
+14:31:13
+10724
+
+theme.php wso shell
+
+2292f5db38506
+
+8e161ae277531
+
+b2e114
+
+2017-05-16
+
+17:33:02
+133104
+
+sma.php PHPMailer
+
+7ec514bbdc6dd
+
+8f606f803d39af
+
+8883f
+
+2017-05-19
+
+13:53:53
+14696
+
+media.php wso shell
+
+78c31eff38fdb7
+
+2ea3b1800ea91
+
+7940f
+
+2017-04-17
+
+15:58:41
+1762986
+
+In the table above:
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Web shell is a script that allows remote administration of the machine.
+
+WSO is a popular web shell and f ile manager (it stands for “Web Shell by Orb”) that has the ability
+
+to masquerade as an error page containing a hidden login form. It is available on GitHub:
+
+https://github.com/wso-shell/WSO
+
+Two of the PHP scripts found, ini.php and mysql.php, contained a WSO shell concatenated with the
+
+following email spamming script:
+
+https://github.com/bediger4000/php-malware-analysis/tree/master/db-config.php
+
+All the scripts found are obfuscated.
+
+wso shell  – error_log.phpwso shell  – error_log.php
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://github.com/wso-shell/WSO
+https://github.com/bediger4000/php-malware-analysis/tree/master/db-config.php
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Deobfuscated wso shell  – error_log.phpDeobfuscated wso shell  – error_log.php
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+One of the web shells was found on the server under two different names (proxy87.php and
+
+code29.php). It uses the eval function to execute a command sent via HTTP cookies or a POST
+
+request:
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Web shell  – proxy87.phpWeb shell  – proxy87.php
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Deobfuscated web shell  – proxy87.phpDeobfuscated web shell  – proxy87.php
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Modified sshdModified sshd
+
+A modif ied sshd with a preinstalled backdoor was found in the process of analyzing the server.
+
+Patches with some versions of backdoors for sshd that are similar to the backdoor found are
+
+available on GitHub, for example:
+
+https://github.com/jivoi/openssh-backdoor-kit
+
+Compilation is possible on any OS with binary compatibility.
+
+As a result of replacing the original sshd f ile with a modif ied one on the infected server, an attacker
+
+can use a ‘master password’ to get authorized on the remote server, while leaving minimal traces
+
+(compared to an ordinary user connecting via ssh).
+
+In addition, the modif ied sshd logs all legitimate ssh connections (this does not apply to the
+
+connection that uses the ‘master password’), including connection times, account names and
+
+passwords. The log is encrypted and is located at /var/tmp/.pipe.sock.
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://github.com/jivoi/openssh-backdoor-kit
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Decrypted log at /var/tmp/.pipe.sockDecrypted log at /var/tmp/.pipe.sock
+
+Activity of the attackers onActivity of the attackers on
+compromised serverscompromised servers
+In addition to using compromised servers to scan numerous resources, other attacker activity was
+
+also identif ied.
+
+After gaining access to the server, the attackers installed the tools they needed at different times.
+
+Specif ically, the following commands for third-party installations were identif ied on one of the
+
+servers:
+
+apt install traceroute
+
+apt-get install nmap
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+apt-get install screen
+
+git clone https://github.com/sqlmapproject/sqlmap.git
+
+Additionally, the attackers installed any packages and tools for Python they needed.
+
+The diagram below shows times of illegitimate logons to one of the compromised servers during one
+
+month. The attackers checked the smbtrap log f ile on working days. In most cases, they logged on to
+
+the server at roughly the same time of day, probably in the morning hours:
+
+Times of il legitimate connections with the server (GMT+3)Times of il legitimate connections with the server (GMT+3)
+
+In addition, in the process of performing the analysis, an active process was identif ied that exploited
+
+SQL injection and collected data from a database of one of the victims.
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+ConclusionConclusion
+The f indings of the analysis of compromised servers and the attackers’ activity on these servers are
+
+as follows:
+
+1. With rare exceptions, the group’s members get by with publicly available tools. The use of publicly
+
+available utilities by the group to conduct its attacks renders the task of attack attribution
+
+without any additional group ‘markers’ very diff icult.
+
+2. Potentially, any vulnerable server on the internet is of interest to the attackers when they want to
+
+establish a foothold in order to develop further attacks against target facilities.
+
+3. In most cases that we have observed, the group performed tasks related to searching for
+
+vulnerabilities, gaining persistence on various hosts, and stealing authentication data.
+
+4. The diversity of victims may indicate the diversity of the attackers’ interests.
+
+5. It can be assumed with some degree of certainty that the group operates in the interests of or
+
+takes orders from customers that are external to it, performing initial data collection, the theft of
+
+authentication data and gaining persistence on resources that are suitable for the attack’s further
+
+development.
+
+Appendix I – Indicators of CompromiseAppendix I – Indicators of Compromise
+
+Filenames and PathsFilenames and Paths
+
+To o ls*To o ls*
+
+/usr/lib/libng/ftpChecker.py
+
+/usr/bin/nmap/
+
+/usr/lib/libng/dirsearch/
+
+/usr/share/python2.7/dirsearch/
+
+/usr/lib/libng/SMBTrap/
+
+/usr/lib/libng/commix/
+
+/usr/lib/libng/subbrute-master/
+
+/usr/share/python2.7/sqlmap/
+
+/usr/lib/libng/sqlmap-dev/
+
+/usr/lib/libng/wpscan/
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+/usr/share/python2.7/wpscan/
+
+/usr/share/python2.7/Sublist3r/
+
+*Note that these tools can also be used by other threat actors.
+
+P HP  files:P HP  files:
+
+/usr/share/python2.7/sma.php
+
+/usr/share/python2.7/theme.php
+
+/root/theme.php
+
+/usr/lib/libng/media.php
+
+Lo gsLo gs
+
+/var/tmp/.pipe.sock
+
+PHP file hashesPHP file hashes
+
+f3e3e25a822012023c6e81b206711865
+
+c76470e85b7f3da46539b40e5c552712
+
+155385cc19e3092765bcfed034b82ccb
+
+1644af9b6424e8f58f39c7fa5e76de51
+
+2292f5db385068e161ae277531b2e114
+
+7ec514bbdc6dd8f606f803d39af8883f
+
+78c31eff38fdb72ea3b1800ea917940f
+
+Yara rulesYara rules
+
+rule Backdoored_ssh {
+
+strings:
+
+$a1 = “OpenSSH”
+
+$a2 = “usage: ssh”
+
+$a3 = “HISTFILE”
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+condition:
+
+uint32(0) == 0x464c457f and f ilesize<1000000 and all of ($a*)
+
+}
+
+Appendix II – Shell script to check aAppendix II – Shell script to check a
+server for toolsserver for tools
+
+Shell script for DebianShell script for Debian
+
+cd /tmp
+
+workdir=428c5fcf495396df04a459e317b70ca2
+
+mkdir $workdir
+
+cd $workdir
+
+f ind / -type d -iname smbtrap > f ind-smbtrap.txt 2>/dev/null
+
+f ind / -type d -iname dirsearch > f ind-dirsearch.txt 2>/dev/null
+
+f ind / -type d -iname nmap > f ind-nmap.txt 2>/dev/null
+
+f ind / -type d -iname wpscan > f ind-wpscan.txt 2>/dev/null
+
+f ind / -type d -iname sublist3r > f ind-sublist3r.txt 2>/dev/null
+
+dpkg -l | grep -E \(impacket\|pcapy\|nmap\) > dpkg-grep.txt
+
+cp /var/lib/dpkg/info/openssh-server.md5sums . #retrieve initial hash for sshd
+
+md5sum /usr/sbin/sshd > sshd.md5sum #calculate actual hash for sshd
+
+Shell script for CentosShell script for Centos
+
+cd /tmp
+
+workdir=428c5fcf495396df04a459e317b70ca2
+
+mkdir $workdir
+
+cd $workdir
+
+f ind / -type d -iname smbtrap > f ind-smbtrap.txt 2>/dev/null
+
+f ind / -type d -iname dirsearch > f ind-dirsearch.txt 2>/dev/null
+
+f ind / -type d -iname nmap > f ind-nmap.txt 2>/dev/null
+
+f ind / -type d -iname wpscan > f ind-wpscan.txt 2>/dev/null
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Share  post on:
+
+f ind / -type d -iname sublist3r > f ind-sublist3r.txt 2>/dev/null
+
+rpm -qa | grep -E \(impacket\|pcapy\|nmap\) > rpm-grep.txt
+
+rpm -qa –dump | grep ssh > rpm-qa-dump.txt #retrieve initial hash for sshd
+
+sha256sum /usr/sbin/sshd > sshd.sha256sum #calculate actual sha256 hash for sshd
+
+md5sum /usr/sbin/sshd > sshd.md5sum #calculate actual md5 hash for sshd
+
+ Ene r ge t ic Be ar /Cr o uching Ye t i: at t acks o n se r ve r sEne r ge t ic Be ar /Cr o uching Ye t i: at t acks o n se r ve r s
+
+APT  CRIMINAL  BACKDOOR  HACKERS AT T ACKS  T ARGET ED AT T ACK  
+
+VULNERABILIT IES AND EXPLOIT S  WAT ERING HOLE AT T ACKS
+
+Related PostsRelated Posts
+
+LEAVE A REPLYLEAVE A REPLY
+Your email address will not be  published. Required fie lds are  marked *
+
+    
+
+APT Trends report Q1
+2018
+
+Operation Parliament,
+who is doing what?
+
+Masha and these
+Bears
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://ics-cert.kaspersky.com/media/EB_public_FINAL_EN_20042018.pdf
+https://securelist.com/all?tag=657
+https://securelist.com/all?tag=568
+https://securelist.com/all?tag=480
+https://securelist.com/all?tag=954
+https://securelist.com/all?tag=41
+https://securelist.com/all?tag=810
+https://securelist.com/apt-trends-report-q1-2018/85280/
+https://securelist.com/operation-parliament-who-is-doing-what/85237/
+https://securelist.com/masha-and-these-bears/84311/
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Enter your comment here
+
+Name *
+
+Email *
+
+ 
+
+SUBMIT
+
+Notify me when new comments are  added.
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+ 
+
+reCAPTCHA
+
+Please upgrade to a supported browser
+to get a reCAPTCHA challenge.
+
+Alternatively if you think you are getting
+this page in error, please check your
+internet connection and reload.
+
+Why is this happening to me?
+
+© 2018 AO Kaspersky Lab. All Rights Reserved. 
+
+Registered trademarks and service  marks are  the  property of the ir respective  owners.
+
+Contact us | Privacy Policy | License Agreement
+
+Email
+
+SUBSCRIBE
+
+With PDFmyURL anyone can convert entire websites to PDF!
+
+https://www.kaspersky.com
+https://securelist.com/contacts
+https://www.kaspersky.com/privacy
+https://www.kaspersky.com/end-user-license-agreement
+https://twitter.com/Securelist
+https://www.facebook.com/securelist
+https://www.linkedin.com/company/kaspersky-lab
+https://www.youtube.com/user/Kaspersky
+https://securelist.com/feed/
+https://securelist.com/contacts/
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+

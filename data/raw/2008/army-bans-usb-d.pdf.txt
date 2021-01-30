@@ -1,0 +1,315 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Under Worm Assault, Military Bans Disks, USB Drives | WIRED
+
+
+11.19.08 03:12 PM
+
+UNDER WORM ASSAULT, MILITARY BANS DISKS, USB DRIVES
+
+The Defense Department's geeks are spooked by a rapidly spreading worm crawling across their networks. So they've suspended the use of so-
+
+called thumb drives, CDs, flash media cards, and all other removable data storage devices from their nets, to try to keep the worm from
+
+multiplying any further.
+
+The ban comes from the commander of U.S. Strategic Command, according to an internal Army e-mail. It applies to both the secret SIPR and
+
+unclassified NIPR nets. The suspension, which includes everything from external hard drives to "floppy disks," is supposed to take effect
+
+"immediately." Similar notices went out to the other military services.
+
+In some organizations, the ban would be only a minor inconvenience. But the military relies heavily on such drives to store information.
+
+Bandwidth is often scarce out in the field. Networks are often considered unreliable. Takeaway storage is used constantly as a substitute.
+
+The problem, according to a second Army e-mail, was prompted by a "virus called Agent.btz." That's a variation of the "SillyFDC" worm, which
+
+spreads by copying itself to thumb drives and the like. When that drive or disk is plugged into a second computer, the worm replicates itself
+
+again — this time on the PC. "From there, it automatically downloads code from another location. And that code could be pretty much
+
+anything," says Ryan Olson, director of rapid response for the iDefense computer security firm. SillyFDC has been around, in various forms,
+
+NOAH SHACHTMAN SECURITY
+
+Under Worm Assault, Military Bans Disks, USB Drives SIGN IN SUBSCRIBE
+
+PDFmyURL lets you convert a complete website to PDF automatically!
+
+https://www.wired.com/
+https://www.wired.com/account/sign-in/
+https://subscribe.condenastdigital.com/subscribe/splits/wired/WIR_FAILSAFE?source=FAILSAFE
+https://www.wired.com/category/business/
+https://www.wired.com/category/culture/
+https://www.wired.com/category/gear/
+https://www.wired.com/category/ideas/
+https://www.wired.com/category/science/
+https://www.wired.com/category/security/
+https://www.wired.com/category/transportation/
+https://www.facebook.com/sharer/sharer.php?t=Under Worm Assault%2C Military Bans Disks%2C USB Drives&u=https%3A%2F%2Fwww.wired.com%2F2008%2F11%2Farmy-bans-usb-d%2F?mbid=social_fb_onsiteshare
+https://twitter.com/intent/tweet?text=Under Worm Assault%2C Military Bans Disks%2C USB Drives&url=https%3A%2F%2Fwww.wired.com%2F2008%2F11%2Farmy-bans-usb-d%2F?mbid=social_twitter_onsiteshare&via=WIRED
+mailto:?subject=WIRED%3A Under Worm Assault%2C Military Bans Disks%2C USB Drives&body=Check out this great article I read on WIRED%3A %22Under Worm Assault%2C Military Bans Disks%2C USB Drives%22%0D%0A%0D%0Ahttps%3A%2F%2Fwww.wired.com%2F2008%2F11%2Farmy-bans-usb-d%2F?mbid=email_onsiteshare
+https://www.wired.com/author/noah-shachtman
+https://www.wired.com/category/security/
+https://www.wired.com/images_blogs/photos/uncategorized/2008/11/19/pr20070921a1.jpg
+http://en.wikipedia.org/wiki/SIPRNET
+http://en.wikipedia.org/wiki/NIPRNET
+http://www.symantec.com/security_response/writeup.jsp?docid=2006-071111-0646-99&tabid=2
+http://www.verisign.com/security-intelligence-service/
+https://www.wired.com/story/book-excerpt-science-of-ultra-pure-silicon/
+https://www.wired.com/story/android-smartphones-vulnerable-out-of-the-box/
+https://www.wired.com/story/defcon-tweet-about-hacking-gets-engineer-trouble/
+https://www.wired.com/most-popular
+https://www.wired.com/story/police-body-camera-vulnerabilities/
+https://www.wired.com/story/police-body-camera-vulnerabilities/
+https://www.wired.com/story/police-body-camera-vulnerabilities/
+https://www.wired.com/story/fcc-lied-about-ddos-attack-wannacry-apple/
+https://www.wired.com/story/fcc-lied-about-ddos-attack-wannacry-apple/
+https://www.wired.com/story/fcc-lied-about-ddos-attack-wannacry-apple/
+https://www.wired.com/story/defcon-election-threat-funding/
+https://www.wired.com/story/defcon-election-threat-funding/
+https://www.wired.com/story/defcon-election-threat-funding/
+https://www.wired.com/story/defcon-tweet-about-hacking-gets-engineer-trouble/
+https://www.wired.com/story/defcon-tweet-about-hacking-gets-engineer-trouble/
+https://www.wired.com/story/defcon-tweet-about-hacking-gets-engineer-trouble/
+https://www.wired.com/story/android-smartphones-vulnerable-out-of-the-box/
+https://www.wired.com/story/android-smartphones-vulnerable-out-of-the-box/
+https://www.wired.com/story/android-smartphones-vulnerable-out-of-the-box/
+https://www.wired.com/story/crestron-touchscreens-could-spy-on-hotel-rooms-and-meetings/
+https://www.wired.com/story/crestron-touchscreens-could-spy-on-hotel-rooms-and-meetings/
+https://www.facebook.com/wired
+http://www.twitter.com/wired
+https://pinterest.com/wired
+http://www.youtube.com/wired
+https://instagram.com/wired
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+since July 2005. Worms that use a similar method of infection go back even further — to the early '90s. "But at that time they relied on
+
+infecting floppy disks rather than USB drives," Olson adds.
+
+Servicemembers are supposed to "cease usage of all USB storage media until the USB devices are properly scanned and determined to be free
+
+of malware," one e-mail notes.
+
+Eventually, some government-approved drives will be allowed back under certain "mission-critical," but unclassified, circumstances.
+
+"Personally owned or non-authorized devices" are "prohibited" from here on out.
+
+To make sure troops and military civilians are observing the suspension, government security teams "will be conducting daily scans and
+
+running custom scripts on NIPRNET and SIPRNET to ensure the commercial malware has not been introduced," an e-mail says. "Any
+
+discovery of malware will result in the opening of a security incident report and will be referred to the appropriate security officer for action."
+
+"The USB ban should be effective in stopping the worm," Olson says. Asked if such a wide-spread measure was a bit of over-kill, Olson
+
+responded, "I don't know."
+
+"I know this [is an] inconvenience," e-mails one Michigan Army National Guardsman. "This has been briefed to the CoS [Chief of Staff] of the
+
+ARMY. This is not just a problem for Michigan, and is effecting operations around the world. This is a very serious threat and should be treated
+
+as such. Please understand that this is a form of attack, and we need to have patience in dealing with this issue."
+
+[Photo: Department of Defense]
+
+#INFO WAR
+
+SPONSORED STORIES
+
+LILY HAY NEWMAN
+
+The Sensors That Power
+Smart Cities Are a
+Hacker's Dream
+
+BRIAN BARRETT
+
+Online Stock
+Trading Has
+Serious
+Security  Holes
+
+DAVID NIELD
+
+Simple Steps to
+Protect
+Y ourself on
+Public Wi-Fi
+
+BRIAN BARRETT
+
+The Explosiv e-Carry ing
+Drones in Venezuela Won't Be
+the Last
+
+EMILY DREYFUSS
+
+Security  News This Week: Air
+Marshals Hav e Been Surv eilling
+Civ ilians
+
+VIEW COMMENTS
+
+PDFmyURL lets you convert a complete website to PDF automatically!
+
+https://www.wired.com/tag/info-war/
+https://www.wired.com/story/sensor-hubs-smart-cities-vulnerabilities-hacks/
+https://www.wired.com/story/online-stock-trading-serious-security-holes/
+https://www.wired.com/story/public-wifi-safety-tips/
+https://www.wired.com/story/venezuela-drones-explosives-maduro-threat/
+https://www.wired.com/story/air-marshals-have-been-surveilling-civilians-security-roundup/
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+WE RECOMMEND
+
+LOUISE MATSAKIS
+
+Ev en Anony mous Coders Leav e
+Fingerprints
+
+LILY HAY NEWMAN
+
+Bugs in Mobile Credit Card Readers Could
+Expose Buy ers
+
+LILY HAY NEWMAN
+
+Hacking a Brand New Mac Remotely , Right
+Out of the Box
+
+EMILY DREYFUSS
+
+Smartphone Voting Is Happening, but No
+One Knows if It's Safe
+
+LILY HAY NEWMAN
+
+A New Pacemaker Hack Puts Malware
+Directly  on the Dev ice
+
+GET OUR NEWSLETTER
+WIRED’s biggest stories deliv ered to y our inbox.
+
+Enter your email
+
+Police Bodycams Can Be Hacked to Doctor Footage
+VULNERABILITIES
+
+LILY HAY NEWMAN
+
+Surprise, the FCC Lied About That DDoS Attack
+SECURITY ROUNDUP
+
+EMILY DREYFUSS
+
+At DefCon, the Biggest Election Threat Is Lack of Funding
+VOTING MACHINES
+
+LILY HAY NEWMAN
+
+A Tweet About Hacking Gets a Google Engineer in Trouble
+#NEVERTWEET
+
+LOUISE MATSAKIS
+
+Millions of Android Devices Are Vulnerable Out of the Box
+BUGS
+
+BRIAN BARRETT
+
+HACKABLE TOUCHSCREENS COULD SPY
+ON HOTEL ROOMS AND MEETINGS
+IOT
+
+LOUISE MATSAKIS
+
+PDFmyURL lets you convert a complete website to PDF automatically!
+
+https://www.wired.com/author/lily-hay-newman/
+https://www.wired.com/author/emily-dreyfuss/
+https://www.wired.com/author/lily-hay-newman/
+https://www.wired.com/author/louise-matsakis/
+https://www.wired.com/author/brian-barrett/
+https://www.wired.com/author/louise-matsakis/
+https://www.wired.com/story/machine-learning-identify-anonymous-code/
+https://www.wired.com/story/bugs-in-mobile-credit-card-readers-could-leave-buyers-exposed/
+https://www.wired.com/story/mac-remote-hack-wifi-enterprise/
+https://www.wired.com/story/smartphone-voting-is-happening-west-virginia/
+https://www.wired.com/story/pacemaker-hack-malware-black-hat/
+https://www.wired.com/newsletter
+https://www.wired.com/newsletter
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+SUBSCRIBE ADVERTISE SITE MAP PRESS CENTER FAQ ACCESSIBILITY HELP CUSTOMER CARE CONTACT US SECUREDROP T-SHIRT COLLECTION NEWSLETTER WIRED STAFF JOBS RSS
+
+CNMN Collection
+
+© 2018 Condé Nast. All rights reserved.
+
+Use of and/or registration on any portion of this site constitutes acceptance of our User Agreement (updated 5/25/18) and Privacy Policy and Cookie
+Statement (updated 5/25/18). Your California Privacy Rights. The material on this site may not be reproduced, distributed, transmitted, cached or
+
+otherwise used, except with the prior written permission of Condé Nast. Ad Choices.
+
+PDFmyURL lets you convert a complete website to PDF automatically!
+
+https://www.wired.com/
+https://www.wired.com/subscribe/
+https://www.wired.com/wired-advertising/
+https://www.wired.com/sitemap/
+https://www.wired.com/about/press/
+https://www.wired.com/about/faq/
+https://www.wired.com/about/accessibility-help/
+https://subscriptions.wired.com/pubs/N3/WIR/Register.jsp?cds_page_id=175371&amp;cds_mag_code=WIR&amp;id=1423757547774&amp;lsid=50431012277019467&amp;vid=1
+https://www.wired.com/about/feedback/
+https://www.wired.com/securedrop/
+https://subscribe.wired.com/subscribe/wired/109426?source=NativeFooter
+https://www.wired.com/services/newsletters/demographics/
+https://www.wired.com/wired-staff/
+https://www.wired.com/about/wired-jobs/
+https://www.wired.com/about/rss_feeds/
+http://www.condenast.com/privacy-policy
+http://www.condenast.com/privacy-policy#privacypolicy
+http://www.condenast.com/privacy-policy#privacypolicy-california
+http://www.condenast.com/privacy-policy#privacypolicy-optout
+https://pdfmyurl.com/entire-website-to-pdf?src=pdf
+https://pdfmyurl.com/?src=pdf
+

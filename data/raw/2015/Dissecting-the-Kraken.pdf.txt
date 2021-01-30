@@ -1,0 +1,608 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dissecting the Kraken
+
+
+2015-05-08, 8:46 AM
+
+Page 1 of 7https://blog.gdatasoftware.com/blog/article/dissecting-the-kraken.html
+
+back
+
+07.05.2015,
+Author:  Paul Rascagnères
+
+Dissecting the “Kraken”
+Analysis of the Kraken malware that was used for a targeted attack in
+UAE
+
+In January 2015, unidentified attackers attempted to infiltrate a multi-national
+enterprise based in the United Arab Emirates, using a spear phishing attack with a
+crafted MS Word document attached to the message. Once it has reached its target,
+the payload used was designed to work as an information stealer and
+reconnaissance tool. G DATA’s security experts identified the malware behind this
+attack and reveal information about the actual power of the malware’s tentacles.
+
+In this article, the G DATA SecurityLabs will have a look at the following topics:
+
+an example of the spear phishing campaign, sent only a few days after the malware has
+been advertised
+
+the marketing approach to sell the malware
+
+the analysis of some of Kraken’s features
+
+theories about why Kraken has been used as malware in a targeted attack
+
+Infection Vector
+The attacker(s) sent a specially crafted email to at least one employee of the attacked
+enterprise. The email’s body reveals a business-related topic: an offer to become member of
+this year’s International Trade Council. Nevertheless, the offer is directed at the Philippine
+National Bank, not the enterprise actually receiving the email. This could be a trick to make
+the recipient even more curious to look at the attached document, because he/she received
+documents not issued for him/her.
+
+The G DATA experts alerted the aeCERT about the incident and their analysis results.
+
+Recent entries:
+10.04.2015: Staying alert when buying
+
+banners: Google's advertising service misused
+for distributing malware
+
+31.03.2015: IoT: The Internet of Things...
+ehm... Trouble?!
+
+16.03.2015: The Andromeda/Gamarue
+botnet is on the rise again
+
+06.03.2015: Casper: the newest member of
+the cartoon malware family
+
+22.02.2015: The power of trust: “Superfish”
+case turns into a worst case scenario
+
+Category
+
+Adware
+Bots & Botnets
+CyberCrime
+
+eCrime economy
+Legal issues
+
+Exploits
+Funny findings
+Web threats
+Scareware
+Phishing
+Security products
+Vulnerabilities
+Social engineering
+Mails
+Mobile
+Mobile
+Social Network
+
+Tags
+
+1337 crew adware aldi amtso
+analysis android android market
+
+apple apt authentication autorun av
+products award badusb banking
+blog bot botnet bredolab browser
+brwoser bug carbon caro casino
+cebit cellphone chat cloud cms
+
+cobra coding conference credit card
+cve cyber espionage cyber espionage;
+
+malware cyper espionage. targattacks dll
+
+dns domain eicar email exploit
+exploits eyjafjallajoekull facebook
+fake fake alert fake av false
+
+positive fifa firefox fix flame flash
+fraud ftp gaming google google
+
+play hack heartbleed ie iframe im
+infection injection iot java khobe
+
+likejacking link links lizamoon lnk
+lottery mac mail mails
+
+RSS FeedG Data GermanyG Data International
+
+Search
+
+https://blog.gdatasoftware.com/blog.html
+http://www.aecert.ae/
+https://blog.gdatasoftware.com/blog/article/staying-alert-when-buying-banners-googles-advertising-service-misused-for-distributing-malware.html
+https://blog.gdatasoftware.com/blog/article/iot-the-internet-of-things-ehm-trouble.html
+https://blog.gdatasoftware.com/blog/article/the-andromedagamarue-botnet-is-on-the-rise-again.html
+https://blog.gdatasoftware.com/blog/article/casper-the-newest-member-of-the-cartoon-malware-family.html
+https://blog.gdatasoftware.com/blog/article/the-power-of-trust-superfish-case-turns-into-a-worst-case-scenario.html
+https://blog.gdatasoftware.com/blog/category/adware.html
+https://blog.gdatasoftware.com/blog/category/bots-botnets.html
+https://blog.gdatasoftware.com/blog/category/cybercrime.html
+https://blog.gdatasoftware.com/blog/category/ecrime-economy.html
+https://blog.gdatasoftware.com/blog/category/legal-issues.html
+https://blog.gdatasoftware.com/blog/category/exploits.html
+https://blog.gdatasoftware.com/blog/category/funny-findings.html
+https://blog.gdatasoftware.com/blog/category/web-threats.html
+https://blog.gdatasoftware.com/blog/category/scareware.html
+https://blog.gdatasoftware.com/blog/category/phishing.html
+https://blog.gdatasoftware.com/blog/category/security-products.html
+https://blog.gdatasoftware.com/blog/category/vulnerabilities.html
+https://blog.gdatasoftware.com/blog/category/social-engineering.html
+https://blog.gdatasoftware.com/blog/category/mails.html
+https://blog.gdatasoftware.com/blog/category/mobile.html
+https://blog.gdatasoftware.com/blog/category/mobile-1.html
+https://blog.gdatasoftware.com/blog/category/social-network.html
+https://blog.gdatasoftware.com/blog/search/1337%20crew.html
+https://blog.gdatasoftware.com/blog/search/adware.html
+https://blog.gdatasoftware.com/blog/search/aldi.html
+https://blog.gdatasoftware.com/blog/search/amtso.html
+https://blog.gdatasoftware.com/blog/search/analysis.html
+https://blog.gdatasoftware.com/blog/search/android.html
+https://blog.gdatasoftware.com/blog/search/android%20market.html
+https://blog.gdatasoftware.com/blog/search/apple.html
+https://blog.gdatasoftware.com/blog/search/apt.html
+https://blog.gdatasoftware.com/blog/search/authentication.html
+https://blog.gdatasoftware.com/blog/search/autorun.html
+https://blog.gdatasoftware.com/blog/search/av%20products.html
+https://blog.gdatasoftware.com/blog/search/award.html
+https://blog.gdatasoftware.com/blog/search/badusb.html
+https://blog.gdatasoftware.com/blog/search/banking.html
+https://blog.gdatasoftware.com/blog/search/blog.html
+https://blog.gdatasoftware.com/blog/search/bot.html
+https://blog.gdatasoftware.com/blog/search/botnet.html
+https://blog.gdatasoftware.com/blog/search/bredolab.html
+https://blog.gdatasoftware.com/blog/search/browser.html
+https://blog.gdatasoftware.com/blog/search/brwoser.html
+https://blog.gdatasoftware.com/blog/search/bug.html
+https://blog.gdatasoftware.com/blog/search/carbon.html
+https://blog.gdatasoftware.com/blog/search/caro.html
+https://blog.gdatasoftware.com/blog/search/casino.html
+https://blog.gdatasoftware.com/blog/search/cebit.html
+https://blog.gdatasoftware.com/blog/search/cellphone.html
+https://blog.gdatasoftware.com/blog/search/chat.html
+https://blog.gdatasoftware.com/blog/search/cloud.html
+https://blog.gdatasoftware.com/blog/search/cms.html
+https://blog.gdatasoftware.com/blog/search/cobra.html
+https://blog.gdatasoftware.com/blog/search/coding.html
+https://blog.gdatasoftware.com/blog/search/conference.html
+https://blog.gdatasoftware.com/blog/search/credit%20card.html
+https://blog.gdatasoftware.com/blog/search/cve.html
+https://blog.gdatasoftware.com/blog/search/cyber%20espionage.html
+https://blog.gdatasoftware.com/blog/search/cyber%20espionage%3B%20malware.html
+https://blog.gdatasoftware.com/blog/search/cyper%20espionage.%20targattacks.html
+https://blog.gdatasoftware.com/blog/search/dll.html
+https://blog.gdatasoftware.com/blog/search/dns.html
+https://blog.gdatasoftware.com/blog/search/domain.html
+https://blog.gdatasoftware.com/blog/search/eicar.html
+https://blog.gdatasoftware.com/blog/search/email.html
+https://blog.gdatasoftware.com/blog/search/exploit.html
+https://blog.gdatasoftware.com/blog/search/exploits.html
+https://blog.gdatasoftware.com/blog/search/eyjafjallajoekull.html
+https://blog.gdatasoftware.com/blog/search/facebook.html
+https://blog.gdatasoftware.com/blog/search/fake.html
+https://blog.gdatasoftware.com/blog/search/fake%20alert.html
+https://blog.gdatasoftware.com/blog/search/fake%20av.html
+https://blog.gdatasoftware.com/blog/search/false%20positive.html
+https://blog.gdatasoftware.com/blog/search/fifa.html
+https://blog.gdatasoftware.com/blog/search/firefox.html
+https://blog.gdatasoftware.com/blog/search/fix.html
+https://blog.gdatasoftware.com/blog/search/flame.html
+https://blog.gdatasoftware.com/blog/search/flash.html
+https://blog.gdatasoftware.com/blog/search/fraud.html
+https://blog.gdatasoftware.com/blog/search/ftp.html
+https://blog.gdatasoftware.com/blog/search/gaming.html
+https://blog.gdatasoftware.com/blog/search/google.html
+https://blog.gdatasoftware.com/blog/search/google%20play.html
+https://blog.gdatasoftware.com/blog/search/hack.html
+https://blog.gdatasoftware.com/blog/search/heartbleed.html
+https://blog.gdatasoftware.com/blog/search/ie.html
+https://blog.gdatasoftware.com/blog/search/iframe.html
+https://blog.gdatasoftware.com/blog/search/im.html
+https://blog.gdatasoftware.com/blog/search/infection.html
+https://blog.gdatasoftware.com/blog/search/injection.html
+https://blog.gdatasoftware.com/blog/search/iot.html
+https://blog.gdatasoftware.com/blog/search/java.html
+https://blog.gdatasoftware.com/blog/search/khobe.html
+https://blog.gdatasoftware.com/blog/search/likejacking.html
+https://blog.gdatasoftware.com/blog/search/link.html
+https://blog.gdatasoftware.com/blog/search/links.html
+https://blog.gdatasoftware.com/blog/search/lizamoon.html
+https://blog.gdatasoftware.com/blog/search/lnk.html
+https://blog.gdatasoftware.com/blog/search/lottery.html
+https://blog.gdatasoftware.com/blog/search/mac.html
+https://blog.gdatasoftware.com/blog/search/mail.html
+https://blog.gdatasoftware.com/blog/search/mails.html
+https://blog.gdatasoftware.com/blog.html
+http://feeds.feedblitz.com/gdatasecurityblog-en
+http://www.gdata.de/
+http://www.gdatasoftware.com/
+
+
+2015-05-08, 8:46 AM
+
+Page 2 of 7https://blog.gdatasoftware.com/blog/article/dissecting-the-kraken.html
+
+In this case, the attachment is a Microsoft Word document which tries to exploit the
+vulnerability described in CVE-2012-0158 in order to drop and execute malware dubbed
+“Kraken HTTP”. 
+
+The G DATA security solutions detect the malicious document
+(08E834B6D4123F0AEA27D042FCEAF992) as Exploit.CVE-2012-0158.AH and G DATA’s
+proactive Exploit Protection technology also prevents the attack before the PC can be
+infected.
+
+The Malware, advertised on the Underground Market
+“Kraken HTTP” is sold on at least one underground market as a commercial product.
+Someone, who claims not to be the author of the malware, promoted the malware with a
+kind of banner which has quite a visual impact. Have a look at the “ad” that was published
+back in December 2014.
+
+The banner describes the botnet:
+
+its technical features
+
+the available commands (classic ones, such as visiting a website using the infected bot,
+download and execute a command or a library, update and uninstall)
+
+the plugins one can use: file stealer, ad-clicker, form grabber, …
+
+The command “visiting a website” using the infected bot could be used by the attackers as
+an entry point for blackmailing the infected user. The attackers could visit websites that are
+regarded as illegal in the respective country and could then ask for ransom and threaten to
+release information about the alleged violation to any seemingly official entity who would
+then investigate against the victim. 
+
+The flyer also reveals the price of the malware: The basic binary costs $320 and each plugin
+must be paid for separately, for example $50 for the file stealer, $60 for the ad-clicker and
+up to $350 for a configurable form grabber. Accepted payment methods are the usual virtual
+currencies and pre-paid options. 
+
+malware malware windows
+matousec microsoft microsoft
+
+windows mobile network news
+osama bin laden password pdf
+
+pharmacy phishing picture pinterest
+playstation poker pos privacy pup
+
+ransom rat removal instructions
+riskware rsa scan scareware
+
+shopping short url snowden socail
+engineering soccer social
+
+engineering social network spain
+spam spyeye sql stuxnet
+
+targattacks testing tool trojan
+uefa uefa euro 2012 underground
+update url uroburos usb virus
+
+bulletin vulnerabilities warning wifi
+windows windows 8 wordpress worm
+youtube zero day zeus zynga 404
+
+419
+
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_email_anonym.png&md5=7a2f2cf132ba6bfd220a33f96f8b4934222da884&parameters%5B0%5D=YTo1OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NToidGl0bGUiO3M6NzI6IkVtYWlsIHNlbnQg&parameters%5B3%5D=aW4gYW4gYXR0ZW1wdCB0byBwZXJmb3JtIGEgdGFyZ2V0ZWQgYXR0YWNrIC0gQ2xp&parameters%5B4%5D=Y2sgdG8gZW5sYXJnZSI7czo0OiJ3cmFwIjtzOjM3OiI8YSBocmVmPSJqYXZhc2Ny&parameters%5B5%5D=aXB0OmNsb3NlKCk7Ij4gfCA8L2E%2BIjt9
+http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0158
+https://public.gdatasoftware.com/_download/kraken_advertisement.jpg
+https://blog.gdatasoftware.com/blog/search/malware.html
+https://blog.gdatasoftware.com/blog/search/malware%20windows.html
+https://blog.gdatasoftware.com/blog/search/matousec.html
+https://blog.gdatasoftware.com/blog/search/microsoft.html
+https://blog.gdatasoftware.com/blog/search/microsoft%20windows.html
+https://blog.gdatasoftware.com/blog/search/mobile.html
+https://blog.gdatasoftware.com/blog/search/network.html
+https://blog.gdatasoftware.com/blog/search/news.html
+https://blog.gdatasoftware.com/blog/search/osama%20bin%20laden.html
+https://blog.gdatasoftware.com/blog/search/password.html
+https://blog.gdatasoftware.com/blog/search/pdf.html
+https://blog.gdatasoftware.com/blog/search/pharmacy.html
+https://blog.gdatasoftware.com/blog/search/phishing.html
+https://blog.gdatasoftware.com/blog/search/picture.html
+https://blog.gdatasoftware.com/blog/search/pinterest.html
+https://blog.gdatasoftware.com/blog/search/playstation.html
+https://blog.gdatasoftware.com/blog/search/poker.html
+https://blog.gdatasoftware.com/blog/search/pos.html
+https://blog.gdatasoftware.com/blog/search/privacy.html
+https://blog.gdatasoftware.com/blog/search/pup.html
+https://blog.gdatasoftware.com/blog/search/ransom.html
+https://blog.gdatasoftware.com/blog/search/rat.html
+https://blog.gdatasoftware.com/blog/search/removal%20instructions.html
+https://blog.gdatasoftware.com/blog/search/riskware.html
+https://blog.gdatasoftware.com/blog/search/rsa.html
+https://blog.gdatasoftware.com/blog/search/scan.html
+https://blog.gdatasoftware.com/blog/search/scareware.html
+https://blog.gdatasoftware.com/blog/search/shopping.html
+https://blog.gdatasoftware.com/blog/search/short%20url.html
+https://blog.gdatasoftware.com/blog/search/snowden.html
+https://blog.gdatasoftware.com/blog/search/socail%20engineering.html
+https://blog.gdatasoftware.com/blog/search/soccer.html
+https://blog.gdatasoftware.com/blog/search/social%20engineering.html
+https://blog.gdatasoftware.com/blog/search/social%20network.html
+https://blog.gdatasoftware.com/blog/search/spain.html
+https://blog.gdatasoftware.com/blog/search/spam.html
+https://blog.gdatasoftware.com/blog/search/spyeye.html
+https://blog.gdatasoftware.com/blog/search/sql.html
+https://blog.gdatasoftware.com/blog/search/stuxnet.html
+https://blog.gdatasoftware.com/blog/search/targattacks.html
+https://blog.gdatasoftware.com/blog/search/testing.html
+https://blog.gdatasoftware.com/blog/search/tool.html
+https://blog.gdatasoftware.com/blog/search/trojan.html
+https://blog.gdatasoftware.com/blog/search/uefa.html
+https://blog.gdatasoftware.com/blog/search/uefa%20euro%202012.html
+https://blog.gdatasoftware.com/blog/search/underground.html
+https://blog.gdatasoftware.com/blog/search/update.html
+https://blog.gdatasoftware.com/blog/search/url.html
+https://blog.gdatasoftware.com/blog/search/uroburos.html
+https://blog.gdatasoftware.com/blog/search/usb.html
+https://blog.gdatasoftware.com/blog/search/virus%20bulletin.html
+https://blog.gdatasoftware.com/blog/search/vulnerabilities.html
+https://blog.gdatasoftware.com/blog/search/warning.html
+https://blog.gdatasoftware.com/blog/search/wifi.html
+https://blog.gdatasoftware.com/blog/search/windows.html
+https://blog.gdatasoftware.com/blog/search/windows%208.html
+https://blog.gdatasoftware.com/blog/search/wordpress.html
+https://blog.gdatasoftware.com/blog/search/worm.html
+https://blog.gdatasoftware.com/blog/search/youtube.html
+https://blog.gdatasoftware.com/blog/search/zero%20day.html
+https://blog.gdatasoftware.com/blog/search/zeus.html
+https://blog.gdatasoftware.com/blog/search/zynga.html
+https://blog.gdatasoftware.com/blog/search/404.html
+https://blog.gdatasoftware.com/blog/search/419.html
+
+
+2015-05-08, 8:46 AM
+
+Page 3 of 7https://blog.gdatasoftware.com/blog/article/dissecting-the-kraken.html
+
+A price list found on a different website, also posted in December 2014, lists the binary’s
+price as $270 and some additional modules, such as a “Edit Hosts module” ($15), a “Botkill
+module” ($30) and a “Bitcoin monitor module”($20).
+
+Furthermore, “Kraken HTTP” is advertised as “a new, revolutionary botnet […] and very
+noob-friendly”. Noob is a word describing “that someone is new to a game, concept, or idea;
+implying a lack of experience.” But now let’s have a look at what the botnet really is.
+
+Marketing vs. Reality
+After having a glimpse at the ad designed to promote the malware, we analyzed a sample of
+it: 3917107778F928A6F65DB34553D5082A, which is detected as Gen:Variant.Zusy.118945.
+We decided to analyze some features mentioned in the flyer and on the other website to
+evaluate their power and implementation.
+
+Feature: “Bypass UAC”
+As expected, the malware does not really bypass the UAC. It rather uses a classic trick
+already used by several malware instances. It uses a legitimate Microsoft binary in order to
+execute itself with administrator permissions. We already presented this technique in our 
+G DATA SecurityBlog article about the Beta Bot.
+
+Feature: “Anti-VM”
+The flyer explains that the botnet won’t work in a virtual machine. To detect whether the
+malware is running in a virtual machine, the malware author checks if the following
+directories and the one file exist:
+
+C:\Program Files\VMWare\VMware Tools\
+
+C:\Program Files (x86)\VMware\WMware Tools\
+
+C:\WINDOWS\system32\VBoxtray.exe
+
+Furthermore, the malware checks if following applications analysts usually use are being
+executed:
+
+Wireshark: a network analyzer
+
+Fiddler: a web proxy used to debug HTTP flow.
+
+We can see the tools detection:
+
+http://en.wiktionary.org/wiki/noob
+https://blog.gdatasoftware.com/blog/article/a-new-bot-on-the-market-beta-bot.html
+
+
+2015-05-08, 8:46 AM
+
+Page 4 of 7https://blog.gdatasoftware.com/blog/article/dissecting-the-kraken.html
+
+If one of the elements mentioned above is detected, the malware will display a rather poetic
+dialog popup:
+
+So, the anti-VM is really rudimentary. If the additional tools are not installed on the virtual
+machine the malware can be perfectly executed.
+
+Feature: “Folder, Bot file & All file dropped are hidden”
+The folders & bot files simply have the “hidden” attribute set in Microsoft Windows. If you
+configure you system to show hidden files and directories, you can perfectly see them:
+
+
+
+2015-05-08, 8:46 AM
+
+Page 5 of 7https://blog.gdatasoftware.com/blog/article/dissecting-the-kraken.html
+
+So, the botnet does not use advanced techniques to hide itself.
+
+Feature: “Process & registry persistence”
+The malware persistence uses a registry key in order to be executed automatically in case
+the system is rebooted. The key is
+HKCU\Software\Microsoft\Windows\CurrentVersion\Run\Windows:
+
+The malware repeatedly checks whether this entry is removed. In case the entry is removed,
+the malware will create a new one. However, instead of removing it, we can simple rename
+the path to the executable in order to switch off the persistence mechanism.
+
+So, the malware does not have any clever persistence features either.
+
+Feature: “Path & variable encrypted”
+We identified two kinds of “encrypted” data:
+
+Some paths are encoded using base64 algorithm, such as: JVdJTkRJUiUA (%WINDIR%)
+and JWFwcGRhdGElaa== (%appdata%)
+
+Some data is encrypted (RC4), such as the C&C  information:
+
+Feature: “Bitcoin monitor plugin”
+The Bitcoin monitor plugin is even more amusing. It is not advertised on the flyer but on the
+other website we found. The malware monitors the infected user’s clipboard. If the user
+copies a Bitcoin address to the clipboard, it will be replaced by an address pre-configured by
+the botmaster. A Bitcoin address is an identifier of 26-35 alphanumeric characters which
+represent the owner of a Bitcoin wallet, for example something like
+
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_feature_hide.jpg&md5=4ea70dee4b471797ef82e659ff2eedeab66ce232&parameters%5B0%5D=YTo1OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NToidGl0bGUiO3M6MTA2OiJUaGUgbWFsd2Fy&parameters%5B3%5D=ZSDigJxoaWRlc%2BKAnSBpdHNlbGYgYW5kIHVzZXMgYSBsZWdpdGltYXRlIFdpbmRv&parameters%5B4%5D=d3MgZmlsZSBuYW1lIHRvIGZvb2wgdGhlIHVzZXIgLSBDbGljayB0byBlbmxhcmdl&parameters%5B5%5D=IjtzOjQ6IndyYXAiO3M6Mzc6IjxhIGhyZWY9ImphdmFzY3JpcHQ6Y2xvc2UoKTsi&parameters%5B6%5D=PiB8IDwvYT4iO30%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_feature_persistence.jpg&md5=517e6bc516d84411de422d948e059bf8f540fc3f&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_feature_encryption.jpg&md5=36bdf59cecf65039f1b3d24b16c6436645fd39dc&parameters%5B0%5D=YTo1OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NToidGl0bGUiO3M6Njk6IkEgc2NyZWVuc2hv&parameters%5B3%5D=dCBvZiB0aGUgYXNzZW1ibHkgY29kZSBhZnRlciBkZWNyeXB0aW9uIC0gQ2xpY2sg&parameters%5B4%5D=dG8gZW5sYXJnZSI7czo0OiJ3cmFwIjtzOjM3OiI8YSBocmVmPSJqYXZhc2NyaXB0&parameters%5B5%5D=OmNsb3NlKCk7Ij4gfCA8L2E%2BIjt9
+
+
+2015-05-08, 8:46 AM
+
+Page 6 of 7https://blog.gdatasoftware.com/blog/article/dissecting-the-kraken.html
+
+3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy.
+
+We can easily imagine that the plugin’s “test” is prone to produce false positives, because
+any alphanumeric text copied by the user will be automatically changed without reason if it
+has a length between 26 and 35 characters. Ok, we admit that the German word
+“Kraftfahrzeughaftpflichtversicherung” (36) would not be harmed when copied, but what
+about “Bundesausbildungsfoerderungsgesetz” (34) or “radioimmunoelectrophoresis” (27)?
+Just kidding. But any string, from strong passwords to bank account numbers and more
+could be affected.
+
+Feature: “Download & Execute”, the next Step
+This feature allows installing further malware on the affected PC in case the attackers decide
+the current machine is interesting enough. “Kraken HTTP” is only the first stage in this attack
+and can be seen as reconnaissance tool.
+
+Administration Panel
+The experts of the G DATA SecurityLabs had access to the panel used by “Kraken HTTP” but
+the source code is protected by a commercial packer called IonCube loader. Nevertheless, we
+can reveal some screenshots of the administration panel which are available on the
+underground. Note that some of the texts contain mistakes:
+
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_panel_demo_01.png&md5=545fdffdc5c8eff6b8c36ab978495207178eea14&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_panel_demo_02.png&md5=0f44ecb481ce48dc4038c8bfe472532339567099&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_panel_demo_03.png&md5=4cb4766536b170b81b02806aea649b358e051008&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_panel_demo_04.png&md5=3dc13391846806e625dc527cc6ee1dc7ff3fe7ba&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_panel_demo_05.png&md5=eb28edd84536ec36341c79579c74920ccecb24e0&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_panel_demo_06.png&md5=294226e172517b11929cd257e5c9afae7f921172&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+https://blog.gdatasoftware.com/index.php?eID=tx_cms_showpic&file=fileadmin%2F01_public%2FWeb%2FContent%2FINT%2FBlog%2F2015%2F05_2015%2Fgraphics_05_2015%2Fkraken_panel_active_01.png&md5=bab2db75496628185130080f544d7655f20ee9ac&parameters%5B0%5D=YTo0OntzOjU6IndpZHRoIjtzOjQ6IjgwMG0iO3M6NjoiaGVpZ2h0IjtzOjQ6IjYw&parameters%5B1%5D=MG0iO3M6NzoiYm9keVRhZyI7czo0MToiPGJvZHkgc3R5bGU9Im1hcmdpbjowOyBi&parameters%5B2%5D=YWNrZ3JvdW5kOiNmZmY7Ij4iO3M6NDoid3JhcCI7czozNzoiPGEgaHJlZj0iamF2&parameters%5B3%5D=YXNjcmlwdDpjbG9zZSgpOyI%2BIHwgPC9hPiI7fQ%3D%3D
+
+
+2015-05-08, 8:46 AM
+
+Page 7 of 7https://blog.gdatasoftware.com/blog/article/dissecting-the-kraken.html
+
+Conclusion
+We suppose that the Kraken botnet was developed by a beginner. The malware does not
+include advanced malware technologies and no groundbreaking innovations, even though
+those were advertised. Many sensitive strings are not encrypted, such as installation paths,
+anti-virus listings, insults against the analysts and much more.
+
+To sell the botnet malware, the author used a quite sexy marketing flyer, but, actually, the
+malware turned out to be rather simple.
+
+“Kraken HTTP” was said to be used during an espionage campaign against the energy sector,
+especially against targets in the UAE. We have now identified a specific target from this
+geographical region and have obtained one of the spear phishing emails used. Even though
+the targets that are known by now are rather high-level targets, the malware code as well as
+its features is not advanced.
+
+We are surprised to see this piece of code has been used carrying out targeted attacks rather
+than broader criminal activities. It is not surprising that attackers use vulnerabilities that are
+older, because, unfortunately, many computers are likely to be still out of date and so the
+attack works. Despite the fact that the vulnerability used is not a new one, the malware does
+not have the common features that we saw during other targeted attack campaigns.
+Compared to incidents like Uroburos, the Kraken malware is not good enough to “catch the
+big fish” if we want to stick with to the metaphor. So, from the current point of view, there
+are three theories:
+
+The attackers who developed the Kraken malware might have chosen to diversify their
+business and chose to attack special interest targets themselves.
+
+The attackers identified infected machines in the business sector and followed the tracks
+to see what else they might be able to get from the companies.
+
+The actual espionage team voluntary chose to use a kind of usual and rather simply
+botnet malware in order to distract analysts from seeing a deeper meaning behind this
+attack and make them disregard it as ‘daily cybercrime business’.
+
+Attached Files:
+
+kraken_illu_4c.jpg1.9 M
+
+kraken_illu_rgb.jpg411 K
+
+kraken_illu_web.jpg153 K
+
+back
+
+© 2007 - 2015 G Data Software AG. All rights reserved  Contact | Imprint
+
+http://www.scmagazine.com/symantec-details-reconnaissance-campaign-targeting-middle-eastern-companies/article/406470/
+https://blog.gdatasoftware.com/uploads/media/kraken_illu_4c.jpg
+https://blog.gdatasoftware.com/uploads/media/kraken_illu_rgb.jpg
+https://blog.gdatasoftware.com/uploads/media/kraken_illu_web.jpg
+https://blog.gdatasoftware.com/blog.html
+https://blog.gdatasoftware.com/contact.html
+https://blog.gdatasoftware.com/imprint.html
+

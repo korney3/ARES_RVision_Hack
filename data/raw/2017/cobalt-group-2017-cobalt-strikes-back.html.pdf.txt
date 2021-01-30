@@ -1,0 +1,635 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Positive Technologies - learn and secure : Cobalt strikes back: an evolving multinational threat to finance
+
+
+Positive Technologies - learn and secure
+
+Home About us
+
+August 1, 2017
+
+Cobalt strikes back: an evolving multinational threat to finance�
+
+Bank robbery is perhaps the quintessential crime. The promise of immense, instant riches has lured
+many a criminal to target banks. And while the methods, tools, and scale of robbery have all changed,
+two things have stayed the same: the enticement of a hefty payday and the fact that no system is
+perfectly secure.
+
+In the modern digital economy, criminals are becoming ever more creative in ways to make off with
+millions without having to leave home. Despite enormous efforts, security is always a work in progress
+because of technical vulnerabilities and the human factor. Only a small fraction of banks today are able
+to withstand targeted attacks of the kind perpetrated by Cobalt, a cybercriminal group first described in�
+2016 that is currently active worldwide. Now the group has set its sights on more than just banks.
+
+Researchers at Positive Technologies and other companies have described the group's methods
+previously. In this report, we will describe the new techniques used by Cobalt in 2017, the changing
+target profile, and recommendations on how to avoid becoming their latest victim.�
+
+The Cobalt group has been quick to react to banks' protective measures. When spam filters on mail�
+servers began to block most of the group's phishing emails, which contained forged sender
+information, the attackers changed techniques. Now they actively use Supply Chain Attacks to
+leverage the infrastructure and accounts of actual employees at one company, in order to forge
+convincing emails targeting a different partner organization. This tactic has already been used by other
+attackers, such as when the infrastructure of M.E.Doc was used to spread the NotPetya virus, which
+blocked workstations at a large number of major companies.
+
+Cobalt has attacked banks, financial exchanges, insurance companies, investment funds, and other�
+financial organizations. The group is not afraid to use the names of regulatory authorities or security�
+topics to trick recipients into opening phishing messages from illegitimate domains.
+
+Here is some of the latest information about techniques used by the Cobalt group:
+Active attacks on bank partners in order to use partner infrastructure for sending phishing
+messages to banks. 
+Phishing messages disguised as mailings from financial regulators.�
+Various types of malicious attachments: document with an exploit (.doc, .xls, .rtf), archive
+with an executable dropper file (.scr, .exe), and archive with LNK file (.lnk).��
+Among the first groups to get access to the latest version of the Microsoft Word Intruder 8�
+exploit builder, which made it possible to create documents exploiting vulnerability CVE-
+2017-0199.
+Poorly protected public sites are used to upload files and then download them to victim�
+computers.
+Phishing messages are sent both to corporate addresses and personal addresses of
+employees.
+
+1. Introduction
+
+2. Executive summary
+
+3. What we already knew about Cobalt
+
+Follow @ptsecurity_uk
+
+Connect on Twitter
+
+Connect on linkedin
+
+▼  2017 (18)
+▼  August (1)
+
+Cobalt strikes back: an
+evolving
+multinational thr...
+
+►  July (1)
+
+►  June (5)
+
+►  May (2)
+
+►  April (5)
+
+►  March (2)
+
+►  February (1)
+
+►  January (1)
+
+►  2016 (18)
+
+►  2015 (22)
+
+►  2014 (18)
+
+►  2013 (15)
+
+►  2012 (45)
+
+►  2011 (22)
+
+►  2010 (27)
+
+►  2009 (6)
+
+►  2007 (1)
+
+►  2005 (1)
+
+Blog ArchiveSearchSearch
+telecom phdays
+Best of Positive
+Research Linux PCI DSS
+audit positive technologies
+
+Labels
+
+ Subscribe 
+
+ 更多  下⼀個網誌» 建⽴網誌  登⼊
+
+http://blog.ptsecurity.com/
+http://blog.ptsecurity.com/
+http://blog.ptsecurity.com/p/about-us.html
+https://www.group-ib.com/cobalt.html
+https://www.sans.org/reading-room/whitepapers/analyst/combatting-cyber-risks-supply-chain-36252
+https://www.welivesecurity.com/2017/06/30/telebots-back-supply-chain-attacks-against-ukraine/
+https://www.blogger.com/comment-iframe.g?blogID=8549938467002440724&postID=8115373785289763196&blogspotRpcToken=5371912
+https://twitter.com/ptsecurity_uk
+javascript:void(0)
+http://blog.ptsecurity.com/2017/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/08/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/07/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/06/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/05/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/04/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/03/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/02/
+javascript:void(0)
+http://blog.ptsecurity.com/2017/01/
+javascript:void(0)
+http://blog.ptsecurity.com/2016/
+javascript:void(0)
+http://blog.ptsecurity.com/2015/
+javascript:void(0)
+http://blog.ptsecurity.com/2014/
+javascript:void(0)
+http://blog.ptsecurity.com/2013/
+javascript:void(0)
+http://blog.ptsecurity.com/2012/
+javascript:void(0)
+http://blog.ptsecurity.com/2011/
+javascript:void(0)
+http://blog.ptsecurity.com/2010/
+javascript:void(0)
+http://blog.ptsecurity.com/2009/
+javascript:void(0)
+http://blog.ptsecurity.com/2007/
+javascript:void(0)
+http://blog.ptsecurity.com/2005/
+http://blog.ptsecurity.com/search/label/telecom
+http://blog.ptsecurity.com/search/label/phdays
+http://blog.ptsecurity.com/search/label/Best of Positive Research
+http://blog.ptsecurity.com/search/label/Linux
+http://blog.ptsecurity.com/search/label/PCI DSS
+http://blog.ptsecurity.com/search/label/audit
+http://blog.ptsecurity.com/search/label/positive technologies
+http://blog.ptsecurity.com/search/label/SQL-Injection
+http://blog.ptsecurity.com/search/label/blackbox
+http://blog.ptsecurity.com/search/label/Microsoft
+http://blog.ptsecurity.com/search/label/positive research
+http://feeds.feedburner.com/positiveTechnologiesResearchLab
+http://feeds.feedburner.com/positiveTechnologiesResearchLab
+http://feeds.feedburner.com/positiveTechnologiesResearchLab
+
+
+The Cobalt group's traditional "stomping grounds" are the Eastern Europe, Central Asia, and
+Southeast Asia. In 2017, attacks grew to include North America, Western Europe, and even South
+America (Argentina). 
+
+Of the companies targeted by Cobalt in phishing mailings, around 75 percent are in the financial�
+sector. Most of these financial companies are banks (90%), but others include financial exchanges,��
+investment funds, and lenders. This widening range of targets suggests that attacks on diverse
+companies with major financial flows are underway. This concurs with the forecast made by the��
+FinCERT of the Russian Central Bank, which predicted increased interest by cybercriminals in financial�
+exchanges in 2017.
+
+By attacking a financial exchange, the Cobalt group can "pump" or "dump" stocks, incentivizing�
+purchase or sale of shares in certain companies in a way that causes rapid fluctuations in share price.�
+Stock manipulation can affect not just the welfare of a single company, but the economy of entire
+countries. These methods were employed by the Corkow group in their 2016 attack on Russia's
+Energobank, which caused a 15-percent change in the exchange rate of the ruble and caused bank
+losses of RUB 244 million (over USD 4 million).
+
+The remaining 25 percent of targeted companies represent diverse industries:
+Government
+Telecom/Internet
+Service Providers
+Manufacturing
+Entertainment
+
+4. Cobalt targets and objectives
+
+https://3.bp.blogspot.com/-TesKVWaeKY4/WYArM1O7hzI/AAAAAAAAGIs/WBLimKQMSS085pGrGXVk922O1Wj4REvCgCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2017-08-01%2B%25D0%25B2%2B10.17.56.png
+https://1.bp.blogspot.com/-I-RVlgdwGVo/WYArX1HHskI/AAAAAAAAGIw/014Uf7Wssqco2AjoRUitfF92vc7aEr93QCLcBGAs/s1600/c1.png
+http://fortune.com/2016/02/08/russian-hackers-currency-rate/
+
+
+Healthcare
+Since the beginning of 2017, our researchers have studied over 60 unique samples of phishing
+messages sent as part of Cobalt campaigns. These messages were sent to over 3,000 people in 12
+countries. The addresses include corporate addresses but also personal addresses, since employees
+often can check their email on work computers.
+
+Notably, Cobalt attacks government organizations and ministries in order to use them as a stepping
+stone for other targets. 
+
+In early 2017, we noted that the Cobalt group was actively registering illegitimate domains. As soon as
+these domains were used to send phishing mailings, we notified the security departments of the�
+targeted companies, as well as the FinCERT of the Russian Central Bank. Thanks to this timely
+intervention, the domains were blocked before the attackers could make use of them.
+
+Positive Technologies has investigated incidents related to attacks by the Cobalt group at a number of
+companies in 2017. In several cases, the attackers compromised company infrastructure and
+employee accounts in order to send phishing messages to partner companies (i.e., companies that
+have a legitimate pre-existing business relationship with banks) in North and South America, Europe,
+CIS countries, and Central and Southeast Asia. Against targets in the CIS countries, the attackers also
+used their own infrastructure, which included rented dedicated servers located in North America,
+Europe, and Southeast Asia.
+
+Several pieces of information suggest that the team responsible for the technical aspects of attacks
+consists of only a handful of people. When the attackers were at their most active inside target
+networks, the group would temporarily stop registering domain names and sending phishing mailings.
+Activity not aimed at the targeted infrastructure was not detected. The days and times of mailings are
+also suggestive in this regard, as described later in this report.
+
+5. Chronology of Cobalt 2017 campaign
+
+https://4.bp.blogspot.com/-qavAv92q6YE/WYArywjbGcI/AAAAAAAAGI0/w10YG30okzoW0qt1ufcWnA7jh0OOaEsxQCLcBGAs/s1600/c2.png
+https://2.bp.blogspot.com/-ukVWrJxoU9M/WYAr9MtRzBI/AAAAAAAAGI4/wbB_qeaYbJ8osvdNH-Zaf5Z-sX3NaqpVQCLcBGAs/s1600/c3.png
+
+
+The Cobalt group relies on social engineering to penetrate networks—users open malicious
+attachments from phishing messages that are disguised by the attackers to resemble messages from
+legitimate companies and regulatory authorities. These attachments contain a document file, which�
+downloads a dropper from a remote server or contains the dropper in a password-protected archive.
+Small in size, a dropper is used to download and run other malicious software (in the case of Cobalt,
+the Beacon Trojan).
+
+Preparations and progression of a typical attack are illustrated below.
+
+For information on the actions of Cobalt attackers inside the network of a targeted organization, please
+see our previous report. 
+
+The Cobalt group's traditional method—sending messages with forged sender information—has fallen
+out of favor. Instead, the group has paid more attention to making sure that messages get delivered by
+dodging mail server filters. �
+
+For a targeted mailing ("spear phishing"), the criminals use previously registered domains. A domain
+name is chosen to be similar in meaning and spelling to the domain of the real company. For
+messages to make it through antispam and antivirus checks, the criminals correctly configure SPF�
+entries on the DNS server and indicate the correct DKIM signatures for their messages. This approach
+allows bypassing verification of the address of the sender's mail server, but offers digital evidence for�
+investigators.
+
+Despite the increased complexity involved, in the first quarter of 2017 the Cobalt group also began to�
+attack various companies that partner with banks, then sending phishing messages from these
+partners' infrastructures using the hacked accounts and mail servers of real employees. 
+
+6. Cobalt attack methods
+
+1. Partner phishing
+
+https://1.bp.blogspot.com/-Hl7-URS72ws/WYAsN463lBI/AAAAAAAAGI8/xxIVhgAt-aULVrBZ4Bim-O8JNwbpqi2-ACLcBGAs/s1600/c4.png
+https://www.ptsecurity.com/upload/corporate/ww-en/analytics/Cobalt-Snatch-eng.pdf
+
+
+This approach ensures that recipients are likely to trust the sender and has a number of advantages:
+
+1. Attackers get information stored on the servers and in the databases of the compromised
+partner organization. This information can be used to create convincing phishing messages.
+
+2. Attackers obtain access to employee accounts on workstations and mail servers, giving phishing
+messages a high degree of trust and plausibility among potential recipients.
+
+3. Messages from partners are not blocked by mail server filters.�
+
+The attackers carefully choose subject lines, recipient addresses, and attachment names
+that will "fly below the radar" so that recipients open the attachments enclosed with�
+phishing messages.
+
+Today, Cobalt uses phishing mailings at practically all stages of targeted attacks on banks.
+
+1. Initial compromise starts with one or more workstations at a partner organization, which have been
+infected via phishing.
+
+A message informing of "missed payments"
+
+Instructions for connecting to a payment gateway—supposedly
+
+2. The attack against the partner organization is then developed by means of internal mailings
+containing malicious documents supposedly from colleagues, management, or IT.
+
+"Documents requested by the head of the department"
+
+https://3.bp.blogspot.com/-4E8ocZ3MKEM/WYAshppXJhI/AAAAAAAAGJA/KfFixgp3GgAp2ioxWxCyfsoFJeqLW6ouwCLcBGAs/s1600/c5.png
+https://1.bp.blogspot.com/-clYZwtghtHI/WYAt1t4PDwI/AAAAAAAAGJY/rdj7SuLe80o1XGbzhD1dTKBHAbvXTnsGQCLcBGAs/s1600/c6.png
+https://3.bp.blogspot.com/-88R_qkRacF0/WYAtFl-3yCI/AAAAAAAAGJI/LYxE_ClswXMaHh9cluB-CPw-f5ZH-Z92QCLcBGAs/s1600/c8.png
+https://2.bp.blogspot.com/-i21XwJd3nKs/WYAt9b3HBeI/AAAAAAAAGJc/6w7tdlGgnVAFtcIT5WxCZ_a3t-nqhE9UwCLcBGAs/s1600/c9.png
+
+
+A message claiming to inform of payroll changes
+
+3. Malicious messages are sent from the partner's infrastructure to banks and other financial�
+organizations.
+
+A password-protected archive (with the password "doc") supposedly containing an invoice for ATM
+maintenance
+
+In early 2017, 60 percent of phishing messages from Cobalt related to cooperation and service terms
+between banks and their partners. 
+
+In 2017 Cobalt began to use security anxieties as an attack vector. The group has sent messages from
+illegitimate domains posing as VISA, MasterCard, and FinCERT units of the Russian Central Bank and
+National Bank of the Republic of Kazakhstan. 
+
+Broken English and copied boilerplate text can be convincing in the right circumstances
+
+https://4.bp.blogspot.com/-AoN1LM5sVIA/WYAuHrSyOVI/AAAAAAAAGJg/QGALbvBVOz4JgOmPX01WFEgKuj6RfWVYgCLcBGAs/s1600/c10.png
+https://1.bp.blogspot.com/--yxvpHuUCNM/WYAuVHFU6lI/AAAAAAAAGJk/2fNn6JSuSYgFPhKigrkEX4m1GYE2RIqvgCLcBGAs/s1600/c11.png
+https://3.bp.blogspot.com/-fNnYcxWCDgc/WYAucjGrgRI/AAAAAAAAGJo/vIIrlPsjh9cmF0rPGL3Z0nWmxDek2De7wCLcBGAs/s1600/c12.png
+https://2.bp.blogspot.com/-2Wq4iwLj3A4/WYAuj8Xb8EI/AAAAAAAAGJs/9LedhqeA6604LHyZuQ7EVtu6sWgIh3HlQCLcBGAs/s1600/c13.png
+
+
+A fake FinCERT message
+
+In Russia, this was a particularly ironic "twist" since FinCERT had been actively warning financial�
+companies about the Cobalt threat. So the group took advantage of such anxiety to send messages to
+banks with malicious documents, supposedly on how to keep bank systems safe
+
+A vague warning that asks the user to act immediately
+
+So by creating counterfeit domains superficially similar to those of real companies, the criminals use�
+the imprimatur of well-known organizations to convince users to open dangerous attachments. 
+
+Since real messages from colleagues and partners usually arrive during working hours, the criminals
+structured the mailings so that employees would receive them during working hours (no matter in
+which time zone the attackers themselves were located).
+
+Most messages were received in the afternoon—the reason being that employees tend to be less
+vigilant, and therefore more susceptible to phishing, as the evening approaches. 
+
+We noticed a slight variation in tactics against North American companies. Messages targeting U.S.
+and Canadian organizations were sent from the compromised infrastructure of a European partner. For
+the phishing messages to be plausibly European in origin, the criminals performed the mailing during
+European working hours, due to which the targets received emails in the early waking hours in the
+U.S. and Canada.
+
+2. Malicious attachments
+
+https://3.bp.blogspot.com/-Oq8F-I79WJE/WYAuxGVrn9I/AAAAAAAAGJw/xtUmH73jwAgstv64hyVWT0TsACc4LL-DQCLcBGAs/s1600/c14.png
+https://1.bp.blogspot.com/-vCkCIKJuRVQ/WYAvFDZ0dmI/AAAAAAAAGJ8/tvsAYuXte7IKF3LwSI3k-nvrJgCrt-S0gCLcBGAs/s1600/c16.png
+https://2.bp.blogspot.com/-DcwW4Ab78iI/WYAvQwsRGyI/AAAAAAAAGKA/X_BsvCslwHAV_ufW-yKLVq8yDrUGwKUpgCLcBGAs/s1600/c17.png
+https://4.bp.blogspot.com/-TU4BVdafw68/WYAvVJ_OZDI/AAAAAAAAGKE/QX9CcMiH2OQVLHkxBBtfLzcEjz7wt3o0QCLcBGAs/s1600/c18.png
+https://3.bp.blogspot.com/-HddCm6zuehY/WYAveiI31iI/AAAAAAAAGKI/PraDtRFpYXgb0m7vm5ZbXbT-fqTHKVTOQCLcBGAs/s1600/c20.png
+
+
+To ensure remote access to the workstation of an employee at a target organization, the Cobalt group
+(as in previous years) uses Beacon, a Trojan available as part of commercial penetration testing
+software Cobalt Strike.
+
+The Trojan is delivered and run with the help of a special dropper. The dropper consists of .scr or .exe
+files that are placed on the victim's computer in one of the following ways:�
+
+1. In a password-protected ZIP archive, the password to which is given in the text of the phishing
+message.
+
+2. Downloaded from a hacked website when a malicious attachment (.doc, .xls, .rtf) is opened from
+the phishing message. 
+
+3. Downloaded from a hacked website based on commands coded in a LNK file that is in a ZIP�
+archive attached to the message.
+
+Poorly protected websites are compromised by the attackers and used, in essence, as file�
+hosts for spreading malicious files in attacks against banks.�
+
+52 percent of the Cobalt phishing messages reviewed by our researchers contained Microsoft Word
+documents.
+
+The malicious Microsoft Office documents that trigger download of the dropper are created using the�
+Ancalog and Microsoft Word Intruder (MWI) exploit kits. With these kits, even a hacker without
+programming skills can create malicious Word documents and PDF files in an intuitive visual interface�
+in just minutes. 
+
+The Cobalt group was one of the first to get their hands on a restricted version of MWI that can create�
+documents exploiting the critical vulnerability CVE-2017-0199. Since the version in question was sold
+on an individual basis to customers well known to the developer, there may be a relationship between
+the Cobalt group and developer of MWI. One instructive fact in this regard is that less than a week
+passed between announcement of a new MWI version and use by Cobalt of attachments exploiting
+vulnerability CVE-2017-0199.
+
+https://4.bp.blogspot.com/-325FNUff9qw/WYAvrnHOIiI/AAAAAAAAGKM/l-_pUx9_c34eYJoVBKnunz-ysv6dXwExACLcBGAs/s1600/c21.png
+https://1.bp.blogspot.com/-GoKVb-1POGU/WYAwA8DWwJI/AAAAAAAAGKQ/a5T5ODrzkQc9-mDjVUW5GXZwkfFO6SFVACLcBGAs/s1600/c22.png
+https://www.proofpoint.com/us/threat-insight/post/microsoft-word-intruder-integrates-cve-2017-0199-utilized-cobalt-group-target
+
+
+MWI is positioned by its developer as a tool for performing APT attacks; if the software is instead used
+to create files for mass spamming, the developer revokes the license. For users of the restricted�
+version of MWI, the developer offers a sort of "scrubbing" so that files will not be flagged by currently��
+available antivirus scanners. 
+
+The MWI developer boasting of the "product" online
+
+Malicious documents sent by Cobalt to banks and their partners use exploits for
+vulnerabilities CVE-2017-0199, CVE-2015-1641, and CVE-2012-0158 in order to
+download and run the dropper on the victim system.
+
+An official-seeming document about how to pay overdue debts�
+
+When the attachment is opened, malicious code is run. This code takes advantage of vulnerabilities in
+Microsoft Office to download the dropper from a remote server and �run it. After the code finishes�
+running, a decoy document (such as shown in the screenshot) is displayed.
+
+The attackers upload files to vulnerable sites in advance, from where the files can be later downloaded��
+
+https://4.bp.blogspot.com/-SMs-m1-HL7k/WYAwNpyE60I/AAAAAAAAGKU/frVmT8PmdIEP3fMdb3yDD5fCrHQgYvUhQCLcBGAs/s1600/c23.png
+https://2.bp.blogspot.com/-YkMFqGNb8xM/WYAwV1o9m2I/AAAAAAAAGKY/5sSMI0ZD2a8j4yDppl3IYbFMGWAlXu0uQCLcBGAs/s1600/c24.png
+https://4.bp.blogspot.com/-vkjvB5P2ygM/WYAwj-jjvMI/AAAAAAAAGKc/2sxUTzulIyY3ZoFKVwLVuWtpH2jpOf7rACLcBGAs/s1600/c25.png
+https://blog.fortinet.com/2017/05/30/spear-phishing-fileless-attack-with-cve-2017-0199
+https://2.bp.blogspot.com/-zYe3857eWnI/WYAwz2Iq9nI/AAAAAAAAGKg/X-XTKqifJ1oCh8F--SoSZt87F6ajeqY6wCLcBGAs/s1600/c26.png
+
+
+to victim systems during an attack. Therefore we urge website owners to be vigilant in securing their
+sites: if weak protections cause a site to become a staging ground for malware, regulators may block
+the site or law enforcement may seize server equipment as part of a criminal investigation. Public
+knowledge of such incidents is likely to cause severe damage to company reputation.
+
+Usually Cobalt phishing messages are sent in several waves. In the first wave, the criminals send�
+Microsoft Office documents created using the described exploit kits.�
+
+If there are no "hits" from targeted users within 24 hours of a mailing (this is possible if a company has
+up-to-date versions of Microsoft Office that are free of the vulnerabilities targeted by the exploit�
+builders), the attackers send a second wave.
+
+Attached to the messages is a dropper, consisting of .exe or .scr executable files, in a password-�
+protected archive. By placing the files in an archive, the attackers can bypass some filtering and��
+antivirus systems. Solutions are available for real-time scanning of encrypted archives (when the
+password is indicated in the body of the message, as is the case here) but organizations making use
+of such software are few and far between.
+
+In addition, we have observed a separate mailing in which the attached archives contained LNK files;�
+as in all the other cases, these files are used to download the Beacon dropper. �
+
+Since a Cobalt mailing is sent to thousands of recipients, the group clearly is using some sort of
+automation. Based on analysis of the phishing messages, we believe that the messages are sent from
+phishing domains with the help of alexusMailer v2.0, a freely available PHP script used to send emails
+anonymously. 
+
+alexusMailer and other scripts are available on forums
+
+The script includes support for multithreaded sending, a visual editor for messages, import of recipient
+lists and other fields from files, templates, attaching any number of files to a message, and more.���
+Users can distribute sending tasks over a number of servers and set a delay for message sending.
+
+3. Cobalt infrastructure
+
+https://4.bp.blogspot.com/-sU9k8WnkQ8I/WYAw8ij3bMI/AAAAAAAAGKk/Kk7C8D79Dtks02QJO2KXl4wFzHPchH9vACLcBGAs/s1600/c27.png
+https://3.bp.blogspot.com/-_7iMRnGQhx8/WYAxGKuB-QI/AAAAAAAAGKo/IZaD6R9NA48Xls7fyfE4SzG6MxoVcrBFgCLcBGAs/s1600/c28.png
+https://3.bp.blogspot.com/-MBMtIdtyOU0/WYAxMCnJfGI/AAAAAAAAGKs/E1HUGx4dzY8PLxFhQge1GkZ5k9BYRDR_ACLcBGAs/s1600/c29.png
+https://github.com/AlexusBlack
+https://2.bp.blogspot.com/-gfMLjx3DBbE/WYAxaHrpUrI/AAAAAAAAGKw/IqhnyS_k_bIvK2WGOzzkH7zI-YBO7tF3QCLcBGAs/s1600/c30.png
+
+
+alexusMailer interface
+
+However, when messages are sent with alexusMailer, the message header contains an artifact: the X-
+PHP-Originating-Script field contains the name of the file of the PHP script that was used to send the��
+messages. This means that on servers used for sending, the php.ini configuration file is set to log��
+outgoing mail.
+
+The Cobalt group uses widely availably public mail services, as well as services that allow anonymous
+registration of temporary addresses. Some of the domains used for reply addresses in Cobalt mailings
+include: TempMail (@doanart.com, @rootfest.net), Mail.com (@mail.com), AT&T Mail (@att.net,
+@sbcglobal.net), and Yahoo! (@ymail.com). These same services were used by Cobalt to create
+email addresses when registering domains.
+
+Based on the times at which the domains in the Cobalt infrastructure were registered, we found that
+the attackers tended to register domains towards the beginning of the week. This enables us to
+speculate on their working schedule:
+
+− On weekdays, the attackers actively register domains, prepare hacking tools, and (less
+often) send phishing mailings.
+
+− At the end of the week, the group concentrates on sending out mailings and advancing
+their attacks within the infrastructure of compromised organizations.
+
+− Since phishing mailings are sent out during working hours, domains are usually
+registered during the interval from 6:00 PM to 12:00 AM (UTC+0), which coincides with the
+end of the working day in European countries. 
+
+https://3.bp.blogspot.com/-rEH5-b0vY8o/WYAxgS0jNuI/AAAAAAAAGK0/cjnH6MATC1srJryM2N0st2Yvbkvx7HBcACLcBGAs/s1600/c31.png
+https://1.bp.blogspot.com/-I3UqqiElglE/WYAxqp1iQqI/AAAAAAAAGK4/547JWPXX9n43IOgNAinxbmfnPj7-07sIwCLcBGAs/s1600/c32.png
+https://3.bp.blogspot.com/-mYVbc0GKzwo/WYAx1QLNqOI/AAAAAAAAGK8/Zw3nb51f_yQZOif5Yx3IoLJ1fQYvgH5SgCLcBGAs/s1600/c33.png
+
+
+Older PostHome
+
+Subscribe to: Post Comments (Atom)
+
+Author Positive Research at 1:00 AM  
+
+Tags Cobalt, hacks, research
+
+It would seem that after registering a domain at the beginning of the week, the Cobalt group takes
+some time to prepare for their upcoming phishing campaign, which as noted usually comes at the end
+of the week. On average, the time from domain registration to the first phishing mailing with that same�
+domain is four days. 
+
+Our researchers discovered a number of Cobalt phishing domains before the group was able to use
+them in its phishing campaigns. By acting quickly, it was possible to block the domains.
+
+Working in cooperation with industry regulators in Russia and other countries, we have succeeded in
+disabling delegation for all .ru domains and most other top-level domains known to be associated with
+Cobalt. 
+
+The barrier to entry for would-be cybercriminals keeps falling every year. No longer do hackers need to
+look for zero-day vulnerabilities and expensive tools to perform attacks. Instead, all they require are
+basic programming skills, commercially available software, and instructions posted on the Internet.
+
+Banks and other companies must realize that attackers are constantly refining the tools and�
+techniques they use. In today's environment, a company can fall victim just by getting caught in the
+middle as attackers scout for stepping stones to reach their ultimate target. That's why responsible
+companies can no longer remain complacent about security and pretend that hackers go after only
+large companies and banks, or target only far-away areas of the world. No matter their industry or
+ownership—whether banks, state-owned organizations, or whatever else—companies must keep
+protection of their digital infrastructure current and proactively update their software and operating
+systems. Employees must be trained to increase their security awareness and resist phishing
+attempts. Moreover, scanning should go beyond just incoming messages and attachments to include
+outgoing messages, with retrospective analysis. Public-facing web applications must also be protected
+—if company infrastructure or sites are compromised by an attacker, this can wound company
+reputation, cause blocking of company servers, trigger a drop in search engine ratings, and drive away
+customers.
+
+Information about the extent of losses caused by the Cobalt group in 2017 is not yet available.
+Perhaps warnings by bank regulators headed off some of the group's efforts. We will continue to
+monitor the Cobalt group and report new details as they become available. Judging by the scale of
+Cobalt campaigns worldwide, multimillion-dollar losses by banks are a real possibility. And if attacks on
+financial exchanges are successful, the consequences will include not only direct losses to individual�
+companies, but rate turbulence on world currency markets.
+
+7. Conclusion
+
+Enter your comment...
+
+Comment as: Select profile...
+
+PublishPublish  PreviewPreview
+
+No comments:
+Post a Comment
+
+https://1.bp.blogspot.com/-izpGgpWmWQA/WYAyAyuoreI/AAAAAAAAGLA/unjAzMGYzhsnG_8UfJM-O5JGQG7hpzUFQCLcBGAs/s1600/c34.png
+https://www.blogger.com/profile/12273696227623127095
+https://www.blogger.com/email-post.g?blogID=8549938467002440724&postID=8115373785289763196
+https://www.blogger.com/share-post.g?blogID=8549938467002440724&postID=8115373785289763196&target=email
+https://www.blogger.com/share-post.g?blogID=8549938467002440724&postID=8115373785289763196&target=blog
+https://www.blogger.com/share-post.g?blogID=8549938467002440724&postID=8115373785289763196&target=twitter
+https://www.blogger.com/share-post.g?blogID=8549938467002440724&postID=8115373785289763196&target=facebook
+https://www.blogger.com/share-post.g?blogID=8549938467002440724&postID=8115373785289763196&target=pinterest
+http://blog.ptsecurity.com/search/label/Cobalt
+http://blog.ptsecurity.com/search/label/hacks
+http://blog.ptsecurity.com/search/label/research
+http://blog.ptsecurity.com/2017/07/recovering-data-from-disk-encrypted-by.html
+http://blog.ptsecurity.com/
+http://blog.ptsecurity.com/feeds/8115373785289763196/comments/default
+
+	Positive Technologies - learn and secure
+	August 1, 2017
+	Connect on Twitter
+	Cobalt strikes back: an evolving multinational threat to finance
+
+	1. Introduction
+	Connect on linkedin
+	Blog Archive
+	2. Executive summary
+	Search
+	Labels
+	3. What we already knew about Cobalt
+	4. Cobalt targets and objectives
+	5. Chronology of Cobalt 2017 campaign
+	6. Cobalt attack methods
+	1. Partner phishing
+	2. Malicious attachments
+	3. Cobalt infrastructure
+
+	7. Conclusion
+	No comments:
+	Post a Comment
+
+
+

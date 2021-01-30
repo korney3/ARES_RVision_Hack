@@ -1,0 +1,115 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Threat Group 4127 Targets Hillary Clinton Presidential Campaign | SecureWorks
+
+
+/
+/capabilities
+/capabilities/managed-security
+/capabilities/threat-intelligence
+/capabilities/security-risk-consulting
+/capabilities/incident-response
+/capabilities/cloud-security
+/Insights
+/resources
+/blog
+/research
+/about
+/about/counter-threat-unit
+/about/leadership
+/about/offices
+/about/partners
+/about/events
+/about/press
+http://investors.secureworks.com
+/contact/talk-with-an-expert
+/contact/rfp
+/contact/urgent-response
+/contact/client-support
+https://bitly.com/
+
+
+https://support.google.com/a/answer/33915?hl=en
+
+
+
+
+http://edition.cnn.com/2016/06/14/politics/democratic-national-committee-breach-russians-donald-trump/
+
+
+http://blog.trendmicro.com/trendlabs-security-intelligence/operation-pawn-storm-ramps-up-its-activities-targets-nato-white-house/
+http://www.bbc.co.uk/news/technology-36284447
+
+
+
+
+/blog/russian-threat-group-targets-clinton-campaign
+/blog/russian-threat-group-targets-clinton-campaign
+/resources/rp-threat-intelligence-executive-summary-2016-06
+/resources/rp-threat-intelligence-executive-summary-2016-06
+/research/threat-group-4127-targets-google-accounts
+/research/threat-group-4127-targets-google-accounts
+/blog/russian-threat-group-targets-clinton-campaign
+/blog/russian-threat-group-targets-clinton-campaign
+/resources/rp-threat-intelligence-executive-summary-2016-06
+/resources/rp-threat-intelligence-executive-summary-2016-06
+http://jobs.dell.com/search/advanced-search/ASCategory/SecureWorks/ASPostedDate/-1/ASCountry/-1/ASState/-1/ASCity/-1/ASLocation/-1/ASCompanyName/-1/
+/rss-feed
+
+
+http://go.secureworks.com/Global_Preference_Center_NorthAmerica
+/sitemap
+/privacy-policy
+/termandconditions
+http://www.linkedin.com/company/secureworks
+https://twitter.com/secureworks
+https://www.facebook.com/secureworks
+
+	Threat Group-4127 Targets Hillary Clinton Presidential Campaign
+	Summary
+	Spearphishing details
+	Hillary for America
+	Democratic National Committee
+	Personal email accounts
+
+	Related activity and implications
+	Conclusion
+	Appendix — Gauging confidence level
+	RELATED CONTENT
+
+	Russian Threat Group Targets Clinton Campaign
+	June 2016 Threat Intelligence Executive Summary Report
+	Threat Group-4127 Targets Google Accounts
+	Russian Threat Group Targets Clinton Campaign
+	June 2016 Threat Intelligence Executive Summary Report
+
+

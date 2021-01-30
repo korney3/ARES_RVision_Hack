@@ -1,0 +1,550 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cisco Talos Blog: Rigging compromise - RIG Exploit Kit
+
+
+T H U R S D A Y ,  J A N U A R Y  7 ,  2 0 1 6
+
+This post was authored by Nick Biasini with contributions by Joel Esler.
+
+Exploit Kits are one of the biggest threats that affects users, both inside and outside the
+enterprise, as it indiscriminately compromises simply by visiting a web site, delivering a
+malicious payload. One of the challenges with exploit kits is at any given time there are
+numerous kits active on the Internet. RIG is one of these exploit kits that is always around
+delivering malicious payloads to unsuspecting users. RIG first appeared in our telemetry�
+back in November of 2013, back then we referred to it as Goon, today it's known as RIG.
+
+We started focusing on RIG and found some interesting data similar to what we found
+while analyzing Angler. This post will discuss RIG, findings in the data, and what actions�
+were taken as a result.
+
+RIG compromises users like any exploit kit. It starts with a user being redirected to a
+landing page. This is done via malicious iframes or malvertising and looks similar the
+following:
+
+It begins with an initial link to a javascript:
+
+RIGGING COMPROMISE - RIG EXPLOIT KIT
+
+THE EXPLOIT KIT OVERVIEW
+
+http://talosintel.com/
+http://blogs.cisco.com/author/NickBiasini
+http://blogs.cisco.com/author/JoelEsler
+http://blog.talosintel.com/2013/11/im-calling-this-goon-exploit-kit-for-now.html
+http://blog.talosintel.com/2013/11/im-calling-this-goon-exploit-kit-for-now.html
+http://www.talosintel.com/angler-exposed/
+http://1.bp.blogspot.com/-KYsiHbwv39Y/Vo6YDnix8oI/AAAAAAAAATo/k8MhIHC894w/s1600/01-js.png
+
+
+Then when the browser is redirected it receives the following:
+
+This page is just a simple iframe that retrieves the actual landing page. The request for the
+landing page looks like:
+
+When the user is actually delivered a landing page, it is highly obfuscated and lacks some
+of the English based text we see in other exploit kits. Below is a small sample of the
+obfuscated landing page:
+
+http://3.bp.blogspot.com/-KVLJ3IULXQw/Vo6amuFRw0I/AAAAAAAAATw/YxHQ81yrL8w/s1600/02-browser.png
+http://1.bp.blogspot.com/-KWk9_CBKvog/Vo6auuoOCgI/AAAAAAAAAT4/SvNMtgKodNI/s1600/03-page.png
+
+
+After probing the browser RIG delivers an exploit to the end user. Below is an example of
+flash exploit that RIG was delivering:�
+
+One interesting aspect of RIG is the actual payload is obtained in a separate GET request.
+We usually see the exploit and payload delivered together or at least delivered in a highly
+obfuscated manner, not a GET request delivering an actual executable. This is not the
+case for RIG. Below is a sample of the GET request for the malicious payload:
+
+http://2.bp.blogspot.com/-ulT-hWFeNNs/Vo6bG0KFg8I/AAAAAAAAAUA/CPWebHO430g/s1600/04-page.png
+http://1.bp.blogspot.com/-i53j37Gs91k/Vo6btcchSjI/AAAAAAAAAUI/y2_XSGniqCY/s1600/05-delivery.png
+http://1.bp.blogspot.com/-yJn-GoKDmgY/Vo6b4skex2I/AAAAAAAAAUQ/mjuDgTUiu74/s1600/06-payload.png
+
+
+A final interesting aspect to RIG is the naming convention for the payloads on the end�
+system. RIG tries to hide as legitimate services on Windows platforms.  Common
+examples included defsrag.exe, dissdkchk.exe, systemrestore.exe. These are designed to
+look similar to defrag, diskchk, and the system restore functionality in Windows. However,
+in all cases these files were dropped in to TEMP folders instead of SYSTEM32 where they�
+would be expected to be located. 
+
+RIG exploit kit is steadily compromising users, below is a sample of the data we gathered
+over two months related to systems serving RIG exploit kit. Users were being driven to
+RIG through malicious iframes and malvertising. The overall volume of activity was lower,
+affecting hundreds of users, instead of the thousands we saw impacted by Angler.
+
+An analysis of the data associated with RIG revealed some familiar patterns. First was the
+use of domain shadowing. We found that domain shadowing is currently being used
+exclusively to host RIG, unlike with Angler, we were unable to find other domain activity�
+during the two month period. This particular use of domain shadowing has interesting
+aspects related to the subdomains themselves. RIG is using very short string based
+subdomains ranging from english based words like admin, user, news, and server. Also
+present was short random strings like qwe21, qwe23, htr43, and htr43. Leveraging the IP
+addresses found we were able to identify in excess of 7000 subdomains being used by
+
+THE DATA
+
+DOMAIN ACTIVITY
+
+http://3.bp.blogspot.com/-DVDqQDak4as/Vo6cPxe9B9I/AAAAAAAAAUY/VPWd6hulC74/s1600/07-domain-act.png
+
+
+addresses found we were able to identify in excess of 7000 subdomains being used by
+RIG over several months. The activity was spread evenly among those subdomains with
+few having more than 10 hits in the months of activity and the majority having less than
+five.�
+
+RIG, like most exploit kits, is getting users infected via the use of malicious iframes
+injected in websites and malvertising. There were a couple of interesting things that we
+observed in the data. First is the use of Google and Bing in the redirection chain. We have
+seen this before in Nuclear exploit kit and this will provide an extra layer in the chain to
+help ensure users are getting to the landing pages. The second interesting fact dealt with
+the volume, there were more than 60 unique referers observed over the two month period
+but the average volume was low with most having less than five entries.�
+
+During the two month period shown here we saw RIG using Flash to compromise
+systems. The primary exploit being used was CVE-2015-5119. We saw a total of 30
+unique hashes being used to compromise systems during the two month period. 70% of
+those hashes were known by VirusTotal and had some protection from an AV perspective.
+Despite that users were still being compromised and malicious payloads were being
+delivered.
+
+The most common exploit kit payload today is overwhelmingly ransomware, RIG however,
+
+REFERERS
+
+EXPLOITS
+
+PAYLOADS
+
+http://2.bp.blogspot.com/-1gmQ1s_-jLU/Vo6cd9WVcUI/AAAAAAAAAUg/D7kk7enHqZM/s1600/08-referers.png
+
+
+The most common exploit kit payload today is overwhelmingly ransomware, RIG however,
+was decidedly different it was exclusively delivering spambot variants. The most common
+payload were variants of Tofsee which is a spam botnet. The way these payloads work is
+by sending large amounts of spam email related to various topics. Spambot payloads
+were very common to exploit kits several years ago, but most have moved on to payloads
+that guarantee quick monetization. The use of these payloads by RIG is an interesting
+differentiator from other exploit kits Talos has been observing.
+
+Most of the payloads we found had very good detection on VirusTotal with most being
+detected by more than half of the AV vendors. Again, despite this RIG continues to
+successfully compromise users that are primarily using versions of Internet Explorer on
+Windows platforms, based on the user agent information.
+
+IP Infrastructure
+
+This is the most interesting aspect of our RIG research. We observed 44 different IP
+addresses delivering some form of RIG. As shown above you can see that on most days
+there were only one or two IP's actively hosting RIG. 
+
+When we resolved the IP's to the associated ASN we found something surprising. With the
+exception of a single IP address all IP's belonged to the same ASN (35415).
+
+http://4.bp.blogspot.com/-RKU1vYovhz8/Vo6cr6uFQbI/AAAAAAAAAUo/ZakrrgWY5Nw/s1600/09-ip-inf.png
+
+
+This particular ASN is associated with Webzilla, a provider out of Russia. Further
+investigation actually revealed that all of the addresses were leased to Eurobyte, which is
+another Russian provider. Talos reached out to both providers giving them the information
+regarding the hosts that we observed serving RIG. Webzilla responded and identified the�
+customers that were generating the events and blocked the hosts successfully. Below is a
+graph showing the RIG activity we observed during our investigation:
+
+http://4.bp.blogspot.com/-OCppf68xuwQ/Vo6c1RD7dwI/AAAAAAAAAUw/gZm1r_LIabU/s1600/10-asn.png
+
+
+Monitoring the amount of RIG activity after our notification, we have consistently seen new�
+servers that are being hosted by Eurobyte being stood up and compromising users via
+RIG. We again reached out to Eurobyte to try and get a response directly from the
+provider where the malicious activity is being hosted. Despite multiple emails to Eurobyte
+RIG activity continued as new addresses get stood up after being reported to WebZilla.
+This underscores one of the major problems we face today, leaf providers. As providers
+could have multiple downstream leaf providers we find that we routinely have success in�
+dealing with larger providers. These providers help get systems shut down, but without the
+cooperation of the smaller downstream providers the adversaries just stand up new
+servers and move on. We were able to inflict some damage to RIG during our�
+investigation, but were unable to actually get the actors behind the activity stopped.
+
+Since Eurobyte chose not to acknowledge or respond to our repeated messages we did a
+little further research on the activity associated with the provider. We worked with our
+research partners at OpenDNS Labs to get better visibility into the domains that were
+hosted. Based on our research we found a total of seven class C networks owned by the
+provider, with one of the class C's serving as their corporate network. Based on the
+information from OpenDNS provided we found approximately 25,000 domains being
+hosted on this address space. These domains were heavily leveraging the Russian TLD
+(.ru), as expected. Three of the class C networks were seen serving RIG during the
+period. We took the domains that OpenDNS provided and queried them against Talos’s
+automated web reputation. We found that of the six class C address spaces that are being
+used by Eurobyte five were scored significantly negatively in web reputation. The only��
+exception was one Class C network that was hosting the Russian payment platform e-
+autopay<dot>com.
+
+Based on all this information and Eurobytes failure to respond or even acknowledge abuse
+requests Talos and OpenDNS have decided to blacklist the five suspect subnets for a�
+period of 30 days. After this time Talos and OpenDNS will re-evaluate the provider to
+determine if an extended blacklisting should occur. This activity will add all the IP's in the
+
+RESPONSE
+
+http://4.bp.blogspot.com/-3-IF1dmG5_k/Vo6eKKgn1gI/AAAAAAAAAU4/n2s96Rrq810/s1600/11-rig-act.png
+
+
+determine if an extended blacklisting should occur. This activity will add all the IP's in the
+address spaces to Cisco's IP and Domain intelligence blacklists. These blacklists are
+leveraged by multiple Cisco security products and will effectively protect our customers
+from any activity from this provider. This includes all technologies that consume our
+reputation services.  The advantage of these blacklists, as well as our Advanced Malware
+Protection with our fantastic AMP line of products is, this detection adapts and changes in
+real time to the threat.
+
+Additionally, after reviewing the data provided by OpenDNS we worked with them to make
+sure that the threat was mitigated from their perspective as well. We found that the
+majority of the address space was already being blocked by OpenDNS, but we were able
+to round out the protection and make sure that Eurobyte won't be serving malicious
+content to both Cisco and OpenDNS customers. For additional information on how
+OpenDNS has been tracking RIG please see the following blog    from the most recent talk
+at Brucon. 
+
+Talos’s unparalleled visibility into threat data allows us to automatically adjust protection
+for our customers based upon real-world visibility into data.  Convicting IPs, Domains,
+affecting the reputation of files in our AMP products, easily turning any of our data�
+collection systems against each other, each updating quickly to protect every single one of
+Cisco’s security customers against the threat in real-time, and continuously.
+
+46.30.42.0/24
+46.30.43.0/24
+46.30.44.0/24
+46.30.45.0/24
+
+DETECTION
+
+IOC
+
+IP INFORMATION
+
+http://3.bp.blogspot.com/-AY5A-TYaWes/Vo6eUZTRxAI/AAAAAAAAAVA/tI-1GKb90uU/s1600/12-opendns.png
+https://labs.opendns.com/2015/11/19/sprank-and-ip-space-monitoring/
+https://www.youtube.com/watch?v=8edBgoHXnwg
+
+
+46.30.45.0/24
+46.30.46.0/24 
+
+The exploit kit problem is larger than just Angler. However, the news related to exploit kits
+has been largely focused on Angler in 2015, now Angler seems to be on a temporary
+vacation since the end of 2015. This is expected with the sophistication, scope, and
+innovation that Angler incorporates. However, as evidenced by this research, it doesn't
+take innovation and sophistication to compromise users. RIG exploit kit is steadily and
+consistently compromising users and delivering malicious payloads. Visibility into the other
+exploit kits is valuable and necessary to help shed light on the behavior and identify the
+providers they are leveraging to help protect and educate the community.
+
+Additionally, this research shed light on the problem of leaf providers. Providers are in a
+tough spot with lots of systems and limited resources. That was one of the driving force
+behind Project Aspis, to help aid providers by providing resources to help them identify
+and mitigate these threats. It's understandable that malicious activity is going to occur at
+hosting providers. It's impossible for them to know the intentions of a customer when they
+are purchasing systems. At the same time when a provider is notified of malicious activity�
+it is their responsibility to at least acknowledge the abuse and work to validate and, if
+legitimate, take the system offline. Webzilla did just that in our experience, but Eurobyte�
+has not. This lack of response lead Talos to make the decision to blacklist large portions of
+the provider's network to ensure that our customers are protected since reporting the
+abuse alone is not enough.
+
+Advanced Malware Protection (AMP) is
+ideally suited to prevent the execution
+of the malware used by these threat
+actors.
+
+CWS or WSA web scanning prevents
+access to malicious websites and
+detects malware used in these attacks.
+
+The Network Security protection of IPS
+and NGFW have up-to-date signatures
+
+to detect malicious network activity by threat actors.
+
+DOMAIN INFORMATION (TEXT FILE)
+
+CONCLUSION
+
+COVERAGE
+
+http://blogs.cisco.com/wp-content/uploads/rig_domains_unique.txt
+http://www.talosintel.com/aspis/
+http://3.bp.blogspot.com/-8SQMaYvEu5U/Vo6guoSW6cI/AAAAAAAAAVM/vBriFRdAuYQ/s1600/Screen%2BShot%2B2016-01-07%2Bat%2B11.29.57%2BAM.png
+http://www.cisco.com/c/en/us/support/security/amp-firepower-software-license/tsd-products-support-series-home.html
+http://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html
+http://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html
+http://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html
+http://www.cisco.com/c/en/us/products/security/asa-next-generation-firewall-services/index.html
+
+
+S H A R E  T H I S
+P O S T
+
+P O S T E D  B Y  W I L L I A M  L A R G E N T A T  1 0 : 5 2  A M 
+L A B E L S :  E X P L O I T  K I T,  M A L W A R E,  R I G,  T H R E A T  R E S E A R C H
+
+   
+
+Replies
+
+Reply
+
+Enter your comment...
+
+2 COMMENTS:
+
+CONRAD LONGMORE JANUARY 9, 2016 AT 6:15 PM
+
+As it happens, I'm just running an analysis on sites hosted by Eurobyte LLC either
+currently on in the past, using a somewhat different data set. So far, out of 7500
+sites analysed, 35% are tagged by Google as being malicious. This probably
+means that many of the other 65% are also bad, but they just haven't been tagged.
+
+The Eurobyte LLC range is actually a bit bigger than you specify, they rent the
+entire 46.30.40.0/21 range from Webzilla. The /24s you are missing are:
+
+46.30.40.0/24
+46.30.41.0/24
+46.30.47.0/24
+
+Webzilla also provide services for the fairly notorious McHost.ru in the
+178.208.64.0/19 range.
+
+Reply
+
+NICK BIASINI JANUARY 11, 2016 AT 1:24 PM
+
+Thanks for the info Conrad. We chose not to block several of the ranges
+since they were either hosting legitimate activity or were the corporate
+address space for Eurobyte.
+
+https://www.blogger.com/profile/12206979422726316011
+http://blog.talosintel.com/search/label/exploit kit
+http://blog.talosintel.com/search/label/Malware
+http://blog.talosintel.com/search/label/RIG
+http://blog.talosintel.com/search/label/Threat Research
+http://www.facebook.com/sharer.php?u=http://blog.talosintel.com/2016/01/rigging-compromise.html&t=Rigging compromise - RIG Exploit Kit 
+https://twitter.com/share?url=http://blog.talosintel.com/2016/01/rigging-compromise.html&title=Rigging compromise - RIG Exploit Kit 
+http:////www.reddit.com/submit?url=http://blog.talosintel.com/2016/01/rigging-compromise.html&title=Rigging compromise - RIG Exploit Kit 
+mailto:?body=http://blog.talosintel.com/2016/01/rigging-compromise.html&title=Rigging compromise - RIG Exploit Kit 
+https://www.blogger.com/profile/11751822299235747323
+http://blog.talosintel.com/2016/01/rigging-compromise.html?showComment=1452381311833#c6078340197179772689
+javascript:;
+javascript:;
+https://www.blogger.com/profile/11420644688145888259
+http://blog.talosintel.com/2016/01/rigging-compromise.html?showComment=1452536697231#c8490361460388640749
+javascript:;
+
+
+N E W E R
+P O S T
+
+O L D E R
+P O S T
+
+H O M E
+
+S U B S C R I B E  T O :  P O S T  C O M M E N T S  ( A T O M )
+
+Enter your comment...
+
+Comment as: Select profile...
+
+PublishPublish  PreviewPreview
+
+POST A COMMENT
+
+Search
+
+S E A R C H  T H E  B L O G
+
+S U B S C R I B E  T O  O U R  F E E D
+
+ Posts
+
+ Comments
+
+▼  2 0 1 6  (3)
+▼  J A N U A R Y  (3)
+
+Research Spotlight: Needles in a Haystack
+Microsoft Patch Tuesday - January 2016
+Rigging compromise - RIG Exploit Kit
+
+►  2 0 1 5  (62)
+
+►  2 0 1 4  (67)
+
+►  2 0 1 3  (30)
+
+B L O G  A R C H I V E
+
+javascript:;
+https://www.blogger.com/comment-iframe.g?blogID=1029833275466591797&postID=1476026378647980857&blogspotRpcToken=4684721
+http://blog.talosintel.com/2016/01/ms-tuesday.html
+http://blog.talosintel.com/2015/12/pro-pos.html
+http://blog.talosintel.com/
+http://blog.talosintel.com/feeds/1476026378647980857/comments/default
+http://blog.talosintel.com/feeds/posts/default
+http://blog.talosintel.com/feeds/1476026378647980857/comments/default
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2016-01-01T00:00:00-05:00&updated-max=2017-01-01T00:00:00-05:00&max-results=3
+javascript:void(0)
+http://blog.talosintel.com/2016_01_01_archive.html
+http://blog.talosintel.com/2016/01/haystack.html
+http://blog.talosintel.com/2016/01/ms-tuesday.html
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2015-01-01T00:00:00-05:00&updated-max=2016-01-01T00:00:00-05:00&max-results=50
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2014-01-01T00:00:00-05:00&updated-max=2015-01-01T00:00:00-05:00&max-results=50
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2013-01-01T00:00:00-05:00&updated-max=2014-01-01T00:00:00-05:00&max-results=30
+
+
+Software
+Community
+
+Vulnerability Reports
+
+Additional Resources
+Microsoft to SID Mapping Archive
+
+Shared Object Rule Generator
+
+IP Blacklist Download
+AWBO Exercises
+
+About Talos
+
+Join Our Team
+Contact
+
+Blog
+
+CONNECT WITH US
+
+   
+
+►  2 0 1 2  (53)
+
+►  2 0 1 1  (23)
+
+►  2 0 1 0  (94)
+
+►  2 0 0 9  (146)
+
+►  2 0 0 8  (41)
+
+R E C O M M E N D E D  B L O G S
+C I S C O  B L O G
+Cisco Partner Weekly Rewind – January 22, 2016
+
+S N O R T  B L O G
+Snort Subscriber Rule Set Update for 01/21/2016
+
+C L A M A V ®  B L O G
+ClamAV 0.99 Release is the largest ever!
+
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2012-01-01T00:00:00-05:00&updated-max=2013-01-01T00:00:00-05:00&max-results=50
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2011-01-01T00:00:00-05:00&updated-max=2012-01-01T00:00:00-05:00&max-results=23
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2010-01-01T00:00:00-05:00&updated-max=2011-01-01T00:00:00-05:00&max-results=50
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2009-01-01T00:00:00-05:00&updated-max=2010-01-01T00:00:00-05:00&max-results=50
+javascript:void(0)
+http://blog.talosintel.com/search?updated-min=2008-01-01T00:00:00-05:00&updated-max=2009-01-01T00:00:00-05:00&max-results=41
+http://blogs.cisco.com
+http://blogs.cisco.com/partner/cisco-partner-weekly-rewind-january-22-2016
+http://blog.snort.org/
+http://feedproxy.google.com/~r/Snort/~3/yQE5HLUrqug/snort-subscriber-rule-set-update-for_21.html
+http://blog.clamav.net/
+http://feedproxy.google.com/~r/Clamav/~3/VYtOu9B9Dq8/clamav-099-release-is-largest-ever.html
+http://talosintel.com/software
+http://talosintel.com/community
+http://talosintel.com/vulnerability-reports
+http://talosintel.com/additional-resources
+http://talosintel.com/ms-advisory-rules
+http://talosintel.com/so-rule-generator
+http://talosintel.com/feeds/ip-filter.blf
+http://talosintel.com/awbo
+http://talosintel.com/about
+http://talosintel.com/careers
+http://talosintel.com/contact/
+http://blog.talosintel.com
+https://twitter.com/talossecurity
+https://www.facebook.com/groups/TalosGroupatCisco/
+https://www.youtube.com/playlist?list=PLFT-9JpKjRTDn_qtGN238gzycJfaVzMqD
+https://www.linkedin.com/grp/home?gid=8287731
+
+
+© 2015 Cisco Systems, Inc. and/or its affiliates. All rights reserved. View our �Privacy Policy here.
+
+http://www.cisco.com/web/siteassets/legal/privacy_full.html
+
+	THURSDAY, JANUARY 7, 2016
+	RIGGING COMPROMISE - RIG EXPLOIT KIT
+	THE EXPLOIT KIT OVERVIEW
+	THE DATA
+	DOMAIN ACTIVITY
+	REFERERS
+	EXPLOITS
+	PAYLOADS
+
+	RESPONSE
+	DETECTION
+	IOC
+	IP INFORMATION
+	DOMAIN INFORMATION (TEXT FILE)
+
+	CONCLUSION
+	COVERAGE
+	2 COMMENTS:
+	POST A COMMENT
+
+
+	SEARCH THE BLOG
+	SUBSCRIBE TO OUR FEED
+	BLOG ARCHIVE
+	RECOMMENDED BLOGS
+	CONNECT WITH US
+
+

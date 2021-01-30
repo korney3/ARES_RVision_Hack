@@ -1,0 +1,386 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+APT Trends report <TIMESTAMP>Q2 2017</TIMESTAMP>
+
+
+By <ORG>GReAT</ORG>
+
+APT Trends report <TIMESTAMP>Q2 2017</TIMESTAMP>
+securelist.com/apt-trends-report-q2-2017/79332
+
+Introduction
+
+<TIMESTAMP>Since 2014</TIMESTAMP>, <ORG>Kaspersky Lab</ORG>’s <ORG>Global Research and Analysis Team</ORG> (<ORG>GReAT</ORG>) has been
+providing threat intelligence reports to a wide-range of customers worldwide, leading
+to the delivery of a full and dedicated private reporting service. Prior to the new
+service offering, <ORG>GReAT</ORG> published research online for the general public in an effort to
+help combat the ever-increasing threat from nation-state and other advanced actors. 
+Since we began offering a threat intelligence service, all deep technical details on
+advanced campaigns are first pushed to our subscriber base. At the same time, to
+remain true to our efforts to help make the internet safer, important incidents, such
+as <MALWARE>WannaCry</MALWARE> or <MALWARE>Petya</MALWARE> are covered in both private and public reports.
+
+<ORG>Kaspersky</ORG>’s Private Threat Intelligence Portal (TIP)
+
+<TIMESTAMP>In Q1 of 2017</TIMESTAMP> we published our first APT Trends report, highlighting our top research
+findings over the last few months. We will continue to publish quarterly reports as a
+representative snapshot of what has been offered in greater detail in our private
+reports in order to highlight significant events and findings we feel most users should
+be aware of.  If you would like to learn more about our intelligence reports or request
+more information for a specific report, readers are encouraged to contact:
+intelreports@kaspersky.com.
+
+Russian-Speaking Actors
+
+1/8
+
+https://securelist.com/apt-trends-report-q2-2017/79332/
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2017/08/07172607/APT-report-Q2-2017-1.png
+https://securelist.com/apt-trends-report-q1-2017/78169/
+https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2017/08/07172602/APT-report-Q2-2017-2.png
+
+
+<TIMESTAMP>The second</TIMESTAMP> quarter of 2017 has seen multiple incidents involving Russian-speaking
+threat actors. Topping the list of ‘attention grabbers’ were the <THREAT_ACTOR>Sofacy</THREAT_ACTOR> and <THREAT_ACTOR>Turla</THREAT_ACTOR> threat
+actors.
+
+<TIMESTAMP>March</TIMESTAMP> and <TIMESTAMP>April</TIMESTAMP> started off with a bang, with the discovery of three zero-day exploits
+being used in-the-wild by <THEAT_ACTOR>Sofacy</THREAT_ACTOR> and <THREAT_ACTOR>Turla</THREAT_ACTOR>: two of these targeted <SOFTWARE>Microsoft Office</SOFTWARE>’s
+Encapsulated PostScript (EPS) and the third being a <SOFTWARE>Microsoft Windows</SOFTWARE> Local Privilege
+Escalation (LPE).  <THREAT_ACTOR>Sofacy</THREAT_ACTOR> was discovered utilizing both <CVE>CVE-2017-0262</CVE> (an EPS
+vulnerability) and <CVE>CVE-2017-0263</CVE> (LPE) over the Easter holiday, targeting a swath of
+users throughout <COUNTRY>Europe</COUNTRY>.  Prior to this attack, <THREAT_ACTOR>Turla</THREAT_ACTOR> was also discovered using <CVE>CVE-2017-0261</CVE> (a different EPS vulnerability).  Neither actor appeared to deviate from
+their usual payload repertoire, with <THREAT_ACTOR>Sofacy</THREAT_ACTOR> dropping their typical <MALWARE>GAMEFISH</MALWARE> payload
+and <THREAT_ACTOR>Turla</THREAT_ACTOR> utilizing what we refer to as <MALWARE>ICEDCOFFEE</MALWARE> (a.k.a. <MALWARE>Shirime</MALWARE>).  Targeting for
+these attacks was also directly within the normal wheelhouse for both actors,
+focusing mainly on foreign ministries, governments, and other government-affiliated
+organizations.
+
+<ORG>GReAT</ORG> produced additional reports on <THREAT_ACTOR>Sofacy</THREAT_ACTOR> and <THREAT_ACTOR>Turla</THREAT_ACTOR> beyond those mentioned
+above.  In <TIMESTAMP>April</TIMESTAMP>, we notified customers of two new experimental macro techniques
+utilized by <THREAT_ACTOR>Sofacy</THREAT_ACTOR>.  These techniques, while not particularly sophisticated, caught our
+attention as they had not been seen before in-the-wild.  The first technique involved
+using the built-in ‘<SOFTWARE>certutil</SOFTWARE>’ utility in <SOFTWARE>Microsoft Windows</SOFTWARE> to extract a hardcoded payload
+within a macro. The second technique involved embedding Base64-encoded payloads
+within the EXIF metadata of the malicious documents.  While the targeting for this
+new set of activity was again fairly standard, we discovered some noteworthy
+targeting against a <ORG>French political party</ORG> member prior to the <TIMESTAMP>2017</TIMESTAMP> elections.  Moving
+into <TIMESTAMP>May</TIMESTAMP> and <TIMESTAMP>June</TIMESTAMP>, we wrote two additional reports of interest involving these two
+actors: the first was an update on the long running “<MALWARE>Mosquito Turla</MALWARE>” campaign
+showing the usage of fake <SOFTWARE>Adobe Flash</SOFTWARE> installers and continued targeting of foreign
+Ministries. The other documented yet another update on <THREAT_ACTOR>Sofacy</THREAT_ACTOR>’s unique <SOFTWARE>Delphi</SOFTWARE>
+payload we call ‘<MALWARE>Zebrocy</MALWARE>’.
+
+<TIMESTAMP>June</TIMESTAMP> saw the massive outbreak of a piece of malware dubbed “<MALWARE>ExPetr</MALWARE>”.  While initial
+assessments presumed that this was yet another ransomware attack à la <MALWARE>WannaCry</MALWARE>, a
+deeper assessment by <ORG>GReAT</ORG> places the initial intent as constituting an operation
+destructive in nature.  We were also able to confidently identify the initial distribution
+of the malware, as well as indicate a low confidence assessment that the attacks may
+share traits with the <MALWARE>BlackEnergy</MALWARE> actors. 
+
+2/8
+
+https://securelist.com/schroedingers-petya/78870/
+
+
+Below is a summary of report titles produced for the Eastern European region only. 
+As stated above, if you would like to learn more about our threat intelligence
+products or request more information on a specific report, please direct inquiries to
+intelreports@kaspersky.com.
+
+1. <THREAT_ACTOR>Sofacy</THREAT_ACTOR> Dabbling in New Macro Techniques
+2. <THREAT_ACTOR>Sofacy</THREAT_ACTOR> Using Two Zero Days in Recent Targeted Attacks – early warning
+3. <THREAT_ACTOR>Turla</THREAT_ACTOR> EPS Zero Day – early warning
+4. <MALWARE>Mosquito Turla</MALWARE> Targets Foreign Affairs Globally
+5. Update on <MALWARE>Zebrocy</MALWARE> Activity <TIMESTAMP>June 2017</TIMESTAMP>
+6. <MALWARE>ExPetr</MALWARE> motivation and attribution – Early alert
+7. <ATTACK_PATTERN>BlackBox</ATTACK_PATTERN> ATM attacks using SDC bus injection
+
+English-Speaking Actors
+
+English-speaking actors are always particularly fascinating due to their history of
+complex tooling and campaigns. Actors like <THREAT_ACTOR>Regin</THREAT_ACTOR> and <THREAT_ACTOR>Project Sauron</THREAT_ACTOR> have proven
+fascinating examples of new techniques leveraged in long-lasting, hard to catch
+campaigns and as such make ideal subjects for further research. Not to be outdone,
+<THREAT_ACTOR>Equation</THREAT_ACTOR> and the <THREAT_ACTOR>Lamberts</THREAT_ACTOR> were the subjects of our most recent investigations.
+
+Continuing our practice of conducting malware paleontology while integrating new
+discoveries, we published a report on <MALWARE>EQUATIONVECTOR</MALWARE>, an <THREAT_ACTOR>Equation</THREAT_ACTOR> backdoor first
+used <TIMESTAMP>as early as 2006</TIMESTAMP>. This backdoor is a fascinating passive-active shellcode staging
+implant. It’s one of the earliest noted instances of a <MALWARE>NObody But US</MALWARE> (‘<MALWARE>NOBUS</MALWARE>’)
+backdoor for staging further attacks. Despite its age, the <MALWARE>EQUATIONVECTOR</MALWARE> backdoor
+(identified as ‘<MALWARE>PeddleCheap</MALWARE>’ in the latest <THREAT_ACTOR>ShadowBrokers</THREAT_ACTOR> disclosures) incorporates
+many advanced techniques for prolonged stealthy operations in victim networks,
+allowing the <THREAT_ACTOR>Equation</THREAT_ACTOR> operators to deliver further payloads without arousing
+suspicion. The report tracks the development of these tools through subsequent
+iterations year-by-year.
+
+3/8
+
+
+
+Our tracking of the <THREAT_ACTOR>LAMBERTS</THREAT_ACTOR> toolkit continues with the publication of the <MALWARE>Gray Lambert</MALWARE> report in <TIMESTAMP>June</TIMESTAMP>, the most advanced <MALWARE>Lambert</MALWARE> known to date. This too is a
+<MALWARE>NOBUS</MALWARE> backdoor, a passive implant operating strictly in user-land. The intricate
+usefulness of <MALWARE>Gray Lambert</MALWARE> lies in its ability to orchestrate multiple sniffer victims on
+a network via broadcast, multicast, and unicast commands, allowing the operators to
+employ surgical precision in networks with many infected machines. The sniffers
+double as next-stage payload delivery mechanisms for an infected network. A notable
+feature of the Lambert campaigns is the level of precision with which targets are
+chosen; <MALWARE>Gray Lambert</MALWARE>’s victimology is primarily focused on strategic verticals in <COUNTRY>ASIA</COUNTRY>
+and <COUNTRY>Middle East</COUNTRY>. During this investigation, <ORG>GReAT</ORG> researchers have also discovered
+two additional <THREAT_ACTOR>Lambert<THREAT_ACTOR> families (<MALWARE>Red Lambert</MALWARE> and <MALWARE>Brown Lambert</MALWARE>) currently under
+investigation for Q3.  Below is a list of report titles for reference:
+
+1. <MALWARE>EQUATIONVECTOR</MALWARE> – A Generational Breakdown of the <MALWARE>PeddleCheap</MALWARE>
+Multifunctional Backdoor
+
+2. The <MALWARE>Gray Lambert</MALWARE> – A Leap in Sophistication to User-land <MALWARE>NOBUS</MALWARE> Passive
+Implants
+
+Korean-speaking Actors
+
+Our researchers focusing on attacks with a Korean nexus also had a very busy
+quarter, producing seven reports on the <THREAT_ACTOR>Lazarus</THREAT_ACTOR> group and <MALWARE>WannaCry</MALWARE> attacks.  Most
+of the reports on <THREAT_ACTOR>Lazarus</THREAT_ACTOR> directly involved a sub-group we refer to as <THREAT_ACTOR>BlueNoroff</THREAT_ACTOR>. 
+They are the arm that focuses mainly on financial gain, targeting banks, ATMs, and
+other “money-makers”.  We revealed to customers a previously unknown piece of
+malware dubbed ‘<MALWARE>Manuscrypt</MALWARE>’ used by <THREAT_ACTOR>Lazarus</THREAT_ACTOR> to target not only diplomatic targets in
+<COUNTRY>South Korea</COUNTRY>, but also people using virtual currency and electronic payment sites.
+Most recently, ‘<MALWARE>Manuscrypt</MALWARE>’ has become the primary backdoor used by the
+<THREAT_ACTOR>BlueNoroff</THREAT_ACTOR> sub-group to target financial institutions.
+
+<MALWARE>WannaCry</MALWARE> also created quite a stir in the second quarter, with our analysts producing
+three reports and multiple blog posts on this emerging threat.  What proved most
+interesting to us, was the probable linkage to <THREAT_ACTOR>Lazarus</THREAT_ACTOR> group as the source of the
+attacks, as well as the origins of the malware.  <ORG>GReAT</ORG> researchers were able to trace
+back some of its earliest usage and show that before the ‘<MALWARE>EternalBlue</MALWARE>’ exploit was
+added to version 2, <MALWARE>WannaCry</MALWARE> v1 was used in spearphishing attacks months prior. 
+Here is a listing of our reports from Q2 on actors with a Korean nexus:
+
+1. <MALWARE>Manuscrypt</MALWARE> – malware family distributed by <THREAT_ACTOR>Lazarus</THREAT_ACTOR>
+2. <THREAT_ACTOR>Lazarus</THREAT_ACTOR> actor targets carders
+3. <THREAT_ACTOR>Lazarus</THREAT_ACTOR>-linked ATM Malware On the Loose In <COUNTRY>South Korea</COUNTRY>
+4. <THREAT_ACTOR>Lazarus</THREAT_ACTOR> targets electronic currency operators
+5. <MALWARE>WannaCry</MALWARE> – major ransomware attack hitting businesses worldwide – early alert
+6. <MALWARE>WannaCry</MALWARE> possibly tied to the <THREAT_ACTOR>Lazarus</THREAT_ACTOR> <THREAT_ACTOR>APT Group</THREAT_ACTOR>
+7. The First <MALWARE>WannaCry</MALWARE> <TECHNIQUE>Spearphish</TECHNIQUE> and Module Distribution
+
+Middle Eastern Actors
+4/8
+
+
+
+While there wasn’t much high-end activity involving Middle Eastern actors, we did
+produce two reports revolving around the use of a zero-day exploit (<CVE>CVE-2017-0199</CVE>). 
+The most notable involved an actor we refer to as <THREAT_ACTOR>BlackOasis</THREAT_ACTOR> and their usage of the
+exploit in-the-wild prior to its discovery.  We have previously reported on <THREAT_ACTOR>BlackOasis</THREAT_ACTOR>
+using other zero-days in the past; <CVE>CVE-2016-4117</CVE> in <TIMESTAMP>May 2016</TIMESTAMP>, <CVE>CVE-2016-0984</CVE> in <TIMESTAMP>June 2015</TIMESTAMP>, and <CVE>CVE-2015-5119</CVE> in <TIMESTAMP>June 2015</TIMESTAMP>.  It is believed that <THREAT_ACTOR>BlackOasis</THREAT_ACTOR> is a customer of
+<ORG>Gamma Group</ORG> and utilizes the popular ‘lawful surveillance’ kit <MALWARE>FinSpy</MALWARE>.  Other than the
+usage of the exploit, this report was significant because it also showed one of the
+earliest known uses of a new version of <MALWARE>FinSpy</MALWARE>, which is still being analyzed by our
+researchers.
+
+After the discovery of <CVE>CVE-2017-0199</CVE>, a plethora of threat actors also began to
+leverage this exploit in their attacks.  We reported to customers on the usage of this
+exploit by a well-known Middle Eastern actor dubbed ‘<THREAT_ACTOR>OilRig</THREAT_ACTOR>’.  <THREAT_ACTOR>OilRig</THREAT_ACTOR> has actively
+targeted many organizations in <COUNTRY>Israel</COUNTRY> with the exploit via spearphishes appearing to
+originate from well-known doctors within Ben Gurion University.  While their
+execution was less than stellar, it highlighted the widespread usage of this exploit
+shortly after its discovery.
+
+1. <THREAT_ACTOR>OilRig</THREAT_ACTOR> exploiting <CVE>CVE-2017-0199</CVE> in new campaign
+2. <THREAT_ACTOR>BlackOasis</THREAT_ACTOR> using Ole2Link zero day exploit in the wild
+
+Chinese-Speaking Actors
+
+On the Chinese speaking front, we felt it necessary to produce two reports to our
+customers.  While Chinese speaking actors are active on a daily basis, not much has
+changed and we prefer to avoid producing reports on ‘yet another instance of APTxx’
+for the sake of padding our numbers.  Instead we try to focus on new and exciting
+campaigns that warrant special attention.
+
+One of those reports detailed a new finding regarding a fileless version of the well-
+known ‘<MALWARE>HiKit</MALWARE>’ malware dubbed ‘<MALWARE>Hias</MALWARE>’.  We have reported on <MALWARE>Hias</MALWARE> in the past, and one
+of our researchers was finally able to discover the persistence mechanism used,
+which also allowed us to tie the activity to an actor we call ‘<THREAT_ACTOR>CloudComputating</THREAT_ACTOR>’.
+
+Another report detailed a new campaign we referred to as ‘<CAMPAIGN>IndigoZebra</CAMPAIGN>’.  This
+campaign was targeting former Soviet Republics with a wide swath of malware
+including <MALWARE>Meterpreter</MALWARE>, <MALWARE>Poison Ivy</MALWARE>, <MALWARE>xDown</MALWARE>, and a previously unknown malware called
+‘<MALWARE>xCaon</MALWARE>’.  This campaign shares ties with other well-known Chinese-speaking actors,
+but no definitive attribution has been made at this time.
+
+1. Updated technical analysis of <MALWARE>Hias RAT</MALWARE>
+2. <CAMPAIGN>IndigoZebra</CAMPAIGN> – Intelligence preparation to high-level summits in <COUNTRY>Middle Asia</COUNTRY>
+
+Best of the rest
+
+5/8
+
+
+
+Sometimes we find new and exciting campaigns or entirely new threat actors to
+report to our subscribers without being able to make an immediate or definitive
+determination on regional provenance.  Several reports fell into this category in the
+last quarter.  ChasingAdder is a report describing a new persistence technique that
+hijacked a legitimate WMI DLL for the purposes of loading a malicious payload. This
+activity targeted high-profile diplomatic, military, and research organizations
+beginning in the <TIMESTAMP>fall of 2016</TIMESTAMP>, but to date we have not been able to pinpoint the
+specific actor responsible.
+
+<MALWARE>Demsty</MALWARE> is a new piece of <SOFTWARE>MacOS</SOFTWARE> malware that is targeting University researchers in
+<COUNTRY>Hong Kong</COUNTRY>, among others.  At the time of writing, we have a low confidence
+assessment that the campaign was conducted by Chinese-speaking actors, and thus
+categorize this as ‘Unknown’ until greater evidence comes to light.
+
+<TIMESTAMP>During Q2</TIMESTAMP>, the mischievous <THREAT_ACTOR>ShadowBrokers</THREAT_ACTOR> also continued their regular activities
+dumping multiple tools and documentation allegedly stolen from <THREAT_ACTOR>Equation Group</THREAT_ACTOR>. In
+<TIMESTAMP>April</TIMESTAMP>, the <THREAT_ACTOR>ShadowBrokers</THREAT_ACTOR> released another dump of information detailing the alleged
+targeting of <SOFTWARE>SWIFT</SOFTWARE> service bureaus and other <INDUSTRY>banks</INDUSTRY> by <THREAT_ACTOR>Equation Group</THREAT_ACTOR>.  Since some
+of our customers are financial entities, we found it necessary to evaluate the data and
+provide an expert’s opinion on the validity of the dump.
+
+Reports in the ‘unknown’ category:
+
+1. <THREAT_ACTOR>ShadowBrokers</THREAT_ACTOR>’ Lost in translation leak – <SOFTWARE>SWIFT</SOFTWARE> attacks analysis
+2. ChasingAdder – WMI DLL Hijacking Trojan Targeting High Profile Victims
+3. University Researchers Located in <COUNTRY>Hong Kong</COUNTRY> Targeted with <MALWARE>Demsty</MALWARE>
+
+Predictions
+
+Based on the trends we’ve seen over the last three months, as well as foreseeable
+geopolitical events, we have listed a few predictions for the upcoming quarter (Q3). As
+always, this isn’t an exact science and some cases won’t come to fruition. Analyzing
+current and future events and combining those with the motivations of known active
+actors can help organizations prepare for likely forthcoming activity:
+
+1. Misinformation campaigns will remain a threat to countries with upcoming
+elections, specifically <COUNTRY>Germany</COUNTRY> and <COUNTRY>Norway</COUNTRY>, as they have been previous targets
+for Eastern European based actors.
+
+2. ‘Lawful Surveillance’ tools will continue to be utilized by governments that don’t
+have well-established Cyber Operations capabilities, mainly based out of the
+<COUNTRY>Middle East</COUNTRY>. Companies such as <ORG>Gamma Group</ORG>, <ORG>Hacking Team</ORG>, and <ORG>NSO</ORG> will
+continue to offer new zero-day exploits to those customers. As prices increase
+and exchanges thrive, new organizations and marketplaces will continue
+popping up.
+
+3. Destructive malware disguised as ransomware will continue to be a problem. In
+the last quarter we’ve seen two instances of this, and with the continued release
+of tools / exploits from dumps like <THREAT_ACTOR>Vault7</THREAT_ACTOR> and <THREAT_ACTOR>ShadowBrokers</THREAT_ACTOR>, this is going to
+be a new alarming trend to deal with.
+
+6/8
+
+
+
+4. In <COUNTRY>CHINA</COUNTRY>, the past months have been marked by the dwindling economic
+growth, rising tensions with <COUNTRY>North Korea</COUNTRY> and the <COUNTRY>US</COUNTRY>, and increased exchanges
+between South Korean / Japanese / American organizations. In addition to
+these, the 19th Party Congress is set to be held in the <TIMESTAMP>fall of 2017</TIMESTAMP> and according
+to multiple public predictions, it is likely that some major changes will happen in
+the leadership. It’s possible that these events will have wide regional influences
+that could affect the way that threat actors operate in <COUNTRY>ASIA</COUNTRY>, both in terms of
+targeting and TTPs.
+
+5. Targeting energy-related companies and organizations will be on the rise.
+Countries such as <COUNTRY>Norway</COUNTRY> may be a top target moving forward given their
+control on oil and gas in the region in the buildup to an election. Saudi Arabia
+will also top the charts for potential targeting as they have in years past.
+
+6. Lower-tier threat actors continue to increase cyber-espionage efforts and
+capabilities both in complexity and size. Expect more activity with varied
+technical capabilities coming from lesser known or previously unseen actors.
+
+How to keep yourself protected
+
+One of the biggest problems when it comes to leveraging threat intelligence is judging
+the quality of the data and how it can be used for defense. For instance, we may
+observe an increase in the number of fileless attacks or attacks in which all IOCs are
+unique or specific per victim. In such situations, having not only host-based IOCs, but
+also network IOCs and Yara rules that can help identify malware in all cases is very
+important.
+
+Another problem comes from the fact that many threat intelligence providers have a
+limited world view and their data covers only a small set of threats. It’s easy for an
+enterprise to fall into the trap of thinking that ‘actor X’ is not something they need to
+worry because their focus has been only certain countries or certain industry sectors;
+only to discover later that their ignorance left them blind to those attacks.
+
+As shown by many incidents, but especially by <MALWARE>WannaCry</MALWARE> and <MALWARE>ExPetr</MALWARE>’s <MALWARE>EternalBlue</MALWARE>-
+based spreading subroutines, vulnerabilities remain a key approach to infecting
+systems. Therefore timely patching is of utmost importance – which, being one of the
+most tedious IT maintenance tasks, works much better with good automation.
+<SOFTWARE>Kaspersky Endpoint Security for Business Advanced</SOFTWARE> and <SOFTWARE>Kaspersky Total Security</SOFTWARE>
+include Vulnerability & Patch management components, offering convenient tools for
+making patching much easier, and much less time-consuming for IT staff.
+
+Given the above, it is highly recommended that prevention (such as endpoint
+protection) along with advanced detection capabilities, such as a solution that can
+detect all types of anomalies and scrutinize suspicious files at a deeper level, be
+present on users’ systems. The <SOFTWARE>Kaspersky Anti Targeted Attack</SOFTWARE> solution (<SOFTWARE>KATA</SOFTWARE>)
+matches events coming from different infrastructure levels, discerns anomalies and
+aggregates them into incidents, while also studying related artifacts in a safe
+environment of a sandbox. As with most <ORG>Kaspersky</ORG> products, <SOFTWARE>KATA</SOFTWARE> is powered by
+
+7/8
+
+
+
+<SOFTWARE>HuMachine Intelligence</SOFTWARE>, which is backed by on premise and in lab-running machine
+learning processes coupled with real-time analyst expertise and our understanding of
+threat intelligence big data.
+
+The best way to prevent attackers from finding and leveraging security holes, is to
+eliminate the holes altogether, including those involving improper system
+configurations or errors in proprietary applications. For this, <SOFTWARE>Kaspersky Penetration Testing and Application Security Assessment</SOFTWARE> services can become a convenient and
+highly effective solution, providing not only data on found vulnerabilities, but also
+advising on how to fix it, further strengthening corporate security.
+
+https://youtu.be/JS4tbSWQb90
+
+8/8
+
+https://youtu.be/JS4tbSWQb90
+
+	APT Trends report <TIMESTAMP>Q2 2017</TIMESTAMP>
+	Introduction
+	Russian-Speaking Actors
+	English-Speaking Actors
+	Korean-speaking Actors
+	Middle Eastern Actors
+	Chinese-Speaking Actors
+	Best of the rest
+	Predictions
+	How to keep yourself protected
+
+

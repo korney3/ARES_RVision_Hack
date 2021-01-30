@@ -1,0 +1,837 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cisco's Talos Intelligence Group Blog: Advanced Mobile Malware Campaign in India uses Malicious MDM
+
+
+ Subscribe via Email
+
+T H U R S D AY,  J U LY  1 2 ,  2 0 1 8
+
+This blog post is authored by Warren Mercer and Paul Rascagneres and Andrew Williams.
+
+Cisco Talos has identified a highly targeted campaign against 13 iPhones which appears to be
+focused on India. The attacker deployed an open-source mobile device management (MDM)
+system to control enrolled devices. At this time, we don't know how the attacker managed to enroll
+the targeted devices. Enrollment could be done through physical access to the devices, or most
+likely by using social engineering to entice a user to register. In social engineering attacks the victim
+is tricked into clicking accept or giving the attacker physical access to a device. This campaign is of
+note since the malware goes to great lengths to replace specific mobile apps for data interception.
+Talos has worked closely with Apple on countering this threat. Apple had already actioned 3
+certificates associated with this actor when Talos reached out, and quickly moved to action the two
+others once Talos tied them to the threat.
+
+An MDM is designed to deploy applications on enrolled devices. In this campaign we identified five
+applications that have been distributed by this system to the 13 targeted devices in India. Two of
+them appear to test the functionality of the device, one steals SMS message contents, and the
+remaining two report the location of the device and can exfiltrate various data.
+
+Advanced Mobile Malware Campaign in India uses
+Malicious MDM
+
+S U M M A R Y
+
+Search Blog
+
+S U B S C R I B E  T O  O U R  F E E D
+
+ Posts
+
+ Comments
+
+▼  2 0 1 8  (102)
+
+▼  J U LY  (9)
+Beers with Talos EP33 - Change the
+
+Conversation or...
+
+Threat Roundup for July 6-13
+
+Advanced Mobile Malware
+Campaign in India uses Mal...
+
+Vulnerability Spotlight:
+Computerinsel Photoline M...
+
+Vulnerability Spotlight: Multiple
+Antenna House Vu...
+
+Microsoft Patch Tuesday - July 2018
+
+Vulnerability Spotlight: Multiple
+
+B L O G  A R C H I V E
+
+Software Vulnerability
+Information
+
+Reputation
+Center
+
+Library Support
+Communities
+
+About Careers Blog
+
+Convert webpages to pdf online with PDFmyURL
+
+https://www.talosintelligence.com/software
+https://www.talosintelligence.com/snort
+https://www.talosintelligence.com/clamav
+https://www.talosintelligence.com/razorback
+https://www.talosintelligence.com/daemon
+https://www.talosintelligence.com/moflow
+https://www.talosintelligence.com/pesig
+https://www.talosintelligence.com/immunet
+https://www.talosintelligence.com/teslacrypt_tool
+https://www.talosintelligence.com/mbrfilter
+https://www.talosintelligence.com/first
+https://www.talosintelligence.com/lockydump
+https://www.talosintelligence.com/freesentry
+https://www.talosintelligence.com/flokibot
+https://www.talosintelligence.com/scanner
+https://www.talosintelligence.com/smart_scanner
+https://www.talosintelligence.com/ropmemu
+https://www.talosintelligence.com/bass
+https://www.talosintelligence.com/pyrebox
+https://www.talosintelligence.com/file2pcap
+https://www.talosintelligence.com/decept
+https://www.talosintelligence.com/mutiny_fuzzer
+https://www.talosintelligence.com/vulnerability_info
+https://www.talosintelligence.com/vulnerability_reports
+https://www.talosintelligence.com/ms_advisories
+https://www.talosintelligence.com/reputation
+https://www.talosintelligence.com/reputation_center
+https://www.talosintelligence.com/amp-naming
+https://www.talosintelligence.com/documents/ip-blacklist
+https://www.talosintelligence.com/awbo_intro
+https://www.talosintelligence.com/resources
+https://www.talosintelligence.com/community
+https://snort.org/community
+https://www.clamav.net/contact.html#ml
+https://www.talosintelligence.com/aspis
+https://www.spamcop.net/
+https://www.talosintelligence.com/about
+https://www.talosintelligence.com/careers
+https://blog.talosintelligence.com/
+https://www.talosintelligence.com
+https://twitter.com/securitybeard?lang%3Den
+https://twitter.com/securitybeard?lang%3Den
+https://twitter.com/r00tbsd
+https://twitter.com/r00tbsd
+https://twitter.com/SmugYeti
+https://twitter.com/SmugYeti
+https://blog.talosintelligence.com/feeds/posts/default
+https://blog.talosintelligence.com/feeds/6206155954768898771/comments/default
+https://www.talosintelligence.com/blog_subscription
+javascript:void(0)
+https://blog.talosintelligence.com/2018/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/07/
+https://blog.talosintelligence.com/2018/07/beers-with-talos-ep33-change.html
+https://blog.talosintelligence.com/2018/07/threat-roundup-0706-0713.html
+https://blog.talosintelligence.com/2018/07/Mobile-Malware-Campaign-uses-Malicious-MDM.html
+https://blog.talosintelligence.com/2018/07/vulnerability-spotlight-computerinsel-photoline.html
+https://blog.talosintelligence.com/2018/07/vuln-spotlight-antenna.html
+https://blog.talosintelligence.com/2018/07/ms-tuesday.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The attacker used the BOptions sideloading technique to add features to legitimate apps, including
+the messaging apps WhatsApp and Telegram, that were then deployed by the MDM onto the 13
+targeted devices in India. The purpose of the BOptions sideloading technique is to inject a dynamic
+library in the application. The malicious code inserted into these apps is capable of collecting and
+exfiltrating information from the device, such as the phone number, serial number, location,
+contacts, user's photos, SMS and Telegram and WhatsApp chat messages. Such information can
+be used to manipulate a victim or even use it for blackmail or bribery.
+
+Thanks to the logs located on the MDM servers and the malware's command and control (C2)
+server, we were able to determine that the malware has been in use since August 2015. The
+campaign targeted only a few select devices (13) that are all located in India. The attacker left
+essential data on the servers, such as emails and usernames. As part of the attacker's
+development and testing it appears that they compromised their device — we observed a device
+named "test" or "mdmdev." The log files we identified contain the phone number of the device. The
+number originates from India and uses the "Vodafone India" network with roaming capability
+disabled. With all of this information in mind, we assume with high confidence that the malware
+author works out of India.
+
+MDM is becoming more popular throughout large enterprises, and users should be aware that
+installing additional certificates on their device to allow remote management can result in potential
+malicious activity. By installing a certificate outside of the Apple iOS trusted certificate chain, you
+may open up to possible third-party attacks like this. Users must be aware that accepting an MDM
+certificate is equivalent to allowing someone administrator access to their device, passwords, etc.
+This must be done with great care in order to avoid security issues and should not be something
+the average home user does.
+
+The following information warns the security community and users of how this attack works. The
+likely use of social engineering to recruit devices serves as a reminder that users need to be wary of
+clicking on unsolicited links and verify identities and legitimacy of requests to access devices.
+
+The overall workflow of the deployment method and capabilities is pictured below.
+
+Vulnerability Spotlight: Multiple
+Adobe Acrobat DC...
+
+Threat Roundup for June 29 to July
+6th
+
+Smoking Guns - Smoke Loader
+learned new tricks
+
+►  J U N E  (15)
+
+►  M A Y  (15)
+
+►  A P R I L  (21)
+
+►  M A R C H  (10)
+
+►  F E B R U A R Y  (14)
+
+►  J A N U A R Y  (18)
+
+►  2 0 1 7  (172)
+
+►  2 0 1 6  (98)
+
+►  2 0 1 5  (62)
+
+►  2 0 1 4  (67)
+
+►  2 0 1 3  (30)
+
+►  2 0 1 2  (53)
+
+►  2 0 1 1  (23)
+
+►  2 0 1 0  (93)
+
+►  2 0 0 9  (146)
+
+►  2 0 0 8  (37)
+
+R E C O M M E N D E D  B L O G S
+
+C I S C O  B L O G
+Field Area Network Security Webinar –
+Bringing OT and IT Together
+
+S N O R T  B L O G
+Snort Subscriber Rule Set Update for
+07/17/2018
+
+C L A M A V ®  B L O G
+ClamAV 0.100.1 has been released!
+
+Convert webpages to pdf online with PDFmyURL
+
+https://blog.talosintelligence.com/2018/07/vuln-spotlight-adobe-reader.html
+https://blog.talosintelligence.com/2018/07/threat-roundup-0629-0706.html
+https://blog.talosintelligence.com/2018/07/smoking-guns-smoke-loader-learned-new.html
+javascript:void(0)
+https://blog.talosintelligence.com/2018/06/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/05/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/04/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/03/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/02/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/01/
+javascript:void(0)
+https://blog.talosintelligence.com/2017/
+javascript:void(0)
+https://blog.talosintelligence.com/2016/
+javascript:void(0)
+https://blog.talosintelligence.com/2015/
+javascript:void(0)
+https://blog.talosintelligence.com/2014/
+javascript:void(0)
+https://blog.talosintelligence.com/2013/
+javascript:void(0)
+https://blog.talosintelligence.com/2012/
+javascript:void(0)
+https://blog.talosintelligence.com/2011/
+javascript:void(0)
+https://blog.talosintelligence.com/2010/
+javascript:void(0)
+https://blog.talosintelligence.com/2009/
+javascript:void(0)
+https://blog.talosintelligence.com/2008/
+https://blogs.cisco.com
+https://blogs.cisco.com/zzfeatured/field-area-network-security-webinar-bringing-ot-and-it-together
+https://blog.snort.org/
+https://feedproxy.google.com/~r/Snort/~3/PawpwU7v6NM/snort-subscriber-rule-set-update-for_17.html
+http://blog.clamav.net/
+https://feedproxy.google.com/~r/Clamav/~3/qt9HVDWPNEQ/clamav-01001-has-been-released.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The overall workflow of the deployment method and capabilities is pictured below.
+
+Talos identified two different MDM servers:
+
+IO S  M D M  INFR A S TR U C TU R E
+
+My tiny MDM
+
+Convert webpages to pdf online with PDFmyURL
+
+https://2.bp.blogspot.com/--AJLGa8vdAQ/W0eB8N8sUhI/AAAAAAAAAc8/RDYwfVdngT0gEPu9RoivdJPiz1_p1wchQCLcBGAs/s1600/image6.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+hxxp://ios-certificate-update[.]com
+hxxp://www[.]wpitcher[.]com
+
+Both servers above are based on the open-source project mdm-server — a small iOS MDM server.
+MDM allows for operating system-level control of multiple devices from a centralized location. A
+remote administrator can install or remove apps, install or revoke certificates, lock the device, or
+change password requirements, among other things. The operator is able to uninstall legitimate
+applications such as Telegram and WhatsApp to install the malicious versions described in the next
+section.
+
+Each step of the enrollment process needs some type of user interaction. That's why Talos
+assumes the attackers use social engineering to get victims on the MDM. The first step for
+enrolling a device is to install the certificate authority:
+
+Device enrollment
+
+Convert webpages to pdf online with PDFmyURL
+
+https://github.com/project-imas/mdm-server
+https://github.com/project-imas/mdm-server
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+If the user clicks on "Allow," the following message is displayed:
+
+Convert webpages to pdf online with PDFmyURL
+
+https://3.bp.blogspot.com/-M0h-lLDiV_Y/W0eCOVv8ZJI/AAAAAAAAAdE/lwgEKtIkRw0pafJ5TsYxYiSB3Bc0LtuWACLcBGAs/s1600/image3.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+By clicking on "Install," the signature will switch to "Verified:"
+
+Convert webpages to pdf online with PDFmyURL
+
+https://2.bp.blogspot.com/-8sr55mei410/W0eCYdi9nTI/AAAAAAAAAdI/n5-wh_4J7WcLS5WJe6lQ50ASoyPI17RjwCLcBGAs/s1600/image2.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The device is ready to be enrolled:
+
+Convert webpages to pdf online with PDFmyURL
+
+https://1.bp.blogspot.com/-L_Ha9pNIbkU/W0eCeu2fRBI/AAAAAAAAAdQ/HTX3gK_FAp4lorMy6bZhsyuLPW-JD3dxwCLcBGAs/s1600/image9.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+We can control the installed profile:
+
+Convert webpages to pdf online with PDFmyURL
+
+https://3.bp.blogspot.com/-1COtJo3QDvo/W0eCkeK7f8I/AAAAAAAAAdU/fzeJb6aGtLk8cHvrHFBlr5qUfKRq7vlWgCLcBGAs/s1600/image11.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The attacker is now able to control the device. A pop-up appears when the attacker pushes a new
+app to the user device. Here is an example with the compromised Telegram app mentioned later in
+the article:
+
+Convert webpages to pdf online with PDFmyURL
+
+https://1.bp.blogspot.com/-u1r-X1VThZg/W0eCrZtilXI/AAAAAAAAAdc/gA6srrGF5hk2jvUXNWGageR7EiEAqlZtACLcBGAs/s1600/image5.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+This gives the attacker a significant level of control over the victim device(s). This process is used
+similarly to a large-scale enterprise using MDM solutions. It is likely that the user is advised that the
+certificate must be installed to allow enrollment. This is most likely performed via a social
+engineering mechanism, i.e. a fake tech support-style call.
+
+The attacker used a domain which allowed them to try and fool the user. The use of "ios-certificate-
+update[.]com" may make it easier to reassure the user that this is normal. Since we believe this
+attack is targeting devices in India this is also something which a non-native English speaker may
+see as "normal." The certificate and update naming convention is also designed to trick the user.
+
+The attacker left a lot of information behind, which allowed us to analyse files used by this MDM.
+First, the certificate used by the MDM:
+
+CA.crt:
+
+Serial Number: 13905745817900070731 (0xc0fb222544ceb74b)
+Issuer: C=CR, ST=Split, L=Split, O=NA, OU=IT, CN=ios-certificate-
+update.com/emailAddress=nicholas.vukoja@mail.ru
+Validity
+  Not Before: Sep  6 11:33:09 2017 GMT
+  Not After : Sep  6 11:33:09 2018 GMT
+Subject: C=CR, ST=Split, L=Split, O=NA, OU=IT, CN=ios-certificate-
+update.com/emailAddress=nicholas.vukoja@mail.ru
+
+Technical information about the MDM
+
+Convert webpages to pdf online with PDFmyURL
+
+https://3.bp.blogspot.com/-y27Fso_B5TQ/W0eCyFy6jeI/AAAAAAAAAdg/1r_vbt7dSvkiRObhibKuc_LtPho3GkH0QCLcBGAs/s1600/image10.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The certificate was issued in September 2017 and contains an email address located in Russia. Our
+investigation suggests that the attacker is not based out of Russia. We assume this is a false flag
+to point researchers toward the idea of a "classical Russian hacker." False flags are becoming more
+common in malware, both sophisticated and simple. It's an attempt to muddy the waters for the
+analysts/researchers to direct blame elsewhere.
+
+Identity.p12:
+
+Serial Number: 14177612590375883362 (0xc4c0ff88e475d262)
+Issuer: C=CR, ST=Split, L=Split, O=NA, OU=IT, CN=ios-certificate-
+update.com/emailAddress=Aleksi.Dushku@mail.ru
+Validity
+  Not Before: Jan  6 04:59:56 2018 GMT
+  Not After : Jan  6 04:59:56 2019 GMT
+Subject: C=CR, ST=Split, L=Split, O=NA, OU=IT, CN=ios-certificate-
+update.com/emailAddress=Aleksi.Dushku@mail.ru
+
+This is another certificate, which points to an apparent reference to Russia by using another mail.ru
+address.
+
+Server.csr:
+
+Subject: C=HR, ST=Hrvatska, L=Split, O=NA, OU=IT, CN=ios-certificate-
+update.com/emailAddress=nicholas.vukoja@mail.ru
+
+In this certificate, the attacker mentioned Hrvatska ("Croatia" in the Croatian language) with the
+same Russian email.
+
+Convert webpages to pdf online with PDFmyURL
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The certificates are self-signed, or signed by the Comodo certificate authority.
+
+One of the most interesting pieces of information about the MDM is found in the log file. Because of
+this, we can confirm the following points:
+
+There are 13 compromised devices based off serial number
+All the devices are located in India (based on the phone numbers and phone providers)
+Phone models: iPhone 5.4, iPhone 7.2, iPhone 8.1, iPhone 8.2, iPhone 9.3, iPhone 9.4
+iOS versions: 10.2.1, 10.3.1, 10.3.2, 10.3.3, 11.0, 11.0.3, 11.2.1, 11.2.5, 11.2.6
+
+At this time, we don't know how the attacker enrolled the 13 targeted devices into the MDM. It could
+be through physical access to the phones, or by using social engineering, motivating the user to
+enroll their device.
+
+We believe the attackers used their personal phone to test the MDM because they included devices
+named "Test" and "mdmdev." These two devices share the same phone number and a name that is
+uncommon for a personal phone.
+
+The phone number originates from India and is registered on the "Vodafone India" network provider.
+When the device was registered on the MDM server, roaming was disabled. We assess with high
+confidence that the author is based out of in India.
+
+The attacker's purpose appears to deploy malicious apps onto the 13 compromised devices. To do
+
+Log analysis
+
+IO S  A PPL IC ATIO NS
+
+Malicious applications using BOptions sideloading
+
+EXPLANATION
+
+Convert webpages to pdf online with PDFmyURL
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The attacker's purpose appears to deploy malicious apps onto the 13 compromised devices. To do
+so, they decided to use the BOptions sideloading technique. The technique is described here. The
+purpose is to inject a dynamic library into the legitimate app. The GitHub project was used by the
+attacker to create the malicious BOptionspro.dylib library held in the iOS package (.ipa file). The
+injection library can ask for additional permissions, execute code and steal information from the
+original application, among other things. Milan-based technology company HackingTeam has
+previously used this technique.
+
+In this campaign we identified three compromised versions of apps using this trick hosted on the
+MDM server. AppsSLoader is seemingly harmless. The app was created to test the library injection.
+It simply opens a pop-up to the user confirming the execution of the dynamic library. This was most
+likely created to test the effectiveness of the library prior to malicious deployment.
+
+The compromised versions of the Telegram and WhatsApp applications used in this campaign are
+more interesting and relevant. They first contain the same malicious code. The purpose is to send
+collected data to a C2 server located at hxxp[:]//techwach[.]com.
+
+The malicious code checks permissions and asks for additional permissions if it does not already
+have them:
+
+Permission to access the user's contact list (PhnNumber::getContAccess)
+Permission to access the user's photos (PhnNumber::getPAccess)
+
+TELEGRAM, WHATSAPP & APPSSLOADER
+
+Convert webpages to pdf online with PDFmyURL
+
+https://github.com/iMokhles/BOptionLoader
+https://github.com/iMokhles/BOptionLoader
+https://www.theregister.co.uk/2015/08/06/hacking_team_ios_trickery_outed/
+https://www.theregister.co.uk/2015/08/06/hacking_team_ios_trickery_outed/
+https://2.bp.blogspot.com/-ovXlA-pemo0/W0eDAkg3OxI/AAAAAAAAAds/Orxx4w1z2mwCypnQhqu6lyM7em2GE1svgCLcBGAs/s1600/image7.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Permission to access the user's photos (PhnNumber::getPAccess)
+
+One of the most relevant features of these compromised versions of the applications is the
+Telegram and WhatsApp message stealing feature. Here is the global workflow of it:
+
+For Telegram:
+
+Opens 'tgdata.db', an SQLite3 database used by Telegram
+Checks for the key 'UPLOADED_CHAT' in the key store
+Queries "select users_v29.phone_number, users_v29.uid from users_v29;"
+Queries for "select messages_v29.from_id AS oid,users_v29.first_name,
+users_v29.last_name,users_v29.phone_number,messages_v29.message,messages_v29
+.mid,messages_v29.to_id from messages_v29 join users_v29 ON
+(messages_v29.from_id = users_v29.uid);"
+Parses results, storing off counts, timestamps, and other metadata.
+Sends by posting to hxxp[:]//techwach[.]com
+
+Query screenshot:
+
+For WhatsApp:
+
+Opens 'ChatStorage.sqlite', the database used for WhatsApp messages
+Queries 'SELECT Z_PK,ZFROMJID,ZTOJID,ZPUSHNAME,ZTEXT,ZMESSAGEDATEConvert webpages to pdf online with PDFmyURL
+
+https://2.bp.blogspot.com/-7gkLImKjPLc/W0eDUmNKMCI/AAAAAAAAAd4/h0A9fYwAwUk8-6IZMbR_DAdWiJHzG0SEACLcBGAs/s1600/image8.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Queries 'SELECT Z_PK,ZFROMJID,ZTOJID,ZPUSHNAME,ZTEXT,ZMESSAGEDATE
+FROM ZWAMESSAGE WHERE Z_PK > '%d''
+Parses results, storing off counts, timestamps, and other metadata.
+Sends by posting to hxxp[:]//techwach[.]com
+
+Additionally, the malware is designed to be able to send the contacts, location, and images from the
+compromised device.
+
+Here is the list of the PHP pages available on the techwach C2 server:
+
+all.php
+dyrKztORKwVWOGo.php
+get.php
+hh.php
+info.php
+jDRucchWSoWQGpU.php
+UfmcRxYDaVVbrBl.php
+
+Another intriguing aspect of this malware is the way in which the malicious code achieves periodic
+code execution when the legitimate app bundled with it is running. One technique is to modify the
+app's code at runtime to execute the malicious code — this has been observed in previously
+analyzed iOS malware. Instead, this malware remains almost entirely independent of the app and
+gains execution by creating a timer that eventually executes the malicious code in a background
+thread. From there, it schedules tasks to be executed asynchronously in the background by
+leveraging the apps' background task queue. Ultimately, this means that the malicious code is
+invisible to the user of the app, and can be easily reused alongside any real application.
+
+Talos identified another legitimate app executing malicious code during this campaign in India.
+PrayTime is used to give the user a notification when it's time to pray. The malicious code connects
+to the domain voguextra[.]com. The purpose is to download and display specific ads to the user.
+
+PRAYTIME
+
+Convert webpages to pdf online with PDFmyURL
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+This app also leverages private frameworks to read the SMS messages on the device it is installed
+on and uploads these to the C2 server.
+
+MyApp is a regular iOS app. However, the application does not do anything. It has almost no code
+associated with it other than standard iOS app runtime code. This could potentially be another
+testing app, but we're unable to determine the exact use. This app is non-malicious.
+
+The malicious code within Telegram and WhatsApp sent collected data to the server
+techwach[.]com. The server has been active since August 2015. Initially, the username used on the
+server was arnoldrex. Subsequently, this was changed to chernobog (referencing a Slavic deity).
+
+This investigation shows us that this attack targeted a very limited number (13) of users using
+iPhone devices in India. At the time, it is unclear who the targets of the campaign were, who was
+the perpetrator, or what the exact purpose was. It's very likely the vector for this campaign was
+simply social engineering - in other words asking the user to click "ok". This type of vector is very
+difficult to defend against since users can often be tricked into acting against their best interests.
+This is another important reminder that users must think twice before clicking on unsolicited links or
+requests and also that users should verify credentials from any unsolicited calls requesting they
+take action on devices.
+
+The attackers installed an open-source MDM and used this to deploy malicious code into secure
+
+MYAPP
+
+Techwach C2 server
+
+C O NC L U S IO N
+
+Convert webpages to pdf online with PDFmyURL
+
+https://4.bp.blogspot.com/-s9LYsIvmOi8/W0eDrCLsgBI/AAAAAAAAAeE/AAO8Lbd3RVwsaYoz67VIKrhiy1C5jcd2wCLcBGAs/s1600/image1.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The attackers installed an open-source MDM and used this to deploy malicious code into secure
+chat applications such as Telegram and WhatsApp to surreptitiously retrieve the messages/chats,
+photos and user's location from the victim's phone. Over a three-year period, the attackers
+remained under the radar — likely due to the low number of compromised devices. All the technical
+details point to an actor based in the same country as the victims: India. The attacker tried to mimic
+Russian hackers by using mail.ru email. However, we found testing devices enrolled on the MDM
+with an Indian phone number and registered on an Indian provider.
+
+Once a user has lost physical access to their phone, it's really a case of the attacker having a much
+easier playing field for malicious activity. The fact that the attacker was also able to get devices
+onto his own malicious MDM shows that the attacker was indeed motivated to obtain initial access
+but also to maintain persistence across the devices.
+
+Additional ways our customers can detect and block this threat are listed below.
+
+Advanced Malware Protection (AMP) is ideally
+suited to prevent the execution of the malware
+used by these threat actors.
+
+Cisco Cloud Web Security (CWS) or Web
+Security Appliance (WSA) web scanning
+prevents access to malicious websites and
+detects malware used in these attacks.
+
+Email Security can block malicious emails sent
+by threat actors as part of their campaign.
+
+Network Security appliances such as Next-
+Generation Firewall (NGFW), Next-Generation
+
+Intrusion Prevention System (NGIPS), and Meraki MX can detect malicious activity associated with
+this threat.
+
+C O V E R A G E
+
+Convert webpages to pdf online with PDFmyURL
+
+https://3.bp.blogspot.com/-C8KRrOA5Nmo/W0eD2q1bLMI/AAAAAAAAAeI/YBAMH4gG9dIQ-TjQrG0DnekVt8ALIsAdgCLcBGAs/s1600/image4.png
+https://www.cisco.com/c/en/us/products/security/advanced-malware-protection
+https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html
+https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html
+https://www.cisco.com/c/en/us/products/security/email-security-appliance/index.html
+https://www.cisco.com/c/en/us/products/security/firewalls/index.html
+https://www.cisco.com/c/en/us/products/security/firewalls/index.html
+https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html
+https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html
+https://meraki.cisco.com/products/appliances
+https://meraki.cisco.com/products/appliances
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+AMP Threat Grid helps identify malicious binaries and build protection into all Cisco Security
+products.
+
+Umbrella, our secure internet gateway (SIG), blocks users from connecting to malicious domains,
+IPs, and URLs, whether users are on or off the corporate network.
+
+Open Source Snort Subscriber Rule Set customers can stay up to date by downloading the latest
+rule pack available for purchase on Snort.org.
+
+iOSApplications
+
+329e025866bc6e88184af0b633eb3334b2e8b1c0817437c03fcd922987c5cf04
+AppsSLoader.ipa
+aef046b67871076d507019cd87afdaeef602d1d2924b434ec1c165097b781242 MyApp.ipa
+4be31095e5f010cc71cf8961f8fe3fc3ed27f8d8788124888a1e90cb90b2bef1
+PrayTime.ipa
+624689a1fd67891be1399811d6008524a506e7e0b262f549f5aa16a119369aef
+Telegram.ipa
+e3872bb33d8a4629846539eb859340940d14fdcf5b1c002b57c7dfe2adf52f08 Wplus.ipa
+
+MDM Domains:
+
+ios-certificate-update[.]com
+www[.]wpitcher[.]com
+
+C2 Domains:
+
+Voguextra[.]com
+Techwach[.]com
+
+IO C S
+
+Convert webpages to pdf online with PDFmyURL
+
+https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html
+https://umbrella.cisco.com/
+https://www.snort.org/products
+https://www.snort.org/products
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+S H A R E  T H I S
+
+P O S T
+
+Advertising Domain:
+
+voguextra[.]com
+
+P O S T E D  B Y  P A U L  R A S C A G N E R E S AT  3 : 0 0  P M 
+
+L A B E L S :  A P P L E ,  I N D I A ,  I O S ,  I P H O N E ,  M A LW A R E  A N A LY S I S,  M A LW A R E  R E S E A R C H,  M D M
+
+   
+
+Enter your comment...
+
+Comment as: Google Account
+
+PublishPublish  PreviewPreview
+
+NO COMMENTS:
+
+POST A COMMENT
+
+Convert webpages to pdf online with PDFmyURL
+
+https://www.blogger.com/profile/10073079939160046441
+https://blog.talosintelligence.com/2018/07/Mobile-Malware-Campaign-uses-Malicious-MDM.html
+https://blog.talosintelligence.com/search/label/apple
+https://blog.talosintelligence.com/search/label/India
+https://blog.talosintelligence.com/search/label/iOS
+https://blog.talosintelligence.com/search/label/iPhone
+https://blog.talosintelligence.com/search/label/Malware Analysis
+https://blog.talosintelligence.com/search/label/Malware Research
+https://blog.talosintelligence.com/search/label/MDM
+https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/2018/07/Mobile-Malware-Campaign-uses-Malicious-MDM.html&text=Advanced Mobile Malware Campaign in India uses Malicious MDM
+https://twitter.com/share?url=https://blog.talosintelligence.com/2018/07/Mobile-Malware-Campaign-uses-Malicious-MDM.html&text=Advanced Mobile Malware Campaign in India uses Malicious MDM
+https://www.reddit.com/submit?url=https://blog.talosintelligence.com/2018/07/Mobile-Malware-Campaign-uses-Malicious-MDM.html&title=Advanced Mobile Malware Campaign in India uses Malicious MDM
+mailto:?body=https://blog.talosintelligence.com/2018/07/Mobile-Malware-Campaign-uses-Malicious-MDM.html&subject=Advanced Mobile Malware Campaign in India uses Malicious MDM
+https://www.blogger.com/comment-iframe.g?blogID=1029833275466591797&postID=6206155954768898771&blogspotRpcToken=852605
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Software
+
+Reputation Center
+
+Vulnerability Information  
+
+Library
+
+Support Communities
+
+Microsoft Advisory Snort Rules  
+
+IP Blacklist Download
+
+AWBO Exercises
+
+About Talos  
+
+Careers
+
+Blog
+
+CONNECT WITH US
+
+   
+
+© 2018 Cisco Systems, Inc. and/or its affiliates. All rights reserved. View our Privacy Policy here.
+
+N E W E R
+
+P O S T
+
+O L D E R
+
+P O S T
+
+H O M E
+
+S U B S C R I B E  T O :  P O S T  C O M M E N T S  ( AT O M )
+
+ 
+
+Convert webpages to pdf online with PDFmyURL
+
+https://blog.talosintelligence.com/2018/07/threat-roundup-0706-0713.html
+https://blog.talosintelligence.com/2018/07/vulnerability-spotlight-computerinsel-photoline.html
+https://blog.talosintelligence.com/
+https://blog.talosintelligence.com/feeds/6206155954768898771/comments/default
+https://talosintelligence.com/software
+https://talosintelligence.com/reputation
+https://talosintelligence.com/vulnerability-reports
+https://talosintelligence.com/resources
+https://talosintelligence.com/community
+https://talosintelligence.com/ms_advisories
+https://talosintelligence.com/documents/ip-blacklist
+https://talosintelligence.com/awbo_exercises
+https://talosintelligence.com/about
+https://talosintelligence.com/careers
+https://blog.talosintelligence.com
+https://twitter.com/talossecurity
+https://www.facebook.com/groups/TalosGroupatCisco/
+https://www.youtube.com/playlist?list=PLFT-9JpKjRTDn_qtGN238gzycJfaVzMqD
+https://www.linkedin.com/grp/home?gid=8287731
+https://www.cisco.com/web/siteassets/legal/privacy_full.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+

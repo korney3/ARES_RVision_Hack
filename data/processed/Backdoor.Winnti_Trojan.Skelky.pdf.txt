@@ -1,0 +1,144 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<MALWARE>Backdoor.Winnti</MALWARE> attackers have a skeleton in their closet?
+
+
+<MALWARE>Backdoor.Winnti</MALWARE> attackers have a skeleton in
+their closet?
+New evidence suggests that the skeleton key malware, known as <MALWARE>Trojan.Skelky</MALWARE>, could be linked to the
+<MALWARE>Backdoor.Winnti</MALWARE> malware family.
+By: <IDENTITY>Gavin O Gorman</IDENTITY> <ORG>Symantec</ORG> Employee
+Created <TIMESTAMP>29 Jan 2015</TIMESTAMP>
+
+Contributor: <IDENTITY>Nikolas Tsapkis</IDENTITY>
+
+On <TIMESTAMP>January 12, 2015</TIMESTAMP>, <ORG>Dell</ORG> Secureworks blogged about a tool (<MALWARE>Trojan.Skelky</MALWARE>) that allows attackers to
+â€œuse a password of their choosing to authenticate as any user.â€ The <MALWARE>Skelky</MALWARE> (from skeleton key)
+tool is deployed when an attacker gains access to a victimâ€™s network; the attackers may also
+utilize other tools and elements in their attack. 
+
+Symantec has analyzed <MALWARE>Trojan.Skelky</MALWARE> and found that it may be linked to the <MALWARE>Backdoor.Winnti</MALWARE>
+malware family. The attackers behind the <MALWARE>Trojan.Skelky</MALWARE> campaign appear to have been using the
+malware in conjunction with this back door threat. Itâ€™s unclear if the malware family
+<MALWARE>Backdoor.Winnti</MALWARE> is used by one attack group or many groups.
+
+During our research, we also found that <MALWARE>Trojan.Skelky</MALWARE> has been active over the past two years. Within
+this timeframe, we have seen new variants and a consistent hashed password value.
+
+Where is <MALWARE>Trojan.Skelky</MALWARE> being used?
+
+1 of 3
+
+
+
+<ORG>Symantec</ORG> telemetry identified the skeleton key malware on compromised computers in five
+organizations with offices in the <COUNTRY>United States</COUNTRY> and <COUNTRY>Vietnam</COUNTRY>. The exact nature and names of the
+affected organizations is unknown to <ORG>Symantec</ORG>. The first activity was seen in <TIMESTAMP>January 2013</TIMESTAMP> and <TIMESTAMP>until November 2013</TIMESTAMP>, there was no further activity involving the skeleton key malware.
+<TIMESTAMP>In November 2013</TIMESTAMP>, the attackers increased their usage of the tool and have been active ever since. Four more
+variants of <MALWARE>Trojan.Skelky</MALWARE> were discovered as well as additional file names used by the attackers. The
+complete set of observed file names and hashes are listed as follows
+
+<IOC>msuta64.dll</IOC>: <IOC>66da7ed621149975f6e643b4f9886cfd</IOC>
+<IOC>ole64.dll</IOC>: <IOC>bf45086e6334f647fda33576e2a05826</IOC>    
+<IOC>HookDC64.dll</IOC>: <IOC>bf45086e6334f647fda33576e2a05826</IOC>    
+<IOC>HookDC.dll</IOC>: <IOC>a487f1668390df0f4951b7292bae6ecf</IOC>    
+<IOC>HookDC.dll</IOC>: <IOC>8ba4df29b0593be172ff5678d8a05bb3</IOC>    
+<IOC>HookDC.dll</IOC>: <IOC>f01026e1107b722435126c53b2af47a9</IOC>    
+<IOC>ole64.dll</IOC>: <IOC>f01026e1107b722435126c53b2af47a9</IOC>    
+<IOC>olex64.dll</IOC>: <IOC>f01026e1107b722435126c53b2af47a9</IOC>    
+<IOC>HookDC64.dll</IOC>: <IOC>f01026e1107b722435126c53b2af47a9</IOC>    
+<IOC>ole.dll</IOC>: <IOC>f01026e1107b722435126c53b2af47a9</IOC>
+<IOC>HookDC.dll</IOC>: <IOC>747cc5ce7f2d062ebec6219384b57e8c</IOC>        
+<IOC>ole.dll</IOC>: <IOC>747cc5ce7f2d062ebec6219384b57e8c</IOC>    
+
+The link between <MALWARE>Trojan.Skelky</MALWARE> and <MALWARE>Backdoor.Winnti</MALWARE>
+From the first observed use of the tool in <TIMESTAMP>January 2013</TIMESTAMP> to the present, the attackers have consistently
+used the same password. This is the case with three different variants of the tool. The regular use of
+the same password across multiple variants means itâ€™s likely that only one group of attackers has
+been using the tool <TIMESTAMP>until at least January 2015</TIMESTAMP>. 
+
+By identifying any other malware active on compromised computers at the same time as
+<MALWARE>Trojan.Skelky</MALWARE>, it is possible to learn more about the attackers. There were almost no signs of other
+malware active at the same time as <MALWARE>Skelky</MALWARE> in most of the organizations investigated. However, two
+compromised computers had other malware present, active, and in the same directory, at the same
+time as <MALWARE>Trojan.Skelky</MALWARE>. 
+
+Two files were discovered on one of the victimâ€™s computers. One file is a variant of
+<MALWARE>Backdoor.Winnti</MALWARE> (<IOC>jqs.exe</IOC>) and the other is a dropper for <MALWARE>Backdoor.Winnti</MALWARE> (tmp8296.tmp), which is
+responsible for creating the <MALWARE>Backdoor.Winnti</MALWARE> sample. Details on the file names and hashes are as
+follows:
+
+<IOC>jqs.exe</IOC> (<MALWARE>Backdoor.Winnti</MALWARE> dropper): <IOC>600b604784594e3339776c6563aa45a1</IOC>
+<IOC>tmp8296.tmp</IOC> (<MALWARE>Backdoor.Winnti</MALWARE> variant): <IOC>48377c1c4cfedebe35733e9c3675f9be</IOC>
+
+<MALWARE>Backdoor.Winnti</MALWARE> has been used in the past in a number of different campaigns, most notably against
+Asian games companies. Given the disparate nature of some victims, itâ€™s unclear if the malware
+is used by one set of attackers, or many. <ORG>Symantec</ORG> is continuing its investigation into this malware
+family <MALWARE>Backdoor.Winnti</MALWARE> and the specific actors behind the combined use of <MALWARE>Backdoor.Winnti</MALWARE> and
+<MALWARE>Trojan.Skelky</MALWARE>.
+
+2 of 3
+
+
+
+<ORG>Symantec</ORG> and <ORG>Norton</ORG> protection
+<ORG>Symantec</ORG> and <ORG>Norton</ORG> products have the following protections against the skeleton key malware:
+
+AV
+
+<MALWARE>Trojan.Skelky</MALWARE>
+
+Customers with Behaviour-Based Protection enabled are protected with the signature
+SONAR.Module!gen3.
+
+3 of 3
+
+

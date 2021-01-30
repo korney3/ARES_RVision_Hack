@@ -1,0 +1,207 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cr4sh_0x48k: Fuck me, I'm famous
+
+
+archive.is
+webpage capture
+
+Saved from http://cr4sh-0x48k.livejournal.com/42345.html
+no other snapshots from this url
+search2 Dec 2012 00:53:27 UTC
+
+All snapshots from host cr4sh-0x48k.livejournal.com
+
+share download .zip report error or abuseWebpage Screenshot
+
+About
+
+Contact
+Advertise
+Jobs
+Site News
+More...
+
+Help
+
+Support / FAQs
+Safety Tips
+
+Get Involved
+
+Volunteer
+Developers
+
+Legal
+
+Terms of Service
+Privacy Policy
+Copyright
+Abuse Policy
+
+LJ Labs
+
+LJ Aqua
+More...
+
+Store
+
+Upgrade Account
+Virtual Gifts
+Merchandise
+More...
+
+Change language:
+
+English
+
+Current version: v.99
+
+Follow us:  
+
+» View Full Sitemap
+
+Copyright © 1999 LiveJournal, Inc. All rights reserved.
+
+Cr4sh ( cr4sh_0x48k) wrote,
+2009-12-23 19:39:00
+
+   
+
+Fuck me, I'm famous
+Последние два дня меня довольно часто донимают вопросами по поводу этой статьи на BBC:
+
+ФБР подозревает российских хакеров в атаке на Citigroup
+
+Следователи выяснили, что пароли клиентов банка были похищены с помощью программы Black Energy.
+
+Джо Стюарт, специалист американской фирмы SecureWorks, специализирующейся на компьютерной безопасности, которого цитирует Wall
+Street Journal, утверждает, что ее написал российский хакер под ником Cr4sh. Пакет с программным обеспечением, в который входит Black
+Energy, продается в интернете по 700 долларов.
+
+Как сообщили во вторник "Ведомости", Black Energy использовалась, в частности, для блокирования сайтов правительства и банков Грузии во
+время войны на Кавказе в августе 2008 года и в Эстонии во время конфликта вокруг переноса Бронзового солдата в апреле 2007 года.
+
+В связи с этим, решил написать мини-дисклеймер журнализдам, "специалистам" и другим некомпетентным персонажам, которые захотят раскопать
+ещё этой правды (а стало быть, и истены) про злобных "российских хакеров".
+
+Так, собственно, усвойте, бляди: Black Energy - это DDoS-бот, который был результатом проведенной на заказ (году в 2006-2007) работы, по
+созданию простого и компактного рабочего инструмента, без всяких руткитов, инфекторов и каких бы то ни было spyware-функций.
+Каким образом DDoS-бот относится к краже банковской информации - я в душе не ебу. Однако, тот факт, что его исходники были доступны многим
+людям во всевозможных [полу]приватных тусовках, может означать, что кто-то заточил его под свои нужды. Подозревать же в причастности к
+криминальным махинациям автора бота, чей автограф стоял на публично доступных билдах 3-х летней давности, может только полный идиот.
+
+Ознакомиться с описанием Black Energy (за авторством security-специалистов в более положительном смысле этого слова) можно здесь:
+http://atlas-public.ec2.arbor.net/docs/BlackEnergy+DDoS+Bot+Analysis.pdf
+
+PS: я же в настоящее время никаким боком не связан с ботнет-сетями и программами для их организации.
+
+Tags: life, идиоты
+
+Home Create an account Explore Shop LJ Extras
+
+Username: Create an Account
+Forgot your login or password?
+
+  Password:
+ Log in
+
+ Remember Me
+English • Español • Deutsch • Русский…
+
+http://archive.is/
+http://archive.is/cr4sh-0x48k.livejournal.com
+http://archive.is/RFBU/image
+http://archive.is/download/RFBU.zip
+http://archive.is/RFBU/abuse
+https://archive.is/o/RFBU/http://www.livejournal.com/
+https://archive.is/o/RFBU/http://www.livejournal.com/create.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/search/
+https://archive.is/o/RFBU/http://www.livejournal.com/shop/
+https://archive.is/o/RFBU/http://www.livejournal.com/extra/
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/profile
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/2009/
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/2009/12/
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/2009/12/23/
+https://archive.is/o/RFBU/http://www.livejournal.com/go.bml?journal=cr4sh_0x48k&itemid=42345&dir=prev
+https://archive.is/o/RFBU/http://www.livejournal.com/tools/memadd.bml?journal=cr4sh_0x48k&itemid=42345
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/42345.html%23
+https://archive.is/o/RFBU/http://www.livejournal.com/go.bml?journal=cr4sh_0x48k&itemid=42345&dir=next
+https://archive.is/o/RFBU/http://www.bbc.co.uk/russian/international/2009/12/091222_russia_fbi_hackers.shtml
+https://archive.is/o/RFBU/http://www.google.ru/search?q=%D1%85%D0%B0%D0%BA%D0%B5%D1%80+Cr4sh
+https://archive.is/o/RFBU/http://atlas-public.ec2.arbor.net/docs/BlackEnergy+DDoS+Bot+Analysis.pdf
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/tag/life
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/tag/%D0%B8%D0%B4%D0%B8%D0%BE%D1%82%D1%8B
+https://archive.is/o/RFBU/http://www.livejournal.com/contact/
+https://archive.is/o/RFBU/http://livejournalinc.com/sales.php
+https://archive.is/o/RFBU/http://www.livejournalinc.com/jobs/
+https://archive.is/o/RFBU/http://news.livejournal.com/
+https://archive.is/o/RFBU/http://www.livejournalinc.com/
+https://archive.is/o/RFBU/http://www.livejournal.com/support/
+https://archive.is/o/RFBU/http://www.livejournal.com/support/faq.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/site/safetytips.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/support/faqbrowse.bml?faqid=57
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/42345.html
+https://archive.is/o/RFBU/http://www.livejournal.com/legal/tos.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/legal/privacy.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/legal/dmca.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/abuse/policy.bml
+https://archive.is/o/RFBU/http://aqua.livejournal.ru/
+https://archive.is/o/RFBU/http://www.livejournal.com/labs.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/manage/account/
+https://archive.is/o/RFBU/http://www.livejournal.com/shop/vgift.bml
+https://archive.is/o/RFBU/https://www.zazzle.com/livejournal*
+https://archive.is/o/RFBU/http://www.livejournal.com/shop/
+https://archive.is/o/RFBU/http://lj-releases.livejournal.com/
+https://archive.is/o/RFBU/http://www.facebook.com/livejournal
+https://archive.is/o/RFBU/https://twitter.com/LiveJournal
+https://archive.is/o/RFBU/http://www.livejournal.com/site/
+https://archive.is/o/RFBU/http://www.livejournal.com/create.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/lostinfo.bml
+https://archive.is/o/RFBU/http://www.livejournal.com/identity/login.bml?type=facebook
+https://archive.is/o/RFBU/http://www.livejournal.com/identity/login.bml?type=twitter
+https://archive.is/o/RFBU/http://cr4sh-0x48k.livejournal.com/42345.html%23login-more
+https://archive.is/o/RFBU/http://www.livejournal.com/manage/settings/?cat=display
+https://archive.is/o/RFBU/http://www.livejournal.com/
+
+
+
+	Fuck me, I'm famous
+	About
+	Help
+	Legal
+	Store
+	Get Involved
+	LJ Labs
+
+

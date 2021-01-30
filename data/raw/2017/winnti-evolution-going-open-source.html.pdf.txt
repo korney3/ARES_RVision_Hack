@@ -1,0 +1,333 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Winnti Evolution - Going Open Source
+
+
+ProtectWise recently observed a burst of activity and change of tactics from an advanced actor group
+commonly referred to as “Winnti.” The purpose of this post is to share details of the group’s recent activity in
+an effort to assist the public in searching for related activity in their networks and preventing future attacks.
+
+About Winnti
+The Winnti group has been active since roughly 2010. Significant previous research has been published on�
+the group from a variety of sources, such as Kaspersky, Blue Coat, and TrendMicro. As far back as 2011,
+the group was detected attacking multiple video game studios, including some in South Korea and Japan,
+likely attempting to steal various in-game currencies and to compromise developers’ certificates and source�
+code.
+
+Objectives:
+Theft of digital certificates�
+Use of stolen certificates to sign malware�
+Theft of gaming source code and infrastructure details
+
+TTPs: 
+
+BACK TO BLOG
+POSTS
+
+Winnti Evolution - Going Open Source
+
+/
+/partners.html
+/blog/
+https://kasperskycontenthub.com/wp-content/uploads/sites/43/vlpdfs/winnti-more-than-just-a-game-130410.pdf
+https://www.bluecoat.com/en-gb/security-blog/2014-07-21/korean-gaming-industry-still-under-fire
+http://blog.trendmicro.com/trendlabs-security-intelligence/winnti-abuses-github/
+/blog/webinar-recap-see-clearly-and-respond-quickly-from-the-network-to-the-endpoint.html
+/blog/wannacry-ransomware-review-and-global-impact.html
+/blog/building-a-great-threat-hunting-practice-in-the-cloud.html
+/blog/category/perspectives.html
+/blog/category/threat-research.html
+/blog/category/events.html
+/blog/category/partners.html
+/blog/category/products-services.html
+
+
+Known Toolset: PIVY, Chopper, PlugX, ZxShell, Winnti
+Phishing HR/recruiting emails for initial infection vector
+CHM email file attachments containing malware�
+Use of GitHub for C2 communication
+
+Targets:
+Online video game organizations
+Defense Sector
+Internet Service Providers
+
+Attribution:
+Originating Location: China (high confidence)�
+Potential Aliases: Wicked Panda, APT17
+
+Evolution of Winnti - Open source tools, and
+macOS targeting:
+Within the Winnti campaigns observed by ProtectWise, the use of open source tooling was common.
+Specifically, the group has been utilizing the Browser Exploitation Framework (BeEF) and Metasploit�
+Meterpreter. The use of open source tools by advanced actor groups has become increasingly common, as
+discussed by our colleagues in the industry. To the best of our knowledge, this is a new technique for the
+Winnti group and we expect it to be used in future attacks.
+
+Also noteworthy are attempts to deliver JAR files containing macOS applications which have meterpreter�
+functionality. In addition, victims running Windows were delivered MSI files which were built using a free�
+EXE to MSI converter (http://www.exetomsi.com/).  
+
+http://www.darkreading.com/threat-intelligence/nation-state-hackers-go-open-source/d/d-id/1328619
+http://www.exetomsi.com/
+
+
+Figure 1: Summary of attack progression.
+
+Delivery:
+The Winnti campaign detailed in this post began with spear phishing emails aimed at a Japanese gaming
+studio’s staff. At least one of these emails claimed it was from an applicant for a job posting who was listing
+their relevant experience, along with a link to their resume.
+
+Figure 2: Winnti Phishing Email.
+
+The approximate translation of the Winnti phishing email is as follows:
+
+“I saw your job posting. My main languages are Object-C, JAVA, and Swift, and I have 7 years
+experience with Ruby and 6 years experience with PHP. I have 5 years experience developing iOS
+apps, as well as Android apps, AWS, Jenkins, Microsoft Azure, ZendFramework, and smartphone
+application payment processing. I also have 5 years experience with MSSQL, Mysql, Oracle, and
+PostgreSQL. Please see here: <URL>”
+
+/assets/images/ckfinder/images/6.png
+/assets/images/ckfinder/images/1.png
+
+
+We observed Winnti using two different techniques when the link was clicked. In the first technique, the user�
+was directed to an HTML page which loaded a fake English resume. In the second technique, which we
+only observed a few times, the landing page directly downloaded a JAR file to the victim’s machine.�
+
+Figure 3: Fake resume loaded in a browser. Some items blurred as content may have been stolen.
+
+Figure 4: Fake resume continued.
+
+/assets/images/ckfinder/images/2.png
+/assets/images/ckfinder/images/3.png
+
+
+Landing:
+In cases where the above resume is loaded, it is delivered as follows:
+
+{Phishing Email Link}/?session={date}{ID}
+
+This page is an HTML file containing a simple iframe instruction to load real.html.�
+
+Figure 5: Link-click landing page HTML content.  
+
+real.html
+
+This is the HTML file containing the fake resume which will load in a browser for the link-click victim. It�
+contains a script which loads the BeEF hook script from a separate external host. The group’s infrastructure
+changes rapidly, occasionally allowing us to observe them modifying the hook page destination domain over
+the span of a few minutes.
+
+Sometimes the same destination would be referred to by IP in one version of real.html and by hostname in
+another. Two additional files, resume_screen.css and mypic.jpg, are also loaded to make the resume look�
+more realistic with improved formatting.
+
+Figure 6: Added hook.js load request placed in a fake resume.
+
+At this point, in cases where BeEF has been used, exploits are typically attempted on victim hosts with the
+help of BeEF modules. A commonly used module was Jenkins_groovy_code_exec.
+
+Evasion Techniques:
+One of the Winnti group’s distinctive techniques is their particular style of DNS resolution for their C2
+domains. Choosing domain names which are similar to valid domains (for example, google-statics[.]com, a
+misspelling of Google statistics, instead of analytics.google.com), the group configures their DNS so that the�
+root domain resolves to either nothing, or localhost (previous research has observed the root domain
+resolving to the valid domain it is imitating; we did not observe that in this campaign).
+
+Then a subdomain resolves to an actual C2 server. For example, google-statics[.]com, one of the C2
+domains observed in this campaign has no resolutions at the time of writing. css.google-statics[.]com,
+however, resolves to a real C2 IP.
+
+As observed in previous Winnti attacks, the group uses commonly accepted and poorly monitored protocols
+and ports for their C2 communication (ports 53, 80, 443). With the addition of BeEF, the group has made use
+of TCP port 8000 as well. Amusingly, the group's use of BeEF has been fairly rudimentary, not even taking
+advantage of the basic obfuscation features included in the program. We observed the group using
+GAGAHOOK instead of the default BEEFHOOK session name and BEEFSESSION session cookie name.
+
+/assets/images/ckfinder/images/4.png
+/assets/images/ckfinder/images/5.png
+https://github.com/beefproject/beef/tree/master/modules/exploits/jenkins_groovy_code_exec
+
+
+Threat Research
+
+Figure 7: BeEF hook.js request.
+
+As in previous Winnti campaigns, the group continues to use legitimate code signing certificates, stolen from�
+online gaming organizations, to sign their malware. This technique can help to hide the malicious intent of
+the group’s code, allowing it to run in environments where execution is restricted to signed/trusted
+programs. While unconfirmed as of this writing, we believe the Winnti group is continuing to steal and use�
+certificates from new organizations.�
+
+Associated Indicators:
+Note: We are redacting the malware hashes while we work with the organization whose digital signature was
+used on the malware as a potential victim of the Winnti group.
+
+ Indicator  Type  Description
+
+ job.yoyakuweb[.]technology  Domain  Phishing email link destination.
+
+ resume.immigrantlol[.]com  Domain  Phishing email link destination.
+
+ macos.exoticlol[.]com  Domain  Likely phishing email link destination.
+
+ css.google-statics[.]com  Domain  BeEF Landing and C2.
+
+ minami[.]cc  Domain  Potential BeEF - Low confidence (Linode)�
+
+ vps2java.securitytactics[.]com  Domain  Malware C2
+
+ 106.184.5.252  IP  Phishing email link destination.
+
+ 61.78.62.21  IP  Used in BeEF C2, reused Winnit Infra.
+
+ 139.162.106.19  IP  Linode - Used in BeEF C2.
+
+ 172.104.101.131  IP  Linode - Malware C2.
+
+ 139.162.17.161  IP  Linode - Used in BeEF C2.
+
+ 133.242.145.137  IP  Linode - Used in BeEF C2.
+
+ 106.185.31.128  IP  Linode - hosting BeEF landings.
+
+TOM HEGEL, SENIOR THREAT RESEARCHER & NATE MARX, ASSOCIATE THREAT RESEARCHER
+
+/assets/images/ckfinder/images/7.png
+/blog/category/threat-research.html
+/blog/category/threat-research.html
+
+
+[SHARE]
+
+NEXT BLOG POST
+
+David Gold
+
+Tom Hegel
+
+SIGN UP
+
+James Condon
+
+SIGN UP FOR BLOG UPDATES
+
+ENTER YOUR EMAIL HERE
+
+FEATURED POSTS
+
+Webinar Recap: See Clearly and Respond Quickly from the Network to the Endpoint
+
+WannaCry Ransomware Review and Global Impact
+
+Building a Great Threat Hunting Practice in the Cloud
+
+BLOG CATEGORIES
+
+Perspectives
+
+Threat Research
+
+Events
+
+Partners
+
+https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.protectwise.com%2Fblog%2Fwinnti-evolution-going-open-source.html
+https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.protectwise.com%2Fblog%2Fwinnti-evolution-going-open-source.html
+https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.protectwise.com%2Fblog%2Fwinnti-evolution-going-open-source.html
+mailto:?subject=Winnti Evolution - Going Open Source&body=https%3A%2F%2Fwww.protectwise.com%2Fblog%2Fwinnti-evolution-going-open-source.html
+/blog/securing-mixed-multi-cloud-environments.html
+
+
+Products & Services
+
+C R N :  1 0  C o m p a n i e s  T o  W a t c h  I n  C l o u d  S e c u r i t y
+
+B u i l t  i n  C o l o r a d o :  5  w o m e n  i n  t e c h  s h a r e  h o w  t h e y  f o u n d  —  o r  c r e a t e d  —
+t h e i r  o w n  s e a t  a t  t h e  l e a d e r s h i p  t a b l e
+
+I n c .  M a g a z i n e :  T h i s  S t a r t u p  R e c r u i t e d  a  H o l l y w o o d  D e s i g n e r  t o  C r e a t e  t h e
+C o o l e s t  C y b e r s e c u r i t y  S o f t w a r e  Y o u ' v e  E v e r  S e e n
+
+  
+
+  
+
+  
+
+C a r e e r s C o n t a c t  U sR e s o u r c e s S u p p o r t
+
+http://www.crn.com/slide-shows/cloud/300087121/10-companies-to-watch-in-cloud-security.htm/pgno/0/4
+http://www.builtincolorado.com/2017/06/14/Colorado-female-tech-leaders-advice
+https://www.inc.com/kevin-j-ryan/protectwise-futuristic-cybersecurity-startup.html
+https://www.facebook.com/protectwiseinc
+https://www.linkedin.com/company/3087510
+https://twitter.com/protectwise
+/careers.html
+/contact.html
+/resources.html
+/support.html
+/privacy.html
+/privacy.html#california
+/terms.html
+
+	Winnti Evolution - Going Open Source
+	About Winnti
+	Objectives:
+	TTPs:
+	Targets:
+	Attribution:
+
+	Evolution of Winnti - Open source tools, and macOS targeting:
+	Delivery:
+	Landing:
+	Evasion Techniques:
+	Associated Indicators:
+	SIGN UP FOR BLOG UPDATES
+	FEATURED POSTS
+	Webinar Recap: See Clearly and Respond Quickly from the Network to the Endpoint
+	WannaCry Ransomware Review and Global Impact
+	Building a Great Threat Hunting Practice in the Cloud
+
+	BLOG CATEGORIES
+	Perspectives
+	Threat Research
+	Events
+	Partners
+	Products & Services
+
+
+
+

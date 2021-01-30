@@ -1,0 +1,657 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 1/13
+
+Trend Micro
+About TrendLabs Security Intelligence Blog
+
+Search:
+ 
+
+Go to…
+
+Home
+Categories
+
+Home   »   Malware   »   Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks
+
+Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting
+Russian Banks
+
+Posted on:March 5, 2020 at 3:58 am
+Posted in:Malware, Mobile
+Author:
+Vit Sembera (Threats Analyst)
+
+0
+
+The Android banking trojan Geost was first revealed in a research by Sebastian García, Maria Jose Erquiaga and Anna Shirokova from the Stratosphere Laboratory.
+They detected the trojan by monitoring HtBot malicious proxy network. The botnet targets Russian banks, with the victim count at over 800,000 users at the time the
+study was published in Virus Bulletin last year.
+
+The research disclosed the types of information that Geost (detected by Trend Micro as AndroidOS_Fobus.AXM) steals from victims, as well as the activities of the
+group behind the botnet, including operational tactics and internal communication between masters and botnet coders.
+
+Building upon this interesting finding, we decided to dig deeper into the behavior of Geost by reverse engineering a sample of the malware. The trojan employed
+several layers of obfuscation, encryption, reflection, and injection of non-functional code segments that made it more difficult to reverse engineer. To study the code
+and analyze the algorithms, we had to create Python scripts to decrypt strings first.
+
+Initial Analysis
+
+Geost hides in malicious apps that are distributed via unofficial web pages with randomly generated server hostnames. The victims usually encounter these as they
+look for apps that are not available on Google Play, or when they don’t have access to the app store. They then find a link to that application on some obscure web
+server, download the app, then launch it on their phones. The app will then request for permissions that, when the victims allow, enables malware infection.
+
+The Geost sample we analyzed resided in the malicious app named “установка” in Russian, which means “setting” in English. The app showed a version of the
+Google Play logo as its own icon, which did not appear on the phone screen after launch.
+
+Figure 1. Application icon of the malicious app установка
+
+When the app was launched, it requested device administrator privileges. This was unusual since legitimate apps don’t often ask for this, as it basically gives an app
+complete rights over a device.
+
+Important permissions that the user might unknowingly allow include those for accessing SMS messages, including confirmation messages from banking apps. These
+messages allow the malware to harvest the victims’ names, balances, and other bank account details. With just a few clicks, attackers can then transfer money from
+the bank accounts of unaware victims.
+
+https://www.trendmicro.com/
+https://blog.trendmicro.com/trendlabs-security-intelligence/about-us/
+https://twitter.com/trendmicrorsrch
+http://www.facebook.com/trendmicro
+http://www.linkedin.com/company/trend-micro
+http://www.youtube.com/user/TrendMicroInc
+http://feeds.trendmicro.com/Anti-MalwareBlog
+https://blog.trendmicro.com/trendlabs-security-intelligence/
+http://blog.trendmicro.com/trendlabs-security-intelligence/
+https://blog.trendmicro.com/trendlabs-security-intelligence/
+https://blog.trendmicro.com/trendlabs-security-intelligence/category/malware/
+https://blog.trendmicro.com/trendlabs-security-intelligence/2020/03/
+https://blog.trendmicro.com/trendlabs-security-intelligence/category/malware/
+https://blog.trendmicro.com/trendlabs-security-intelligence/category/mobile/
+https://blog.trendmicro.com/trendlabs-security-intelligence/author/vits/
+https://www.stratosphereips.org/
+https://www.virusbulletin.com/blog/2019/10/vb2019-paper-geost-botnet-story-discovery-new-android-banking-trojan-opsec-error/
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/1.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 2/13
+
+Figure 2: Screen that requests device admin permission
+
+Figure 3: Application permissions requested
+
+After confirming necessary permissions, the visible part of the app will close and the app icon disappears, making victims think that the app was deleted. The sample
+device did not show any alarming signs of malicious activity at first, but the malware is working in the background and the attackers just gained access to the device,
+allowing them to monitor sent and received messages, including SMS confirmation messages from banking apps.
+
+To maintain persistence across reboots, it registers for BOOT_COMPLETED and QUICKBOOT_POWERON broadcasts.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/2.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/3.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/4.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 3/13
+
+Figure 4: Registering services to boot broadcasts (some codes were obfuscated)
+
+Stage One
+
+Like many malware types, Geost’s run-time life is split into stages. The first stage is small and simple, which will then download and/or decrypt and run the next
+stage, which is more complex.
+
+The Geost sample’s APK housed compiled Java code in classes.dex file. It also contained AndroidManifest.xml and resource files, which are usual contents of APK
+files. It also had a “.cache” file with a size of 125k.
+
+To decompile the extracted classes.dex file, several Java decompilers, namely dex2jar, jadx, jd-core/jd-gui and Ghidra, were all used, as no single decompiler was
+able to decompile all the Smali code.
+
+Figure 5: Decompiled Java source code
+
+At first glance, the decompiled code seemed to be partially encoded in a series of strings; however, character frequency analysis showed random character usage.
+
+Further analysis revealed that the malware contained additional pieces of code that have no impact on the app’s behavior except to slow down its execution. It made
+reverse engineering more difficult because the malware split useful code into parts and frequently changed execution paths. Which branch was taken was usually
+dependent on some variable with an unknown value. The same is applied with “switch”, “if”, and “try/catch” command blocks. Functions without meaningful code
+were inserted to make overall understanding of the malware actions harder.
+
+Figure 6: Example of code with case switch
+
+The non-functional code segments were gradually removed and the first decryption algorithm used was identified. All strings in stage one were encrypted through
+RC4, using an algorithm that was split into several functions to avoid indication that it used RC4. After this, the next step was to find the key for RC4 decryption.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/5.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/6.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 4/13
+
+Figure 7: Decompiled Java source, which is part of the RC4 algorithm
+
+Figure 8: Part of cleaned up RC4 code
+
+Figure 9: RC4 key
+
+RC4 is a stream cipher, with an internal state that changes with every decrypted symbol. To decrypt several encrypted strings, usually the decryption must be
+performed in the very same order the encryption used. Fortunately, this was not the case with the sample. The code authors simplified RC4 without keeping internal
+state between decryptions, as the RC4 encryption code always copied state array S[].
+
+Figure 10: RC4 encryption always copied state array S[]
+
+Afterwards, the search for common code libraries began. Android.support.v4 libraries and ReflectASM Java Reflection libraries were found.
+
+Figure 11: Code with encrypted strings
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/7.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/8.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/9.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/10.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/11.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/12.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 5/13
+
+Figure 12: Code with strings after decryption and symbol deobfuscation
+
+At this point, the stage one code became understandable: It uses reflection code to hide interesting classes and methods from curious eyes. Basically, the first stage
+decrypted the second stage file with the same RC4 algorithm and key.
+
+Figure 13: Example of reflection method invocation
+
+The aforementioned “.cache” file is renamed to .localsinfotimestamp1494987116 and saved after decryption as ydxwlab.jar, from which the .dex file is loaded and
+launched.
+
+Figure 14: Decrypting and saving second stage
+
+Code authors inserted a false flag, HttpURLConnection and its URL, which seemed to connect to the Command and Control (C&C) server. But this http open
+connection is never executed.
+
+Figure 15: False flag
+
+Stage one loads a class from the second stage, which the researcher named “MaliciousClass”.
+
+Figure 16: Launching the second stage
+
+Stage Two
+
+Looking at the classes.dex, it’s clear that obfuscation and encryption were used again in stage two. But this time, the symbol names were partially replaced by strings
+1-2 characters long instead of the previous 6-12 character strings. Also, the string encryption algorithm is modified, making it different from the algorithm used in the
+previous stage. Different tools were used. Additionally, parameters of the decryption algorithm were modified separately for each class.
+
+All Java decompilers had problems decompiling the decryption algorithm due to goto command jumping into the if block. Only Jeb decompiler handled this
+construction well.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/13.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/14.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/15.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/16.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 6/13
+
+Figure 17: Smali code of decryption algorithm
+
+Figure 18: Java code of decryption algorithm
+
+Each class decryption method contained different parameter orders and different constants; writing the Python decryption script was made more difficult. It meant
+either the decryption script must detect the algorithm setup from the Smali code and adapt itself, or the parameters must be manually set up within the script before
+decryption for each class.
+
+Figure 19: Example of an encrypted string
+
+After string decryption, libraries used could be detected. These include:
+
+AES encryption engine
+Base64 encoding
+Emulator detector
+File download service
+IExtendedNetworkService
+USSD api library
+Zip4jUtil
+
+Initialization phase
+
+The aforementioned MaliciousClass invoked from the first stage serves as an envelope for the instantiated class the researcher named “Context.”
+
+Figure 20: Context Class
+
+The Context class launches the EmulatorDetector service first. It then starts two other services: AdminService and LPService, followed by the main application
+Intent.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/17.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/18.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/19.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/20.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 7/13
+
+Figure 21: Main initialization routine
+
+Emulator Detector
+
+The emulator detector checks for signs that it’s running in an emulated environment. The sample detected the existence of Nox, Andy, Geny, Bluestacks and Qemu
+Android emulators.
+
+Figure 22: Emulated enviroment traces
+
+AdminService
+
+This service is responsible for granting admin permission to the application. This is a critical part since it enables access to sensitive data and can launch privileged
+actions.
+
+Figure 23: Critical part of AdminService
+
+LPService
+
+This service was responsible for keeping the application running and connected to the C&C server. It used WakeLock and WifiLock acquire() calls to reach this state.
+A side effect to this is high battery drain, which most victims usually ignore.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/21.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/22.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/23.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 8/13
+
+Figure 24: Locking to CPU and WiFi resources
+
+LPService then creates LPServiceRunnable Thread, which wakes up every five seconds and is responsible for monitoring and relaunching these services:
+
+MainService
+AdminService
+SmsKitkatService
+
+This service also collects information about running processes and tasks. It also periodically starts WebViewActivity, which can open browser window to arbitrary
+URLs or launch malicious code. WebViewActivity code was not implemented in this sample.
+
+MainService
+
+The MainService first hooks to AlarmManager for time scheduling tasks, then registers two broadcast receivers, MainServiceReceiver1 and MainServiceReceiver2.
+At the end of the initialization phase, it will launch MainServiceRunnable Thread. When the sample executes overloaded onDestroy() method, it restarts the
+MainService again.
+
+Figure 25: Overloaded onDestroy to restart MainService
+
+An important method of MainService is processApiResponse(), which processes commands formatted as JSON string received from C&C server.
+
+Figure 26: Processing C&C server commands
+
+ClearService
+
+This service invokes the ClearServiceRunnable thread, which takes care of locking/unlocking commands (blocking/unblocking user activity) so the botnet operator
+can perform remote tasks without user intervention. The ClearService also relaunches itself if there is an attempt to terminate it.
+
+Figure 27: ClearService class
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/24.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/25.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/26.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/27.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 9/13
+
+Figure 28: ClearServiceRunnable
+
+SmsKitkatService
+
+This service was prepared to replace the standard SMS messaging application with a different one written by the attackers. In this version, it used a default one.
+
+Figure 29: Code for replacement of
+default SMS application
+
+Commands
+
+The list of commands that this malware recognized can be seen in the table and screenshot below (organized by the order they were defined in the code):
+
+Commands Description
+
+#conversations
+
+Collects the address, body, date, and type columns
+from all SMS messages from
+content://sms/conversations/, content://sms/inbox
+and content://sms/sent, and sends to the C&C
+server
+
+#contacts
+Collects a list of all contacts from
+content://com.android.contacts/data/phones and
+sends to the C&C server
+
+#calls
+Collects all calls performed from
+content://call_log/calls and sends to the C&C
+server
+
+#apps Collects list of installed package names and labelsand sends to C&C server
+#bhist This command is ignored in this sample
+
+#interval {set:number} Sets time period for fetching C&C servercommands
+
+#intercept Sets the phone numbers from which to interceptSMS (“all” or a list of numbers)
+#send id:, to:, body: Sends SMS
+#ussd {to:address, tel:number} Calls a number via USSD framework
+#send_contacts Sends SMS to all contacts in phonebook
+#server Sets scheduled time to run
+#check_apps {path:uri_to_server} Sends a list of running apps to C&C server,
+
+downloads archive.zip file from path defined in
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/28.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/29.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 10/13
+
+parameter as error.zip, and unzip it. Zip archive has
+password “encryptedz1p”. Default server name is
+hxxp://fwg23tt23qwef.ru/
+
+#send_mass {messages: {to:address,
+body:text}, delay:ms}
+
+Sends multiple SMS messages to different
+addresses, with a delay between sends
+
+#lock
+
+Starts RLA service from ClearServiceRunnable,
+which intercepts events from key press
+AKEYCODE_HOME, AKEYCODE_CAMERA,
+and AKEYCODE_FOCUS. It also intercepts
+onBackPressed() Activity method, mutes ringer,
+clears all SMS notifications, stops itself, and makes
+the phone unresponsive
+
+#unlock Disables actions listed under #lock command andunlocks phone by stopping ClearServiceRunnable
+
+#makecall {number:tel_number} Calls a number using standardandroid.intent.action.CALL API
+#openurl {filesDir=j:url} Opens a webpage URL
+
+#hooksms {number:tel_number} Hooks to a number – it forwards all incoming SMSmessages to a number in the parameter
+
+#selfdelete Sets task time to unparsable string value, whichstops its self-scheduling tasks
+
+Figure 30: List of C&C SERVER commands
+
+ApiRequest, ApiResponse, ApiInterfaceImpl
+
+The ApiRequest, ApiResponse, and ApiInterfaceImpl classes enable communication with the C&C server. In the connection parameters initialization, the value of
+replaceWithRandomStr variable was set to true by default and is not changed within the code.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/30.png
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 11/13
+
+Figure 31: Building C&C server connection string
+
+Figure 32: Connection parameters initialization
+
+An algorithm was used to generate a random string for the C&C server URL. The API connection was then initialized, and the hostname of the C&C server was set
+up.
+
+Figure 33: Building random string for the C&C server URL
+
+Figure 34: API connection initialization
+
+Figure 35: Setting up C&C server hostname
+
+An example of C&C server API usage was shown as the C&C server command “#contacts“ was implemented. Finally, parameters for commands are appended as
+JSON format and converted to string.
+
+Figure 36: Example of C&C server API calling
+
+Best Practices and Trend Micro Solutions
+
+In its 2020 Security Predictions, Trend Micro predicted the continued proliferation of mobile malware families, such as Geost, that target online banking and payment
+systems. Mobile users should safeguard themselves as they navigate the treacherous mobile landscape by following best practices for securing mobile devices. One
+such step is to avoid downloading apps outside official app stores.
+
+Unfortunately, threat actors also find ways to spread malicious apps via legitimate app stores. Along with the continued campaigns of these stores to remove
+compromised apps, users can also avoid such apps by carefully inspecting app reviews and other information before downloading.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/31.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/32.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/33.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/34.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/35.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2020/03/36.png
+https://www.trendmicro.com/vinfo/us/security/research-and-analysis/predictions/2020
+https://www.trendmicro.com/vinfo/us/security/news/mobile-safety/best-practices-securing-your-mobile-device/
+https://blog.trendmicro.com/trendlabs-security-intelligence/adware-posing-as-85-photography-and-gaming-apps-on-google-play-installed-over-8-million-times/
+https://www.zdnet.com/article/google-removes-600-android-apps-in-play-store-adware-crackdown/
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 12/13
+
+App users should scrutinize the permissions requested by an installed app before allowing them. Afterwards, users should watch out for changes in their devices, such
+as the decreased performance or battery life, which may indicate a malware infection. In this case, users should delete the newly installed app immediately. Users
+should also conduct regular audits to remove unused apps.
+
+For additional defense against mobile threats, users can install a multilayered mobile security solution such as Trend Micro™ Mobile Security to protect devices from
+malicious applications and other mobile threats.
+
+Indicator of Compromise
+
+SHA 256 Detection Name
+92394e82d9cf5de5cb9c7ac072e774496bd1c7e2944683837d30b188804c1
+810 AndroidOS_Fobus.AXM
+
+ 
+
+Related Posts:
+
+New Version of XLoader That Disguises as Android Apps and an iOS Profile Holds New Links to FakeSpy
+Anubis Android Malware Returns with Over 17,000 Samples
+Malicious Optimizer and Utility Android Apps on Google Play Communicate with Trojans that Install Malware, Perform Mobile Ad Fraud
+Mac Malware that Spoofs Trading App Steals User Information, Uploads it to Website
+
+Learn how to protect Enterprises, Small Businesses, and Home Users from ransomware:
+
+ENTERPRISE SMALL BUSINESS HOME
+
+Tags: androidGeostMalwareRussianTrojan
+
+Security Predictions for 2020
+
+Cybersecurity in 2020 will be viewed through many lenses — from differing attacker motivations and cybercriminal arsenal to technological developments and
+global threat intelligence — only so defenders can keep up with the broad range of threats.
+Read our security predictions for 2020.
+
+Business Process Compromise
+
+Attackers are starting to invest in long-term operations that target specific processes enterprises rely on. They scout for vulnerable practices, susceptible
+systems and operational loopholes that they can leverage or abuse. To learn more, read our Security 101: Business Process Compromise.
+
+Recent Posts
+
+OpenSMTPD Vulnerability (CVE-2020-8794) Can Lead to Root Privilege Escalation and Remote Code Execution
+Operation Overtrap Targets Japanese Online Banking Users Via Bottle Exploit Kit and Brand-New Cinobi Banking Trojan
+
+0 Comments TrendLabs 🔒 Privacy Policy Login1
+
+t Tweet f Share Sort by Best
+
+LOG IN WITH OR SIGN UP WITH DISQUS 
+
+Name
+
+Start the discussion…
+
+?
+
+Be the first to comment.
+
+Subscribe✉ Add Disqus to your siteAdd DisqusAddd
+D N t S ll M D t⚠
+
+ Recommend
+
+» » »
+
+https://www.trendmicro.com/us/home/products/mobile-solutions/android-security/#compare-versions
+https://blog.trendmicro.com/trendlabs-security-intelligence/new-version-of-xloader-that-disguises-as-android-apps-and-an-ios-profile-holds-new-links-to-fakespy/
+https://blog.trendmicro.com/trendlabs-security-intelligence/anubis-android-malware-returns-with-over-17000-samples/
+https://blog.trendmicro.com/trendlabs-security-intelligence/malicious-apps-on-google-play-communicate-with-trojans-install-malware-perform-mobile-ad-fraud/
+https://blog.trendmicro.com/trendlabs-security-intelligence/mac-malware-that-spoofs-trading-app-steals-user-information-uploads-it-to-website/
+http://www.trendmicro.com/us/security-intelligence/enterprise-ransomware/index.html
+http://www.trendmicro.com/us/security-intelligence/small-business-ransomware/index.html
+http://www.trendmicro.com/us/home/consumer-ransomware/index.html
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/android/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/geost/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/malware/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/russian/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/trojan/
+https://www.trendmicro.com/vinfo/us/security/research-and-analysis/predictions/2020
+https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/security-101-business-process-compromise
+https://blog.trendmicro.com/trendlabs-security-intelligence/opensmtpd-vulnerability-cve-2020-8794-can-lead-to-root-privilege-escalation-and-remote-code-execution/
+https://blog.trendmicro.com/trendlabs-security-intelligence/operation-overtrap-targets-japanese-online-banking-users-via-bottle-exploit-kit-and-brand-new-cinobi-banking-trojan/
+https://disqus.com/
+https://disqus.com/home/forums/trendlabs/
+https://help.disqus.com/customer/portal/articles/466259-privacy-policy
+https://disqus.com/home/inbox/
+https://publishers.disqus.com/engage?utm_source=trendlabs&utm_medium=Disqus-Footer
+https://disqus.com/data-sharing-settings/
+
+
+3/14/2020 Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks - TrendLabs Security Intelligence Blog
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/ 13/13
+
+March Patch Tuesday: LNK, Microsoft Word Vulnerabilities Get Fixes, SMBv3 Patch Follows
+Busting Ghostcat: An Analysis of the Apache Tomcat Vulnerability (CVE-2020-1938 and CNVD-2020-10487)
+Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks
+
+Popular Posts
+
+LokiBot Impersonates Popular Game Launcher and Drops Compiled C# Code File
+
+Misconfigured Container Abused to Deliver Cryptocurrency-mining Malware
+
+Dissecting Geost: Exposing the Anatomy of the Android Trojan Targeting Russian Banks
+
+February Patch Tuesday: Fixes for Critical LNK, RDP, Trident Vulnerabilities
+
+Outlaw Updates Kit to Kill Older Miner Versions, Targets More Systems
+
+Stay Updated
+
+Email Subscription
+Your email here
+
+Subscribe
+
+Home and Home Office
+|
+For Business
+|
+Security Intelligence
+|
+About Trend Micro
+
+Asia Pacific Region (APAC): Australia / New Zealand, 中国, ⽇本, 대한민국, 台灣
+Latin America Region (LAR): Brasil, México
+North America Region (NABU): United States, Canada 
+Europe, Middle East, & Africa Region (EMEA): France, Deutschland / Österreich / Schweiz, Italia, Россия, España, United Kingdom / Ireland
+
+Privacy Statement
+Legal Policies
+
+Copyright © 2020 Trend Micro Incorporated. All rights reserved.
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/march-patch-tuesday-lnk-microsoft-word-vulnerabilities-get-fixes/
+https://blog.trendmicro.com/trendlabs-security-intelligence/busting-ghostcat-an-analysis-of-the-apache-tomcat-vulnerability-cve-2020-1938-and-cnvd-2020-10487/
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/
+https://blog.trendmicro.com/trendlabs-security-intelligence/lokibot-impersonates-popular-game-launcher-and-drops-compiled-c-code-file/
+https://blog.trendmicro.com/trendlabs-security-intelligence/misconfigured-container-abused-to-deliver-cryptocurrency-mining-malware/
+https://blog.trendmicro.com/trendlabs-security-intelligence/dissecting-geost-exposing-the-anatomy-of-the-android-trojan-targeting-russian-banks/
+https://blog.trendmicro.com/trendlabs-security-intelligence/february-patch-tuesday-fixes-for-critical-lnk-rdp-trident-vulnerabilities/
+https://blog.trendmicro.com/trendlabs-security-intelligence/outlaw-updates-kit-to-kill-older-miner-versions-targets-more-systems/
+http://www.trendmicro.com/us/home/index.html
+http://www.trendmicro.com/us/business/index.html
+http://www.trendmicro.com/us/security-intelligence/index.html
+http://www.trendmicro.com/us/about-us/index.html
+http://www.trendmicro.com.au/au/home/index.html
+http://www.trendmicro.co.nz/nz/home/index.html
+http://cn.trendmicro.com/cn/home/index.html
+http://jp.trendmicro.com/jp/home/index.html
+http://www.trendmicro.co.kr/index.html
+http://tw.trendmicro.com/tw/home/index.html
+http://br.trendmicro.com/br/home/index.html
+http://la.trendmicro.com/la/home/index.html
+http://www.trendmicro.com/us/index.html
+http://ca.trendmicro.com/ca/home/index.html
+http://www.trendmicro.fr/
+http://www.trendmicro.de/
+http://www.trendmicro.it/
+http://www.trendmicro.com.ru/
+http://www.trendmicro.es/
+http://www.trendmicro.co.uk/
+http://www.trendmicro.com/us/about-us/legal-policies/privacy-statement/index.html
+http://www.trendmicro.com/us/about-us/legal-policies/index.html
+

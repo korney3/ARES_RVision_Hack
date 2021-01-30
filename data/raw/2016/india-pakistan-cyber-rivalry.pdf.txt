@@ -1,0 +1,403 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hacktivism: India vs. Pakistan
+
+
+Hacktivism: India vs. Pakistan
+
+Posted by RFSID on February 11, 2016 in Cyber Threat
+Intelligence
+
+FREE SEMINARS: Join us in Amsterdam, Frankfurt, and London to learn the value of
+threat intelligence.
+
+LEARN MORE
+
+https://www.recordedfuture.com/roadshow/
+https://www.recordedfuture.com/products/
+https://www.recordedfuture.com/customers/
+https://www.recordedfuture.com/resources/
+https://www.recordedfuture.com/partners/
+https://www.recordedfuture.com/about/
+https://www.recordedfuture.com/blog/
+https://www.recordedfuture.com/contact/
+https://www.recordedfuture.com
+https://www.recordedfuture.com/category/analysis/cyber/
+javascript:void(0);
+javascript:void(0);
+javascript:void(0);
+http://earthobservatory.nasa.gov/IOTD/view.php?id=86725
+http://www.brookings.edu/research/essays/2013/deadly-triangle-afghanistan-pakistan-india-c#
+javascript:void(0);
+javascript:void(0);
+javascript:void(0);
+
+
+Floodlit international border between India and Pakistan, as seen from the International Space Station.
+
+When India gained independence from Britain in 1947, a new, predominantly Muslim nation
+of Pakistan was created during what was called the “partition.”
+
+During this partition, about 15 million people were displaced and a million more died. The
+“hastily drawn” border by the departing British, which separated Pakistan from the mostly
+Hindu India, never fully resolved all the issues.
+
+Several wars between the two nations ensued and tensions continue to this day. A floodlit,�
+1250-mile portion of the current international border (a.k.a. the Line of Control) is visible in a
+photo taken from the International Space Station.
+
+Indian soldiers (in present day Bangladesh) during the third war between India and Pakistan in December
+1971.
+
+The continuing rivalry between India and Pakistan has spilled over into cyberspace, very
+visibly with hacktivism. This post reviews that activity and demonstrates how high-profile�
+events and anniversaries (e.g., Indian Independence Day on August 15, Pakistan’s
+Independence Day on August 14, the Mumbai attacks on November 26, and even cricket
+matches between the two countries) often coincide with increased cyber activity.
+
+The Cyber Dimension to India and Pakistan’s Cricket Rivalry
+
+http://learning.blogs.nytimes.com/2011/08/15/august-15-1947-india-and-pakistan-become-nations/
+http://www.motherjones.com/media/2007/10/great-partition-making-india-and-pakistan
+http://qz.com/516864/the-india-pakistan-border-is-so-closely-guarded-that-it-can-be-seen-from-space/
+http://www.ndtv.com/topic/mumbai-attacks
+
+
+An India versus Pakistan cricket match, in March 14, results in an Indian university website being hacked.
+
+The game of cricket provides a perfect field for a great rivalry between India and Pakistan.�
+Wins and losses have geopolitical, social, and cyber repercussions on both sides.
+Conversely, geopolitical and social tensions have led to matches being postponed or
+cancelled.
+
+On March 2, 2014, Pakistan defeated India in a cricket match in the Asia Cup held in Dhaka,
+Bangladesh. The next day (March 3), in Meerut, India, 67 Kashmiri students at Swami
+Vivekanand Subharti University were suspended for having cheered for Pakistan and
+distributing sweets after their win.
+
+Then on March 5, 2014, the website of Swami Vivekanand Subharti University was hacked
+by a group claiming to be the Pakistan Cyber Army (a.k.a. Bangladesh Cyber Army) in
+response to expelling pro-Pakistan students.
+
+Finally, on March 7, 2014 the sedition charges against expelled students are dropped but
+they could still face prosecution over the incident.
+
+Based on this past event, it’s likely that cyber activity will take place between Indian and
+Pakistani actors before, during, and after the next cricket match between India and Pakistan
+on March 19 in Dharamsala, India.
+
+A Predictable Pattern on Independence Days
+
+http://www.espncricinfo.com/icc-world-twenty20-2016/content/story/951215.html
+
+
+India and Pakistan’s independence days, which fall on August 15 and August 14
+respectively, create a predictable pattern (at least over the past three years) of attacks and
+retaliatory strikes by the opposing hacker groups, as shown in the timeline below. An uptick
+in such activity before and after this year’s independence days shouldn’t come as a surprise.
+
+Pakistan Cyber Army Targeting India: A Snapshot 2007 Onward
+
+Let’s take a closer look at the activities of the Pakistan Cyber Army (PCA), which was
+involved in the cricket incident described earlier.
+
+The timeline below shows that the PCA has been consistently active at least since the 2007
+hacking, defacing and shutting down high-profile Indian websites. Government and private�
+sites have been targeted including Indian Oil and Natural Gas Corporation (a Fortune 500
+company), Indian Railways, the Central Bureau of Investigation, Central Bank of India, and
+the State Government of Kerala.
+
+http://www.huffingtonpost.in/2015/07/23/indian-companies-fortune-_n_7855444.html
+
+
+The PCA’s “public announcement” of its operations against India and the PCA’s motives are
+described in a document on Pastebin as shown in the image below, conveniently cached in
+Recorded Future. This particular message is related to PCA’s attacks to commemorate
+Pakistan’s independence day (August 14).
+
+
+
+When we investigate the PCA’s TTPs (tactics, techniques, and procedures) to learn how
+they operate, we find examples like tutorials on how to set up phishing attacks as shown in�
+this Facebook post. Though of course it’s hard to establish, this is indeed a PCA actor who
+posted this:
+
+
+
+Below is another example where SQL injection attacks are allegedly used by Pakistani
+hackers to compromise Indian websites.
+
+In their research into PCA’s activities, ThreatConnect and FireEye also reported finding�
+possible links to personas with skills in exploiting Web applications and services, identifying
+zero-day vulnerabilities, SQL injection, WEP cracking, and spear phishing.
+
+In some instances the hackers chose to identify themselves — for example, the hacker
+behind India’s Kerala state website defacement in September 2015 identified himself as�
+“Faisal 1337” as shown in the image below.
+
+If we widen our view again and look at hackers from Pakistan and India targeting each other
+over the last seven months, we can see an interesting retaliatory pattern of attacks; the
+latest major response being Indian hackers avenging the deadly January 2, 2016 attack on
+the Indian Air Force base in Pathankot.
+
+https://www.threatconnect.com/debugging-pca-from-pakbugs-to-bitterbugs/
+http://timesofindia.indiatimes.com/india/Pathankot-terror-attack-Jihadis-made-dry-runs-at-Pakistani-air-base-intelligence-sources-say/articleshow/50461180.cms
+
+
+There are a number of hacker groups in India including the Indian Black Hats who reportedly
+claimed responsibility for the January 7 (timeline image above) revenge for the attack on
+Pathankot, and the Mallu Cyber Soldiers who were said to avenge the attacks on the Kerala
+state government website.
+
+When looking at hacking methods used by these groups, given that they go after weakly
+secured websites or those with unpatched vulnerabilities, one can expect to find generally�
+applicable instructions and techniques used and shared by various groups, especially when
+they self-identify themselves under the broad umbrella of “India hackers.” The methods used
+by these groups include SQL injection and PHP Web application hacks as shown by the
+mentions below.
+
+http://timesofindia.indiatimes.com/india/Pathankot-terror-attack-Jihadis-made-dry-runs-at-Pakistani-air-base-intelligence-sources-say/articleshow/50461180.cms
+http://digvijaymalhotra.com/blogs/indian-hackers-hack-250-pakistani-websites-after-attack-on-kerala-govts-website/
+
+
+The Pastebin references mentions a tool “D3LT4” to scan websites for SQL injection vulnerabilities, and
+further references to PHP scripts which can be used to hack Web applications.
+
+Conclusion
+
+The glimpses above hint at the many possible motivations and objectives of the cyber
+activities between India and Pakistan.
+
+These could range all the way from loosely affiliated hacktivist groups avenging attacks by�
+defacing symbols and institutions to more coordinated state-sponsored attacks, which will be
+covered in a future piece. The Line of Control (a.k.a. international border) between the two
+only serves as a symbol of adversarial tension and certainly not a barrier in the cyber realm.
+
+Related Articles
+
+https://go.recordedfuture.com/cs/c/?cta_guid=319b73dc-5d4b-4a28-9a22-951b4d3f1a24&placement_guid=34d9008b-bbf0-4c3f-9f9c-d335f0fc86b5&portal_id=252628&redirect_url=APefjpEY6qrdVDN9wRKCdb27dWrDUZWAfMkcXF2xi3EsimZEjj9djjbaKFK9dlW_go50a1-lZseerYChgrugh0GucJAO6li2f6a1bcLsskr5n-7fxYVW79kYRSewd3FnSU363SQc-9M4CNuBRVa0kmK0mmpBWYOLxw&hsutk=&canon=https%3A%2F%2Fwww.recordedfuture.com%2Findia-pakistan-cyber-rivalry%2F
+
+
+Analyzing the Patch Timeline for Zero-Day
+Exploits
+
+POS Malware Overview for the 2014 Holiday
+Shopping Season
+
+The Russia-Ukraine Cyber Front Takes Shape Mazar Android Bot: Threat or Not? Quick Threat
+Identification and Assessment Example�
+
+https://www.recordedfuture.com/zero-day-patch/
+https://www.recordedfuture.com/zero-day-patch/
+https://www.recordedfuture.com/pos-malware-overview/
+https://www.recordedfuture.com/pos-malware-overview/
+https://www.recordedfuture.com/russia-ukraine-cyber-front/
+https://www.recordedfuture.com/russia-ukraine-cyber-front/
+https://www.recordedfuture.com/mazar-android-bot/
+https://www.recordedfuture.com/mazar-android-bot/
+https://go.recordedfuture.com/cs/c/?cta_guid=49fb5194-0e1d-41bc-a25d-a060183c6ade&placement_guid=a3a005bc-e49a-43b1-a927-bb514f176b59&portal_id=252628&redirect_url=APefjpFCi7JKsH0Y019fxEuV7ZHC8j9oGj1NQDr_RP-FxvuRRh-2cZDknC2wlX_-G1VoZ-i3hg66ckT3Tk3_TmMtiqBBKdNlYjd9VC1_k3TU6aArT1r1jpkhNivqdkP7Z-TflSRBRIx5ZsonPdC5qEcd6KT7aemhXw&hsutk=&canon=https%3A%2F%2Fwww.recordedfuture.com%2Findia-pakistan-cyber-rivalry%2F
+
+
+Hacktivism: India vs. Pakistan
+By RFSID on February 11, 2016
+
+Threat Intelligence and SIEM (Part 2) — Understanding Threat Intelligence
+By Guillaume Dupont on February 9, 2016
+
+Improve Your Threat Intelligence Strategy With These Ideas
+By Pete Hugh on February 2, 2016
+
+How to Avoid the Common Pitfalls While Browsing the Web
+By Amanda on January 28, 2016
+
+7 Habits of Smart Threat Intelligence Analysts
+By Amanda on January 26, 2016
+
+Recent Blog Posts
+
+Search our blog... �
+
+https://www.recordedfuture.com/siem-threat-intelligence-part-2/
+https://www.recordedfuture.com/siem-threat-intelligence-part-2/
+https://www.recordedfuture.com/threat-intelligence-strategy/
+https://www.recordedfuture.com/threat-intelligence-strategy/
+https://www.recordedfuture.com/safe-internet-browsing/
+https://www.recordedfuture.com/safe-internet-browsing/
+https://www.recordedfuture.com/smart-threat-intelligence-analysts/
+https://www.recordedfuture.com/smart-threat-intelligence-analysts/
+http://bit.ly/1pV4fIS
+http://feeds.feedblitz.com/recordedfuture
+https://twitter.com/RecordedFuture
+https://www.facebook.com/RecordedFuture
+https://www.linkedin.com/company/recorded-future
+http://www.youtube.com/user/RecordedFuture
+https://plus.google.com/+recordedfuture
+
+
+See Recorded Future’s threat intelligence
+in action.
+
+REQUEST DEMO
+
+R E C E N T  B L O G  P O S T S
+
+Hacktivism: India vs. Pakistan
+
+Threat Intelligence and SIEM (Part 2) — Understanding Threat Intelligence
+
+Improve Your Threat Intelligence Strategy With These Ideas
+
+How to Avoid the Common Pitfalls While Browsing the Web
+
+@ R E C O R D E D F U T U R E
+
+Nice example of how threat intelligence from Recorded Future can help you proactively
+identify new malware: https://t.co/pVGevO6hSp #DarkWeb
+
+RT @peterkruse: @RecordedFuture this is what you mentioned on your blog in November
+being deployed in live attacks! https://t.co/AMD7IrEauq
+
+Does your #threatintel team fit your enterprise needs? Watch our webinar featuring�
+@levigundert to find out: �https://t.co/CELGBs2b6A
+
+R E C E N T  P R E S S
+
+Big Data Firm Says It Can Link Snowden Data To Changed Terrorist Behavior
+
+Snowden Is The Kind of Guy I Used to Recruit — in Russia
+
+Report: Al Qaeda Tries New Encryption Post-Snowden Leaks
+
+Intel Firm Links Ukraine Energy Debt With Potential Cyber Assault
+
+http://go.recordedfuture.com/cyber-demo
+https://www.recordedfuture.com/blog/
+https://www.recordedfuture.com/siem-threat-intelligence-part-2/
+https://www.recordedfuture.com/threat-intelligence-strategy/
+https://www.recordedfuture.com/safe-internet-browsing/
+http://www.twitter.com/recordedfuture/
+https://t.co/pVGevO6hSp
+http://twitter.com/search?q=%23DarkWeb
+http://twitter.com/peterkruse
+http://twitter.com/RecordedFuture
+https://t.co/AMD7IrEauq
+http://twitter.com/search?q=%23threatintel
+http://twitter.com/levigundert
+https://t.co/CELGBs2b6A
+https://www.recordedfuture.com/press/
+http://www.npr.org/blogs/thetwo-way/2014/08/01/336958020/big-data-firm-says-it-can-link-snowden-data-to-changed-terrorist-behavior
+http://www.politico.com/magazine/story/2014/05/snowden-is-the-kind-of-guy-i-used-to-recruitin-russia-106648.html
+http://blogs.wsj.com/cio/2014/05/09/report-al-qaeda-tries-new-encryption-post-snowden-leaks/
+http://www.nextgov.com/cybersecurity/cybersecurity-report/2014/05/intel-firm-links-ukraine-energy-debt-potential-cyber-assault/83707/
+
+
+Copyright © 2016 Recorded Future, Inc.
+
+C O M P A N Y
+
+About
+
+Contact
+
+Press
+
+Events
+
+Services
+
+P R O D U C T S
+
+Cyber Threat Intelligence
+
+Corporate Security
+
+Competitive Intelligence
+
+Defense Intelligence
+
+Web Intelligence Platform
+
+C U S T O M E R S
+
+Login
+
+Support Center
+
+Software Status
+
+Source Suggestion
+
+Developer Code
+
+   Privacy Policy Terms of Use API Terms of Use Jobs
+
+https://www.recordedfuture.com/about/
+https://www.recordedfuture.com/contact/
+https://www.recordedfuture.com/press/
+https://www.recordedfuture.com/events/
+https://www.recordedfuture.com/services/
+https://www.recordedfuture.com/cyber-threat-intelligence/
+https://www.recordedfuture.com/corporate-security/
+https://www.recordedfuture.com/competitive-intelligence/
+https://www.recordedfuture.com/defense-intelligence/
+https://www.recordedfuture.com/web-intelligence/
+https://www.recordedfuture.com/live/login/
+http://support.recordedfuture.com/
+http://status.recordedfuture.com/
+https://www.recordedfuture.com/source-suggestion/
+https://github.com/recordedfuture
+https://www.recordedfuture.com/privacy-policy/
+https://www.recordedfuture.com/terms-of-use/
+https://www.recordedfuture.com/api-terms-of-use/
+https://www.recordedfuture.com/jobs/
+
+	Hacktivism: India vs. Pakistan
+	The Cyber Dimension to India and Pakistan’s Cricket Rivalry
+	A Predictable Pattern on Independence Days
+	Pakistan Cyber Army Targeting India: A Snapshot 2007 Onward
+	Conclusion
+	Related Articles
+	Analyzing the Patch Timeline for Zero-Day Exploits
+	POS Malware Overview for the 2014 Holiday Shopping Season
+	The Russia-Ukraine Cyber Front Takes Shape
+	Mazar Android Bot: Threat or Not? Quick Threat Identification and Assessment Example
+	Recent Blog Posts
+	RECENT BLOG POSTS
+	@RECORDEDFUTURE
+	RECENT PRESS
+	COMPANY
+	PRODUCTS
+	CUSTOMERS
+
+
+
+

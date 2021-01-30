@@ -1,0 +1,757 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cisco's Talos Intelligence Group Blog: NavRAT Uses US-North Korea Summit As Decoy For Attacks In South Korea
+
+
+ Subscribe via Email
+
+T H U R S D AY,  M AY  3 1 ,  2 0 1 8
+
+This blog post is authored by Warren Mercer and Paul Rascagneres with contributions from
+Jungsoo An.
+
+Talos has discovered a new malicious Hangul Word Processor (HWP) document targeting Korean
+users. If a malicious document is opened, a remote access trojan that we're calling "NavRAT" is
+downloaded, which can perform various actions on the victim machine, including command
+execution, and has keylogging capabilities.
+
+The decoy document is named "미북 정상회담 전망 및 대비.hwp" (Prospects for US-North Korea
+Summit.hwp). The HWP file format is mainly used in South Korea. An Encapsulated PostScript
+(EPS) object is embedded within the document in order to execute malicious shellcode on the victim
+systems. The purpose is to download and execute an additional payload hosted on a compromised
+website: NavRAT.
+
+This is a classic RAT that can download, upload, execute commands on the victim host and, finally,
+perform keylogging. However, the command and control (C2) infrastructure is very specific. It uses
+the legitimate Naver email platform in order to communicate with the attackers via email. The
+uploaded file(s) are sent by email, and the downloaded files are retrieved from an email attachment.
+
+NavRAT Uses US-North Korea Summit As Decoy For
+Attacks In South Korea
+
+E X E C U TIV E  S U M M A R Y
+
+Search Blog
+
+S U B S C R I B E  T O  O U R  F E E D
+
+ Posts
+
+ Comments
+
+▼  2 0 1 8  (79)
+
+►  J U N E  (1)
+
+▼  M A Y  (15)
+NavRAT Uses US-North Korea
+
+Summit As Decoy For Att...
+
+Vulnerability Spotlight: Natus
+NeuroWorks Multiple...
+
+Beers with Talos EP 30 - VPNFilter,
+the Unfiltered...
+
+Threat Roundup for May 18-25
+
+New VPNFilter malware targets at
+least 500K networ...
+
+Beers with Talos EP29 - This is a
+
+B L O G  A R C H I V E
+
+Software Vulnerability
+Information
+
+Reputation
+Center
+
+Library Support
+Communities
+
+About Careers Blog
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://www.talosintelligence.com/software
+https://www.talosintelligence.com/snort
+https://www.talosintelligence.com/clamav
+https://www.talosintelligence.com/razorback
+https://www.talosintelligence.com/daemon
+https://www.talosintelligence.com/moflow
+https://www.talosintelligence.com/pesig
+https://www.talosintelligence.com/immunet
+https://www.talosintelligence.com/teslacrypt_tool
+https://www.talosintelligence.com/mbrfilter
+https://www.talosintelligence.com/first
+https://www.talosintelligence.com/lockydump
+https://www.talosintelligence.com/freesentry
+https://www.talosintelligence.com/flokibot
+https://www.talosintelligence.com/scanner
+https://www.talosintelligence.com/smart_scanner
+https://www.talosintelligence.com/ropmemu
+https://www.talosintelligence.com/bass
+https://www.talosintelligence.com/pyrebox
+https://www.talosintelligence.com/file2pcap
+https://www.talosintelligence.com/decept
+https://www.talosintelligence.com/mutiny_fuzzer
+https://www.talosintelligence.com/vulnerability_info
+https://www.talosintelligence.com/vulnerability_reports
+https://www.talosintelligence.com/ms_advisories
+https://www.talosintelligence.com/reputation
+https://www.talosintelligence.com/reputation_center
+https://www.talosintelligence.com/amp-naming
+https://www.talosintelligence.com/documents/ip-blacklist
+https://www.talosintelligence.com/awbo_intro
+https://www.talosintelligence.com/resources
+https://www.talosintelligence.com/community
+https://snort.org/community
+https://www.clamav.net/contact.html#ml
+https://www.talosintelligence.com/aspis
+https://www.spamcop.net/
+https://www.talosintelligence.com/about
+https://www.talosintelligence.com/careers
+https://blog.talosintelligence.com/
+https://www.talosintelligence.com
+https://twitter.com/securitybeard
+https://twitter.com/r00tbsd
+https://blog.talosintelligence.com/feeds/posts/default
+https://blog.talosintelligence.com/feeds/6022799513636558525/comments/default
+https://www.talosintelligence.com/blog_subscription
+javascript:void(0)
+https://blog.talosintelligence.com/2018/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/06/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/05/
+https://blog.talosintelligence.com/2018/05/vulnerability-spotlight-natus-part2.html
+https://blog.talosintelligence.com/2018/05/beers-with-talos-ep-30-vpnfilter.html
+https://blog.talosintelligence.com/2018/05/threat-roundup-0518-0525.html
+https://blog.talosintelligence.com/2018/05/VPNFilter.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+uploaded file(s) are sent by email, and the downloaded files are retrieved from an email attachment.
+We have already observed malware using free email platforms for abuse, but this is the first time
+we have identified a malware that uses Naver — which is known for its popularity in South Korea.
+
+One of the most interesting questions we still have is regarding attribution — and who is behind this
+malware. Previously, we published several articles concerning Group123 (here, here, here, here and
+here). We currently assess with medium confidence that this campaign and NavRAT are linked to
+Group123.
+
+The attack starts with a spear-phishing email containing the HWP document named "미북 정상회담
+전망 및 대비.hwp" (Prospects for US-North Korea Summit .hwp). This references a legitimate event
+that could potentially take place on June 12. Here is a screenshot of the document:
+
+M A L IC IO U S  D O C U M E NT
+
+Decoy Document
+
+Beers with Talos EP29 - This is a
+PSA: Stop Clicki...
+
+TeleGrab - Grizzly Attacks on Secure
+Messaging
+
+Vulnerability Spotlight: Multiple
+Adobe Acrobat Re...
+
+Threat Roundup for May 04 - 11
+
+Gandcrab Ransomware Walks its
+Way onto Compromised...
+
+Wipers - Destruction as a means to
+an end
+
+Microsoft Patch Tuesday - May 2018
+
+Beers with Talos EP 28 - APT, BGP,
+RCEs, and an Ol...
+
+Vulnerability Spotlight: MySQL Multi-
+Master Manage...
+
+Threat Round Up for April 27 to May
+04
+
+►  A P R I L  (21)
+
+►  M A R C H  (10)
+
+►  F E B R U A R Y  (14)
+
+►  J A N U A R Y  (18)
+
+►  2 0 1 7  (172)
+
+►  2 0 1 6  (98)
+
+►  2 0 1 5  (62)
+
+►  2 0 1 4  (67)
+
+►  2 0 1 3  (30)
+
+►  2 0 1 2  (53)
+
+►  2 0 1 1  (23)
+
+►  2 0 1 0  (93)
+
+►  2 0 0 9  (146)
+
+►  2 0 0 8  (37)
+
+R E C O M M E N D E D  B L O G S
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://blog.talosintelligence.com/2018/01/korea-in-crosshairs.html&sa=D&ust=1527796940962000
+https://blog.talosintelligence.com/2017/11/ROKRAT-Reloaded.html&sa=D&ust=1527796940963000
+https://blog.talosintelligence.com/2017/04/introducing-rokrat.html&sa=D&ust=1527796940963000
+https://blog.talosintelligence.com/2017/02/korean-maldoc.html&sa=D&ust=1527796940963000
+https://blog.talosintelligence.com/2018/02/group-123-goes-wild.html&sa=D&ust=1527796940963000
+https://www.cnbc.com/2018/05/31/us-north-korea-meetings-in-new-york-aimed-at-salvaging-summit.html&sa=D&ust=1527796940964000
+https://blog.talosintelligence.com/2018/05/beers-with-talos-ep29-this-is-psa-stop.html
+https://blog.talosintelligence.com/2018/05/telegrab.html
+https://blog.talosintelligence.com/2018/05/multiple-acrobat-reader-vulns.html
+https://blog.talosintelligence.com/2018/05/threat-roundup-0504-0511.html
+https://blog.talosintelligence.com/2018/05/gandcrab-compromised-sites.html
+https://blog.talosintelligence.com/2018/05/wipers-destruction-as-means-to-end.html
+https://blog.talosintelligence.com/2018/05/microsoft-patch-tuesday-may-2018.html
+https://blog.talosintelligence.com/2018/05/beers-with-talos-ep-28-pt-bgp-rces-and.html
+https://blog.talosintelligence.com/2018/05/vulnerability-spotlight-mysql-mmm.html
+https://blog.talosintelligence.com/2018/05/threat-round-up-0427-0504.html
+javascript:void(0)
+https://blog.talosintelligence.com/2018/04/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/03/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/02/
+javascript:void(0)
+https://blog.talosintelligence.com/2018/01/
+javascript:void(0)
+https://blog.talosintelligence.com/2017/
+javascript:void(0)
+https://blog.talosintelligence.com/2016/
+javascript:void(0)
+https://blog.talosintelligence.com/2015/
+javascript:void(0)
+https://blog.talosintelligence.com/2014/
+javascript:void(0)
+https://blog.talosintelligence.com/2013/
+javascript:void(0)
+https://blog.talosintelligence.com/2012/
+javascript:void(0)
+https://blog.talosintelligence.com/2011/
+javascript:void(0)
+https://blog.talosintelligence.com/2010/
+javascript:void(0)
+https://blog.talosintelligence.com/2009/
+javascript:void(0)
+https://blog.talosintelligence.com/2008/
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+This document explains concerns prior to the summit between the U.S. and North Korea, which is
+expected to focus on the topic of denuclearization. The summit is the latest in a line of signs of
+diplomatic outreach from North Korea, following the Panmunjom Declaration for Peace, Prosperity
+and Unification of the Korean Peninsula between South Korea and North Korea on April 27, 2018.
+
+This document contains the aforementioned EPS object. This object is used to execute malicious
+shellcode on the system. This is a seemingly common vector for attackers when using HWP
+documents, which we have previously encountered and described.
+
+As we already mentioned in our previous articles concerning malicious documents, EPS is effective
+from an attacker's point of view. It is a powerful, stack-based scripting language, and in malicious
+use cases, can be abused to obtain additional payloads. Here is the content of the file:
+
+/shellcode <90909090909090909090E800<...redacted…
+>4D2D6DC95CBD5DC1811111111111111> def
+<7B0D0A2756...redacted…>312067657420636C6F736566696C650D0A717569740D0A7D>
+token pop exch pop
+Exec
+
+Malicious Code
+
+C I S C O  B L O G
+Solving Security and Compliance
+Problems with Cisco Business Critical
+Services
+
+C L A M A V ®  B L O G
+ClamAV 0.100.0 has been released!
+
+S N O R T  B L O G
+Snort Subscriber Rule Set Update for
+01/16/2018
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://3.bp.blogspot.com/-KHsmEwUS-wI/WxBIs_MJuzI/AAAAAAAAAbc/HaNqaICFTYY9tKq87__slXmQDAG7TMntACLcBGAs/s1600/image2.png
+https://uk.reuters.com/article/uk-northkorea-southkorea-summit-statemen/panmunjom-declaration-for-peace-prosperity-and-unification-of-the-korean-peninsula-idUKKBN1HY193&sa=D&ust=1527796940965000
+https://blogs.cisco.com
+https://blogs.cisco.com/services/solving-security-and-compliance-problems-with-cisco-business-critical-services
+http://blog.clamav.net/
+https://feedproxy.google.com/~r/Clamav/~3/takVpuywnTk/clamav-01000-has-been-released.html
+http://blog.snort.org/
+http://blog.snort.org/2018/01/snort-subscriber-rule-set-update-for_16.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The executed shellcode will first perform a decoding routine designed to download an additional
+payload from the internet. In our case, the file URI was:
+
+hxxp://artndesign2[.]cafe24[.]com:80/skin_board/s_build_cafeblog/exp_include
+/img.png
+
+This website is a legitimate Korean website. We assume that this website was compromised in
+order to deliver the final payload on the targeted systems. This is a method we have previously
+observed with attacks focusing on the Korean peninsula.
+
+The image is downloaded directly, and the shellcode is loaded and executed in memory. This is an
+example of fileless execution by only running malicious processes within the memory of the victim
+host. The purpose is to drop and execute a decoded executable using the following path:
+
+%APPDATA%\Local\Temp\~emp.exe
+
+Once executed, NavRAT will immediately leverage cmd.exe to perform a systeminfo and a tasklist
+check on the system it is running on while writing the output to a TMP file, once again attempting to
+hide within an AhnLab folder. Interestingly, the attacker has used the >> method to append to theConvert webpages or entire websites to PDF - PDFmyURL!
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+hide within an AhnLab folder. Interestingly, the attacker has used the >> method to append to the
+file so there can be multiple outputs written to their single TMP file:
+
+"C:\Windows\system32\cmd.exe" /C systeminfo >> "C:\Ahnlab\$$$A24F.TMP"
+
+"C:\WINDOWS\system32\cmd.exe" /C tasklist /v >> "C:\Ahnlab\$$$A24F.TMP"
+
+NavRAT is a remote access trojan (RAT) designed to upload, download and execute files. The
+analysed sample contains many verbose logs. The malware's author logs every action to a file
+(encoded). It's not often we are able to use the attacker's own logging capability to facilitate
+analysis, which can make our research easier. 
+
+NAV R AT
+
+Capabilities
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+This screenshot shows the logs messages during the process injection with the API usage.
+
+NavRAT starts by copying itself (~emp.exe) to the %ProgramData%\Ahnlab\GoogleUpdate.exe
+path. It uses the path of a well-known security company located in South Korea named AhnLab.
+NavRAT then creates a registry key in order to execute this file copy at the next reboot of the
+system, an initial method of persistence. The log files mentioned previously are stored in the same
+directory as NavRAT on the victim machine, again making it easy for us to find and analyse the
+additional log files.
+
+NavRAT has support for process injection. By using this method, it will copy itself into a running
+Internet Explorer process in order to avoid detection by running as an independent process. The
+malware is able to register the keystrokes on the targeted user's system:
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://4.bp.blogspot.com/-CS7zgSRmyLc/WxBJbnO4AKI/AAAAAAAAAbo/pAxdeI2ZCUkJSZT_yYURvqDaXYafqaJMwCLcBGAs/s1600/image9.png
+http://www.ahnlab.com/&sa=D&ust=1527796940968000
+http://www.ahnlab.com/&sa=D&ust=1527796940968000
+http://www.ahnlab.com/&sa=D&ust=1527796940969000
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The most interesting part of this RAT is the C2 server architecture. The malware uses the Naver
+email platform in order to communicate with the operators. 
+
+The malware communicates with the Naver email platform in order to communicate with the
+operator. The credentials are hardcoded in the sample:
+
+Command & Control
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://2.bp.blogspot.com/-z4Pg6bCjfZo/WxBJfmHNdHI/AAAAAAAAAbs/6rDkNxSD9owOtzU_CXk133VNzYgmHl5LgCLcBGAs/s1600/image1.png
+https://1.bp.blogspot.com/-ufwW0gOMrXg/WxBJjAnqJKI/AAAAAAAAAbw/oIvOL_Ya25kBUlytUqwBEUPxyQ3BsayjACLcBGAs/s1600/image8.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+However, during our investigation, NavRAT was unable to communicate with the email address:
+
+[05/30/2018, 17:39:45]  NaverUpload Start!!
+[05/30/2018, 17:39:46]  NaverUpload :PreUploading success
+[05/30/2018, 17:39:46]   uploading step-1 : HttpSendRequest failed. 
+Err[12150]
+[05/30/2018, 17:39:46]  ////////////// Response Headers getting failure 
+//////////
+[05/30/2018, 17:39:46]  NaverUpload :Uploading failed. Try[0]
+[05/30/2018, 17:39:47]   uploading step-1 : HttpSendRequest failed. 
+Err[12150]
+[05/30/2018, 17:39:47]  ////////////// Response Headers getting failure 
+//////////
+[05/30/2018, 17:39:47]  NaverUpload :Uploading failed. Try[1]
+[05/30/2018, 17:39:48]   uploading step-1 : HttpSendRequest failed. 
+Err[12150]
+[05/30/2018, 17:39:48]  ////////////// Response Headers getting failure 
+//////////
+[05/30/2018, 17:39:48]  NaverUpload :Uploading failed. Try[2]
+[05/30/2018, 17:39:49]   uploading step-1 : HttpSendRequest failed. 
+Err[12150]
+[05/30/2018, 17:39:49]  ////////////// Response Headers getting failure 
+//////////
+[05/30/2018, 17:39:49]  NaverUpload :Uploading failed. Try[3]
+[05/30/2018, 17:39:51]   uploading step-1 : HttpSendRequest failed. 
+Err[12150]
+[05/30/2018, 17:39:51]  ////////////// Response Headers getting failure 
+//////////
+[05/30/2018, 17:39:51]  NaverUpload :Uploading failed. Try[4]
+[05/30/2018, 17:39:52]  UploadProc : UploadFile Err
+[05/30/2018, 17:39:52]  PreCommProc : UploadProc failed
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The broken communication was due to protection implemented by Naver. The malware was
+presumably executed from too many different countries, and the account is currently locked:
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The password must be reset by providing information on the account, or with a mobile phone of the
+owner (the phone number is located in the UK). In its current status, NavRAT cannot work correctly.
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://2.bp.blogspot.com/-p3sp3jqyQ6U/WxBJp1L4oiI/AAAAAAAAAb0/QpEXvNHjlW0THKf-7DJh4WVyi4c3Cd1mwCLcBGAs/s1600/image3.png
+https://3.bp.blogspot.com/-IBZD-xJf9Fo/WxBJufB2k_I/AAAAAAAAAb4/b14o5RJqkcsvHDQEeb3WhWOm4PHc6y6sACLcBGAs/s1600/image5.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+owner (the phone number is located in the UK). In its current status, NavRAT cannot work correctly.
+We assume that the owner of the malware didn't know that Naver implemented this protection.
+
+NavRAT is able to download and execute files located in the attachment of a received email. It is
+able to remove emails, and finally, it is able to send an email via the Naver account. In our sample,
+the data is attempted to be sent to: chioekang59@daum[.]net.
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://1.bp.blogspot.com/-2Ax14lFwKWY/WxBJx-AAktI/AAAAAAAAAb8/z0EyFaKPT2EydULgKLddii3g1--UiXxHACLcBGAs/s1600/image6.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+During our investigation, we tried to find additional samples of NavRAT. We only identified one old
+sample compiled in May 2016. As in our case, this old sample used a fake AhnLab directory to store
+logs files (C:\AhnLab\). In this version, the compilation path was not removed:
+
+N:\CodeProject\VC_Code Project\Attack_Spy\mailacounts.com\src_total_20160430 
+- v10.0(DIV)\bin\PrecomExe(Win32).pdb
+
+We can conclude that NavRAT has probably existed since 2016 — which we believe to be version 10
+at the time. The attacker(s) appear to have remained under the radar for several years. We assume
+this malware has been sparingly used and only for very specific targets.
+
+As we explore the Korean malware landscape, we always have burning questions relating to any
+possible links with Group123. We identified some relevant points which we believe with medium
+confidence suggests the involvement of Group123 based on previous TTPs used by this group.
+
+The modus operandi is identical to previous Group123 campaigns — a HWP document with
+embedded EPS object containing malicious shellcode. The shellcode of the embedded object is
+designed to download an image, which is, in fact, a new shellcode used to decode an embedded
+executable. We saw this exact same methodology used by Group123 during previous attacks. One
+such example is ROKRAT, another remote access trojan we discovered in April 2017 that targeted
+the Korean peninsula.
+
+The shellcode used in the EPS object is not exactly the same, but it contains a lot of similarities
+
+Archeology
+
+G R O U P1 2 3  L INKS ?
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://blog.talosintelligence.com/2017/04/introducing-rokrat.html&sa=D&ust=1527796940972000
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+The shellcode used in the EPS object is not exactly the same, but it contains a lot of similarities
+right down to the number of instructions used, the amount of NOP (No Operations) and almost
+identical command layout. (On the left is NavRAT, and on the right is the shellcode of ROKRAT):
+
+We performed the same analysis for the shellcode located in the downloaded image file and the
+shellcode is not exactly the same, but the design is very similar.
+
+Additionally, we can add the victimology and usage of a public cloud platform as C2 server. The
+attacker simply moved from Yandex, Pcloud, Mediafire, Twitter, and now they are using Naver. This
+platform is mainly used locally in South Korea. A connection to this platform cannot be identified as
+a malicious activity. The malicious traffic will be hidden in the global flow.
+
+Due to all these elements, we asses with medium confidence that NavRAT and this campaign can
+be linked to Group123. The malware developer is probably a different person within Group123's
+working team, but the infection framework and the operating mode are the same. When TalosConvert webpages or entire websites to PDF - PDFmyURL!
+
+https://1.bp.blogspot.com/-4AL8A1TyJXw/WxBJ3P56S9I/AAAAAAAAAcE/ytr3JFY18rUpZnf0KemNkaYqZDT1QQ-WwCLcBGAs/s1600/image4.png
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+working team, but the infection framework and the operating mode are the same. When Talos
+published on Olympic Destroyer we were able to see a lot of false flags used. When we look at
+NavRAT we do not see this intentional and less vague level of IOC/False Flag scenarios in an
+attempt to infer attribution to another entity. NavRAT lacks these non-obvious false flags and thus
+we do not believe this to be related to non Group123 actors.
+
+South Korea is still, and always will remain, an attractive target for advanced actors. The region has
+geopolitical interests that arise from the segregations that exist between the secretive North Korea
+and the more open South Korea. In this campaign, the attackers used a classical HWP document in
+order to download and execute a previously unknown malware: NavRAT. The author used real
+events in order to forge the decoy document. It chose the U.S. - North Korea Summit to entice the
+targets to open it.
+
+The approach is close to the techniques used by Group123 attacks we have observed and written
+about over the past 18 months or so: the shellcode contains similarities, the final payload is
+malicious shellcode located in an image hosted on a compromised website, and the author uses an
+open platform as the C2 server. In this case, NavRAT used an email provider: Naver, while ROKRAT
+previously used cloud providers. And finally, the victimology and the targeted region are the same.
+All these elements are not strict proof of a link between NavRAT and ROKRAT. However, we asses
+with medium confidence that NavRAT is linked to Group123.
+
+Using well-known local cloud/email providers is smart from an attacker's point of view. It's really
+hard to identify the malicious traffic in the middle of the legitimate traffic. In this case, the email
+provider locked the account due to attempts from too many different countries to access the email
+inbox. We identified the sample on several public sandbox systems, and we assume the multiple
+connection attempts were performed by these sandboxes.
+
+Additional ways our customers can detect and block this threat are listed below.
+
+C O NC L U S IO N
+
+C O V E R A G E
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Advanced Malware Protection (AMP) is ideally suited to prevent the execution of the malware used
+by these threat actors.
+
+CWS or WSA web scanning prevents access to malicious websites and detects malware used in
+these attacks.
+
+Email Security can block malicious emails sent by threat actors as part of their campaign.
+
+Network Security appliances such as NGFW, NGIPS, and Meraki MX can detect malicious activity
+associated with this threat.
+
+AMP Threat Grid helps identify malicious binaries and build protection into all Cisco Security
+products.
+
+Umbrella, our secure internet gateway (SIG), blocks users from connecting to malicious domains,
+IPs, and URLs, whether users are on or off the corporate network.
+
+Open-source Snort subscriber rule set customers can stay up to date by downloading the latest ruleConvert webpages or entire websites to PDF - PDFmyURL!
+
+https://1.bp.blogspot.com/-kY_-TH7KoNM/WxBJ7wNZF4I/AAAAAAAAAcM/f1xqk8U490M0WEDPiciAl4wzmzWmNHH9ACLcBGAs/s1600/image7.png
+https://www.cisco.com/c/en/us/products/security/advanced-malware-protection&sa=D&ust=1527796940975000
+https://www.cisco.com/c/en/us/products/security/cloud-web-security/index.html&sa=D&ust=1527796940975000
+https://www.cisco.com/c/en/us/products/security/web-security-appliance/index.html&sa=D&ust=1527796940975000
+https://www.cisco.com/c/en/us/products/security/email-security-appliance/index.html&sa=D&ust=1527796940976000
+https://www.cisco.com/c/en/us/products/security/firewalls/index.html&sa=D&ust=1527796940976000
+https://www.cisco.com/c/en/us/products/security/firewalls/index.html&sa=D&ust=1527796940976000
+https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html&sa=D&ust=1527796940976000
+https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html&sa=D&ust=1527796940976000
+https://meraki.cisco.com/products/appliances&sa=D&ust=1527796940976000
+https://meraki.cisco.com/products/appliances&sa=D&ust=1527796940977000
+https://www.cisco.com/c/en/us/solutions/enterprise-networks/amp-threat-grid/index.html&sa=D&ust=1527796940977000
+https://umbrella.cisco.com/&sa=D&ust=1527796940977000
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+S H A R E  T H I S
+
+P O S T
+
+Open-source Snort subscriber rule set customers can stay up to date by downloading the latest rule
+pack available for purchase on Snort.org.
+
+Malicious HWP: e5f191531bc1c674ea74f8885449f4d934d5f1aa7fd3aaa283fe70f9402b9574
+
+NavRAT: 4f06eaed3dd67ce31e7c8258741cf727964bd271c3590ded828ad7ba8d04ee57
+
+Online Payload:
+hxxp://artndesign2[.]cafe24[.]com:80/skin_board/s_build_cafeblog/exp_include/img.png
+
+2016 NavRAT sample: 
+
+e0257d187be69b9bee0a731437bf050d56d213b50a6fd29dd6664e7969f286ef
+
+P O S T E D  B Y  W A R R E N  M E R C E R AT  7 : 0 0  P M 
+
+L A B E L S :  A P T ,  G R O U P 1 2 3 ,  H A N G U L ,  H W P ,  K O R E A ,  M A LW A R E ,  N A V R AT ,  N O R T H  K O R E A,  S O U T H
+
+K O R E A
+
+   
+
+IO C S
+
+NO COMMENTS:
+
+POST A COMMENT
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://www.snort.org/products&sa=D&ust=1527796940977000
+https://www.blogger.com/profile/01772306994239678057
+https://blog.talosintelligence.com/search/label/APT
+https://blog.talosintelligence.com/search/label/Group123
+https://blog.talosintelligence.com/search/label/Hangul
+https://blog.talosintelligence.com/search/label/HWP
+https://blog.talosintelligence.com/search/label/Korea
+https://blog.talosintelligence.com/search/label/Malware
+https://blog.talosintelligence.com/search/label/NavRAT
+https://blog.talosintelligence.com/search/label/North Korea
+https://blog.talosintelligence.com/search/label/South Korea
+https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/2018/05/navrat.html&text=NavRAT Uses US-North Korea Summit As Decoy For Attacks In South Korea
+https://twitter.com/share?url=https://blog.talosintelligence.com/2018/05/navrat.html&text=NavRAT Uses US-North Korea Summit As Decoy For Attacks In South Korea
+https://www.reddit.com/submit?url=https://blog.talosintelligence.com/2018/05/navrat.html&title=NavRAT Uses US-North Korea Summit As Decoy For Attacks In South Korea
+mailto:?body=https://blog.talosintelligence.com/2018/05/navrat.html&subject=NavRAT Uses US-North Korea Summit As Decoy For Attacks In South Korea
+https://www.blogger.com/comment-iframe.g?blogID=1029833275466591797&postID=6022799513636558525&blogspotRpcToken=9246036
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+Software
+
+Reputation Center
+
+Vulnerability Information  
+
+Library
+
+Support Communities
+
+Microsoft Advisory Snort Rules  
+
+IP Blacklist Download
+
+AWBO Exercises
+
+About Talos  
+
+Careers
+
+Blog
+
+CONNECT WITH US
+
+   
+
+N E W E R
+
+P O S T
+
+O L D E R
+
+P O S T
+
+H O M E
+
+S U B S C R I B E  T O :  P O S T  C O M M E N T S  ( AT O M )
+
+Enter your comment...
+
+Comment as: Google Account
+
+PublishPublish  PreviewPreview
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://blog.talosintelligence.com/2018/06/vulnerability-spotlight-talos-2018-0535.html
+https://blog.talosintelligence.com/2018/05/vulnerability-spotlight-natus-part2.html
+https://blog.talosintelligence.com/
+https://blog.talosintelligence.com/feeds/6022799513636558525/comments/default
+https://talosintelligence.com/software
+https://talosintelligence.com/reputation
+https://talosintelligence.com/vulnerability-reports
+https://talosintelligence.com/resources
+https://talosintelligence.com/community
+https://talosintelligence.com/ms_advisories
+https://talosintelligence.com/documents/ip-blacklist
+https://talosintelligence.com/awbo_exercises
+https://talosintelligence.com/about
+https://talosintelligence.com/careers
+https://blog.talosintelligence.com
+https://twitter.com/talossecurity
+https://www.facebook.com/groups/TalosGroupatCisco/
+https://www.youtube.com/playlist?list=PLFT-9JpKjRTDn_qtGN238gzycJfaVzMqD
+https://www.linkedin.com/grp/home?gid=8287731
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+
+
+© 2018 Cisco Systems, Inc. and/or its affiliates. All rights reserved. View our Privacy Policy here.
+
+Convert webpages or entire websites to PDF - PDFmyURL!
+
+https://www.cisco.com/web/siteassets/legal/privacy_full.html
+https://pdfmyurl.com/?src=pdf
+https://pdfmyurl.com/?src=pdf
+

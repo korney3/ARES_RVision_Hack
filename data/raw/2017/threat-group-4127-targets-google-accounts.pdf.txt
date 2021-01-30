@@ -1,0 +1,158 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Threat Group-4127 Targets Google Accounts | Secureworks
+
+
+T H R E A T  A N A L Y S I S
+
+SUNDAY, JUNE 26, 2016
+
+Summary
+
+Spearphishing Google Accounts
+
+/
+/counter-threat-platform
+/counter-threat-platform/client-portal
+/solutions/advanced-threat-protection
+/solutions/compliance-management
+/solutions/critical-asset-protection
+/solutions/cybersecurity-risk-management
+/solutions/security-operations
+/solutions/industries
+/capabilities
+/capabilities/managed-security
+/capabilities/threat-intelligence
+/capabilities/security-risk-consulting
+/capabilities/incident-response
+/capabilities/cloud-security
+/Insights
+/resources
+/blog
+/research
+/centers/cyber-security-awareness-month-2017
+/about
+/about/counter-threat-unit
+/about/leadership
+/about/offices
+/about/partners
+/about/events
+/about/press
+http://investors.secureworks.com
+/contact/talk-with-an-expert
+/contact/rfp
+/contact/urgent-response
+/contact/client-support
+/research
+https://twitter.com/intent/tweet?url=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts&text=Threat Group-4127 Targets Google Accounts&via=Secureworks
+https://www.linkedin.com/shareArticle?mini=true&url=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts&source=Secureworks
+https://www.facebook.com/sharer/sharer.php?u=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts
+mailto:?subject=Secureworks&body=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts
+/research/threat-group-4127-targets-hillary-clinton-presidential-campaign
+https://www.secureworks.com/research/threat-group-4127-targets-hillary-clinton-presidential-campaign
+
+
+
+
+Target analysis
+
+
+
+
+
+
+
+
+
+Success of the phishing campaign
+
+Conclusion
+
+
+
+Appendix — Gauging confidence level 
+
+
+
+https://twitter.com/intent/tweet?url=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts&text=Threat Group-4127 Targets Google Accounts&via=Secureworks
+https://www.linkedin.com/shareArticle?mini=true&url=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts&source=Secureworks
+https://www.facebook.com/sharer/sharer.php?u=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts
+mailto:?subject=Secureworks&body=https://www.secureworks.com/research/threat-group-4127-targets-google-accounts
+/blog/notpetya-campaign-what-we-know-about-the-latest-global-ransomware-attack
+/blog/notpetya-campaign-what-we-know-about-the-latest-global-ransomware-attack
+/research/bronze-butler-targets-japanese-businesses
+/research/bronze-butler-targets-japanese-businesses
+/research/the-curious-case-of-mia-ash
+/research/the-curious-case-of-mia-ash
+/blog/notpetya-campaign-what-we-know-about-the-latest-global-ransomware-attack
+/blog/notpetya-campaign-what-we-know-about-the-latest-global-ransomware-attack
+/research/bronze-butler-targets-japanese-businesses
+/research/bronze-butler-targets-japanese-businesses
+http://jobs.dell.com/search/advanced-search/ASCategory/SecureWorks/ASPostedDate/-1/ASCountry/-1/ASState/-1/ASCity/-1/ASLocation/-1/ASCompanyName/-1/
+/rss-feed
+
+
+http://go.secureworks.com/Global_Preference_Center_NorthAmerica
+/sitemap
+/privacy-policy
+/termandconditions
+https://www.delltechnologies.com
+http://www.linkedin.com/company/secureworks
+https://twitter.com/secureworks
+https://www.facebook.com/secureworks
+
+	Threat Group-4127 Targets Google Accounts
+	Summary
+	Spearphishing Google Accounts
+	Encoded target details
+	Use of the Bitly URL-shortening service
+
+	Target analysis
+	Focus on Russia and former Soviet states
+	Other targets worldwide
+	Authors and journalists
+	Government supply chain
+	Government / military personnel
+
+	Success of the phishing campaign
+	Conclusion
+	Appendix — Gauging confidence level
+	Footnote
+	RELATED CONTENT
+
+	BRONZE BUTLER Targets Japanese Enterprises
+	The Curious Case of Mia Ash: Fake Persona Lures Middle Eastern Targets
+	BRONZE BUTLER Targets Japanese Enterprises
+	NotPetya Campaign: What We Know About the Latest Global Ransomware Attack
+	NotPetya Campaign: What We Know About the Latest Global Ransomware Attack
+
+

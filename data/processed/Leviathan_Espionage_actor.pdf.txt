@@ -1,0 +1,558 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 1/12
+
+<TIMESTAMP>October 17, 2017</TIMESTAMP>
+
+<THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+proofpoint.com/us/threat‑insight/post/leviathan‑espionage‑actor‑spearphishes‑maritime‑and‑defense‑targets
+
+Overview
+
+Proofpoint researchers are tracking an espionage actor targeting organizations and high‑value targets in
+defense and government. Active <TIMESTAMP>since at least 2014</TIMESTAMP>, this actor has long‑standing interest in maritime industries,
+naval defense contractors, and associated research institutions in the <COUNTRY>United States</COUNTRY> and <COUNTRY>Western Europe</COUNTRY>.
+
+Key takeaways from this research include:
+
+Industry targeting: The actor targets defense contractors, universities (particularly those with military
+research ties), legal organizations [3] and government agencies [3]. The actor has particular interest in
+naval industries including <INDUSTRY>shipbuilding</INDUSTRY> and related research
+Geographical targeting: Targeting includes <COUNTRY>United States</COUNTRY>, <COUNTRY>Western Europe</COUNTRY>, and <COUNTRY>South China Sea</COUNTRY>
+Tools: Custom JavaScript malware known as “<MALWARE>Orz</MALWARE>” and “<MALWARE>NanHaiShu</MALWARE>”, <MALWARE>Cobalt Strike</MALWARE>, the SeDll JavaScript
+loader, and MockDll dll loader
+Delivery: Emailed attachments and URLs, often employing a fraudulent lookalike domain and stolen
+branding
+Exploitation: <SOFTWARE>Microsoft Excel</SOFTWARE> and Word documents with macros (sometimes password‑protected), very
+recent vulnerabilities such as <CVE>CVE‑2017‑0199</CVE> and <CVE>CVE‑2017‑8759</CVE>, and malicious <SOFTWARE>Microsoft Publisher</SOFTWARE>
+files
+Installation: <SOFTWARE>JavaScript</SOFTWARE>, JavaScript Scriptlets in XML, HTA, <SOFTWARE>PowerShell</SOFTWARE>, <TOOL>WMI</TOOL>, <TOOL>regsvr32</TOOL>, <MITRE_ATTACK>Squiblydoo</MITRE_ATTACK>
+Lateral Movement: The actor sometimes utilizes access at one compromised organization to attack the
+next. For example, compromised email accounts at one organization were used to send the next wave of
+malicious attachments to potential victims in the same industry. Similarly the actor attempts to
+compromise servers within victim organizations and use them for command and control (C&C) for their
+malware.
+
+This blog traces key activities connected to this actor and examines a number of their tools and techniques.
+Campaigns and details are presented in reverse chronological order to highlight the group’s most recent
+activities.
+
+Delivery and Exploitation
+
+<TIMESTAMP>September 2017</TIMESTAMP>
+
+On <TIMESTAMP>September 15 and 19, 2017</TIMESTAMP>, Proofpoint detected and blocked spearphishing emails from this group targeting
+a US shipbuilding company and a US university research center with military ties. Example emails used the
+subject “Apply for internship position” and contained an attachment “<IOC>resume.rtf</IOC>”. Another attachment,
+“<IOC>ARLUAS_FieldLog_2017‑08‑21.doc</IOC>” contained a “Torpedo recovery experiment” lure. The attachments
+exploited <CVE>CVE‑2017‑8759</CVE> which was discovered and documented only five days prior to the campaign [1].
+
+https://www.proofpoint.com/us/threat-insight/post/leviathan-espionage-actor-spearphishes-maritime-and-defense-targets
+https://www.proofpoint.com/us/threat-reference/malware
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0199
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8759
+https://www.proofpoint.com/us/threat-reference/spear-phishing
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 2/12
+
+Figure 1: Example attachment <IOC>resume.rtf</IOC> from <TIMESTAMP>September 2017</TIMESTAMP> campaign
+
+<TIMESTAMP>August 2017</TIMESTAMP>
+
+<TIMESTAMP>Between August 2 and 4</TIMESTAMP>, the actor sent targeted spearphishing emails containing malicious URLs linking to
+documents to multiple defense contractors. Some of this activity was documented and observed by a fellow
+researcher [2]. Many of the documents, C&C domains, and payload domains abused the brand of a major
+provider of ships, submarines, and other vessels with military applications. Some of the documents exploited
+<CVE>CVE‑2017‑0199</CVE> to deliver the payload.
+
+Figure 2: One of the documents involved in the campaign used <ORG>Microsoft</ORG> licensing lures purporting to be
+from a well‑known shipbuilder (sha256:
+<IOC>6f6ee01e9dc2d8c4c260ef4131fe88dc152e53ee8afd3e66e92d4e1bf5fd2e92</IOC>).
+
+Other documents were <SOFTWARE>Microsoft Publisher</SOFTWARE> files that relied on social engineering. The potential victims were
+lured into starting an embedded PowerPoint presentation, moving the mouse to trigger execution of an
+embedded JavaScript [5], and then pressing “Enable” in a warning dialog to cause the payload download. The
+Publisher files were poorly crafted, relied on multiple user interactions, and contained multiple grammatical and
+typographic errors.
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 3/12
+
+Figure 3: Publisher document delivered via a link in email is in Italian, and is a simple reuse of a
+student’swork.
+
+<TIMESTAMP>February 2015</TIMESTAMP>
+
+<TIMESTAMP>From February to October of 2015</TIMESTAMP>, our colleagues at <ORG>F‑Secure</ORG> and <ORG>McAfee</ORG> reported on campaigns [3][4] by this
+actor targeting <COUNTRY>South China Sea</COUNTRY> interests. During this time, the group utilized <SOFTWARE>Microsoft Excel<SOFTWARE> and <SOFTWARE>Word</SOFTWARE>
+documents with macros to target the <ORG>Philippines Department of Justice<ORG>, <ORG>APEC</ORG> organizers, and an international
+law firm. Targeting of these companies is different from that which we typically observe for this actor; however it
+still centers around marine and naval issues as related to <COUNTRY>South China sea</COUNTRY> politics.
+
+Figure 4: Example attachment “<IOC>DOJ Staff bonus  January 13, 2015.xls</IOC>”. Similar to this document attachment,
+most of the attachments in this campaign did not contain meaningful content
+
+<TIMESTAMP>November 2014</TIMESTAMP>
+
+The period between <TIMESTAMP>November 2014</TIMESTAMP> and <TIMESTAMP>January 2015</TIMESTAMP> marked one of the earlier instances in which Proofpoint
+observed persistent exploitation attempts by this actor. The actor generally emailed <SOFTWARE>Microsoft Excel</SOFTWARE> documents
+with malicious macros to <COUNTRY>US</COUNTRY> universities with military interests, most frequently related to <ORG>THE Navy</ORG>. The actor
+also occasionally used macro‑laden <SOFTWARE>Microsoft Word<SOFTWARE> documents to target other <COUNTRY>US</COUNTRY> research and development
+organizations with military and intelligence ties during this period.
+
+Emails were often very simple with a greeting and an attachment. On other occasions, it appears that the
+attackers used highly topical lures based on current events or legitimate documents stolen from previous
+victims. Lure topics included symposia, <ORG>the Navy</ORG>, <INDUSTRY>IT</INDUSTRY>, and relevant research.
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 4/12
+
+Figure 5: Example Excel attachment “<IOC>2014 Accomplishments Input Template.xls</IOC>”
+
+Installation
+
+The actor continues to:
+
+Innovate and modify the code that accomplishes the installation, while the backdoor code remains more
+static
+Use scripting languages such as JavaScript, JavaScript Scriptlets, VBScript, and XML
+Use simple obfuscation such as base64, gzip compression, and insertion of garbage characters
+Split functionality of the backdoor & code that establishes persistence for the backdoor into separate files
+and scripts
+
+Example 1: <IOC>Resume.rtf</IOC>
+
+The “<IOC>resume.rtf</IOC>” file from the <TIMESTAMP>September 19, 2017<TIMESTAMP> attack retrieves the malicious SOAP WSDL definition named
+“<IOC>readme.txt</IOC> “ using an anonymous FTP logon to the attacker’s server.
+
+Figure 6: SOAP WSDL definition (“<IOC>readme.txt</IOC>“)
+
+This definition in turn downloads a VBScript <IOC>favicon.ico</IOC> file, which then creates and runs two JavaScript files in
+the %TMP% directory:
+
+Figure 7: Code snipped showing VBScript dropping 2 JavaScript files
+
+
+
+9/10/2018 <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 5/12
+
+The job of the smaller of the two JavaScripts is to establish a system autostart mechanism. It accomplishes this
+by deobfuscating another script, link.js, into %TMP%. Link.js in turn creates a shortcut  file "<IOC>Java(TM) Platform
+SE Auto Updater.lnk</IOC>" in the "Startup" special folder pointing to the main backdoor JavaScript.
+
+Figure 8: Code for establishing persistence after reboot (autostart mechanism)
+
+The job of the larger of the two JavaScripts is to download and execute the <MALWARE>Cobalt Strike</MALWARE> payload. It
+accomplishes this by writing more code to rWug5n0PHUFjDFyb8k.js in the temporary directory, which then runs
+a PowerShell command (obfuscated using garbage characters, base64 encoding, and Gzip compression). The
+PowerShell is a default <MALWARE>Cobalt Strike</MALWARE> downloader.
+
+Figure 9: PowerShell code downloading <MALWARE>Cobalt Strike</MALWARE>
+
+Example 2: Malicious <SOFTWARE>Microsoft Publisher</SOFTWARE> document
+
+The malicious script executed by the <SOFTWARE>Microsoft Publisher</SOFTWARE> file downloads and runs yet another JavaScript file,
+0.js, hosted on the attacker‑controlled server:
+
+Figure 10: Malicious script executed by the <SOFTWARE>Microsoft Publisher</SOFTWARE> file (sha256:
+<IOC>305f331bfb1e97028f8c92cbcb1dff2741dcddacc76843e65f9b1ec5a66f52bc</IOC>)
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 6/12
+
+Similar to the previous example (resume.rtf), the 0.js handles the system autostart mechanism via a shortcut file
+"<IOC>office 365.lnk</IOC>" in the "Startup" special folder. However, the shortcut abuses the “<MITRE_ATTACK>Squiblydoo</MITRE_ATTACK>” technique [6].
+Moreover, the backdoor is not run directly but via an intermediary SeDll (see below).
+
+0.js also downloads two additional files from the C&C server (green.ddd and green.tmp) The first of these files,
+green.ddd, is an executable file internally named “<IOC>SEDll_Win32.dll</IOC>”. This is a known backdoor used by this actor
+<TIMESTAMP>since 2014</TIMESTAMP> for the same purpose: decrypting and executing the final JavaScript backdoor “<MALWARE>Orz</MALWARE>”.
+
+Tools
+
+<MALWARE>NanHaiShu</MALWARE>
+
+We have observed variants of this JavaScript backdoor used in various campaigns, including those publically
+reported. The actor continues to improve and refine the malware by, for example, wrapping it inside an HTA
+wrapper. Several good descriptions are available  in analyses from fellow researchers [3][4]. Basic functionality
+includes:
+
+Information gathering (computer name, user name, serial number, proxy server)
+Downloading from URL
+Executing other JavaScript
+Registry, system, process, directory, file operations
+SafeIE (change IE settings to reduce warnings about about malware activity)
+
+Figure 11: Screenshot from <TIMESTAMP>2015</TIMESTAMP> version of the malware dropped by “<IOC>DOJ Staff bonus January 13, 2015.xls</IOC>”
+
+<MALWARE>Orz</MALWARE>
+
+We observed this backdoor in an <TIMESTAMP>August 2017</TIMESTAMP> campaign dropped by the <SOFTWARE>Microsoft Publisher</SOFTWARE> files,
+as well as much <TIMESTAMP>earlier in 2014</TIMESTAMP>. We named it due to a variable name “<MALWARE>Orz</MALWARE>”, which is changed to “core” in the more recent
+version. The actor consistently tweaks and improves this backdoor as well. The backdoor is a fairly involved
+script malware. Its functionality includes:
+
+Information gathering (IE version, OS version, OS 64‑bit/32‑bit, etc)
+Overwriting registry settings to reduce malware visibility on system
+Download file
+Upload file
+Execute a command with cscript
+Execute JavaScript
+Execute shell command
+Execute a dll (via an embedded ‘MockDll')
+Get proxy info
+Get process list
+Terminate process
+Get drive info
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 7/12
+
+GET request to a URL
+POST request to a URL
+
+Figure 12: Snippet of the <MALWARE>Orz</MALWARE> backdoor code delivered by the the <SOFTWARE>Microsoft Publisher</SOFTWARE> document. The URL
+domain is a fraudulent lookalike domain.
+
+There is an extensive configuration section at the top of the script. The "jmpUrlList" provides the initial C&C
+servers, which are used to determine the secondary C&C server as well as additional commands to execute. It is
+worth noting that the secondary C&C may be the same as the first. We have observed attacker‑controlled web
+servers, compromised victim web servers, and <ORG>Technet<ORG> and <ORG>Pastebin</ORG> web pages used for the initial C&C.
+
+The initial C&C response is parsed with a regex. The backdoor first looks for the secondary encoded C&C server
+using the "jmpRegex" regex. Next, the backdoor looks for additional code to execute using the "codeRegex"
+regex. For additional code, we observed simple code blocks that provide a different upload/download
+functionality.
+
+Figure 13: The encoded response "<IOC>vcmQx3ELgTyTyOVSvsm7wrBKwraFw8VFwCuL</IOC>" in the image above
+decodes to "<IOC>hxxp://www.vitaminmain[.]info</IOC>" which is the secondary C&C server for an older backdoor variant
+(Decoder provided in Appendix).
+
+MockDll
+
+Some versions of the <MALWARE>Orz</MALWARE> backdoor have 32‑ and 64‑bit embedded DLLs, stored internally as base64 strings.
+Their purpose is to simply run another binary. These are used as loaders for future executable payloads, using
+the well‑known process hollowing technique. To use the MockDll, the backdoor creates a configuration .ini file
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 8/12
+
+like that shown in Figure 14:
+
+Figure 14: MockDll configuration file
+
+mock: defaults to '<TOOL>regsvr32</TOOL>'
+
+real: the dll, which is the ultimate goal to execute
+
+args: arguments to the dll that will be executed, if any
+
+outf: file in which to write results of the MockDll run
+
+time: timeout defaults to 5
+
+After the configuration file is created, the MockDll is executed with <TOOL>regsvr32</TOOL>. MockDll reads the mentioned .ini
+config file to determine what to execute. It can log its execution results into a file specified by the “outf”
+parameter, as shown in Figure 15:
+
+Figure 15: Contents of the log file created by MockDll
+
+SeDll
+
+This DLL is used for decrypting and executing another JavaScript backdoor such as <MALWARE>Orz</MALWARE>. The DLL is registered
+by the installer using <TOOL>regsvr32</TOOL>. The DllRegisterServer export is then called, which performs checks on the
+commandline parameter. If the string “DR” is passed as an argument, or if the DLL is running in the active
+session with a username that is not “system”, the final JavaScript backdoor is decoded using a custom base64
+alphabet. This backdoor has to be present in the same directory as the dll, with a “.tmp” file extension. The
+backdoor script is then executed using the IActiveScript and IActiveScriptParse32 COM interfaces.
+
+Figure 16: Decoding and executing of the JavaScript backdoor
+
+If those conditions are not met, it runs the following command line “"regsvr32 /s \"%s\" DR __CIM__"” to register
+the DLL, where %s is the path to the DLL. It tries to do this with the current user privileges, but if the privileges
+cannot be adjusted it defaults to the available execution environment.
+
+<MALWARE>Cobalt Strike</MALWARE>
+
+This is a penetration testing tool. The attackers often abuse the free trial version.
+
+Conclusion
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 9/12
+
+This actor, whose espionage activities primarily focus on targets in the US and Western Europe with military ties,
+has been active <TIMESTAMP>since at least 2014</TIMESTAMP>. The tools, techniques, and targets consistently connect their work,
+particular given their attention to naval and maritime defense interests and use of custom backdoors. While
+defense contractors and academic research centers with military ties should always be cognizant of the
+potential for cyberattacks, organizations fitting their targeting profiles should be especially wary of legitimate‑
+looking but unsolicited emails from outside entities. Appropriate layered defenses at the firewall, email gateway,
+and endpoint can all help prevent the kinds of lateral movement we have observed with this actor, as well as the
+compromise and abuse of systems via which this group expands its attack surface to other organizations.
+
+References
+
+[1] https://www.fireeye.com/blog/threat‑research/2017/09/zero‑day‑used‑to‑distribute‑finspy.html
+
+[2] https://twitter.com/James_inthe_box/status/893525493059788800
+
+[3] https://labsblog.f‑secure.com/2016/08/04/nanhaishu‑rating‑the‑south‑china‑sea/
+
+[4] https://community.spiceworks.com/topic/1028936‑stealthy‑cyberespionage‑campaign‑attacks‑with‑social‑
+engineering
+
+[5] http://blog.trendmicro.com/trendlabs‑security‑intelligence/mouseover‑otlard‑gootkit/
+
+[6] https://www.carbonblack.com/2016/04/28/threat‑advisory‑squiblydoo‑continues‑trend‑of‑attackers‑using‑
+native‑os‑tools‑to‑live‑off‑the‑land/
+
+Indicators of Compromise (IOCs)
+
+IOC IOC
+Type
+
+Description
+
+<IOC>cdf6e2e928a89cbb857e688055a25e37a8d8b8b90530bd52c8548fb544f66f1f</IOC> SHA256 Resume.rtf exploiting <CVE>CVE‑2017‑8759</CVE> (<TIMESTAMP>Sep 19, 2017</TIMESTAMP>)
+
+<IOC>c7fa6f27ec4f4142ae591f2dd7c63d046431945f03c87dbed88d79f55180a46d</IOC> SHA256 <IOC>ARLUAS_FieldLog_2017‑08‑21.doc</IOC> exploiting <CVE>CVE‑2017‑8759</CVE> (<TIMESTAMP>Sep 19, 2017</TIMESTAMP>)
+
+<IOC>ftp://185.106.120[.]206/pub/readme.txt</IOC> URL <IOC>Resume.rtf</IOC> downloading
+scripts (<TIMESTAMP>Sep 19, 2017</TIMESTAMP>)
+
+<IOC>hxxp://185.106.120[.]206/favicon.ico</IOC> URL <IOC>Resume.rtf</IOC> downloading
+scripts (<TIMESTAMP>Sep 19, 2017</TIMESTAMP>)
+
+<IOC>39c952c7e14b6be5a9cb1be3f05eafa22e1115806e927f4e2dc85d609bc0eb36</IOC> SHA256 <IOC>Favicon.ico</IOC> (<TIMESTAMP>Sep 19, 2017</TIMESTAMP>)
+
+<IOC>5860ddc428ffa900258207e9c385f843a3472f2fbf252d2f6357d458646cf362</IOC> SHA256 <MALWARE>Cobalt Strike</MALWARE> (<TIMESTAMP>Sep 19, 2017<TIMESTAMP>)
+
+<IOC>ced7ca9625543d3d3d09f70223cc19f0d99e21792854452df5ba84b3a59d17b8</IOC> SHA256 <IOC>20170720_final_pm_app‑2.doc</IOC> (<TIMESTAMP>August 2017</TIMESTAMP>)Document hash (<TIMESTAMP>August 2017</TIMESTAMP>)
+
+<IOC>305f331bfb1e97028f8c92cbcb1dff2741dcddacc76843e65f9b1ec5a66f52bc</IOC> SHA256 Publisher hash (<TIMESTAMP>August 2017</TIMESTAMP>)
+
+<IOC>bfc5c6817ff2cc4f3cd40f649e10cc9ae1e52139f35fdddbd32cb4d221368922</IOC> SHA256 MockDll 32‑bit (<TIMESTAMP>August 2017</TIMESTAMP>)
+
+https://www.fireeye.com/blog/threat-research/2017/09/zero-day-used-to-distribute-finspy.html
+https://twitter.com/James_inthe_box/status/893525493059788800
+https://labsblog.f-secure.com/2016/08/04/nanhaishu-rating-the-south-china-sea/
+https://community.spiceworks.com/topic/1028936-stealthy-cyberespionage-campaign-attacks-with-social-engineering
+http://blog.trendmicro.com/trendlabs-security-intelligence/mouseover-otlard-gootkit/
+https://www.carbonblack.com/2016/04/28/threat-advisory-squiblydoo-continues-trend-of-attackers-using-native-os-tools-to-live-off-the-land/
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 10/12
+
+<IOC>80b931ab1798d7d8a8d63411861cee07e31bb9a68f595f579e11d3817cfc4aca</IOC> SHA256 MockDll 32‑bit (<TIMESTAMP>August 2017</TIMESTAMP>)
+
+<IOC>146aa9a0ec013aa5bdba9ea9d29f59d48d43bc17c6a20b74bb8c521dbb5bc6f4</IOC> SHA256 <IOC>green.ddd</IOC> SeDll (<TIMESTAMP>August 2017</TIMESTAMP>)
+
+<IOC>4029b43c7febd05e8bf013c1022244aaa238341ca44bbce2250667614c1a4932</IOC> SHA256 <IOC>2014 Accomplishments Input Template.xls</IOC> (<TIMESTAMP>December 2014</TIMESTAMP>)
+
+<IOC>hxxp://www.vitaminmain[.]info</IOC> URL <MALWARE>Orz</MALWARE> secondary C2
+(<TIMESTAMP>December 2014</TIMESTAMP>)
+
+ET and ETPRO Suricata/Snort Coverage
+
+2024192 | ET EXPLOIT Possible <CVE>CVE‑2017‑0199</CVE> HTA Inbound
+
+2024196 | ET WEB_CLIENT HTA File containing Wscript.Shell Call ‑ Potential <CVE>CVE‑2017‑0199</CVE>
+
+2022520 | ET POLICY Possible HTA Application Download
+
+2024197 | ET CURRENT_EVENTS SUSPICIOUS MSXMLHTTP DL of HTA (Observed in <CVE>CVE‑2017‑0199</CVE>)
+
+2024449 | ET CURRENT_EVENTS SUSPICIOUS Possible <CVE>CVE‑2017‑0199</CVE> IE7/NoCookie/Referer HTA dl
+
+2814013 | ETPRO TROJAN <MALWARE>Meterpreter</MALWARE> or Other Reverse Shell SSL Cert
+
+2023629 |  ET INFO Suspicious Empty SSL Certificate ‑ Observed in <MALWARE>Cobalt Strike</MALWARE>
+
+2810628 | ETPRO TROJAN JavaScript Backdoor CnC Beacon M2 (b64 3)
+
+2828317 | ETPRO TROJAN <MALWARE>Orz</MALWARE> JavaScript Backdoor Communicating with CnC
+
+2828316 | ETPRO TROJAN <MALWARE>Orz</MALWARE> JavaScript Backdoor Sending Password to CnC
+
+Appendix: <MALWARE>Orz</MALWARE> Traffic Decoder
+
+var _keyStr = "oMZF/W42VkcCbqOiPSajhnKtQws8NRAxr16XJpu=0mgE3THGLlvz9+5BDYd7feyUI";
+
+function decode (input) {
+
+                       var output = "";
+
+                       var chr1, chr2, chr3;
+
+                       var enc1, enc2, enc3, enc4;
+
+                       var i = 0;
+
+                       input = input.replace(/[^A‑Za‑z0‑9\+\/\=]/g, "");
+
+                       while (i < input.length) {
+
+                                   enc1 = this._keyStr.indexOf(input.charAt(i++));
+
+                                   enc2 = this._keyStr.indexOf(input.charAt(i++));
+
+                                   enc3 = this._keyStr.indexOf(input.charAt(i++));
+
+                                   enc4 = this._keyStr.indexOf(input.charAt(i++));
+
+                                   chr1 = (enc1 << 2) | (enc2 >> 4);
+
+                                   chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+
+                                   chr3 = ((enc3 & 3) << 6) | enc4;
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 11/12
+
+                                   output = output + String.fromCharCode(chr1);
+
+                                   if (enc3 != 64) {
+
+                                               output = output + String.fromCharCode(chr2);
+
+                                   }
+
+                                   if (enc4 != 64) {
+
+                                               output = output + String.fromCharCode(chr3);
+
+                                   }
+
+                       }
+
+                       output = this._utf8_decode(output);
+
+                       return output;
+
+           }
+
+function _utf8_decode (utftext) {
+
+                       var string = "";
+
+                       var i = 0;
+
+                       var c = c1 = c2 = 0;
+
+                       while ( i < utftext.length ) {
+
+                                   c = utftext.charCodeAt(i);
+
+                                   if (c < 128) {
+
+                                               string += String.fromCharCode(c);
+
+                                               i++;
+
+                                   } else if((c > 191) && (c < 224)) {
+
+                                               c2 = utftext.charCodeAt(i+1);
+
+                                               string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+
+                                               i += 2;
+
+                                   } else {
+
+                                               c2 = utftext.charCodeAt(i+1);
+
+                                               c3 = utftext.charCodeAt(i+2);
+
+                                               string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+
+                                               i += 3;
+
+                                   }
+
+                       }
+
+                       return string;
+
+           }
+
+var decodeme =
+"s2S9NF0GCBRBRvY9s2pzN5nHsBk+N2oT8KWvsKYpNBpzR4nTNvYGNuNdOFoDbZeTQtkm8unzAtq9wK+zCLII"
+
+var res = decode(decodeme);
+
+
+
+<TIMESTAMP>9/10/2018</TIMESTAMP> <THREAT_ACTOR>Leviathan</THREAT_ACTOR>: Espionage actor spearphishes maritime and defense targets
+
+https://www.printfriendly.com/p/g/Dn7rsC 12/12
+
+document.write(res);
+
+

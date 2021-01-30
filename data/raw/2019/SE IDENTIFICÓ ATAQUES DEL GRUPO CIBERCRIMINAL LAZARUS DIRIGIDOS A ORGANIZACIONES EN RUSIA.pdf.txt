@@ -1,0 +1,230 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5/23/2019 SE IDENTIFICÓ ATAQUES DEL GRUPO CIBERCRIMINAL LAZARUS DIRIGIDOS A ORGANIZACIONES EN RUSIA – Financial Securit…
+
+securitysummitperu.com/articulos/se-identifico-ataques-del-grupo-cibercriminal-lazarus-dirigidos-a-organizaciones-en-rusia/ 1/4
+
+20 de febrero de 2019
+
+SE IDENTIFICÓ ATAQUES DEL GRUPO
+CIBERCRIMINAL LAZARUS DIRIGIDOS A
+ORGANIZACIONES EN RUSIA
+
+securitysummitperu.com/articulos/se-identifico-ataques-del-grupo-cibercriminal-lazarus-dirigidos-a-
+organizaciones-en-rusia
+
+Investigadores de seguridad han concluido que el grupo cibercriminal patrocinado por el
+estado de Corea del Norte, Lazarus, estaría realizando actividades sospechosas
+dirigidas a compañías con sede en Rusia. Esto con base a las conexiones descubiertas
+entre las tácticas, técnicas y herramientas detectadas y el modo de operación del grupo
+también conocido como Hidden Cobra.
+
+Servicios Afectados
+
+• Sistemas Operativos Microsoft Windows
+
+Detalles Técnicos 
+
+La campaña de Lazarus dirigida a Rusia utiliza documentos de Office maliciosos
+entregados como archivos ZIP, junto a un documento PDF llamado NDA_USA.pdf que
+contiene un acuerdo de StarForce Technologies, que es una compañía rusa de software
+que proporciona software de protección contra copia.
+
+La comunidad de seguridad cree que Lazarus está dividido en al menos dos
+subdivisiones: la primera llamada Andariel, que se centra en atacar al gobierno y
+organizaciones de Corea del Sur, y la segunda, Bluenoroff, cuyo foco principal es la
+monetización y las campañas de espionaje global.
+
+http://securitysummitperu.com/articulos/se-identifico-ataques-del-grupo-cibercriminal-lazarus-dirigidos-a-organizaciones-en-rusia/
+
+
+5/23/2019 SE IDENTIFICÓ ATAQUES DEL GRUPO CIBERCRIMINAL LAZARUS DIRIGIDOS A ORGANIZACIONES EN RUSIA – Financial Securit…
+
+securitysummitperu.com/articulos/se-identifico-ataques-del-grupo-cibercriminal-lazarus-dirigidos-a-organizaciones-en-rusia/ 2/4
+
+Este incidente, sin embargo, representa una elección inusual de víctima por parte del
+actor de amenazas de Corea del Norte. Por lo general, estos ataques reflejan las
+tensiones geopolíticas entre la República Popular Democrática de Corea (RPDC) y
+naciones como Estados Unidos, Japón y Corea del Sur.
+
+Cadena de infección
+
+El flujo de infección principal consta de los siguientes tres pasos principales:
+
+1. Un archivo ZIP que contiene dos documentos: un documento PDF de señuelo
+benigno y un documento de Word malicioso con macros.
+
+2. La macro maliciosa descarga una secuencia de comandos VBS desde una URL de
+Dropbox, seguida de la ejecución de la secuencia de comandos VBS.
+
+3. El script VBS descarga un archivo CAB desde el servidor de la zona de descarga,
+extrae el archivo EXE incrustado (KEYMARBLE) con la utilidad “expand.exe” de
+Windows y, finalmente, lo ejecuta.
+
+ 
+
+ 
+Figura 1: Secuencia de infección del malware KEymarble de Lazarus.
+
+KEYMARBLE
+
+Este malware es una herramienta de administración remota (RAT) que proporciona a
+sus operadores una funcionalidad básica para recuperar información de la computadora
+de la víctima. Una vez ejecutado, realiza varias inicializaciones, se pone en contacto
+con un servidor de Comando y Control (C&C) y espera indefinidamente a recibir nuevos
+comandos. Cada comando recibido es procesado por el backdoor y se maneja dentro
+de una función apropiada, que a su vez recopila una información o realiza una acción en
+la computadora objetivo.
+
+
+
+5/23/2019 SE IDENTIFICÓ ATAQUES DEL GRUPO CIBERCRIMINAL LAZARUS DIRIGIDOS A ORGANIZACIONES EN RUSIA – Financial Securit…
+
+securitysummitperu.com/articulos/se-identifico-ataques-del-grupo-cibercriminal-lazarus-dirigidos-a-organizaciones-en-rusia/ 3/4
+
+Indicadores de Compromiso (IoC)
+
+IP
+
+194[.]45[.]8[.]41
+ 37[.]238[.]135[.]70
+
+Hashes
+
+MD5: dc3fff0873c3e8e853f6c5e01aa94fcf
+ SHA256: 1c4745c82fdcb9d05e210eff346d7bee2f087357b17bfcf7c2038c854f0dee61
+
+MD5: 704d491c155aad996f16377a35732cb4
+ SHA256: e23900b00ffd67cd8dfa3283d9ced691566df6d63d1d46c95b22569b49011f09
+
+MD5: 2b68360b0d4e26d2b5f7698fe324b87d
+ SHA256:
+
+49a23160ba2af4fba0186512783482918b07a32b0e809de0336ba723636ae3b6
+
+MD5: a7be38e8f84c5ad9cce30d009dc31d32
+ SHA256: f4bdf0f967330f9704b01cc962137a70596822b8319d3b35404eafc9c6d2efe7
+
+MD5: 7646d1fa1de852bb99c621f5e9927221
+ SHA256: 9894f6993cae186981ecb034899353a04f1a9b009bdf265cecda9595b725ee20
+
+MD5: 22d53ada23b2625265cdbddc8a599ee0
+ SHA256: 8e099261929b1b09e9d637e8d054d5909b945b4157f29337977eb7f5fb835e5d
+
+Se recomienda a nuestros clientes, seguir las siguientes acciones preventivas para
+reducir riesgos:
+
+Para el personal de seguridad de información:
+
+• Mantener un protocolo de actualizaciones estricto de sistemas operativos, antivirus y
+todas las aplicaciones que se ejecutan en ellos.
+
+• Concientizar constantemente a los usuarios en temas relacionados a seguridad
+informática.
+
+• Restringir la capacidad (permisos) de los usuarios para instalar y ejecutar aplicaciones
+de software no deseadas. No agregue usuarios al grupo de administradores locales a
+menos que sea necesario.
+
+• Bloquear los indicadores de compromisos (IOC) mostrados, en los dispositivos de
+seguridad de su infraestructura.
+
+** Antes de realizar el bloqueo de IOCs es importante que previamente en ambiente de
+desarrollo se valide y confirme a nivel de servicios internos y externos, con el propósito
+de aplicar los cambios de manera controlada.
+
+https://i0.wp.com/securitysummitperu.com/wp-content/uploads/2017/03/Recomendacion.jpg
+
+
+5/23/2019 SE IDENTIFICÓ ATAQUES DEL GRUPO CIBERCRIMINAL LAZARUS DIRIGIDOS A ORGANIZACIONES EN RUSIA – Financial Securit…
+
+securitysummitperu.com/articulos/se-identifico-ataques-del-grupo-cibercriminal-lazarus-dirigidos-a-organizaciones-en-rusia/ 4/4
+
+Para usuarios finales:
+
+• Verificar la información de la cuenta que le envía un correo electrónico, el nombre y la
+dirección del destinatario para identificar si son sospechosas.
+
+• No abrir correos electrónicos de dudosa procedencia (remitente desconocido), ni dar
+clic en enlaces, ni descargar archivos adjuntos desconocidos.
+
+• De detectar un correo spam o phishing reportarlo inmediatamente a los encargados de
+seguridad de la información de su institución.
+
+• Escanear todo el software descargado de Internet antes de la ejecución.
+
+• Visitar páginas web seguras (https), y verificar el certificado digital con un clic en el
+candado de la barra de estado.
+
+Fuentes
+Fuente 1: North Korea Turns Against New Targets?!
+Fuente 2: North Korean APT Lazarus Targets Russian Entities with KEYMARBLE
+Backdoor
+
+ 
+Si usted tiene alguna pregunta no dude en contactarse con
+nosotros: informes@securesoftcorp.com
+
+Cyber Security Operation Center
+ SECURE SOFT CORPORATION
+
+ Síguenos en :
+ 
+
+ 
+Somos miembros de :
+
+       
+
+ 
+
+ 
+
+https://nt.eulb.me/p/cl?data=vb0iYwFN4MoulomCSYyg6GwAOpAaOYnxmwCwTOSvcMaf4I2c0KOet%2fGPkQmZJnYCJlvXjsA4ZCFpiYkZfgDMmQ%3d%3d!-!ae:h!-!https%3a%2f%2fresearch.checkpoint.com%2fnorth-korea-turns-against-russian-targets%2f
+https://nt.eulb.me/p/cl?data=vb0iYwFN4MoulomCSYyg6GwAOpAaOYnxmwCwTOSvcMaf4I2c0KOet%2fGPkQmZJnYCdtO6IeojaeiWO97hfxiOhw%3d%3d!-!ae:h!-!https%3a%2f%2fwww.bleepingcomputer.com%2fnews%2fsecurity%2fnorth-korean-apt-lazarus-targets-russian-entities-with-keymarble-backdoor%2f
+https://i2.wp.com/securitysummitperu.com/wp-content/uploads/2017/03/Contactenos.jpg
+http://trk.masterbase.com/v2/MB/43BE8FF8FC213E8AFDF5C6C0803C9A6513BDB9B8B33092C6940B492440DC056AED60237C5C28A4B816C10971CFBF8470F434869A98F71B1F50296609B6FEC8DEBC4378103A88B41950A8AEA2DA67547AE02325D254FF29D5DE215EE9BE0338944A7507A07DE1DCE35AE70D5C3D9119EEFDC3511C78380777A51F56EA493EB6729DE8DBCAA7E3C886032EFE90F776CE5E0DA50E0DA5033455155DB2849E3238BE
+http://trk.masterbase.com/v2/MB/43BE8FF8FC213E8AFDF5C6C0803C9A6513BDB9B8B33092C6940B492440DC056AED60237C5C28A4B84B9D1C1D51440101C0FD35395A75F2386E73C2E55D0F1737EE6C58C832C8F9BAA632B87197BF5C00D186A051FE18BA405433614F862DC88ECC423A664A0FF3C00B37E079208BAD91F9203B96A2A101E38C7DC1D9BBAD44CA
+http://trk.masterbase.com/v2/MB/43BE8FF8FC213E8AFDF5C6C0803C9A6513BDB9B8B33092C6940B492440DC056AED60237C5C28A4B885D2E504DAB0ED9BC0FD35395A75F238CF750C65936D7C415E53752A5F2C8E248A8358101EA3B5B7E8EBD0B6505802928CA620937C0C0924A51F56EA493EB6729DE8DBCAA7E3C886032EFE90F776CE5E0DA50E0DA5033455155DB2849E3238BE
+http://trk.masterbase.com/v2/MB/43BE8FF8FC213E8AFDF5C6C0803C9A6513BDB9B8B33092C6940B492440DC056AED60237C5C28A4B8B84092F09D0A06CAC0FD35395A75F238F4B66A3386F819D201615A8AF69295C3DD68DAED1729BC704BD8C75B1601AFCCA4D311150776F3A00A4E1027121264E01D9D41656F00629D704F69474D8F59D1
+http://trk.masterbase.com/v2/MB/43BE8FF8FC213E8AFDF5C6C0803C9A6513BDB9B8B33092C6940B492440DC056AED60237C5C28A4B8295460F30C4BF038C0FD35395A75F238AA93BF6A6EF8EF11C2C4EA5E110BC3E111F89A2C21C7F840E210ED3A040EC51AD1A2E9C92B1A98FBF0D450FDCD10BD1473AAB7E3C52E028450296609B6FEC8DEBC4378103A88B4197F33C341C508EE0C762E37CC2A457AD5
+https://i1.wp.com/securitysummitperu.com/wp-content/uploads/2017/03/ICSPA_Master_Logo_RGB_AW.jpg
+https://i2.wp.com/securitysummitperu.com/wp-content/uploads/2017/10/first-1-400x230.jpg
+

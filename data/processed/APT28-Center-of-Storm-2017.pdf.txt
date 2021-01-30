@@ -1,0 +1,869 @@
+<ORG>FireEye</ORG> iSIGHT INTELLIGENCE
+
+<COUNTRY>RUSSIA</COUNTRY> STRATEGICALLY EVOLVES  
+ITS CYBER OPERATIONS
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR>:  
+AT THE CENTER  
+OF THE STORM
+
+SPECIAL REPORT / JANUARY 2017
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM i
+
+CONTENTS
+
+Introduction 1
+
+Overview 2
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> Targeting And Intrusion Activity 3
+
+Table 1 -<THREAT_ACTOR>APT28</THREAT_ACTOR> Targeting of Political Entities and Intrusion Activity 4
+
+Table 2 -<THREAT_ACTOR>APT28</THREAT_ACTOR> Network Activity Has Likely Supported 
+Information Operations  5
+
+From Olympic Slight to Data Leak: 
+
+Investigating<THREAT_ACTOR>APT28</THREAT_ACTOR> at the World Anti-Doping Agency 6
+
+Conclusion 8
+
+Appendix 9
+
+
+
+The <ORG>Democratic National Committee’s</ORG> (<ORG>DNC</ORG>) June 
+
+2016 announcement attributing its network breach 
+
+to the<ORG>Russian Government</ORG> triggered an international 
+
+debate over Russia’s sponsorship of information 
+
+operations against the <COUNTRY>U.S.</COUNTRY> 
+
+INTRODUCTION
+
+At issue is the question of proof: did the<ORG>Russian Government</ORG> direct the group 
+responsible for the breaches and related data leaks? If so, is this simply a matter  
+of accepted state espionage, or did it cross a line? Was the <ORG>DNC</ORG> breach part  
+of a concerted effort by the<ORG>Russian Government</ORG> to interfere with the <COUNTRY>U.S.</COUNTRY> 
+presidential election?
+
+Unfortunately, we have failed to ask the most consequential question: how will 
+<COUNTRY>RUSSIA</COUNTRY> continue to employ a variety of methods, including hacks and leaks,  
+to undermine the institutions, policies, and actors that the<ORG>Russian Government</ORG> 
+perceives as constricting and condemning its forceful pursuit of its state aims? 
+
+Our visibility into the operations of<THREAT_ACTOR>APT28</THREAT_ACTOR> - a group we believe the Russian 
+Government sponsors - has given us insight into some of the government’s  
+targets, as well as its objectives and the activities designed to further them.  
+We have tracked and profiled this group through multiple investigations, endpoint 
+and network detections, and continuous monitoring. Our visibility into APT28’s 
+operations, which date to at least 2007, has allowed us to understand the group’s 
+malware, operational changes, and motivations. This intelligence has been critical 
+to protecting and informing our clients, exposing this threat, and strengthening  
+our confidence in attributing<THREAT_ACTOR>APT28</THREAT_ACTOR> to the<ORG>Russian Government</ORG>.
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 1
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 2
+
+OVERVIEW
+
+On <TIMESTAMP>December 29, 2016</TIMESTAMP>, the <ORG>Department of Homeland Security</ORG> (<ORG>DHS</ORG>) 
+and <ORG>Federal Bureau of Investigation</ORG> (<ORG>FBI</ORG>) released a Joint Analysis 
+Report confirming FireEye’s long held public assessment that the Russian 
+Government sponsors<THREAT_ACTOR>APT28</THREAT_ACTOR>. Since at least 2007,<THREAT_ACTOR>APT28</THREAT_ACTOR> has engaged  
+in extensive operations in support of Russian strategic interests.  
+The group, almost certainly compromised of a sophisticated and prolific 
+set of developers and operators, has historically collected intelligence on 
+defense and geopolitical issues.<THREAT_ACTOR>APT28</THREAT_ACTOR> espionage activity has primarily 
+targeted entities in the <COUNTRY>U.S.</COUNTRY>, <COUNTRY>Europe</COUNTRY>, and the countries of the former 
+<COUNTRY>Soviet Union</COUNTRY>, including governments and militaries, defense attaches, 
+media entities, and dissidents and figures opposed to the current <ORG>Russian 
+Government</ORG>.
+
+Over the past two years,<COUNTRY>RUSSIA</COUNTRY> appears to have increasingly leveraged 
+<THREAT_ACTOR>APT28</THREAT_ACTOR> to conduct information operations commensurate with broader 
+strategic military doctrine. After compromising a victim organization, 
+<THREAT_ACTOR>APT28</THREAT_ACTOR> will steal internal data that is then leaked to further political 
+narratives aligned with Russian interests. To date these have included  
+the conflict in <COUNTRY>Syria</COUNTRY>, <ORG>NATO</ORG>-Ukraine relations, the <COUNTRY>European Union</COUNTRY> refugee 
+and migrant crisis, the 2016 Olympics and Paralympics Russian athlete 
+doping scandal, public accusations regarding Russian state-sponsored 
+hacking, and the 2016 <COUNTRY>U.S.</COUNTRY> presidential election. 
+
+This report details our observations of APT28’s 
+targeting, and our investigation into a related 
+breach. We also provide an update on shifts in the 
+group’s tool development and use, and summarize 
+the tactics<THREAT_ACTOR>APT28</THREAT_ACTOR> employs to compromise its victims.
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 3
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> TARGETING AND  
+INTRUSION ACTIVITY
+
+In <TIMESTAMP>October 2014</TIMESTAMP>,<ORG>FireEye</ORG> released<THREAT_ACTOR>APT28</THREAT_ACTOR>: A Window into 
+Russia’s Cyber Espionage Operations?, and characterized 
+APT28’s activity as aligning with the Russian Government’s 
+strategic intelligence requirements. While tracking<THREAT_ACTOR>APT28</THREAT_ACTOR>, 
+we noted the group’s interest in foreign governments and 
+militaries, particularly those of European and Eastern  
+European nations, as well as regional security organizations, 
+such as the <ORG>North Atlantic Treaty Organization</ORG> (<ORG>NATO</ORG>)  
+and the Organization for Security and Cooperation  
+in <COUNTRY>Europe</COUNTRY> (OSCE), among others. Table 1 highlights  
+some recent examples of this activity.
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 4
+
+1.  Gauquelin, Blaise. “La Russie soupçonnée d’être responsable d’un piratage informatique contre l’OSCE.” Le Monde. 28 Dec. 2016. Web. 29 Dec. 2016. 
+2.  Trend Micro refers to activity corresponding to FireEye’s<THREAT_ACTOR>APT28</THREAT_ACTOR> as “Pawn Storm.”
+3.  Hacquebord Feike. “Pawn Storm Targets German Christian Democratic Union.” Trend Micro. 11 May 2016. Web. 29 Dec. 2016. 
+4.  Hacquebord Feike. “Pawn Storm’s Domestic Spying Campaign Revealed; Ukraine and US Top Global Targets.” TrendLabs Security Intelligence Blog, Trend Micro. 18 August 2015. Web. 29 Dec.  2016. 
+5.  “Neuer Hackerangriff auf Bundespolitiker / BSI warnt Parteien vor Cyberangriffen.” Westdeutscher Rundfunk. 20 Sept. 2016. Web. 29 Dec. 2016. 
+ 6.  “Russia ‘was Behind German Parliament Hack.’” The BBC. 13 May 2016. Web. 29 Dec. 2016. 
+ 7, Kharouni, Loucif. et al. “Operation Pawn Storm: Using Decoys to Evade Detection.” Trend Micro. 22 Oct. 2014. Web. 3 Jan. 2017. 
+
+TABLE 1 :<THREAT_ACTOR>APT28</THREAT_ACTOR> TARGETING OF POLITICAL ENTITIES AND INTRUSION ACTIVITY
+
+ENTIT Y TIMEFRAME<THREAT_ACTOR>APT28</THREAT_ACTOR> TARGETING AND INTRUSION ACTIVIT Y 
+
+OSCE NOVEMBER 2016
+The OSCE confirmed that it had suffered an intrusion,  
+which a Western intelligence service attributed to<THREAT_ACTOR>APT28</THREAT_ACTOR>.1 
+
+Germany's Christian  
+Democratic Union (CDU)
+
+APRIL - MAY 2016
+
+Researchers at Trend Micro observed<THREAT_ACTOR>APT28</THREAT_ACTOR>  establish a fake  
+CDU email server and launch phishing emails against CDU  
+members in an attempt to obtain their email credentials and access 
+their accounts.2,3 
+
+Pussy Riot AUGUST 2015
+<THREAT_ACTOR>APT28</THREAT_ACTOR> targets Russian rockers and dissidents Pussy Riot via 
+spear-phishing emails.4
+
+<ORG>NATO</ORG>, Afghan Ministry  
+of Foreign Affairs, Pakistani 
+Military
+
+JULY 2015
+<THREAT_ACTOR>APT28</THREAT_ACTOR> used two domains (nato-news.com and bbc-news.org) to host 
+an <SOFTWARE>Adobe Flash</SOFTWARE> zero-day exploit to target <ORG>NATO</ORG>, the <ORG>Afghan Ministry 
+of Foreign Affairs</ORG>, and the <ORG>Pakistani military</ORG>.
+
+<ORG>German Bundestag</ORG>  
+& Political Parties
+
+<TIMESTAMP>JUNE 2015</TIMESTAMP>
+
+Germany’s Federal Office for Security in Information Technology (BSI) 
+announced that<THREAT_ACTOR>APT28</THREAT_ACTOR> was likely responsible for the spear phishing 
+emails sent to members of several German political parties.  The head 
+of Germany’s domestic intelligence agency, <ORG>Bundesamt für Verfassungsschutz</ORG> (<ORG>BfV</ORG>), also attributed the <TIMESTAMP>JUNE 2015</TIMESTAMP> compromise of 
+the <ORG>Bundestag<ORG>’s networks to<THREAT_ACTOR>APT28</THREAT_ACTOR>.5,6 
+
+<ORG>Kyrgyzstan Ministry  
+of Foreign Affairs</ORG>
+
+<TIMESTAMP>OCTOBER 2014 THROUGH SEPTEMBER 2015</TIMESTAMP>
+
+<ORG>FireEye</ORG> iSight Intelligence identified changes made to domain name 
+server (DNS) records that suggest that<THREAT_ACTOR>APT28</THREAT_ACTOR> intercepted email traf-
+fic from the <ORG>Kyrgyzstan Ministry of Foreign Affairs</ORG> after maliciously 
+modifying DNS records of the ministry’s authoritative DNS servers.
+
+<ORG>Polish Government</ORG> & Power 
+Exchange websites
+
+<ORG>JUNE AND  
+SEPTEMBER 2014</ORG>
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> employed “Sedkit” in conjunction with strategic web compro-
+mises to deliver “Sofacy” malware on Polish Government websites, 
+and the websites of Polish energy company Power Exchange.7 
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 5
+
+TABLE 2 :<THREAT_ACTOR>APT28</THREAT_ACTOR> NETWORK ACTIVITY HAS LIKELY SUPPORTED INFORMATION OPERATIONS
+
+Since 2014,<THREAT_ACTOR>APT28</THREAT_ACTOR> network activity has likely supported 
+information operations designed to influence the domestic 
+politics of foreign nations. Some of these operations have 
+involved the disruption and defacement of websites, false flag 
+operations using false hacktivist personas, and the theft of 
+data that was later leaked publicly online.  
+
+Table 2 highlights incidents in which victims suffered 
+a compromise that<ORG>FireEye</ORG> iSIGHT Intelligence, other 
+authorities, or the victims themselves later attributed to the 
+group we track as<THREAT_ACTOR>APT28</THREAT_ACTOR>. All of these operations have aimed 
+to achieve a similar objective: securing a political outcome 
+beneficial to<COUNTRY>RUSSIA</COUNTRY>.
+
+VICTIM TIMEFRAME<THREAT_ACTOR>APT28</THREAT_ACTOR> NETWORK ACTIVIT Y ASSOCIATED INFORMATION OPERATIONS 
+
+ACTIVIT Y
+
+World Anti-Doping  
+Agency (<ORG>WADA</ORG>)
+
+SEPTEMBER 2016
+On September 13, <ORG>WADA</ORG> confirmed that<THREAT_ACTOR>APT28</THREAT_ACTOR> 
+had compromised its networks and accessed 
+athlete medical data.8  
+
+On September 12, 2016, the “Fancy Bears’ Hack Team” persona 
+claimed to have compromised <ORG>WADA</ORG> and released athletes’ 
+medical records as “proof of American athletes taking dop-
+ing.”9 
+
+<COUNTRY>U.S.</COUNTRY> Democratic National 
+Committee (<ORG>DNC</ORG>)
+
+APRIL –  
+SEPTEMBER 2016
+
+The <ORG>DNC</ORG> announced it had suffered a network 
+compromise and that a subsequent investigation 
+found evidence of two breaches, attributed to 
+<THREAT_ACTOR>APT28</THREAT_ACTOR> and APT29. <ORG>FireEye</ORG> analyzed the mal-
+ware found on <ORG>DNC</ORG> networks and determined 
+that it was consistent with our previous observa-
+tions of<THREAT_ACTOR>APT28</THREAT_ACTOR> tools.10,11
+
+In<TIMESTAMP>June 2016</TIMESTAMP>, shortly after the DNC’s announcement, the <IDENTITY>Guccifer 2.0</IDENTITY> persona claimed responsibility for the <ORG>DNC</ORG> breach 
+and leaked documents taken from the organization’s network.  
+<IDENTITY>Guccifer 2.0</IDENTITY> continued to leak batches of <ORG>DNC</ORG> documents 
+through <TIMESTAMP>September.12,13</TIMESTAMP>
+
+<IDENTITY>John Podesta</IDENTITY>
+MARCH –  
+
+NOVEMBER 2016
+
+Investigators found that John Podesta, <IDENTITY>Hillary 
+Clinton</IDENTITY>’s presidential campaign chairman, was 
+one of thousands of individuals targeted in a 
+mass phishing scheme using shortened URLs 
+that security researchers attributed to<THREAT_ACTOR>APT28</THREAT_ACTOR>.14  
+
+<TIMESTAMP>Throughout October and into early November</TIMESTAMP>, WikiLeaks pub-
+lished 34 batches of email correspondence stolen from <IDENTITY>John 
+Podesta</IDENTITY>’s personal email account. Correspondence of other 
+individuals targeted in the same phishing campaign, including 
+former Secretary of State <IDENTITY>Colin Powell</IDENTITY> and <IDENTITY>Clinton</IDENTITY> campaign 
+staffer <IDENTITY>William Rinehart</IDENTITY>, were published on the  
+“DC Leaks” website.15  
+
+<COUNTRY>U.S.</COUNTRY> <ORG>Democratic  
+Congressional Campaign 
+Committee</ORG> (<ORG>DCCC</ORG>)
+
+<TIMESTAMP>MARCH -  
+OCTOBER 2016</TIMESTAMP>
+
+<TIMESTAMP>In July</TIMESTAMP>, the <ORG>DCCC</ORG> announced that it was investi-
+gating an ongoing “cybersecurity incident” that 
+the <ORG>FBI</ORG> believed was linked to the compromise 
+of the <ORG>DNC</ORG>.   House Speaker Nancy Pelosi 
+later confirmed that the <ORG>DCCC</ORG> had suffered a 
+network compromise.   Investigators indicated 
+that the actors may have gained access to <ORG>DCCC</ORG> 
+systems as early as <TIMESTAMP>March.16,17,18</TIMESTAMP>
+
+In August, the <IDENTITY>Guccifer 2.0</IDENTITY> persona contacted reporters cov-
+ering <COUNTRY>U.S.</COUNTRY> <ORG>House of Representative races</ORG> to announce newly 
+leaked documents from the <ORG>DCCC</ORG> pertaining to Democratic  
+candidates. From <TIMESTAMP>August to October</TIMESTAMP>, <IDENTITY>Guccifer 2.0</IDENTITY> posted sev-
+eral additional installments of what appear to be internal <ORG>DCCC</ORG> 
+documents on “his” <SOFTWARE>WordPress</SOFTWARE> site.19,20
+
+TV5Monde
+<TIMESTAMP>FEBRUARY 2015</TIMESTAMP>, 
+
+<TIMESTAMP>APRIL 2015</TIMESTAMP>
+
+<TIMESTAMP>In February</TIMESTAMP>,<ORG>FireEye</ORG> identified <SOFTWARE>CORESHELL</SOFTWARE> 
+traffic beaconing from TV5Monde’s network, 
+confirming that<THREAT_ACTOR>APT28</THREAT_ACTOR> had compromised TV-
+5Monde’s network. 
+
+In <TIMESTAMP>April 2015</TIMESTAMP>, alleged pro-ISIS hacktivist group <THREAT_ACTOR>CyberCaliphate</THREAT_ACTOR> 
+defaced TV5Monde’s websites and social media profiles and 
+forced the company’s 11 broadcast channels offline. <ORG>FireEye</ORG> 
+identified overlaps between the domain registration details of 
+CyberCaliphate’s website and<THREAT_ACTOR>APT28</THREAT_ACTOR> infrastructure.21
+
+<ORG>Ukrainian Central  
+Election Commission </ORG>
+(<ORG>CEC</ORG>)
+
+<TIMESTAMP>MAY 2014</TIMESTAMP>
+Ukrainian officials revealed that the investigation 
+into the compromise of the <ORG>CEC</ORG>’s internal net-
+work identified malware traced to<THREAT_ACTOR>APT28</THREAT_ACTOR>.22 
+
+<TIMESTAMP>During the May 2014</TIMESTAMP> Ukrainian presidential election, purported 
+pro-Russian hacktivists <THREAT_ACTOR>CyberBerkut</THREAT_ACTOR> conducted a series of mali-
+cious activities against the <ORG>CEC</ORG> including a system compromise, 
+data destruction, a data leak, a distributed denial-of-service 
+(DDoS) attack, and an attempted defacement of the <ORG>CEC</ORG> web-
+site with fake election results.23  
+
+8. “WADA Confirms Attack by Russian Cyber Espionage Group.” World Anti-Doping Agency. 13 Sept. 2016. Web. 29 Dec. 2016. 
+9. Fancy Bears’ HT (fancybears). “@AnonPress Greetings. We hacked #<ORG>WADA</ORG>. We have Proof of American Athletes taking doping. Fancybear.net.” 12 Sept. 2016, 4:12 PM. Tweet. 
+10. CrowdStrike refers to activity corresponding to FireEye’s<THREAT_ACTOR>APT28</THREAT_ACTOR> and APT29 as “Fancy Bear” and “Cozy Bear,” respectively.
+11.  “Nakashima, Ellen. “Cyber Researchers Confirm<ORG>Russian Government</ORG> Hack of <ORG>Democratic National Committee</ORG>.” The Washington Post. 20<TIMESTAMP>June 2016</TIMESTAMP>. Web. 29 Dec. 2016. 
+12.  “Rid, Thomas. “All Signs Point to<COUNTRY>RUSSIA</COUNTRY> Being Behind the <ORG>DNC</ORG> Hack.” Motherboard, Vice. 25 July 2016. Web. 29 Dec. 2016. 
+13.   “Bennett, Cory. “Guccifer 2.0 Drops More <ORG>DNC</ORG> Docs.” Politico. 13 Sept. 2016. Web. 2 Jan. 2017. <>
+14. Perlroth, Nicole. Shear, Michael D. “Private Security Group Says<COUNTRY>RUSSIA</COUNTRY> was Behind John Podesta’s Email Hack.” The New York Times. 21 Oct. 2016. Web. 2 Jan. 2017. 
+15.  “Franceschi-Bicchierai, Lorenzo. “How Hackers Broke Into John Podesta and Colin Powell’s Gmail Accounts.” 20 Oct. 2016. Web. 2 Jan. 2017. 
+16. “Nakashima, Ellen. “FBI Probes Suspected Breach of Another Democratic Organization by Russian Hackers.” The Washington Post. 29 July 2016. Web. 29 Dec. 2016. 
+17.  “Pelosi, Nancy. “DCCC Cyber Breach.” 13 August 2016. Email. <COUNTRY>U.S.</COUNTRY> House of Representatives. Washington, DC. Politico. Web. 29 Dec. 2016. 
+18.  “Lipton, Eric. Shane, Scott. “Democratic House Candidates Were Also Targets of Russian Hacking.” The New York Times. 13 Dec. 2016. Web. 29 Dec. 2016. 
+19.  Ibid.
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 6
+
+FROM OLYMPIC SLIGHT TO DATA LEAK: 
+Investigating<THREAT_ACTOR>APT28</THREAT_ACTOR> at the World Anti-Doping Agency
+
+As news of the <ORG>DNC</ORG> breach spread,<THREAT_ACTOR>APT28</THREAT_ACTOR> was preparing for another set 
+of operations: countering the condemnation that<COUNTRY>RUSSIA</COUNTRY> was facing after 
+doping allegations and a threatened blanket ban of the Russian team 
+from the upcoming Rio Games.<COUNTRY>RUSSIA</COUNTRY>, like many nations, has long viewed 
+success in the Olympic Games as a source of national prestige and soft 
+power on the world stage. The doping allegations and prospective ban 
+from the Games further ostracized<COUNTRY>RUSSIA</COUNTRY>, and likely provided motivation 
+to actively counter the allegations by attempting to discredit anti-doping 
+agencies and policies. Our investigation of APT28’s compromise of 
+WADA’s network, and our observations of the surrounding events reveal 
+how<COUNTRY>RUSSIA</COUNTRY> sought to counteract a damaging narrative and delegitimize 
+the institutions leveling criticism. 
+
+ALLEGATIONS OF RUSSIAN ATHLETES’ WIDESPREAD DOPING
+NOV (2015)
+
+<ORG>WADA</ORG> declares the 
+<ORG>Russian Anti-Doping 
+Agency</ORG> (<ORG>RUSADA</ORG>) non-
+compliant.24
+
+<TIMESTAMP>JULY 18</TIMESTAMP> 
+
+<ORG>WADA</ORG>-commissioned 
+report documents 
+evidence of Russian 
+athletes’ widespread 
+doping.25
+
+<TIMESTAMP>AUG 4</TIMESTAMP> 
+
+Russian athletes were 
+barred from competing 
+in the Olympic Games.26
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> COMPROMISES <ORG>WADA</ORG>
+
+<TIMESTAMP>EARLY AUG</TIMESTAMP> 
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> sends spear 
+phishing emails to 
+<ORG>WADA</ORG> employees.27
+
+<TIMESTAMP>AUG 10</TIMESTAMP> 
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> uses a legitimate 
+user account belonging 
+to a Russian athlete to 
+log into WADA’s Anti-
+Doping Administration 
+and Management 
+System (ADAMS) 
+database.28
+
+<TIMESTAMP>AUG 25-SEP 12</TIMESTAMP>
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> gains access 
+to an <ORG>International 
+Olympic Committee</ORG> 
+account created 
+specifically for the 2016 
+Olympic Games, and 
+views and downloads 
+athlete data.29
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 7
+
+Based on this timeline of leak and threatened leak 
+activity, as well as strikingly similar characteristics and 
+distribution methods shared between @anpoland and 
+“<THREAT_ACTOR>Fancy Bears</THREAT_ACTOR>’ Hack Team,” the same operators are highly 
+likely behind the two personas. <ORG>WADA</ORG> officials, citing 
+evidence provided by law enforcement, stated that the 
+threat activity originated in<COUNTRY>RUSSIA</COUNTRY>, possibly in retaliation 
+
+for WADA’s exposure of Russia’s expansive, state-run 
+doping.38 The statement prompted denials from the 
+<ORG>Russian Government</ORG>, with Russian sports minister  
+<IDENTITY>Vitaly Mutko</IDENTITY> asking, “How can you prove that the 
+hackers are Russian? You blame<COUNTRY>RUSSIA</COUNTRY> for everything,  
+it is very in fashion now.”39
+
+20. Gallagher, Sean. “<IDENTITY>Guccifer 2.0</IDENTITY> Posts <ORG>DCCC</ORG> Docs, Says They’re From Clinton Foundation.” Ars Technica. <TIMESTAMP>4 Oct. 2016</TIMESTAMP>. Web. <TIMESTAMP>3 Jan. 2017</TIMESTAMP>. 
+21. “Russian Hackers Suspected in French TV Cyberattack.” <ORG>Deutsche Welle</ORG>. <TIMESTAMP>6 Oct. 2015</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+22. Joselow, Gabe. “Election Cyberattacks: Pro-Russia Hackers Have Been Accused in Past.” <ORG>NBC News</ORG>. <TIMESTAMP>3 Nov. 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+23.  Clayton, Mark. “Ukraine Election Narrowly Avoided ‘Wanton Destruction’ From Hackers (+Video).” <ORG>The Christian Science Monitor</ORG>. <TIMESTAMP>17 June 2014</TIMESTAMP>. Web. <TIMESTAMP>2 Jan. 2017</TIMESTAMP>. 
+24. “Foundation Board Media Release: <ORG>WADA</ORG> Strengthens Anti-Doping Worldwide.” <ORG>World Anti-Doping Agency</ORG>. <TIMESTAMP>18 November 2015</TIMESTAMP>.
+25.  “Russia State-Sponsored Doping Across Majority of Olympic Sports, Claims Report.” <ORG>The BBC</ORG>. <TIMESTAMP>18 July 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+26.  Macguire, Eoghan. Almasy, Steve. “271 Russian Athletes Cleared for Rio Games.” <ORG>CNN</ORG>. <TIMESTAMP>5 August 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+27.  “Cyber Security Update: WADA’s Incident Response.” <ORG>World Anti-Doping Agency</ORG>. <TIMESTAMP>5 Oct. 2016</TIMESTAMP>. Web. <TIMESTAMP>3 Jan. 2017</TIMESTAMP>. 
+28.  “<ORG>WADA</ORG> Confirms Attack by Russian Cyber Espionage Group.” <ORG>World Anti-Doping Agency</ORG>. <TIMESTAMP>13 Sept. 2016</TIMESTAMP>.
+29. “<ORG>WADA</ORG> Confirms Another Batch of Athlete Data Leaked by Russian Cyber Hackers ‘<THREAT_ACTOR>Fancy Bear</THREAT_ACTOR>.’” <ORG>World Anti-Doping Agency</ORG>. <TIMESTAMP>14 Sept. 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. <>
+30. [OP PL]. “www.tas-cas.org.” Online video clip. YouTube. YouTube, <TIMESTAMP>9 Aug. 2016</TIMESTAMP>. Web. <TIMESTAMP>3 Jan. 2017</TIMESTAMP>. 
+31.  Anonymous Poland (@anpoland). “@Cryptomeorg @ben_rumsby @PogoWasRight @Jason_A_Murdock @Cyber_War_News @kevincollier Tomorrow will ddos <ORG>WADA</ORG> and publish some secret dosc.” <TIMESTAMP>11 Aug 2016 10:10 AM</TIMESTAMP>. Tweet. 
+32.  Anonymous Poland (@anpoland). “@JoeUchill within a few days will be new attack on the <ORG>WADA</ORG>/Olimpic.” <TIMESTAMP>5 Sept. 2016 5:19 AM</TIMESTAMP>. Tweet. 
+33. Fancy Bears’ HT (fancybears). “@AnonPress Greetings. We hacked #<ORG>WADA</ORG>. We have Proof of American Athletes taking doping. Fancybear.net.” 
+34.  Ibid.
+35.  “<ORG>WADA</ORG> Confirms Attack by Russian Cyber Espionage Group.”<ORG>World Anti-Doping Agency</ORG>. <TIMESTAMP>13 Sept. 2016</TIMESTAMP>.
+36.  Russian Hackers Leak <IDENTITY>Simone Biles</TIMESTAMP> and <TIMESTAMP>Serena Williams</TIMESTAMP> Files.” <ORG>The BBC</ORG>. <TIMESTAMP>13 Sept. 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+37.  Rumsby, Ben. “US Superstars <IDENTITY>Serena</IDENTITY> and <IDENTITY>Venus Williams</IDENTITY> and <IDENTITY>Simone Biles</IDENTITY> Given Drugs Exemption, Russian Hackers Reveal.” <ORG>The Telegraph</ORG>. <TIMESTAMP>14 Sept. 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+38.  Luhn, Alec.”Fancy Bears Origins Unclear But<COUNTRY>RUSSIA</COUNTRY> Seizes Chance to Put Boot into <ORG>WADA</ORG>.” <TIMESTAMP>15 Sept. 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+39.  Gibson, Owen. “Russian Sports Minister Vitaly Mutko Denies Link to <ORG>WADA</ORG> Hackers. <ORG>The Guardian</ORG>. <TIMESTAMP>14 Sept. 2016</TIMESTAMP>. Web. <TIMESTAMP>29 Dec. 2016</TIMESTAMP>. 
+
+FALSE HACKTIVIST PERSONAS CLAIM TO TARGET <ORG>WADA</ORG>, LEAK ATHLETE DATA 
+
+<TIMESTAMP>AUG 9</TIMESTAMP>
+
+The actor  
+@anpoland, 
+purporting to  
+represent 
+“Anonymous <COUNTRY>Poland</COUNTRY>,” 
+claims to have 
+defaced the  
+<ORG>WADA</ORG> website.30
+
+<TIMESTAMP>AUG 11</TIMESTAMP> 
+
+On <TIMESTAMP>August 11</TIMESTAMP>  
+@anpoland threatens 
+to conduct a DDoS 
+attack against and 
+leak data from <ORG>WADA</ORG>,  
+but fails to follow 
+through on the 
+threats.31,32
+
+<TIMESTAMP>SEP 12</TIMESTAMP>
+
+“<THREAT_ACTOR>Fancy Bears</THREAT_ACTOR>’ Hack 
+Team”, a previously 
+unknown group 
+purporting to 
+be affiliated with 
+Anonymous, claims 
+via <ORG>Twitter</ORG> to have 
+compromised <ORG>WADA</ORG>, 
+and directs readers 
+to a website hosting 
+stolen documents.33 
+
+In tweets to 
+international 
+journalists and  
+<ORG>Twitter</ORGR> accounts  
+that disseminate 
+hacktivist and 
+information security 
+news, “<THREAT_ACTOR>Fancy Bears</THREAT_ACTOR>’ 
+Hack Team” claims 
+to have “proof of 
+American athletes 
+taking doping.”34
+
+<TIMESTAMP>SEP 13</TIMESTAMP>
+
+<ORG>WADA</ORG> releases a 
+statement confirming 
+the breach and 
+attributes the 
+compromise and  
+theft of athlete 
+medical data  
+to<THREAT_ACTOR>APT28</THREAT_ACTOR>.35
+
+<TIMESTAMP>SEP 15-30</TIMESTAMP>
+
+“<THREAT_ACTOR>Fancy Bears</THREAT_ACTOR>’ Hack 
+Team” releases five 
+additional batches 
+of medical files for 
+high-profile athletes 
+from multiple nations, 
+including the <COUNTRY>U.S.</COUNTRY>, 
+which had applied 
+for and received 
+Therapeutic Use 
+Exemptions (TUEs) 
+for medications 
+otherwise banned 
+from competition.36 
+
+Claiming to support 
+“fair play and clean 
+sport,” <THREAT_ACTOR>Fancy Bears</THREAT_ACTOR>’ 
+Hack team calls TUEs 
+“licenses for doping.”37
+
+
+
+Since releasing our 2014 report, we continue to assess that 
+<THREAT_ACTOR>APT28</THREAT_ACTOR> is sponsored by the<ORG>Russian Government</ORG>. We further 
+assess that<THREAT_ACTOR>APT28</THREAT_ACTOR> is the group responsible for the network 
+compromises of <ORG>WADA</ORG> and the <ORG>DNC</ORG> and other entities 
+related to the 2016 <COUNTRY>U.S.</COUNTRY> presidential election cycle. These 
+breaches involved the theft of internal data - mostly emails 
+– that was later strategically leaked through multiple forums 
+and propagated in a calculated manner almost certainly 
+intended to advance particular<ORG>Russian Government</ORG> aims. In 
+a report released on <TIMESTAMP>January 7 2017</TIMESTAMP>, the <COUNTRY>U.S.</COUNTRY> <ORG>Directorate of 
+National Intelligence</ORG> described this activity as an “influence 
+campaign.” 
+
+This influence campaign - a combination of network 
+compromises and subsequent data leaks - aligns closely 
+with the Russian military’s publicly stated intentions and 
+capabilities. Influence operations, also frequently called 
+“information operations,” have a long history of inclusion 
+in Russian strategic doctrine, and have been intentionally 
+developed, deployed, and modernized with the advent of 
+the internet. The recent activity in the <COUNTRY>U.S.</COUNTRY> is but one of 
+many instances of<ORG>Russian Government</ORG> influence operations 
+conducted in support of strategic political objectives, and it 
+will not be the last. As the 2017 elections in <COUNTRY>Europe</COUNTRY> approach 
+- most notably in <COUNTRY>Germany</COUNTRY>, <COUNTRY>France</COUNTRY>, and the <COUNTRY>Netherlands</COUNTRY> - we 
+are already seeing the makings of similarly concerted efforts.
+
+CONCLUSION
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 8
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 9
+
+In our 2014 report, we identified<THREAT_ACTOR>APT28</THREAT_ACTOR> as a suspected Russian 
+government-sponsored espionage actor. We came to this conclusion 
+in part based on forensic details left in the malware that<THREAT_ACTOR>APT28</THREAT_ACTOR> had 
+employed since at least 2007. We have provided an updated version of 
+those conclusions, a layout of the tactics that they generally employ, 
+as well as observations of apparent tactical shifts. For full details, 
+please reference our 2014 report,<THREAT_ACTOR>APT28</THREAT_ACTOR>: A Window into Russia’s Cyber 
+Espionage Operations? 
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> employs a suite of malware with features indicative of the group’s 
+plans for continued operations, as well as the group’s access to resources 
+and skilled developers.  
+
+Key characteristics of APT28’s toolset include:
+
+• A flexible, modular framework that has allowed<THREAT_ACTOR>APT28</THREAT_ACTOR>  
+to consistently evolve its toolset since at least 2007. 
+
+• Use of a formal coding environment in which to develop 
+tools, allowing the group to create and deploy custom  
+modules within its backdoors.
+
+• Incorporation of counter-analysis capabilities including 
+runtime checks to identify an analysis environment, obfuscated 
+strings unpacked at runtime, and the inclusion of unused 
+machine instructions to slow analysis.
+
+• Code compiled during the normal working day in the Moscow 
+time zone and within a Russian language build environment. 
+
+OVER
+
+97%
+OF  
+
+APT28’S MALWARE 
+SAMPLES WERE 
+
+COMPILED DURING  
+THE WORKING WEEK
+
+88%
+OF  
+
+SAMPLES COMPILED 
+BETWEEN 8AM AND 6PM 
+IN THE TIMEZONE THAT 
+
+INCLUDES MAJOR RUSSIAN 
+CITIES SUCH AS MOSCOW 
+
+AND ST. PETERSBURG
+
+IN ADDITION,  
+APT28’S DEVELOPERS 
+CONSISTENTLY BUILT 
+MALWARE IN RUSSIAN 
+
+LANGUAGE SETTINGS UNTIL
+
+2013
+
+APPENDIX: 
+APT28’s Tools, Tactics, and Operational Changes
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 10
+
+APT28’S MALWARE SUITE
+
+TOOL ROLE AK A
+
+<MALWARE>CHOPSTICK</MALWARE> backdoor <MALWARE>Xagent</MALWARE>, <MALWARE>webhp</MALWARE>, <MALWARE>SPLM</MALWARE>, (.v2 <MALWARE>fysbis</MALWARE>)
+
+<MALWARE>EVILTOSS</MALWARE> backdoor <MALWARE>Sedreco</MALWARE>, <MALWARE>AZZY</MALWARE>, <MALWARE>Xagent</MALWARE>, <MALWARE>ADVSTORESHELL</MALWARE>, <MALWARE>NETUI</MALWARE>
+
+<MALWARE>GAMEFISH</MALWARE> backdoor <MALWARE>Sednit</MALWARE>, <MALWARE>Seduploader</MALWARE>, <MALWARE>JHUHUGIT</MALWARE>, <THREAT_ACTOR>Sofacy</THREAT_ACTOR>
+
+<MALWARE>SOURFACE</MALWARE> downloader Older version of <MALWARE>CORESHELL</MALWARE>, <THREAT_ACTOR>Sofacy</THREAT_ACTOR>
+
+<MALWARE>OLDBAIT</MALWARE>
+credential  
+harvester
+
+<MALWARE>Sasfis</MALWARE>
+
+<MALWARE>CORESHELL</MALWARE> downloader Newer version of <MALWARE>SOURFACE</MALWARE>, <THREAT_ACTOR>Sofacy</THREAT_ACTOR> 
+
+APT28’S OPERATIONAL CHANGES SINCE 2014
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> continues to evolve its toolkit and refine its tactics  
+in what is almost certainly an effort to protect its operational 
+effectiveness in the face of heightened public exposure and 
+scrutiny. In addition to the continued evolution of the group’s 
+first stage tools, we have also noted<THREAT_ACTOR>APT28</THREAT_ACTOR>:
+
+• Leveraging zero-day vulnerabilities in <SOFTWARE>Adobe Flash Player</SOFTWARE>, 
+<SOFTWARE>Java</SOFTWARE>, and <SOFTWARE>Windows</SOFTWARE>, including <CVE>CVE-2015-1701</CVE>, <CVE>CVE-2015-2424</CVE>, 
+<CVE>CVE-2015-2590</CVE>, <CVE>CVE-2015-3043</CVE>, <CVE>CVE-2015-5119</CVE>, and <CVE>CVE-
+2015-7645</CVE>. 
+
+• Using a profiling script to deploy zero-days and other  
+tools more selectively, decreasing the chance that researchers  
+and others will gain access to the group’s tools.
+
+• Increasing reliance on public code depositories, such  
+as <MALWARE>Carberp</MALWARE>, <SOFTWARE>PowerShell Empire</SOFTWARE>, <SOFTWARE>P.A.S. webshell</SOFTWARE>, <SOFTWARE>Metasploit</SOFTWARE> 
+modules, and others in a likely effort to accelerate their 
+development cycle and provide plausible deniability.
+
+• Obtaining credentials through fabricated Google  
+App authorization and Oauth access requests that allow  
+the group to bypass two-factor authentication and other 
+security measures.
+
+• Moving laterally through a network relying only  
+on legitimate tools that already exist within the victims’ 
+systems, at times forgoing their traditional toolset for the 
+duration of the compromise.
+
+These changes are not only indicative of APT28’s skills, 
+resourcefulness, and desire to maintain operational 
+effectiveness, but also highlight the longevity of the  
+group’s mission and its intent to continue its activities  
+for the foreseeable future.
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 11
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> TACTICS
+
+We have observed<THREAT_ACTOR>APT28</THREAT_ACTOR> rely on four key tactics when attempting  
+to compromise intended targets. These include sending spear-phishing 
+emails that either deliver exploit documents that deploy malware onto 
+a user’s systems, or contain a malicious URL designed to harvest the 
+recipients’ email credentials and provide access to the their accounts. 
+<THREAT_ACTOR>APT28</THREAT_ACTOR> has also compromised and placed malware on legitimate websites 
+intending to infect site visitors, and has gained access to organizations by 
+compromising their web-facing servers
+
+.
+<THREAT_ACTOR>APT28</THREAT_ACTOR> IS IN YOUR NETWORK.
+
+Victim goes to link and  
+retrieves malicious  
+
+document or is served a 
+web-based exploit that  
+
+installs malware.
+
+(<SOFTWARE>Flash</SOFTWARE> Vulnerability <CVE>CVE-
+2016-7855</CVE> and <SOFTWARE>Windows</SOFTWARE> 
+
+Vulnerability <CVE>CVE-2016-7255</CVE> 
+were exploited as zero days to 
+install malware on victims who 
+
+visited a malicious URL).
+
+Victim opens document, 
+and malware is installed by 
+exploiting a vulnerability 
+
+(e.g., ARM-NATO_
+ENGLISH_30_NOV_2016.
+
+doc leveraged an <SOFTWARE>Adobe Flash</SOFTWARE> 
+exploit, <CVE>CVE-2016-7855</CVE>,  
+
+to install <MALWARE>GAMEFISH</MALWARE>  
+targeted machine).
+
+TACTIC
+
+Craft exploit document  
+with enticing lure content.
+
+Send exploit document  
+to victim.
+
+Send link mirroring structure  
+of legitimate organization’s 
+
+site that is designed to 
+expire once users clickit.
+
+Register a domain spoofing 
+that of a legitimate 
+organization (e.g., 
+
+theguardiannews[.]org).
+
+INFECTION WITH MALWARE VIA SPEAR PHISH
+
+Person is asked to authorize 
+application to view mail  
+
+and gives access.
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> leverages OAuth 
+privileges given to malicious 
+
+application to read email.
+
+Recipient visits fake login page 
+and enters credentials.
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> uses stolen  
+credentials to access  
+
+mailbox and read email. 
+
+Register a domain spoofing a webmail service  
+or an organization’s webmail portal  
+
+(e.g., 0nedrive-0ffice365[.]com)
+
+Send email to targets  
+instructing them  
+
+to reset their passwords.
+
+Send email to victims  
+warning of security risk  
+
+and asking them to enable 
+security service.
+
+TACTIC
+
+WEBMAIL ACCESS VIA SPEAR-PHISH
+
+
+
+ SPECIAL REPORT /<THREAT_ACTOR>APT28</THREAT_ACTOR>: AT THE CENTER OF THE STORM 12
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> IS IN YOUR NETWORK.
+
+Users of the site are redirected using malicious  
+iFrame and profiled 
+
+(e.g, this technique was used  
+to compromise and infect visitors to numerous  
+
+Polish Government websites in 2014).
+
+Exploit is served to users matching the target profile  
+and malware is installed on their system.
+
+Compromise a legitimate site and set up 
+malicious iFrame.
+
+TACTIC
+
+INFECTION WITH MALWARE VIA STRATEGIC  
+WEB COMPROMISE (SWC)
+
+<THREAT_ACTOR>APT28</THREAT_ACTOR> IS IN YOUR NETWORK.
+
+Exploitation of previously known vulnerabilities  
+present on unpatched systems.
+
+Leverage initial compromise to access other systems  
+and move deeper into the victim network.
+
+Network reconnaissance to find vulnerable software.
+
+TACTIC
+
+ACCESS THROUGH INTERNET-FACING SERVERS
+
+
+
+<ORG>FireEye</ORG>, Inc.  
+1440 McCarthy Blvd. Milpitas, CA 95035  
+408.321.6300 / 877.FIREEYE (347.3393) / info@FireEye.com  
+
+www.FireEye.com
+
+To download this or other  
+<ORG>FireEye</ORG> iSIGHT Intelligence reports, 
+visit: www.fireeye.com/reports.html
+
+© 2016<ORG>FireEye</ORG>, Inc. All rights reserved.<ORG>FireEye</ORG> is a registered trademark of<ORG>FireEye</ORG>, Inc.  
+All other brands, products, or service names are or may be trademarks  
+or service marks of their respective owners. GRAF-60.
+
+

@@ -1,0 +1,1046 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Summary information
+The <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> is an Arabic-language, politically-motivated
+
+cybercriminal group, operating <TIMESTAMP>since 2012</TIMESTAMP> and actively targeting the
+
+<COUNTRY>MENA</COUNTRY> (<COUNTRY>Middle East North Africa</COUNTRY) region. The <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR>’s attacks
+
+have never slowed down and its typical targets include government
+
+entities/embassies, <INDUSTRY>oil</INDUSTRY> and <INDUSTRY>gas</INDUSTRY>, <INDUSTRY>media/press</INDUSTRY>, activists, politicians, and
+
+diplomats.
+
+One of the interesting new facts, uncovered in <TIMESTAMP>mid-2017</TIMESTAMP>, is its discovery
+
+inside an oil and gas organization in the <COUNTRY>MENA</COUNTRY> region, infiltrating systems
+
+and pilfering data, apparently <TIMESTAMP>for more than a year</TIMESTAMP>.
+
+Another interesting finding is the use of the recently discovered <CVE>CVE-2017-0199</CVE> vulnerability, and <SOFTWARE>Microsoft Access</SOFTWARE> files into which the
+
+download scripts were embedded to reduce the likelihood of their
+
+detection. Traces of mobile malware that started to appear from <TIMESTAMP>late April 2017</TIMESTAMP>, are also being investigated.
+
+Recent targets for the group seem to be varied in nature; the attackers do
+
+not appear to be choosing targets selectively, but rather seeking different
+
+kinds of <COUNTRY>MENA</COUNTRY> intelligence.
+
+Some of the interesting new updates about the <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR>:
+
+<THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> attackers have continued their interest in
+
+government entities in <COUNTRY>MENA</COUNTRY>
+
+New targets identified include oil and gas in <COUNTRY>MENA</COUNTRY>
+
+New tools and techniques include
+
+Abuse of the <CVE>CVE 2017-0199</CVE> vulnerability
+
+Usage of macros inside <SOFTWARE>Microsoft Access</SOFTWARE> files, enabling lower
+
+detection rates
+
+Possible <MALWARE>Android mobile malware</MALWARE> being used by attackers
+
+Previous published research: 
+
+https://securelist.com/gaza-cybergang-wheres-your-ir-team/72283/
+
+updated activity in
+<TIMESTAMP>2017</TIMESTAMP>:
+New targets, use of <SOFTWARE>MS Access</SOFTWARE>
+Macros and <CVE>CVE 2017-0199</CVE>, and
+possible mobile espionage
+
+By <ORG>GReAT</ORG> on <TIMESTAMP>October 30, 2017. 9:00 am</TIMESTAMP>
+
+https://securelist.com/gaza-cybergang-wheres-your-ir-team/72283/
+https://securelist.com/author/great/
+
+
+<ORG>Kaspersky Lab</ORG> products and services successfully detect and block <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> attacks, detection names below:
+
+HEUR:<MALWARE>Exploit.MSOffice.Generic</MALWARE>
+
+HEUR:<MALWARE>Trojan.Win32.Cometer.gen</MALWARE>
+
+HEUR:<MALWARE>Trojan.Win32.Generic</MALWARE>
+
+<MALWARE>Trojan-Downloader.Win32.Downeks</MALWARE>
+
+<MALWARE>Trojan-Spy.MSIL.Downeks</MALWARE>
+
+<MALWARE>Win32.Bublik</MALWARE>
+
+<MALWARE>Win32.Agentb</MALWARE>
+
+More information about <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> is available to customers of the
+
+<ORG>Kaspersky Intelligence Reporting Service</ORG>. Contact:
+
+intelreports@kaspersky.com
+
+2. Technical details
+Previously, <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> attacks were surprisingly successful in using
+
+simple and common tools to achieve their goals. They relied on a variety
+
+of <MALWARE>Remote Access Trojans</MALWARE> (<MALWARE>RATs</MALWARE>) to perform their activities, including
+
+<MALWARE>Downeks</MALWARE>, <MALWARE>Qasar</MALWARE>, <MALWARE>Cobaltstrike</MALWARE>…
+
+As recently as <TIMESTAMP>June 2017</TIMESTAMP>, however, the attackers started using the <CVE>CVE 2017-0199</CVE> vulnerability which enables direct code execution from a
+
+<SOFTWARE>Microsoft office</SOFTWARE> document on non-patched victim systems (<MALWARE>Cobaltstrike</MALWARE>
+
+payload in this case). Another finding is a possible <MALWARE>Android Trojan</MALWARE> that the
+
+attackers positioned on one of their command servers in <TIMESTAMP>April 2017</TIMESTAMP>.
+
+In most cases, malware is sent by email as a compressed attachment or
+
+download links. Starting from <TIMESTAMP>March 2017</TIMESTAMP>, we have observed
+
+downloaders or <SOFTWARE>Microsoft office</SOFTWARE> documents with embedded macros
+
+being sent to victims. When opened, the downloader would contact a
+
+URL or IP address to retrieve the actual payload. Once successfully
+
+executed, the malware grants full access to the attackers, providing them
+
+with the ability to collect files, keystrokes and screenshots from victims’
+
+devices. If the initial downloaded malware was detected by the victim, the
+
+downloader would attempt to retrieve other malware files to the victim’s
+
+device, in the hope that one of those files would work.
+
+The full list of indicators of compromise (IOCs) can be found in Appendix
+
+I. The list of the most interesting lure content, malware files and related
+
+droppers, and command servers can be found in Appendix II.
+
+3. Summary of recent
+campaigns
+
+mailto:intelreports@kaspersky.com
+
+
+Below can be found the list of recent findings related to <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR>
+
+operations:
+
+Command and
+
+control server
+Hash First seen
+
+File name/Social
+
+engineering lure
+
+<IOC>upgrade.newshelpyou[.]com</IOC>
+
+<IOC>552796e71f7ff304f91b39f5da46499b</IOC>
+<TIMESTAMP>25-07-2017</TIMESTAMP> nvStView.exe
+
+<IOC>6fba58b9f9496cc52e78379de9f7f24e</IOC>
+<TIMESTAMP>23-03-2017</TIMESTAMP>
+
+ exe.صور خاصة
+(Translation:
+
+Special photos)
+
+<IOC>eb521caebcf03df561443194c37911a5</IOC>
+<TIMESTAMP>03-04-2017</TIMESTAMP>
+
+ exe.صور خاصة
+(Translation:
+
+Special photos)
+
+<IOC>moreoffer[.]life</IOC>
+<IOC>66f144be4d4ef9c83bea528a4cd3baf3</IOC>
+<TIMESTAMP>27-05-2017</TIMESTAMP>
+
+تصريح ألمير قطر واتهام
+اإلمارات في اختراق وكالة
+
+ exe.األنباء
+(Translation: A
+
+statement by the
+
+<IDENTITY>Emir of Qatar</IDENTITY>
+
+accusing the <COUNTRY>UAE</COUNTRY>
+
+of breaking the
+
+news agency)
+
+<IOC>3ff60c100b67697163291690e0c2c2b7</IOC>
+
+
+
+<TIMESTAMP>11-05-2017</TIMESTAMP>
+<IOC>MOM.InstallProxy.exe</IOC>
+
+<IOC>b7390bc8c8a9a71a69ce4cc0c928153b</IOC>
+
+
+
+<TIMESTAMP>05-04-2017</TIMESTAMP>
+
+تعرف على المنقبة التي
+ أساءت للسعودية
+
+(Translation: Learn
+
+about the woman
+
+wearing niqab
+
+which offended
+
+Saudi)
+
+<IOC>f43188accfb6923d62fe265d6d9c0940</IOC>
+
+
+
+<TIMESTAMP>21-03-2017</TIMESTAMP> <IOC>Gcc-Ksa-uae.exe</IOC>
+
+<IOC>056d83c1c1b5f905d18b3c5d58ff5342</IOC>
+<TIMESTAMP>16-03-2017</TIMESTAMP>
+
+مراسلة بخصوص اجتماع
+ exe.رؤساء البعثات
+(Translation:
+
+Correspondence
+
+regarding the
+
+meeting of <ORG>Heads of Missions</ORG>)
+
+<IOC>138.68.242[.]68</IOC> <IOC>87a67371770fda4c2650564cbb00934d</IOC>
+
+
+
+<TIMESTAMP>20-06-2017</TIMESTAMP> <IOC>hamas.doc</IOC>
+
+نقاط اتفاق حماس وتيار فتح
+doc.االصالحي
+
+(Translation: the
+
+points of
+
+agreement
+
+between <ORG>Hamas</ORG>
+
+and the reformist
+
+<ORG>Fateh movement</ORG>) 
+
+محضر اجتماع مركزية فتح
+doc.الليلة
+
+(Translation:
+
+minutes of the
+
+
+
+tonight meeting) 
+
+سلفة أم راتب للموظفين يوم
+doc.الثالثاء المقبل؟
+
+(Translation: An
+
+advance on salary
+
+or full salary for
+
+employees <TIMESTAMP>next Tuesday</TIMESTAMP>?)
+
+<IOC>lol.mynetav[.]org</IOC>
+
+<IOC>4f3b1a2088e473c7d2373849deb4536f</IOC>
+
+<TIMESTAMP>20-06-2017</TIMESTAMP>
+
+<IOC>Notepad.exe</IOC> 
+
+<IOC>attachment.scr</IOC>
+
+<IOC>https://drive.google.com/uc?export=download&id=0B1NUTMCAOKBTdVQzTXlUNHBmZUU</IOC>
+
+<IOC>signup.updatesforme[.]club</IOC>
+
+<IOC>7d3426d8eb70e4486e803afb3eeac14f</IOC>
+
+<TIMESTAMP>04-05-2017</TIMESTAMP>
+
+<IOC>Palestinian Retirement Authority Ramallah.exe</IOC>
+
+<IOC>0ee4757ab9040a95e035a667457e4bc6</IOC>
+
+<TIMESTAMP>27-04-2017</TIMESTAMP>
+<TIMESTAMP>27-4-2017</TIMESTAMP> <ORG>Fateh</ORG>
+
+<IOC>Gaza plo.exe</IOC>
+
+<IOC>ping.topsite[.]life</IOC>
+<IOC>b68fcf8feb35a00362758fc0f92f7c2e</IOC>
+<TIMESTAMP>19-03-2017</TIMESTAMP>
+
+Downloaded by
+
+Macro in MDB
+
+files: 
+
+<IOC>http://download.data-server.cloudns[.]club/indexer.exe</IOC>
+
+<IOC>7bef124131ffc2ef3db349b980e52847</IOC>
+<TIMESTAMP>13-03-2017</TIMESTAMP>
+
+األخ اسماعيل هنية -نائب
+رئيس المكتب السياسي
+
+.exe 
+
+(Translation:
+
+<IDENTITY>Brother Ismail Haniyeh</IDENTITY> – Deputy Head of the <ORG>Political Bureau</ORG>)
+
+<IOC>d87c872869023911494305ef4acbd966</IOC>
+
+<TIMESTAMP>19-03-2017</TIMESTAMP>
+
+Downloaded by
+
+Macro in MDB
+
+files:
+
+<IOC>http://download.data-server.cloudns[.]club/wordindexer.exe</IOC>
+
+<IOC>a3de096598e3c9c8f3ab194edc4caa76</IOC>
+
+<TIMESTAMP>12-04-2017</TIMESTAMP> <IOC>viewimages.exe</IOC>
+
+<IOC>c078743eac33df15af2d9a4f24159500</IOC>
+<TIMESTAMP>28-03-2017</TIMESTAMP> <IOC>viewimages.exe</IOC>
+
+<IOC>70d03e34cadb0f1e1bc6f4bf8486e4e8</IOC>
+
+<TIMESTAMP>30-03-2017</TIMESTAMP> <IOC>download-file.duckdns[.]org/send/Egyptian_agreement_with_President_Mahmoud_Abbas.exe</IOC>
+
+<IOC>67f48fd24bae3e63b29edccc524f4096</IOC>
+
+<TIMESTAMP>17-04-2017</TIMESTAMP>
+
+<IOC>http://alasra-paper.duckdns[.]org/send/رسالة_وفد_الرئيسابومازن_لحماس_فيrar</IOC>.قطاع_غزة
+
+(Message from President <IDENTITY>Abu Mazen</IDENTITY> to <ORG>Hamas</ORG> in <COUNTRY>Gaza Strip</COUNTRY>)
+
+<IOC>7b536c348a21c309605fa2cd2860a41d</IOC>
+
+<TIMESTAMP>17-04-2017</TIMESTAMP>
+
+<IOC>http://alasra-paper.duckdns[.]org/send/ورقة_االسرى_المقدمة_لف rar</IOC>. ك_االضراب
+(Translation:
+
+captives paper
+
+submitted to stop
+
+the strike)
+
+<IOC>alasra-paper.duckdns[.]org</IOC>
+
+<MALWARE>Mobile malware</MALWARE>
+
+N/A
+<TIMESTAMP>23-04-2017</TIMESTAMP>
+
+Possible <MALWARE>Android malware</MALWARE>.
+
+<IOC>http://alasra-paper.duckdns[.]org/send/%D9%88%ket-Edition-1.04_ApkHouse.com/Dont-Starve-Pocket-Edition-1.04_ApkHouse.com.apk</IOC>
+
+<IOC>hamas-wathaq.duckdns[.]org</IOC>
+
+<IOC>cf9d89061917e9f48481db80e674f0e9</IOC>
+
+<TIMESTAMP>16-04-2017</TIMESTAMP>
+
+وثائق تنشر ألول مره عن
+حكم حماس لقطاع غزه
+
+.exe 
+
+(Translation: Documents published for the first time on <ORG>Hamas</ORG> ruling of <COUNTRY>Gaza Strip</COUNTRY>)
+
+<IOC>manual.newphoneapp[.]com</IOC>
+
+<IOC>86a89693a273d6962825cf1846c3b6ce</IOC>
+
+<TIMESTAMP>02-02-2017</TIMESTAMP>
+<IOC>SQLiteDatabaseBrowserPortable.exe</IOC>
+
+<IOC>3f67231f30fa742138e713085e1279a6</IOC>
+<TIMESTAMP>02-02-2017</TIMESTAMP>
+
+<IOC>SQLiteDatabaseBrowserPortable.exe</IOC>
+
+The above listed files are further described in Appendix 1.
+
+4. New findings
+<THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> attackers have been continuously evolving their skills on
+
+different levels, using new methods and techniques to deliver malware, in
+
+
+
+addition to adapting social engineering decoys to regional political and
+
+humanitarian incidents.
+
+In <TIMESTAMP>mid-2017</TIMESTAMP>, the attackers were discovered inside an oil and gas
+
+organization in the <COUNTRY>MENA</COUNTRY> region, infiltrating systems and pilfering data,
+
+apparently for more than a year. The malware files that were found had
+
+been reported previously: https://securelist.com/gaza-cybergang-
+
+wheres-your-ir-team/72283/
+
+While traces of <MALWARE>Android mobile malware</MALWARE> have been spotted, attackers
+
+have continuously used the <MALWARE>Downeks</MALWARE> downloader and the <MALWARE>Quasar</MALWARE> or
+
+<MALWARE>Cobaltstrike</MALWARE> <MALWARE>RATs</MALWARE> to target <SOFTWARE>Windows</SOFTWARE> devices, enabling them to obtain
+
+remote access spying and data exfiltration abilities. This is now achieved
+
+more efficiently using the <CVE>CVE 2017-0199</CVE> vulnerability which enables
+
+direct code execution abilities from a <SOFTWARE>Microsoft office</SOFTWARE> document on non-
+
+patched victim <SOFTWARE>Windows</SOFTWARE> systems. The use of <SOFTWARE>Microsoft Access</SOFTWARE> database
+
+files has also enabled the attackers to maintain low levels of detection, as
+
+it’s not an uncommon method to deliver malware.
+
+These developments have helped the attackers continue their operations,
+
+targeting a variety of victims and organizations, sometimes even
+
+bypassing defences and persisting for prolonged periods.
+
+4.1. The extended use of humanitarian
+and political causes in social
+engineering attacks
+
+Attackers have continuously targeted victims and organizations in
+
+government entities/embassies, <INDUSTRY>oil</INDUSTRY> and <INDUSTRY>gas</INDUSTRY>, <INDUSTRY>media/press</INDUSTRY>, activists,
+
+politicians, and diplomats.
+
+The <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> relies increasingly on advanced and up-to-date
+
+social engineering techniques with political and humanitarian aspects that
+
+directly reflect regional incidents. Here is a short list of incidents that were
+
+each used multiple times:
+
+<ORG>Palestinian Government</ORG> not paying salaries to <CITY>Gaza</CITY> employees
+
+Palestinian prisoners’ hunger strike in Israeli jails
+
+The political crisis in <COUNTRY>Qatar</COUNTRY>
+
+Recent targets for the group seem to be varied in nature, the attackers do
+
+not appear to be choosing targets selectively, but rather seeking any type
+
+of intelligence.
+
+4.1.1. Example lure
+
+MD5: <IOC>66f144be4d4ef9c83bea528a4cd3baf3</IOC>
+
+https://securelist.com/gaza-cybergang-wheres-your-ir-team/72283/
+
+
+exe.تصريح ألمير قطر واتهام اإلمارات في اختراق وكالة األنباء
+
+(Translation: A statement by the <IDENTITY>Emir of Qatar</IDENTITY> accusing the <COUNTRY>UAE</COUNTRY> of
+
+breaking the news agency)
+
+Attackers have recently used political events related to the <COUNTRY>Qatar</COUNTRY> political
+
+crisis in the <COUNTRY>Middle East</COUNTRY> in targeting their victims.
+
+Original filename: <IOC>Qatar-27-5-2017.rar</IOC>
+
+Extracts to <IOC>66f144be4d4ef9c83bea528a4cd3baf3</IOC>
+
+exe.تصريح ألمير قطر واتهام اإلمارات في اختراق وكالة األنباء
+
+Sha256
+
+<IOC>7fcac2f18a8844e4af9f923891cfb6f637a99195a457b6cdb916926d709c6a04</IOC>
+
+C2: <IOC>moreoffer[.]life</IOC>
+
+First seen: <TIMESTAMP>27 May 2017</TIMESTAMP>
+
+Translation: new details on the hack of the <ORG>Qatar News Agency</ORG>
+
+4.2. The use of <SOFTWARE>Microsoft Access</SOFTWARE> files
+with macros
+
+<SOFTWARE>Microsoft Access</SOFTWARE> files with macro is another new development by the
+
+attacker group. <SOFTWARE>MS Access</SOFTWARE> database-embedded macros are proving to
+
+have very low detection rates.
+
+MD5: <IOC>6d6f34f7cfcb64e44d67638a2f33d619</IOC>
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-1.png
+
+
+Filename: <IOC>GAZA2017.mdb</IOC>
+
+C1: http://download.data-server.cloudns[.]club/GAZA2017.mdb
+
+Downloads and executes:
+
+<IOC>data-server.cloudns[.]club/wordindexer.exe</IOC>
+
+<IOC>data-server.cloudns[.]club/indexer.exe</IOC>
+
+Translation: database of employees not receiving salaries, click “enable
+
+content” to see data
+
+Decrypted code
+
+4.3. Exploitation of the <CVE>CVE 2017-0199</CVE>
+vulnerability
+
+MD5: <IOC>87a67371770fda4c2650564cbb00934d</IOC>
+
+First seen: <TIMESTAMP>20-06-2017</TIMESTAMP>
+
+Filenames:
+
+doc
+
+doc (Translation: the points of agreement.نقاط اتفاق حماس وتيار فتح االصالحي
+between <ORG>Hamas</ORG> and the reforment <ORG>Fateh movement</ORG>)
+
+doc (Translation: minutes of the tonight <ORG>Fateh</ORG>.محضر اجتماع مركزية فتح الليلة
+meeting)
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-2.png
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-3.png
+
+
+doc (Translation: An advance on salary or.سلفة أم راتب للموظفين يوم الثالثاء المقبل؟
+full salary for employees <TIMESTAMP>next Tuesday</TIMESTAMP>?)
+
+The attacks are a typical exploitation of <CVE>CVE-2017-0199</CVE>, starting with an
+
+email that distributes a malicious RTF document. The vulnerability is in the
+
+code that handles <MALWARE>Ole2Link</MALWARE> embedded objects, which allows <SOFTWARE>Microsoft Office Word</SOFTWARE> to run remote files, downloaded in this case from
+
+<IOC>138.68.242[.]68</IOC>. The downloaded payload is <MALWARE>Cobaltstrike</MALWARE>, which then
+
+connects to <IOC>lol.mynetav[.]org</IOC> to receive commands from the attackers.
+
+Additional details on the <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR>’s use of <CVE>CVE 2017-0199</CVE> with
+
+<MALWARE>Cobaltstrike</MALWARE>, can be found here:
+
+http://bobao.360.cn/learning/detail/4193.html
+
+4.4. Possible <MALWARE>Android mobile malware</MALWARE>
+
+Traces of APK files have been seen on one of the attackers’ command
+
+centers, <TIMESTAMP>starting from 23-04-2017</TIMESTAMP>.
+
+URL: <IOC>http://alasra-paper.duckdns[.]org/send/%D9%88%ket-Edition-1.04_ApkHouse[.]com/Dont-Starve-Pocket-Edition-1.04_ApkHouse[.]com.apk</IOC>
+
+The file name (<IOC>Dont-Starve-Pocket-Edition-1.04_ApkHouse[.]com.apk</IOC>), is
+
+an Android application file hiding as a popular game. We believe the
+
+<MALWARE>android Trojan</MALWARE> could be related to a previously investigated <MALWARE>Android Trojan</MALWARE> around the <CITY>Gaza</CITY> strip: https://securelist.com/breaking-the-
+
+weakest-link-of-the-strongest-chain/77562/
+
+5. Conclusion
+
+http://bobao.360.cn/learning/detail/4193.html
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-4.png
+https://securelist.com/breaking-the-weakest-link-of-the-strongest-chain/77562/
+
+
+The <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> has demonstrated a large number of attacks and
+
+advanced social engineering, in addition to active development of attacks,
+
+infrastructure and the utilization of new methods and techniques.
+
+Attackers are actively improving their toolkit in an effort to minimize their
+
+exposure to security products and services. <ORG>Kaspersky Lab</ORG> expects these
+
+types of attacks to intensify in the near term, both in terms of quality and
+
+quantity.
+
+In order to protect your company from malware, <ORG>Kaspersky Lab</ORG>
+
+researchers recommend implementing the following measures:
+
+Educate staff to be able to distinguish spear-phishing emails or a
+
+phishing link from legitimate emails and links
+
+Use proven corporate grade security solution in combination with
+
+anti-targeted attacks solutions capable of catching attacks by
+
+analyzing network anomalies
+
+Provide security staff with access to the latest threat intelligence data,
+
+which will arm them with helpful tools for targeted attacks prevention
+
+and discovery, such as indicators of compromise and YARA rules
+
+Make sure enterprise grade patch management processes are well
+
+established and executed.
+
+More information about <THREAT_ACTOR>Gaza cybergang</THREAT_ACTOR> is available to customers of
+
+<ORG>Kaspersky Intelligence Reporting Service</ORG>. Contact:
+
+intelreports@kaspersky.com
+
+6. Appendix 1: malware files
+description and decoys
+In the following, we list the description of malware files found from <TIMESTAMP>March 2017</TIMESTAMP>, including decoys used, first dates files seen, parent files…
+
+6.1.
+<IOC>b7390bc8c8a9a71a69ce4cc0c928153b</IOC>
+
+Parent file: <IOC>970e6188561d6c5811a8f99075888d5f</IOC> <IOC>5-4-2017.zip</IOC>
+
+C2: <IOC>moreoffer[.]life</IOC>
+
+First seen: <TIMESTAMP>5 April 2017</TIMESTAMP>
+
+mailto:intelreports@kaspersky.com
+
+
+Translation: Get to know the women wearing niqab and talking bad about
+
+the kingdom
+
+6.2.
+<IOC>f43188accfb6923d62fe265d6d9c0940</IOC>
+
+Filename: <IOC>Gcc-Ksa-uae.exe</IOC>
+
+C2: <IOC>moreoffer[.]life</IOC> (<IOC>185.11.146[.]68</IOC>)
+
+First Seen: <TIMESTAMP>21 March 2017</TIMESTAMP>
+
+Translation: the permanent delegation of the cooperation council for the
+
+<COUNTRY>Arab states of the Gulf</COUNTRY> (<COUNTRY>GCC</COUNTRY>) to the <ORG>United Nation</ORG> and other international
+
+organizations, <CITY>Geneva</CITY>
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-5.png
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-6.png
+
+
+6.3.
+<IOC>056d83c1c1b5f905d18b3c5d58ff5342</IOC>
+
+Filename: exe.مراسلة بخصوص اجتماع رؤساء البعثات
+
+Translation: Correspondence regarding the meeting of <ORG>Heads of Missions</ORG>
+
+(Saudi related)
+
+Parent file: <IOC>fb549e0c2fffd390ee7c4538ff30ac3e</IOC>
+
+C2: <IOC>moreoffer[.]life</IOC>
+
+First Seen: <TIMESTAMP>16 March 2017</TIMESTAMP>
+
+Translation: The fourth foreign meeting of the Kingdom’s head of missions
+
+under the title “message of the embassador”.
+
+6.4.
+<IOC>0ee4757ab9040a95e035a667457e4bc6</IOC>
+
+Filename: <IOC>27-4-2017 Fateh Gaza plo.exe</IOC>
+
+C2: <IOC>signup.updatesforme[.]club</IOC>
+
+First seen <TIMESTAMP>27 April 2017</TIMESTAMP>
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-7.png
+
+
+Translation: Clarification report
+
+6.5.
+<IOC>7bef124131ffc2ef3db349b980e52847</IOC>
+
+exe. األخ اسماعيل هنية -نائب رئيس المكتب السياسي
+
+(Translation: <IDENTITY>Brother Ismail Haniyah</IDENTITY> – Deputy Head of the <ORG>Political Bureau</ORG>)
+
+C2: <IOC>ping.topsite[.]life</IOC>
+
+First seen: <TIMESTAMP>14 March 2017</TIMESTAMP>
+
+Translation: <IDENTITY>Brother Ismail Haniyah</IDENTITY> – Deputy Head of the <ORG>Political Bureau</ORG>
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-8.png
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-9.png
+
+
+6.6.
+<IOC>70d03e34cadb0f1e1bc6f4bf8486e4e8</IOC>
+
+<IOC>download-file.duckdns[.]org/send/Egyptian_agreement_with_President_Mahmoud_Abbas.exe</IOC>
+
+C1: <IOC>download-file.duckdns[.]org</IOC>
+
+C2: <IOC>ping.topsite[.]life</IOC>
+
+First seen: <TIMESTAMP>30 March 2017</TIMESTAMP>
+
+Translation: methods to apply the palestinian national agreement pact.
+
+6.7.
+<IOC>67f48fd24bae3e63b29edccc524f4096</IOC>
+
+C1: http://alasra-paper.duckdns[.]org/send/رسالة_وفد_الرئيس ابومازن_لحماس_في
+rar.قطاع_غزة
+
+C2: <IOC>ping.topsite[.]life</IOC>
+
+RAR extracts to: <IOC>5d74487ea96301a933209de3d145105d</IOC>
+
+exe.رسالة_وفد_الرئيس ابومازن_لحماس_في قطاع_غزة
+
+First seen: <TIMESTAMP>17 April 2017</TIMESTAMP>
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-10.png
+
+
+Translation: a severely threatening message from <IDENTITY>Abbas</IDENTITY>’s delegation to <ORG>Hamas</ORG>
+
+6.8.
+<IOC>7b536c348a21c309605fa2cd2860a41d</IOC>
+
+C1: http://alasra-paper.duckdns[.]org/send/ورقة_االسرى_المقدمة_لفك_االضراب
+.rar
+
+Extracts to: <IOC>d973135041fd26afea926e51ce141198</IOC>, named (<TECHNIQUE>RTLO technique</TECHNIQUE>):
+
+exe. ورقة االسرى المقدمة لفك االضراب
+
+Translation: captives paper submitted to stop the strike
+
+C2:<IOC>ping.topsite[.]life</IOC>
+
+First seen: <TIMESTAMP>17 April 2017</TIMESTAMP>
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-11.png
+
+
+Translation: The primary demands of the captives in the strike of freedom
+
+and dignity
+
+6.9.
+<IOC>cf9d89061917e9f48481db80e674f0e9</IOC>
+
+exe. وثائق تنشر ألول مره عن حكم حماس لقطاع غزه
+<IOC>c11516cd8c797f0182d63cdf343d08ed</IOC>
+
+Translation: Documents published for the first time on <ORG>Hamas</ORG> ruling of
+
+<COUNTRY>Gaza Strip</COUNTRY>
+
+C1: <IOC>http://hamas-wathaq.duckdns[.]org/send/</IOC>
+
+rar.وثائق_تنشر_ألول_مره_عن_حكم_حماس_لقطاع_غزه
+
+C2:<IOC>ping.topsite[.]life</IOC>
+
+First seen: <TIMESTAMP>16 April 2017</TIMESTAMP>
+
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-12.png
+https://cdn.securelist.com/files/2017/10/171018-gaza-cybergang-13.png
+
+
+Translation: Scandals and facts published for the first time on <ORG>Hamas</ORG>’s
+
+ruling of <COUNTRY>Gaza Strip</COUNTRY>
+
+7. Appendix 2: List of IOCs
+
+7.1. Malicious domain names
+
+<IOC>moreoffer[.]life</IOC> 
+
+<IOC>signup.updatesforme[.]club</IOC> 
+
+<IOC>ping.topsite[.]life</IOC> 
+
+<IOC>alasra-paper.duckdns[.]org</IOC> 
+
+<IOC>hamas-wathaq.duckdns[.]org</IOC> 
+
+<IOC>download.data-server.cloudns[.]club</IOC> 
+
+<IOC>upgrade.newshelpyou[.]com</IOC> 
+
+<IOC>manual.newphoneapp[.]com</IOC> 
+
+<IOC>hnoor.newphoneapp[.]com</IOC> 
+
+<IOC>lol.mynetav[.]org</IOC>
+
+7.2. IP addresses
+
+<IOC>138.68.242[.]68</IOC> 
+
+<IOC>185.86.149[.]168</IOC> 
+
+<IOC>185.11.146[.]68</IOC> 
+
+<IOC>45.32.84[.]66</IOC> 
+
+<IOC>45.32.71[.]95</IOC> 
+
+<IOC>107.161.27[.]158</IOC> 
+
+<IOC>46.246.87[.]74</IOC>
+
+7.3. Hashes
+
+MD5
+
+<IOC>87a67371770fda4c2650564cbb00934d</IOC> 
+
+<IOC>4f3b1a2088e473c7d2373849deb4536f</IOC> 
+
+<IOC>c078743eac33df15af2d9a4f24159500</IOC> 
+
+<IOC>3ff60c100b67697163291690e0c2c2b7</IOC> 
+
+<IOC>a3de096598e3c9c8f3ab194edc4caa76</IOC> 
+
+<IOC>7d3426d8eb70e4486e803afb3eeac14f</IOC> 
+
+<IOC>3f67231f30fa742138e713085e1279a6</IOC> 
+
+<IOC>552796e71f7ff304f91b39f5da46499b</IOC> 
+
+<IOC>6fba58b9f9496cc52e78379de9f7f24e</IOC> 
+
+<IOC>eb521caebcf03df561443194c37911a5</IOC> 
+
+<IOC>b68fcf8feb35a00362758fc0f92f7c2e</IOC> 
+
+<IOC>d87c872869023911494305ef4acbd966</IOC> 
+
+<IOC>66f144be4d4ef9c83bea528a4cd3baf3</IOC> 
+
+
+
+<IOC>B7390bc8c8a9a71a69ce4cc0c928153b</IOC> 
+
+<IOC>F43188accfb6923d62fe265d6d9c0940</IOC> 
+
+<IOC>056d83c1c1b5f905d18b3c5d58ff5342</IOC> 
+
+<IOC>0ee4757ab9040a95e035a667457e4bc6</IOC> 
+
+<IOC>7bef124131ffc2ef3db349b980e52847</IOC> 
+
+<IOC>70d03e34cadb0f1e1bc6f4bf8486e4e8</IOC> 
+
+<IOC>67f48fd24bae3e63b29edccc524f4096</IOC> 
+
+<IOC>7b536c348a21c309605fa2cd2860a41d</IOC> 
+
+<IOC>cf9d89061917e9f48481db80e674f0e9</IOC> 
+
+<IOC>6d6f34f7cfcb64e44d67638a2f33d619</IOC> 
+
+<IOC>86a89693a273d6962825cf1846c3b6ce</IOC> 
+
+<IOC>5472d0554a0188c0ecebd065eddb9485</IOC>
+
+SHA256
+
+<IOC>0b6fe466a3ba36895208e754b155a193780c79ba8b5c1c9f02c4f7e479116e5f</IOC>
+
+<IOC>0c4aa50c95c990d5c5c55345626155b87625986881a2c066ce032af6871c426a</IOC> 
+
+<IOC>0d235478ae9cc87b7b907181ccd151b618d74955716ba2dbc40a74dc1cdfc4aa</IOC> 
+
+<IOC>1f2b128d26a58a572ea1faee2c4d9dc759eb8add16d9ad0547b3f0305fea212a</IOC> 
+
+<IOC>205f32cc717c2d82baeff9ff5aa9fc31967b6ae5cde22fafe14aec9c9ec62acc</IOC> 
+
+<IOC>284af7a2fafdbff3bbc28b9075f469d2352758b62d182b0e056d29ee74688126</IOC> 
+
+<IOC>344dc6ece5a6dacce9050a65305d4b34865756051a6f414477b6fa381e1c1b63</IOC> 
+
+<IOC>42e4298f5162aba825309673187e27121e3f918238e81f3a6e021c03f3455154</IOC> 
+
+<IOC>44a8d0561a9cc6e24d6935ff4c35b7b7db50c4001eb01c48ea1cfd13253bc694</IOC> 
+
+<IOC>57a12f20c6bbd69b93e76d6d5a31d720046b498aa880b95b85a4f3fda28aac4f</IOC>
+
+<IOC>72b039550d31afaeee11dedf7d80333aeda5c504272d426ae0d91bc0cd82c5b0</IOC> 
+
+<IOC>72d2ad8f38e60c23c96698149507fc627664a5706a4431b96014fbf25495b529</IOC> 
+
+<IOC>788f7fd06030f87d411c61efbc52a3efca03359570353da209b2ce4ccf5b4b70</IOC> 
+
+<IOC>7fcac2f18a8844e4af9f923891cfb6f637a99195a457b6cdb916926d709c6a04</IOC> 
+
+<IOC>84adba3c81ad1c2a8285c31d1171f6f671492d9f3ed5ee2c7af326a9a8dc5278</IOC> 
+
+<IOC>852ccc491204f227c3da58a00f53846296454d124b23021bdb168798c8eee2fb</IOC> 
+
+<IOC>86bd78b4c8c94c046d927fb29ae0b944bf2a8513a378b51b3977b77e59a52806</IOC> 
+
+<IOC>9347a47d63b29c96a4f39b201537d844e249ac50ded388d66f47adc4e0880c7e</IOC>
+
+<IOC>b597d7b5b9c2f1962257f912e911961ad0da4c28fc6a90a0b7db4e242aa007d8</IOC> 
+
+<IOC>bfb88878a22c23138a67cc25872e82d77e54036b846067ddc43e988c50379915</IOC> 
+
+<IOC>c23f715c8588c8d8725352ed515749389d898996107132b2d25749a4efc82a90</IOC> 
+
+<IOC>c47bc2c15f08655d158bb8c9d5254c804c9b6faded526be6879fa94ea4a64f72</IOC> 
+
+<IOC>db53b35c80e8ec3f8782c4d34c83389e8e9b837a6b3cc700c1b566e4e4450ec2</IOC> 
+
+<IOC>dd9debe517717552d7422b08a477faa01badbcc4074830c080a1a1c763e1a544</IOC> 
+
+<IOC>b800d29d6e1f2f85c5bc036e927c1dae745a3c646389599b0754592d76b5564b</IOC>
+
+<THREAT_ACTOR>APT</THREAT_ACTOR>  ARABIC MALWARE  MACROS  MOBILE MALWARE
+
+TARGETED ATTACKS  VULNERABILITIES AND EXPLOITS
+
+Related Posts
+
+    
+
+Analyzing an
+exploit for
+<CVE>СVE-2017-11826</CVE>
+
+<MALWARE>Bad Rabbit</MALWARE>
+ransomware
+
+<THREAT_ACTOR>BlackOasis APT</THREAT_ACTOR>
+and new
+targeted
+attacks
+leveraging
+zero-day
+exploit
+
+https://securelist.com/all?tag=538
+https://securelist.com/all?tag=660
+https://securelist.com/all?tag=542
+https://securelist.com/all?tag=76
+https://securelist.com/all?tag=53
+https://securelist.com/all?tag=41
+https://securelist.com/analyzing-an-exploit-for-%d1%81ve-2017-11826/82869/
+https://securelist.com/bad-rabbit-ransomware/82851/
+https://securelist.com/blackoasis-apt-and-new-targeted-attacks-leveraging-zero-day-exploit/82732/
+

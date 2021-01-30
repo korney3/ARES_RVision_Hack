@@ -1,0 +1,1369 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 1/12
+
+HACKMAGEDDON
+Information Security Timelines and Statistics
+
+Cyber Attacks Statistics   Cyber Attacks Timeline   Security  
+
+2018: A Year of Cyber Attacks
+  January 15, 2019    Paolo Passeri   1 Comment   2017, 2018, Cyber Attacks, Cyber
+Crime, Cyber Espionage, Cyber Warfare, Hacktivism, Statistics, Timeline
+
+  Views: 12,048
+
+Finally I can summarize all the events and statistics collected in 2018, quite
+a complicated year from an infosec perspective. For those of you that keep
+asking, every two weeks (more or less) I publish a timeline with the main
+cyber attacks occurred in that period. Every timeline contains the link with
+the details of the events, and �nally, every month (more or less), the
+timelines are aggregated to provide a statistical overview of the period.
+Moreover, the taxonomy of the categories is inherited from the
+International Standard Industrial Classi�cation
+
+So during 2018, I have collected a total of 1337 events that you can �nd in
+the following table (and after the table you will �nd the statistics):
+
+Show  entries
+
+Search: 
+
+ Print  Excel  CSV  Copy  PDF
+
+Date Author Target Description Attack Target
+Class
+
+Atta
+ck
+Clas
+s
+
+Coun
+try
+
+Link
+
+Date Aut… Target Description Att… Targ… … … L…
+
+
+10  
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/
+https://www.hackmageddon.com/author/paulsparrows/
+https://www.hackmageddon.com/tag/2017/
+https://www.hackmageddon.com/tag/2018/
+https://www.hackmageddon.com/tag/cyber-attacks/
+https://www.hackmageddon.com/tag/cyber-crime/
+https://www.hackmageddon.com/tag/cyber-espionage/
+https://www.hackmageddon.com/tag/cyber-warfare/
+https://www.hackmageddon.com/tag/hacktivism/
+https://www.hackmageddon.com/tag/statistics/
+https://www.hackmageddon.com/tag/timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+https://en.wikipedia.org/wiki/International_Standard_Industrial_Classification
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 2/12
+
+Date Author Target Description Attack Target
+Class
+
+Atta
+ck
+Clas
+s
+
+Coun
+try
+
+Link
+
+01/10/
+2018
+
+Attacke
+rs
+linked
+to Saudi
+Arabia?
+
+Canadian
+permane
+nt
+resident
+and
+Saudi
+dissident
+Omar
+Abdulaziz
+
+A report from The Citizen Lab
+reveals that the Canadian
+permanent resident and
+Saudi dissident Omar
+Abdulaziz was targeted by an
+attack infecting his phone
+with NSO’s Pegasus spyware.
+
+Malware
+/PoS
+Malware
+
+X
+Individual
+
+Cybe
+r
+Espio
+nage
+
+CA Link
+(http
+s://ci
+tizenl
+ab.ca
+/201
+8/10/
+the­
+kingd
+om­
+came
+­to­
+cana
+da­
+how­
+saudi
+­
+linke
+d­
+digita
+l­
+espio
+nage
+­
+reach
+ed­
+cana
+dian­
+soil/)
+
+01/10/
+2018
+
+? Apollo Apollo, a sales engagement
+startup boasting a database
+of more than 200 million
+contact records, is hacked
+and sends an email to its
+affected customers.
+
+Unknow
+n
+
+S Other
+service
+activities
+
+Cybe
+r
+Crim
+e
+
+US Link
+(http
+s://te
+chcru
+nch.c
+om/2
+018/
+10/0
+1/ap
+ollo­
+conta
+cts­
+data­
+breac
+h/)
+
+01/10/
+2018
+
+Roamin
+g
+Mantis
+
+iOS Users Kaspersky discover that the
+Roaming Mantis group is
+testing a new monetization
+scheme by redirecting iOS
+users to pages that contain
+the Coinhive in­browser
+mining script rather than the
+normal Apple phishing page.
+
+Maliciou
+s Script
+Injectio
+n
+
+X
+Individual
+
+Cybe
+r
+Crim
+e
+
+>1 Link
+(http
+s://s
+ecure
+list.c
+om/r
+oami
+ng­
+manti
+s­
+part­
+3/88
+071/)
+
+02/10/
+2018
+
+Hidden
+Cobra
+AKA
+Lazarus
+Group
+
+US Banks A joint technical alert from
+the DHS, the FBI, and the
+Treasury warns about a new
+ATM cash­out scheme,
+dubbed “FASTCash,” used by
+the Hidden Cobra APT.
+
+Malware
+/PoS
+Malware
+
+K
+Financial
+and
+insurance
+activities
+
+Cybe
+r
+Crim
+e
+
+US Link
+(http
+s://s
+ecurit
+yaffai
+rs.co/
+word
+press
+/767
+98/h
+ackin
+g/fas
+tcash
+­
+hidde
+n­
+cobra
+­
+attac
+ks.ht
+ml)
+
+Date Aut… Target Description Att… Targ… … … L…
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+https://citizenlab.ca/2018/10/the-kingdom-came-to-canada-how-saudi-linked-digital-espionage-reached-canadian-soil/
+https://techcrunch.com/2018/10/01/apollo-contacts-data-breach/
+https://securelist.com/roaming-mantis-part-3/88071/
+https://securityaffairs.co/wordpress/76798/hacking/fastcash-hidden-cobra-attacks.html
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 3/12
+
+Date Author Target Description Attack Target
+Class
+
+Atta
+ck
+Clas
+s
+
+Coun
+try
+
+Link
+
+02/10/
+2018
+
+? SBM
+Holdings
+(State
+Bank of
+Mauritius
+India)
+
+Mauritius banking group SBM
+Holdings unveils that its
+Indian operations suffered a
+cyber fraud earlier in the
+week, and that the bank has
+potentially lost up to $14
+million worth. The bank is
+able to recover $10 million.
+
+Fraudul
+ent
+SWIFT
+Transac
+tions
+
+K
+Financial
+and
+insurance
+activities
+
+Cybe
+r
+Crim
+e
+
+IN Link
+(http
+s://w
+ww.bl
+oomb
+ergqu
+int.co
+m/bu
+sines
+s/cyb
+eratt
+ack­
+on­
+india
+n­
+opera
+tions­
+of­
+state
+­
+ban…
+of­
+maur
+itius
+#gs.
+x1XB
+woM)
+
+02/10/
+2018
+
+? Individual
+s in the
+US
+
+Researchers from ProofPoint
+discover a new DanaBot
+campaign spread through
+Malspam campaign installing
+the Hancitor malware.
+
+Malware
+/PoS
+Malware
+
+X
+Individual
+
+Cybe
+r
+Crim
+e
+
+US Link
+(http
+s://w
+ww.p
+roofp
+oint.c
+om/u
+s/thr
+eat­
+insig
+ht/po
+st/da
+nabot
+­
+gains
+­
+popul
+arity­
+and­
+targe
+ts­
+us­
+organ
+izatio
+ns­
+large
+­
+camp
+aigns
+)
+
+Date Aut… Target Description Att… Targ… … … L…
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+https://www.bloombergquint.com/business/cyberattack-on-indian-operations-of-state-bank-of-mauritius#gs.x1XBwoM
+https://www.proofpoint.com/us/threat-insight/post/danabot-gains-popularity-and-targets-us-organizations-large-campaigns
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 4/12
+
+Date Author Target Description Attack Target
+Class
+
+Atta
+ck
+Clas
+s
+
+Coun
+try
+
+Link
+
+02/10/
+2018
+
+? Android
+Users in
+Japan
+and
+Korea
+
+Researchers from Fortinet
+unveil a new round of attack
+carried on via the FakeSpy
+Android malware.
+
+Malware
+/PoS
+Malware
+
+X
+Individual
+
+Cybe
+r
+Crim
+e
+
+>1 Link
+(http
+s://n
+ews.s
+oftpe
+dia.c
+om/n
+ews/f
+akes
+py­
+is­
+back­
+as­
+part­
+of­
+new­
+smis
+hing­
+camp
+aign­
+adds­
+new­
+featu
+res­
+5230
+40.sh
+tml)
+
+02/10/
+2018
+
+? City of
+Regina
+
+A city of Regina email is
+hacked, and used as a
+phishing tool to try and get
+passwords and emails from
+other city of Regina staff as
+well as external groups.
+
+Account
+Hijackin
+g
+
+O Public
+administr
+ation,
+defence,
+compulso
+ry social
+security
+
+Cybe
+r
+Crim
+e
+
+CA Link
+(http
+s://gl
+obaln
+ews.c
+a/ne
+ws/4
+5213
+46/ci
+ty­of­
+regin
+a­
+email
+­
+hack
+ed­
+exper
+ts­
+warn
+­
+citys­
+websi
+te­
+unsaf
+e­as­
+well/)
+
+02/10/
+2018
+
+? WhatsAp
+p Users
+in Israel
+
+A wave of reports about
+hijacked WhatsApp accounts
+in Israel has forced the
+government's cyber­security
+agency to send out a nation­
+wide security alert.
+
+Account
+Hijackin
+g
+
+X
+Individual
+
+Cybe
+r
+Crim
+e
+
+IL Link
+(http
+s://w
+ww.z
+dnet.
+com/
+articl
+e/rec
+ent­
+wave
+­of­
+hijac
+ked­
+what
+sapp­
+accou
+nts­
+trace
+d­
+back­
+to­
+voice
+mail­
+hacki
+ng/)
+
+Date Aut… Target Description Att… Targ… … … L…
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+https://news.softpedia.com/news/fakespy-is-back-as-part-of-new-smishing-campaign-adds-new-features-523040.shtml
+https://globalnews.ca/news/4521346/city-of-regina-email-hacked-experts-warn-citys-website-unsafe-as-well/
+https://www.zdnet.com/article/recent-wave-of-hijacked-whatsapp-accounts-traced-back-to-voicemail-hacking/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 5/12
+
+Now, let’s have a closer look at the statistics derived from the mega
+timeline of 2018. The �rst chart compares the total events in 2017 and
+2018 on a monthly basis. Clearly, with the sole exception of August, the
+level of activity has been constantly higher in 2018.
+
+The daily detail is provided in the following charts, which also shows the
+breakdown for each category. The chart is interactive so you can see the
+
+Monthly Attacks (2017 vs 2018)
+hackmageddon.com
+
+Jan Mar May Jul Sep Nov
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+160
+
+E
+ve
+n
+ts
+
+JS chart by amCharts
+
+Showing 1 to 10 of 1,337 entries
+
+…
+
+Date Author Target Description Attack Target
+Class
+
+Atta
+ck
+Clas
+s
+
+Coun
+try
+
+Link
+
+03/10/
+2018
+
+APT10
+AKA
+Red
+Apollo,
+Stone
+Panda,
+POTASS
+IUM,
+MenuPa
+ss,
+Cloud
+Hopper,
+Red
+Leaves
+
+Managed
+Service
+Providers
+
+The US Department of
+Homeland Security issues an
+alert about "ongoing" cyber­
+attacks against managed
+service providers, indirectly
+attributed to APT10.
+
+Targete
+d Attack
+
+J
+Informati
+on and
+communi
+cation
+
+Cybe
+r
+Espio
+nage
+
+US Link
+(http
+s://w
+ww.z
+dnet.
+com/
+articl
+e/dhs
+­
+awar
+e­of­
+ongoi
+ng­
+apt­
+attac
+ks­
+on­
+cloud
+­
+servi
+ce­
+provi
+ders/
+)
+
+Date Aut… Target Description Att… Targ… … … L…
+
+  1 2 3 4 5 134  
+
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+http://www.amcharts.com/
+https://www.zdnet.com/article/dhs-aware-of-ongoing-apt-attacks-on-cloud-service-providers/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 6/12
+
+single value scrolling over it. You can also select the single categories for
+each year.
+
+The following charts compare the distribution of motivations between
+2017 and 2018: as expected also in 2018 cyber crime leads the chart with
+an increase of nearly 5 points in comparison to 2017. All the other
+motivations (cyber espionage, hacktivism and cyber warfare) has
+experienced a decrease in 2018.
+
+Daily Events Per Category (2017 vs 2018)
+hackmageddon.com
+
+01­Jan 08­Feb 18­Mar 25­Apr 02­Jun 10­Jul 17­Aug 24­Sep 01­Nov 9­Dec
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+E
+ve
+n
+ts
+
+JS chart by amCharts
+
+Cyber Crime (2017) Cyber Crime (2018)
+
+Cyber Espionage (2017) Cyber Espionage (2018)
+
+Cyber Warfare (2017) Cyber Warfare (2018)
+
+Hacktivism (2017) Hacktivism (2018)
+
+77.39%
+
+14.51%
+
+4.73%
+
+3.36%
+
+Motivations (2017): 951
+Events
+
+hackmageddon.com
+
+JS chart by amCharts
+
+Cyber Crime Cyber Espionage
+
+Hacktivism Cyber Warfare
+
+81.82%
+
+12.86%
+
+2.84%
+
+2.47%
+
+Motivations (2018): 1337
+Events
+
+hackmageddon.com
+
+JS chart by amCharts
+
+Cyber Crime Cyber Espionage
+
+Hacktivism Cyber Warfare 
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+http://www.amcharts.com/
+http://www.amcharts.com/
+http://www.amcharts.com/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 7/12
+
+The following charts compare the monthly distributions broken down
+across the di�erent categories for  2018 and 2017:
+
+Malware (and I would add unsurprisingly) leads the chart of the Top 10
+Attack Techniques:
+
+Monthly
+Distribution
+Motivations
+of (2018)
+
+hackmageddon.com
+
+Jan Jul
+
+0
+
+100
+
+E
+ve
+n
+ts
+
+JS chart by amCharts
+
+Cyber Crime
+
+Cyber Espionage
+
+Cyber Warfare
+
+Hacktivism
+
+Monthly
+Distribution
+Motivations
+of (2017)
+
+hackmageddon.com
+
+Jan Jul
+
+0
+
+50
+
+100
+
+150
+
+E
+ve
+n
+ts
+
+JS chart by amCharts
+
+Cyber Crime
+
+Cyber Espionage
+
+Cyber Warfare
+
+Hacktivism
+
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+http://www.amcharts.com/
+http://www.amcharts.com/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 8/12
+
+While individuals are still the preferred targets for cyber criminals:
+
+Malware/PoS Malware: 34.4%
+
+Account Hijacking: 18.2% Unknown: 16.0%
+
+Targeted Attack: 13.0%
+
+Vulnerability: 6.4%
+
+Malicious Script Injection: 3.2%
+
+DDoS: 3.2%
+
+Defacement: 2.3%
+
+Brute­Force/Credential Stuffing: 1.3%
+
+SQLi: 0.8%
+
+Social Network Bots: 0.8%
+
+51% attack: 0.4%
+
+Attack Distribution (Top 10 2018)
+JS chart by amCharts
+
+Malware/PoS Malware 441 Account Hijacking 233
+
+Unknown 205 Targeted Attack 167
+
+Vulnerability 82 Malicious Script Injection 41
+
+DDoS 41 Defacement 29
+
+Brute­Force/Credential Stuffing 17 SQLi 10
+
+Social Network Bots 10 51% attack 5
+
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+http://www.amcharts.com/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 9/12
+
+The following chart shows the breakdown of motivations for each target
+sector. Please notice the in�uence of cyber crime for the healthcare sector.
+
+Individuals: 22.5%
+
+Multiple Industries: 15.6%
+
+Public administration, defence,
+social security: 12.5%
+
+Human health, social work: 9.3%
+
+Financial and insurance: 6.2%
+
+Education: 5.5%
+
+Information, communication: 5.5%Arts entertainment, recreation: 3.9%
+
+Fintech: 3.3%
+
+Wholesale, retail trade: 2.5%
+
+Accommodation, food services: 2.3%
+
+Other services: 2.3%
+
+Transportation, Storage: 1.9%
+
+Manufacturing: 1.8%
+
+Electricity, gas steam, air
+conditioning supply: 1.3%
+
+Professional scientific, technical: 1.2%
+
+Extraterritorial organizations and
+bodies: 0.9%
+
+Administrative and support services:
+
+Target Distribution (2018)
+JS chart by amCharts
+
+Individuals 301
+
+Multiple Industries 208
+
+Public administration, defence, social security 167
+
+Human health, social work 124
+
+Financial and insurance 83
+
+Education 74
+
+Information, communication 73
+
+Arts entertainment, recreation 52
+
+Fintech 44
+
+Wholesale, retail trade 34
+
+Accommodation, food services 31
+
+Other services 31
+
+Transportation, Storage 26
+
+Manufacturing 24
+
+Electricity, gas steam, air conditioning supply 17
+
+Professional scientific, technical 16
+
+Extraterritorial organizations and bodies 12
+
+Administrative and support services 12
+
+Water supply, sewerage waste management 4
+
+Unknown 3
+
+Real estate 1
+
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+http://www.amcharts.com/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 10/12
+
+And I think that for 2018 is pretty much everything. Feel free to share the
+links and use the data (for personal purposes) as needed. Also remember
+that this is only the tip of the iceberg, and obviously my stats can’t be
+comprehensive. My humble mission is just to rise the awareness and keep
+the level of attention on the cyber threats constantly high.
+
+Motivations by Sector
+(2018)
+
+hackmageddon.com
+
+Individuals
+Multiple Industries
+
+Public administration, defence, social security
+Human health, social work
+
+Financial, insurance
+Education
+
+Information, communication
+Arts entertainment, recreation
+
+Fintech
+Wholesale, retail trade
+
+Accommodation, food service
+Other services
+
+Transportation, storage
+Manufacturing
+
+Electricity, gas steam, air conditioning
+Professional scientific, technical
+
+Administrative and support service
+Extraterritorial organizations and bodies
+
+Water supply, sewerage waste management
+Unknown
+
+Real estate
+
+0 100 200 300 4
+
+JS chart by amCharts
+
+Cyber Crime
+
+Cyber Espionage
+
+Hacktivism
+
+Cyber Warfare
+
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+http://www.amcharts.com/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 11/12
+
+← December 2018 Cyber Attacks Statistics
+
+1-15 January 2019 Cyber Attacks Timeline →
+
+ Reply
+
+Related Posts
+
+Share this:
+
+One thought on “2018: A Year of Cyber Attacks”
+
+Many of us appreciate all you do. Thanks.
+
+2017 Cyber
+Attacks Statistics
+
+May 2018 Cyber
+Attacks Statistics
+
+October 2018
+Cyber Attacks
+Statistics
+
+June 2017 Cyber
+Attacks Statistics
+
+December 2018
+Cyber Attacks
+Statistics
+
+April 2018 Cyber
+Attacks Timeline
+
+     
+10
+     
+
+Like this:
+
+ Like
+
+Be the first to like this.
+
+ Matt Fagala
+ January 15, 2019 at 4:34 pm
+ Permalink
+
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+https://www.hackmageddon.com/2019/01/09/december-2018-cyber-attacks-statistics/
+https://www.hackmageddon.com/2019/02/04/1-15-january-2019-cyber-attacks-timeline/
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?replytocom=18605#respond
+https://www.hackmageddon.com/2018/01/17/2017-cyber-attacks-statistics/
+https://www.hackmageddon.com/2018/01/17/2017-cyber-attacks-statistics/
+https://www.hackmageddon.com/2018/06/28/may-2018-cyber-attacks-statistics/
+https://www.hackmageddon.com/2018/06/28/may-2018-cyber-attacks-statistics/
+https://www.hackmageddon.com/2018/11/21/october-2018-cyber-attacks-statistics/
+https://www.hackmageddon.com/2018/11/21/october-2018-cyber-attacks-statistics/
+https://www.hackmageddon.com/2017/08/23/june-2017-cyber-attacks-statistics/
+https://www.hackmageddon.com/2017/08/23/june-2017-cyber-attacks-statistics/
+https://www.hackmageddon.com/2019/01/09/december-2018-cyber-attacks-statistics/
+https://www.hackmageddon.com/2019/01/09/december-2018-cyber-attacks-statistics/
+https://www.hackmageddon.com/2018/05/29/april-2018-cyber-attacks-timeline/
+https://www.hackmageddon.com/2018/05/29/april-2018-cyber-attacks-timeline/
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=twitter&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=linkedin&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=google-plus-1&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=tumblr&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=reddit&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=facebook&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=pocket&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=pinterest&nb=1
+https://api.whatsapp.com/send?text=2018%3A%20A%20Year%20of%20Cyber%20Attacks%20https%3A%2F%2Fwww.hackmageddon.com%2F2019%2F01%2F15%2F2018-a-year-of-cyber-attacks%2F
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=skype&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=telegram&nb=1
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/?share=email&nb=1
+http://gravatar.com/mfagala
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+
+
+2/12/2019 2018: A Year of Cyber Attacks – HACKMAGEDDON
+
+https://www.hackmageddon.com/2019/01/15/2018-a-year-of-cyber-attacks/ 12/12
+
+Leave a Reply
+
+This site uses Akismet to reduce spam. Learn how your comment data is
+processed.
+
+Copyright © 2019 HACKMAGEDDON. All rights reserved. 
+Theme: ColorMag by ThemeGrill. Powered by WordPress.
+
+Enter your comment here...Enter your comment here...
+
+
+
+ ABOUT SUBMIT AN ATTACK CYBER ATTACKS TIMELINE  CYBER ATTACKS STATISTICS
+
+https://akismet.com/privacy/
+https://www.hackmageddon.com/
+https://themegrill.com/themes/colormag
+https://wordpress.org/
+https://www.hackmageddon.com/
+https://www.hackmageddon.com/about/
+https://www.hackmageddon.com/submit/
+https://www.hackmageddon.com/category/security/cyber-attacks-timeline/
+https://www.hackmageddon.com/category/security/cyber-attacks-statistics/
+

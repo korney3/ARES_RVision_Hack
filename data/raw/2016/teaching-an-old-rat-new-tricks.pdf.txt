@@ -1,0 +1,291 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Teaching an old RAT new tricks
+
+
+r du s
+
+u r
+
+r rs
+
+s ur s
+
+s s
+
+d w r s
+s d r 21 2016 Joseph Landry
+
+Attackers have been successfully deploying RATs for years to remotely control users systems - giving
+them full access to the victim’s files or resources such as cameras, recording key strokes, or�
+downloading further malware.  Traditionally RATs have been deployed when a user opens an email
+attachment, or downloads a file from a website or peer-to-peer network.  In both cases, these vectors�
+involve use of files to deliver the payload - which are easier to detect.�
+
+Recently we detected a more sophisticated technique that a handful of countries across Asia are
+actively using to infect systems with RATs.  This new technique ensures that the payload/file remains in�
+memory through its execution, never touching the disk in a de-encrypted state.  In doing so, the
+attacker can remain out of view from antivirus technologies, and even ‘next-generation’ technologies
+that only focus on file-based threat vectors.  Also, the samples analyzed have the ability detect the�
+presence of a virtual machine to ensure it’s not being analyzed in a network sandbox.
+
+And finally it’s important to highlight that the RAT itself is not new.  In fact this technique can be used to�
+deliver any “known” RAT to a victim’s system.  We analyzed this sample against our SentinelOne EPP
+to confirm is does not evade our behavior-based detection mechanisms.  This is due to the fact that�
+we’re monitoring all processes at the user-space/kernel-space interface - and because all
+communication between the application and the kernel must be unencrypted, we detect the sample at
+both process-injection points.
+
+https://www.sentinelone.com/support/
+https://www.sentinelone.com/partners/
+https://www.sentinelone.com/resources/
+https://www.sentinelone.com/blog/
+https://www.sentinelone.com
+https://www.sentinelone.com/blog/
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture11.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture21.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture31.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture41.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture51.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture61.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture71.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture81.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture9.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture10.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture111.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture12.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture13.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture14.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture15.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture16.png
+
+
+Samples Analyzed
+
+Main Sample
+
+r 32 E NE 2 0
+H 256 su
+
+9551 15319 068 966 8 9 563 522 d9 1 2d19 122 8 018 8
+H 1 su 3 1 5 3509281 d 0 61 1 8 6 d3 393 55
+
+5 su 65 52 2d6 3d121 826 65d 9
+s z 32102 s 32
+
+Unpacked Samples
+
+◦    e5c71180f117270538487cd9b9b1b6d8 - Packed "Benchmark" DLL ▪   
+9e05fb115bd4e85cfc0e32c72aa721be - Monitor (PerfWatson.exe) ◦   
+d740ed3f33ca4cef3a6aa717f94bf52a - NanoCore RAT dumped from memory
+
+Behavioral Analysis
+
+When run, the binary will copy itself to
+%APPDATA%\Microsoft\Blend\14.0\FeedCache\nvSCPAPISrv.exe and extracts a second binary
+named PerfWatson.exe
+
+It then executes both binaries.
+
+For persistence, a registry key is created at HKEY_CURRENT_USER\Software\Microsoft\Windows
+NT\CurrentVersion\Windows\Load pointing to the PerfWatson.exe binary.
+
+
+
+Finally, the RAT tries connecting back to its control server:
+
+z 2015 r 161
+z r 161
+
+chickenkiller.com is owned by a free dynamic DNS service.
+
+At the time of this writing, the DNS records still exist, but the address they resolve to appears to be
+down.
+
+Unpacking
+
+"Benchmark" .NET DLL
+
+The main executable contains an XOR encrypted .NET DLL in its .NET managed resources and the
+logic to unpack it. This DLL contains the logic to unpack and inject the RAT as well as monitor the
+application, PerfWatson.exe. This DLL is referred to as "Benchmark" because that is the .NET
+namespace it uses.
+
+After decrypting the resource, it is linked into the process using
+System.Reflection.Assembly.Load(byte[]). This method is documented on �MSDN here. Using this
+method, the DLL will never be written to the filesystem. This technique could have been chosen by the�
+developers to evade antivirus detection.
+
+https://msdn.microsoft.com/en-us/library/h538bck7%28v=vs.110%29.aspx
+
+
+Under the hood, Assembly.Load(), uses a call to the win32 api call CreateFileMappingW() with the hFile
+parameter set to INVALID_HANDLE_VALUE. According to MSDN, this will create a mapped file that is�
+backed by the paging filesystem, not the standard filesystem. A layer below CreateFileMapping, the��
+system call NtCreateSection is invoked.
+
+After the empty file is created, it is mapped into memory using the Win32 API call MapViewOfFileEx.�
+The layer below this invokes the system call NtMapViewOfSection.
+
+Now, a call to memcpy() is used to copy the decrypted DLL into the newly allocated address range.
+
+ 
+
+
+
+Unpacking Settings and NanoCore
+
+The settings for "Benchmark" and the NanoCore executable are serialized, DES encrypted, spliced,
+and stored across multiple PNG files as pixel data. The PNG files are concatenated and stored in the��
+.NET managed resources of the main executable.
+
+Some of the settings that can be configured are:�
+
+E r u s d d
+s d s s r r s d N r
+
+s ss us r
+Id r r r s r N
+
+w d r d r I r d r d ru
+r I d r ss
+
+After viewing one of these images, it is obvious they are not used to conveying visual information to a
+human eye.
+
+
+
+After writing a short python script, I was able to extract all 19 PNG files. If you have robot eyes, you can�
+see a cat.
+
+Here is a C# decompilation of the method used to extract the information out of the pixel data.
+
+
+
+Once everything is decrypted, the set options are executed, and the NanoCore RAT payload is injected
+into a new child process. The method of injection is discussed later.
+
+Unpacking PerfWatson.exe
+
+Now that "Benchmark" is loaded into memory, it is tasked with copying the main executable and
+extracting PerfWatson.exe to %APPDATA%\\Microsoft\Blend\14.0\FeedCache\.
+
+PerfWatson.exe is stored inside Benchmark as a base64 encoded string. There is no encryption or
+obfuscation outside of the base64 encoding.
+
+Inside the .NET assembly, the string is stored as a DefaultSettingValue string. The developers might
+have used this as a way to conceal the meaning of this long string.
+
+Once the string is decoded, it is written to disk and executed.
+
+
+
+Injecting the Payload
+
+The NanoCore RAT payload is never written to disk to avoid detection. Instead, it is injected into a new
+process. The injection routine can be summarized by these Win32 API and system calls:
+
+ 
+r r ss E E EN r d r ss sus d d
+N r d s d d E d u d EI r s r
+
+d r ss r ds E I s ddr ss d
+N w s ru s w r s r d d
+0 00000
+r u E s d s r
+
+N r r u r
+0 00 00000 E H d r
+0 00 02000
+0 00 36000 rsr
+0 00 3 000 r
+E I s ddr ss d s s ddr ss 0 00000
+N r d d s EI r s r r d
+N r su r d us s d r ss sus d d d
+ru r ss s sus d d
+
+N r d s r d r d r ss
+
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture17.png
+
+
+r r d ddr ss E s w w d s r d
+
+ddr ss r r d s w d
+
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture18.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture19.png
+
+
+d w s r s N r r u r d u d
+E I s ddr ss
+
+N r d s d u d EI r s r s u
+
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture20.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture211.png
+
+
+u s s r d w N r su r d
+
+du r ss d s w s d r ss s us N r
+
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture22.png
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture23.png
+
+
+r 2016 s s r d r r s s
+
+For more information on how SentinelOne protects against attacks such as these, visit our resources
+page at sentinelone.com/resources
+
+Products Support Partners Resources Blog Events Company
+
+https://www.sentinelone.com/wp-content/uploads/2016/04/Picture24.png
+https://www.sentinelone.com/resources
+http://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.sentinelone.com%2Fblogs%2Fteaching-an-old-rat-new-tricks%2F&t=Teaching+an+old+RAT+new+tricks
+http://twitter.com/share?text=Teaching+an+old+RAT+new+tricks&url=https%3A%2F%2Fwww.sentinelone.com%2Fblogs%2Fteaching-an-old-rat-new-tricks%2F
+http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.sentinelone.com%2Fblogs%2Fteaching-an-old-rat-new-tricks%2F&title=Teaching+an+old+RAT+new+tricks&source=https://www.sentinelone.com/
+https://www.sentinelone.com/products-features/platform-specifications/
+https://www.sentinelone.com/support/
+https://www.sentinelone.com/partners/
+https://www.sentinelone.com/resources/
+https://www.sentinelone.com/blog/
+https://www.sentinelone.com/events/
+https://www.sentinelone.com/leadership-team/
+https://www.sentinelone.com/privacy-policy/
+https://www.sentinelone.com/terms-of-services/
+
+	Teaching an old RAT new tricks
+	Posted on April 21, 2016 by Joseph Landry
+
+
