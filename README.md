@@ -1,57 +1,160 @@
-ARES_Rvision_hack
-==============================
+# R-Vision Phystech Genesis Hack 21
 
-Solution for TI task in RVision hackathon 2021
+# ARES TEAM
+
+
+**MVP** - http://vispstudio.ru/hack/ares/genesis/v4.html
+
 
 Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
+    │   ├── interim        <- Intermediate data that has been transformed with additional statistic.
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
+    ├── notebooks          <- Jupyter notebooks with data analysis and model training.
     │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    ├── images             <- images with data analysis
+    └── src                <- Source code for use in this project.
+        │
+        ├── regular_app
+        └── app            <- Scripts to parse files, share data with frontend, parse texts, get stats
+            ├── app.py
+            ├── bert.py
+            └── w2vRF.py
+   
 
 
 --------
+## Установка
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+1. git clone https://github.com/korney3/ARES_RVision_Hack
+2. conda create --name PhGen21 python=3.8
+3. conda activate cPhGen21
+4. pip install -r requirements.txt
+5. Претренированные модели можно скачать [здесь](https://drive.google.com/drive/folders/176t9-TaE9ij90kPciHXS56kZWTX58gCT?usp=sharing)
+
+## Описание проекта
+
+Разработка продукта для аналитиков в сфере ИБ - базы знаний, аггрегирующей источники данных с анализом угроз компьютерной безопасности, справочники с терминами, взаимосвязи между сущностями предметной области.
+
+**Задачи**
+1. Создание системы фильтрации источников аналитики по ключевым словам
+2. Аннотация новых отчетов для выделения терминов, имеющих отношение к ИБ аналитике и добавления документа в базу знаний
+3. Подключение справочных систем (MITR и MISP)
+4. Визуализация взаимосвязей между сущностями предметной области ИБ
+
+
+## Технические особенности
+
+### Проблема №0 (Контраст) - Маленькое количество размеченных данных/Большое число сырых данных и справочной информации
+
+Имеющиеся размеченные данные - маленькие по объему, шумные, классы для аннотирования несбалансированы
+
+![alt-текст](./images/boxplot_tags.png)
+
+[3_baseline_oneHot.ipynb](./notebooks)
+
+Решение: Использование не только моделей глубоко обучения для разметки, но так же и регулярных выражений на основе справочной информации MISP
+
+[EDA данных](./notebooks/1_EDA.ipynb)
+[Конвертация данных в IOB формат для построения предсказательных моделей](./notebooks/3_Prepare_data_for_BD.ipynb)
+
+#### Предсказательные модели
+
+1. **Baseline BERT**
+
+В качестве бейзлайна использовалaсь предобученная на корпусе текстов естественного языка модель BERT.
+
++ Модель хорошо улавливает тэги, присущие естественному языку - `timestamp`, `org`, `country`, `city`
+- В присущих узкой области группах терминов модель путается, очень тяжелая для хранение и медленная для предсказаний
+
+Эти выводы хорошо иллюстрирует confusion matrix.
+
+![alt-текст](./images/download%20(1).png)
+
+[Fine-Tuning модели BERT](./notebooks/2_BERT_Baseline.ipynb)
+
+Размеченные данные в IOB формате лежат в файле [IOB_dataset_format.csv](./data/interim/IOB_dataset_format.csv)
+
+2. **Word2Vec+RandomForest**
+
++ Быстрая, легкая модель
+- Точность значительно уменьшается в сравнении с более продвинутым BERT
+
+При этом на одной из самых интересующих сущностей (`treat-actor`) модель демонстрирует сравнительно неплохие метрики.
+
+![alt-текст](./images/w2vec.png)
+
+[Обучение модели W2Vec и RF](./notebooks/5_Word2VecClassification.ipynb)
+
+Сравнение метрик качества моделей:
+
+Для валидации была отложена 0.2 часть выборки.
+
+|Model| F1 weighted      | F1 macro  | 
+| ------------- |:------------------:| :------------------:| 
+| BERT     |  **0.96**  | **0.59** |
+| Word2Vec+RF  | **0.90** |  **0.24** |
+
+3. Регулярные выражения и [кластеры MISP](https://github.com/MISP/misp-galaxy)
+
+Для разметки текстов регулярными выражениями мы воспользовались кластерами MISP, относящимися к `treat_actor, malware, techniques`, собрав всевозможные синонимы для угроз, чтобы максимизировать точность поиска таких ключевых слов по аналитическим отчетам.
+
+При помощи регулярных выражений в **0.64** сырых статей можно найти `treat_actor`, а в **0.9** -  `malware, 'techniques`.
+
+Кроме того кластеры MISP связаны с дополнительным источником информации MITR, куда можно напрямую обращаться за информацией по потенциальным уязвимостям или подверженным конкретной атаке ОС.
+
+#### Поиск связей между сущностями
+
+1. Справочные данные
+
+Кластеры MISP содержут набор синонимов различных терминов из сферы ИБ, позволяя объединять различные названия одного и того же процесса и облегчая поиск отчетов по схожей тематике.
+
+2. Размеченный датасет
+
+Считая наиболее часто встречающуюся сущность за тему документа, можно выделить ее особенные признаки - из других ключевых слов. часто появляющихся рядом. Сущности-темы документов (скажем, виды атак) затем можно сравнивать, находя пересечения техник, способов захвата или уязвимостей.
+
+На основе имеющихся размеченных данных сложно получить достаточно информации, но, при наличии бОльшего числа разметок, этот алгоритм мог бы стать информативнее.
+
+![alt-текст](./images/graph.png)
+
+3. Word2Vec
+
+Обучение без учителя на совместном корпусе размеченных и неразмеченных данных позволяет отслеживать интересные взаимосвязи между сущностями из разных категорий, потенциально приводя к обнаружению устойчивых закономернотей между уязвимостями, атаками и используемым вирусным ПО.
+
+Полноценное облако точек можно увидеть [здесь](http://projector.tensorflow.org/?config=https://gist.githubusercontent.com/korney3/d483d702875f1037966f67e76e9256a1/raw/794b723b3f2ed8d0039731e333e03f2e4ca50dbd/gistfile1.txt) (время загрузки 10-15 минут).
+ 
+#### Выводы
+
+1. Построен MVP продукта для помощи аналитикам в сфере ИБ
+
+2. Для решения задачи аннотации текстов были применены 3 различные модели, демонстрирующие разную метрику качества на разных категориях сущностей
+
+3. Для расширения базы знаний были задействованы внешние справочные истоники - MISP и MITR, в том числе для обнаружения синонимов
+
+4. В качестве метода для получения взаимосязей между разными категориями сущностей была обучена модель Word2Vec, демонстрирующая любопытные сближения на облаке точек.
+
+
+
+
+## Контакты
+
+Egor Yusupov - Front-end, Design - @EgorYusupov
+
+Alexandr Sarachakov - Data Scientist - @asarachakov
+
+Alisa Alenicheva  - Data Scientist - @korney3
+
+
