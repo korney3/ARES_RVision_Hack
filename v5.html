@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>hackgenesis_jan21</title>
+		<meta charset="utf-8">
+		<meta id="viewport" name="viewport" content="width=device-width, initial-scale=0.8">
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+		
+		<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+		<!-- Don't use this in production: -->
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+		<script src="https://unpkg.com/html-react-parser@latest/dist/html-react-parser.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.11.2/antd.min.js" integrity="sha512-po2baibyaVyDwINF7gijO2Zbd9HBQDnd81yJNghcwuU+bjb79Qkaf4zopd2mkQJ33aBHLIifLeGwV7+QiyV3wQ==" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.11.2/antd.min.css" integrity="sha512-gs6VDTwxBRKAfKFQbN+UR2wCkNoFnPrvLcsEwGtzDDG1Wuwx5w/UhjsnMwm27En67jU0M04ofj8IIctaBmaU+A==" crossorigin="anonymous" />
+        
+        <!-- <script src="http://vispstudio.ru/hack/ares/genesis/tags_count.json" type="application/json" id="myJSON"></script> -->
+        <script src="./files.js"></script>
+        <script src="./tags_count.js"></script>
+        
+
+	</head>
+	<body>
+
+		<!-- <div style=" padding: 50px;"> -->
+			
+
+			<div id="root"></div>
+		<!-- </div> -->
+		
+
+		<script type="text/babel">
+
+			var demo_text = `Additionally, many of <IDENTITY>SH</IDENTITY>’s tools contain driver modules designed to be loaded into the <SOFTWARE>Windows</SOFTWARE> kernel in order to 
+subvert elements of the system. While not unique for <THREAT_ACTOR>APT1</THREAT_ACTOR> coders, this level of development expertise is certainly 
+a discriminator that puts <IDENTITY>SH</IDENTITY> into a smaller group of highly capable developers within <THREAT_ACTOR>APT1</THREAT_ACTOR>. Often, <IDENTITY>SH</IDENTITY>’s tools are 
+observed in use by other <THREAT_ACTOR>APT1</THREAT_ACTOR> personae and in several instances, other <THREAT_ACTOR>APT</THREAT_ACTOR> groups we track. Given that <IDENTITY>SH</IDENTITY>’s tools 
+are used by other <THREAT_ACTOR>APT1</THREAT_ACTOR> actors, and that there are no indications that <IDENTITY>SH</IDENTITY> is a full-time operator, we believe that <IDENTITY>SH</IDENTITY> is 
+primarily involved in research and development for <THREAT_ACTOR>APT1</THREAT_ACTOR>.
+
+
+mitre_attack <MITRE_ATTACK>mitre_attack</MITRE_ATTACK>
+attack_pattern <ATTACK_PATTERN>attack_pattern</ATTACK_PATTERN>
+threat_actor <THREAT_ACTOR>threat_actor</THREAT_ACTOR>
+ioc <IOC>ioc</IOC>
+malware <MALWARE>malware</MALWARE>
+software <SOFTWARE>software</SOFTWARE>
+tool <TOOL>tool</TOOL>
+technique <TECHNIQUE>technique</TECHNIQUE>
+city <CITY>city</CITY>
+org <ORG>org</ORG>
+country <COUNTRY>country</COUNTRY>
+timestamp <TIMESTAMP>timestamp</TIMESTAMP>
+campaign <CAMPAIGN>campaign</CAMPAIGN>
+industry <INDUSTRY>industry</INDUSTRY>
+identity <IDENTITY>identity</IDENTITY>
+
+`;
+
+            // var tags = 
+
+
+var bgColors = { "Default": "#81b71a",
+                    "Blue": "#00B1E1",
+                    "Cyan": "#37BC9B",
+                    "Green": "#8CC152",
+                    "Red": "#E9573F",
+					"Yellow": "#F6BB42",
+					
+					
+					
+                    
+                    
+                    
+                    
+
+                    
+                    
+
+                    "malware":          "hsl(320, 100%, 30%)", // вредоносное ПО
+
+                    "mitre_attack":     "hsl(0, 100%, 40%)", // митра атака
+                    "attack_pattern":   "hsl(20, 100%, 25%)", // образец атаки
+                    "threat_actor":     "hsl(40, 100%, 40%)", // субъект угрозы
+
+                    "ioc":              "hsl(44, 100%, 40%)", // ioc
+                    
+
+                    "software":         "hsl(100, 100%, 40%)", // программного обеспечения
+                    "tool":             "hsl(120, 100%, 30%)", // орудие труда
+                    "technique":        "hsl(140, 100%, 40%)", // техника
+
+                    "city":             "hsl(160, 100%, 40%)", // город
+                    "org":              "hsl(180, 100%, 30%)", // орг
+                    "country":          "hsl(200, 100%, 40%)", // страна
+
+                    "timestamp":        "hsl(220, 100%, 40%)", // отметка времени
+                    "campaign":         "hsl(240, 100%, 40%)", // кампания
+
+                    "industry":         "hsl(260, 100%, 40%)", // промышленность
+                    "identity":         "hsl(280, 100%, 40%)", // идентичность
+
+};
+
+			class MyTag  extends React.Component {
+                // onClick = (e) {
+
+                // }
+				render() {
+                    // Popover
+					return (
+                        <antd.Tooltip content={this.props.children} title={this.props.name + ' : ' + this.props.children} 
+                                onClick={(e)=>this.props.onClick(this.props.name, this.props.children, e)}>                  
+                            <antd.Tag color={ this.props.color || bgColors[this.props.name] || "#F6BB42"}>
+                                <small>{this.props.name}</small> <b>{this.props.children}</b>
+                            </antd.Tag>
+                        </antd.Tooltip>
+					)
+				}
+			}
+
+			// class Identity  extends React.Component {
+			// 	render() {
+			// 		return (
+			// 			<MyTag color="#8CC152" name="Identity">{this.props.children}</MyTag>
+			// 		)
+			// 	}
+			// }
+			// class Software  extends React.Component {
+			// 	render() {
+			// 		return (
+			// 			<MyTag color="#00B1E1" name="Software">{this.props.children}</MyTag>
+			// 		)
+			// 	}
+			// }
+
+			// software
+			// threat_actor
+
+
+			class FormatedReport extends React.Component {
+				render() {
+					return (
+						<div>
+							{HTMLReactParser( this.props.text.replace(/[\n]{2,}/g, '<br/>'), {
+								replace: domNode => {
+									if (domNode.type == 'tag') {
+										switch (domNode.name) {
+											// case 'identity':
+											// 	return <Identity>{HTMLReactParser.domToReact(domNode.children)}</Identity>;	
+											// case 'software':
+											// 	return <Software>{HTMLReactParser.domToReact(domNode.children)}</Software>;	
+											case 'br':
+												return (<div><br/></div>)
+											default:
+												return <MyTag name={domNode.name} onClick={this.props.onClick}>{HTMLReactParser.domToReact(domNode.children)}</MyTag>;	
+										}
+									}
+								}
+							} )}
+						</div>
+					)
+				}
+            }
+            
+
+
+
+const columns = [
+  
+{title:'year', dataIndex:'year'},
+{title:'file', dataIndex:'file',
+    filters: [
+        { text: 'Joe', value: 'Joe', },
+        { text: 'Jim', value: 'Jim', },
+        {
+            text: 'Submenu', value: 'Submenu',
+            children: [
+                { text: 'Green', value: 'Green', },
+                { text: 'Black', value: 'Black', },
+            ],
+        },
+    ],
+    onFilter: (value, record) => record.name.indexOf(value) === 0,
+    sorter: (a, b) => a.file.length - b.file.length,
+    sortDirections: ['descend'],
+},
+
+// {title:'malware', dataIndex:'malware'},
+// {title:'mitre_attack', dataIndex:'mitre_attack'},
+// {title:'attack_pattern', dataIndex:'attack_pattern'},
+// {title:'threat_actor', dataIndex:'threat_actor'},
+// {title:'ioc', dataIndex:'ioc'},
+// {title:'software', dataIndex:'software'},
+// {title:'tool', dataIndex:'tool'},
+// {title:'technique', dataIndex:'technique'},
+// {title:'city', dataIndex:'city'},
+// {title:'org', dataIndex:'org'},
+// {title:'country', dataIndex:'country'},
+// {title:'timestamp', dataIndex:'timestamp'},
+// {title:'campaign', dataIndex:'campaign'},
+// {title:'industry', dataIndex:'industry'},
+// {title:'identity', dataIndex:'identity'},
+
+  
+//   {
+//     title: 'Age',
+//     dataIndex: 'age',
+//     defaultSortOrder: 'descend',
+//     sorter: (a, b) => a.age - b.age,
+//   },
+//   {
+//     title: 'Address',
+//     dataIndex: 'address',
+//     filters: [
+//       {
+//         text: 'London',
+//         value: 'London',
+//       },
+//       {
+//         text: 'New York',
+//         value: 'New York',
+//       },
+//     ],
+//     filterMultiple: false,
+//     onFilter: (value, record) => record.address.indexOf(value) === 0,
+//     sorter: (a, b) => a.address.length - b.address.length,
+//     sortDirections: ['descend', 'ascend'],
+//   },
+];
+
+// const data = [
+//   {
+//     key: '1',
+//     name: 'John Brown',
+//     age: 32,
+//     address: 'New York No. 1 Lake Park',
+//   },
+//   {
+//     key: '2',
+//     name: 'Jim Green',
+//     age: 42,
+//     address: 'London No. 1 Lake Park',
+//   },
+//   {
+//     key: '3',
+//     name: 'Joe Black',
+//     age: 32,
+//     address: 'Sidney No. 1 Lake Park',
+//   },
+//   {
+//     key: '4',
+//     name: 'Jim Red',
+//     age: 32,
+//     address: 'London No. 2 Lake Park',
+//   },
+// ];
+
+function onChange(pagination, filters, sorter, extra) {
+  console.log('params', pagination, filters, sorter, extra);
+}
+
+
+
+
+
+
+            class TagsFilter extends React.Component {
+                filter_state = {}
+                handleChange = (t,value) => {
+                    this.filter_state[t] = value;
+                    console.log(`selected ${t} ${value}`, this.filter_state);
+                    this.props.onChangeFilter(this.filter_state)
+                }
+                tags_children = (tag_keys) => {
+                    return Object.keys(tag_keys).map((key,index) => (
+                        <antd.Select.Option key={key}>{key} ({tag_keys[key]})</antd.Select.Option>
+                    ))
+                }
+                render() {
+                    return Object.keys(this.props.tags).map((t,index) => (
+                        <antd.Select mode="tags" style={{ width: '100%' }} showSearch 
+                                filterOption={(input, option) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                placeholder={t} onChange={e=>this.handleChange(t,e)} key={index}>
+                            {this.tags_children(this.props.tags[t])}
+                        </antd.Select>
+                    ))
+                }
+            }
+
+
+            class ReportList extends React.Component {
+                constructor(props) {
+                    super(props)
+                    this.state = {
+                        file_list: [],
+                        filters: {},
+
+                        show_page: false,
+                        active_page: null,
+                    }
+                    this.loadFileList()
+                }
+                loadFileList = () => {
+                    // let url = 'http://84.201.131.6:5001/get_file_content';
+                    // axios.get(url, { params: { 
+                    //     filename:"miragefox-apt15-resurfaces-with-new-tools-based-on-old-ones"
+                    // }}).then(res => console.log(res))
+                    let url = 'http://84.201.131.6:5001/get_file_list';
+                    axios.get(url).then(res => {
+                        this.setState({ file_list: res.data.map((x,index)=>({
+                            key: index,
+                            file: x.DocName,
+                            year: x.Year,
+                            stats: x.Stats,
+                            parsed: x.Parsed ? 'Yes':'-',
+                        })) })
+                        // console.log( this.state.file_list)
+                        console.log( res.data)
+                    })
+                }
+                filterFileList = () => {
+                    return this.state.file_list.filter(x=>{
+                        let hide_rules = 0
+                        let filters_keys = Object.keys(this.state.filters)
+                        if (filters_keys.length > 0) {
+                            Object.keys( this.state.filters ).forEach(t => this.state.filters[t].forEach( v => {
+                                // return x.stats[t].indexOf(v) < 0 ? true : false
+                                hide_rules += x.stats[t]?.KeyWords.indexOf(v) > -1 ? 0 : 1
+                            }))
+                        }
+                        return hide_rules == 0
+                    })
+                }
+                onChange = (p) => {
+                    // console.log(p)
+                    this.setState({filters: p})
+                }
+
+                columns = () => {
+                    return [
+                        {title:'year', dataIndex:'year'},
+                        
+                        {title:'file', dataIndex:'file',
+                            // filters: [
+                            //     { text: 'Joe', value: 'Joe', },
+                            //     { text: 'Jim', value: 'Jim', },
+                            //     {
+                            //         text: 'Submenu', value: 'Submenu',
+                            //         children: [
+                            //             { text: 'Green', value: 'Green', },
+                            //             { text: 'Black', value: 'Black', },
+                            //         ],
+                            //     },
+                            // ],
+                            // onFilter: (value, record) => record.name.indexOf(value) === 0,
+                            sorter: (a, b) => a.file.length - b.file.length,
+                            sortDirections: ['descend'],
+                        },
+                        {title:'parsed', dataIndex:'parsed'},
+                    ];
+                } 
+                onRowClick = (row) => {
+                    console.log('onRowClick', row)
+                    this.setState({ show_page: true, active_page: row })
+                }
+                onClosePage = () => { this.setState({ show_page: false, active_page: null }) }
+                render() {
+                    return (
+                        <antd.Row gutter={16}>
+                            <antd.Col span={6}>
+                                <h4>Filters</h4>
+                                <TagsFilter tags={TAGS_LIST} onChangeFilter={this.onChange} />
+                            </antd.Col>
+                            <antd.Col span={18}>
+                                <h4>Reports</h4>
+                                <antd.Table columns={this.columns()} dataSource={this.filterFileList()} onChange={onChange} onRow={row => ({onClick: e => this.onRowClick(row, e)})} />
+
+                                <PanelDocPage visible={this.state.show_page} onClose={this.onClosePage}
+                                        page={this.state.active_page}   />
+
+                            </antd.Col>
+                        </antd.Row>
+                    )
+                }
+            }
+            // 
+
+            
+            class PanelDocPage extends React.Component {
+                constructor(props) {
+					super(props);
+					this.state = {
+                        // text: demo_text,
+                        // visible: false,
+                        // drawerTitle: 'Title',
+                        // drawerContent: 'Some contents',
+                        childrenDrawer: false,
+                        is_loading: false,
+                    }
+                }
+                showChildrenDrawer = () => { this.setState({ childrenDrawer: true }); };
+                onChildrenDrawerClose = () => { this.setState({ childrenDrawer: false }); };
+
+                onLoading = (val) => { this.setState({is_loading:val})}
+
+                render() {
+                    return (
+                        <antd.Drawer title={this.props.drawerTitle} placement="right" width="90%" closable={false}
+                            onClose={this.props.onClose} visible={this.props.visible && !this.state.is_loading}>
+
+                                <p>{this.props.drawerContent}...</p>
+
+                                <ReportPage page={this.props.page} onLoading={this.onLoading} />
+
+                                <antd.Button type="primary" onClick={this.showChildrenDrawer}>
+                                    Two-level 
+                                </antd.Button>
+
+                                <antd.Drawer title="Two-level Drawer" width={720} closable={false}
+                                    onClose={this.onChildrenDrawerClose} visible={this.state.childrenDrawer}>
+                                    <iframe src="https://attack.mitre.org/techniques/T1027/001/" width="100%" height="100%" frameborder="0"></iframe> 
+                                </antd.Drawer>
+                        </antd.Drawer>
+                    )
+                }
+            }
+            
+            class PanelAboutTag extends React.Component {
+                constructor(props) {
+					super(props);
+					this.state = {
+                        // text: demo_text,
+                        // visible: false,
+                        // drawerTitle: 'Title',
+                        // drawerContent: 'Some contents',
+                        childrenDrawer: false
+                    }
+                }
+                showChildrenDrawer = () => { this.setState({ childrenDrawer: true }); };
+                onChildrenDrawerClose = () => { this.setState({ childrenDrawer: false }); };
+                render() {
+                    return (
+                        <antd.Drawer title={this.props.drawerTitle} placement="right" width={420} closable={false}
+                            onClose={this.props.onClose} visible={this.props.visible}>
+
+                                <p>{this.props.drawerContent}...</p>
+                                <p>{this.props.drawerContent}...</p>
+                                <p>{this.props.drawerContent}...</p>
+
+                                <antd.Button type="primary" onClick={this.showChildrenDrawer}>
+                                    Two-level 
+                                </antd.Button>
+
+                                <antd.Drawer title="Two-level Drawer" width={720} closable={false}
+                                    onClose={this.onChildrenDrawerClose} visible={this.state.childrenDrawer}>
+                                    <iframe src="https://attack.mitre.org/techniques/T1027/001/" width="100%" height="100%" frameborder="0"></iframe> 
+                                </antd.Drawer>
+                        </antd.Drawer>
+                    )
+                }
+            }
+
+            // class ReportPage extends React.Component {
+			// 	constructor(props) {
+			// 		super(props);
+			// 		this.state = {
+            //             text: demo_text,
+            //             visible: false,
+            //             drawerTitle: 'Title',
+            //             drawerContent: 'Some contents',
+            //             fullPageText: ''
+            //         }
+            //         if ( props.page != null) {
+            //             this.loadFileReport( props.page.file )
+            //         }
+            //     }
+            //     loadFileReport = (filename) => {
+            //         // http://84.201.131.6:5001/get_file_content?filename=miragefox-apt15-resurfaces-with-new-tools-based-on-old-ones
+
+            //         let url = 'http://84.201.131.6:5001/get_file_content';
+            //         axios.get(url, { params: { filename:filename }}).then( res => {
+            //             console.log(res) 
+            //             // this.setState({ fullPageText: res.data.text })
+            //             this.setState({ text: res.data.text })
+            //         })
+                    
+            //     }
+			// 	onChangeText = (e) => {
+			// 		this.setState( { text: e.target.value })
+            //     }
+            //     showDrawer = (title = 'Title', body = 'Some contents') => {
+            //         this.setState({visible:true, drawerTitle: title, drawerContent: body});
+            //     }
+            //     onClose = () => {
+            //         this.setState({visible:false});
+            //     }
+            //     render() {
+                    
+            //         return (
+            //             <antd.Row gutter={16}>
+            //                 <antd.Col span={12}>
+            //                     <antd.Input.TextArea rows={3} value={this.state.text} onChange={this.onChangeText} />
+            //                 </antd.Col>
+            //                 <antd.Col span={12}>
+            //                     <h1>{this.props.page ? this.props.page.file : '' }</h1>
+
+            //                     <FormatedReport text={this.state.text} 
+            //                             onClick={this.showDrawer} />
+            //                     <PanelAboutTag visible={this.state.visible}
+            //                             drawerTitle={this.state.drawerTitle}
+            //                             drawerContent={this.state.drawerContent}
+            //                             onClose={this.onClose} />
+
+            //                 </antd.Col>
+            //             </antd.Row>        
+            //         )
+            //     }
+            // }
+
+
+            class ReportPage extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+                        text: demo_text,
+                        visible: false,
+                        drawerTitle: 'Title',
+                        drawerContent: 'Some contents',
+                        fullPageText: '',
+                        is_loading: false
+                    }
+                    if ( props.page !== null) {
+                        this.loadFileReport( props.page.file, props.page.parsed  )
+                    }
+                }
+                loadFileReport = (filename, parsed) => {
+                    this.setState({ is_loading: true })
+                    this.props.onLoading(true);
+                    // http://84.201.131.6:5001/get_file_content?filename=miragefox-apt15-resurfaces-with-new-tools-based-on-old-ones
+
+                    this.setState({ text: '' })
+
+                    let url = 'http://84.201.131.6:5001/get_file_content';
+                    axios.get(url, { params: { filename:filename }}).then( res => {
+
+                        if (parsed) {
+                            axios.get('http://84.201.131.6:5000/analyze_local_doc?path='+filename+'.pdf.txt').then(r => {
+                                console.log('parsed', r.data)
+
+                                console.log(res) 
+                                // this.setState({ fullPageText: res.data.text })
+                                this.setState({ text: r.data.lines.join() })
+                                
+                                this.setState({ is_loading: false })
+                                this.props.onLoading(false);
+                                
+                            })
+                        } else {
+                            console.log(res) 
+                            // this.setState({ fullPageText: res.data.text })
+                            this.setState({ text: res.data.text })
+                            
+                            this.setState({ is_loading: false })
+                            this.props.onLoading(false);
+                            
+                        }
+
+                        
+                    })
+                }
+                componentWillReceiveProps = (nextProps) => {
+                    if (this.props.page != nextProps.page && nextProps.page !== null ) {
+                        console.log('nextProps')
+                        this.loadFileReport( nextProps.page.file, nextProps.page.parsed )
+                    }
+                    // this.setState({
+                    //     likesIncreasing: nextProps.likeCount > this.props.likeCount
+                    // });
+                }
+				onChangeText = (e) => {
+					this.setState( { text: e.target.value })
+                }
+                showDrawer = (title = 'Title', body = 'Some contents') => {
+                    this.setState({visible:true, drawerTitle: title, drawerContent: body});
+                }
+                onClose = () => {
+                    this.setState({visible:false});
+                }
+                render() {
+                    // <antd.Col span={12}>
+                    //             <antd.Input.TextArea rows={3} value={this.state.text} onChange={this.onChangeText} />
+                    // </antd.Col>
+                    return (
+                        <antd.Row gutter={16}>
+                            
+                            <antd.Col span={18} offset={3}>
+                                <h1>{this.props.page ? this.props.page.file : '' }</h1>
+
+                                <FormatedReport text={this.state.text} 
+                                        onClick={this.showDrawer} />
+                                <PanelAboutTag visible={this.state.visible}
+                                        drawerTitle={this.state.drawerTitle}
+                                        drawerContent={this.state.drawerContent}
+                                        onClose={this.onClose} />
+
+                            </antd.Col>
+                        </antd.Row>        
+                    )
+                }
+            }
+
+
+            class MainPages extends React.Component {
+                render() {
+                    // console.log(this.props.pageId)
+                    // switch(this.props.pageId) {
+                        
+                    //     case 2: 
+                    //         return (<iframe src="http://projector.tensorflow.org/?config=https://gist.githubusercontent.com/korney3/0022f03c53b604fb63db1369dbe4a5d5/raw/4acf39905f8dd61cd6652802fbee593e1e70a167/gistfile1.txt" width="100%" style={{height:'100vh', border: 'none'}}></iframe>)
+
+                    //     case 1: 
+                    //     default:
+                    //         return (<div style={{padding:20}}><ReportList /></div>)
+                    //     // default: return <ReportList />
+                    // }
+
+
+
+                    return (this.props.pageId == 1
+                        ? <div style={{padding:20}}><ReportList /></div>
+                        : <iframe src="http://projector.tensorflow.org/?config=https://gist.githubusercontent.com/korney3/0022f03c53b604fb63db1369dbe4a5d5/raw/4acf39905f8dd61cd6652802fbee593e1e70a167/gistfile1.txt" width="100%" style={{height:'100vh', border: 'none'}}></iframe>
+                    )
+                }
+            }
+
+
+			class Main extends React.Component {
+                constructor(props) {
+					super(props);
+					this.state = {
+                        active_pageId: 1,
+                    }
+                }
+                onSelectItem = (item) => { 
+                    this.setState({ active_pageId: item.key }) 
+                    console.log(item.key)
+                }
+
+
+                
+                // <antd.Button type="primary" onClick={(e)=>this.showDrawer()}>Open</antd.Button>
+				render() {
+					return (
+                        <div>
+                            <antd.Layout.Header className="header">
+                                <div className="logo" ></div>
+                                <antd.Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} 
+                                        onSelect={this.onSelectItem}>
+                                    <antd.Menu.Item key="1">Обзор</antd.Menu.Item>
+                                    <antd.Menu.Item key="2">Анализ</antd.Menu.Item>
+                                </antd.Menu>
+                            </antd.Layout.Header>
+
+                            
+                            <MainPages pageId={this.state.active_pageId} />
+
+                            
+						</div>
+					)
+				}
+            }
+            
+            // <h1>Text Analytics</h1>
+            // <ReportPage />
+
+            // <iframe src="http://projector.tensorflow.org/?config=http://vispstudio.ru/hack/ares/genesis/tf_model_metadata.tsv" width="100%" height="100%" frameborder="0"></iframe> 
+            // http://projector.tensorflow.org/?config=http://vispstudio.ru/hack/ares/genesis/conf.json
+            // http://projector.tensorflow.org/oss_data/word2vec_10000_200d_tensors.bytes
+            // <p dangerouslySetInnerHTML={{__html: demo_text }} />
+            
+			ReactDOM.render( <Main />, document.getElementById('root') );
+
+		</script>
+		<!--
+			Note: this page is a great way to try React but it's not suitable for production.
+			It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+			Read this section for a production-ready setup with JSX:
+			https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+			In a larger project, you can use an integrated toolchain that includes JSX instead:
+			https://reactjs.org/docs/create-a-new-react-app.html
+
+			You can also use React without JSX, in which case you can remove Babel:
+			https://reactjs.org/docs/react-without-jsx.html
+		-->
+	</body>
+</html>
