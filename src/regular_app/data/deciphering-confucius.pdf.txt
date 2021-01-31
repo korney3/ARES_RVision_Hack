@@ -1,0 +1,415 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Trend Micro About TrendLabs Security Intelligence Blog
+
+Home   »   Targeted Attacks   »   Deciphering Confucius’ Cyberespionage Operations
+Featured Stories
+
+systemd Vulnerability Leads
+to Denial of Service on
+Linux
+qkG Filecoder: Self-
+Replicating, Document-
+Encrypting Ransomware
+Mitigating CVE-2017-5689,
+an Intel Management Engine
+Vulnerability
+A Closer Look at North
+Korea’s Internet
+From Cybercrime to
+Cyberpropaganda
+
+Security Predictions for 2018
+
+Attackers are banking on
+network vulnerabilities and
+inherent weaknesses to
+facilitate massive malware
+attacks, IoT hacks, and
+operational disruptions. The
+ever-shifting threats and
+increasingly expanding
+attack surface will challenge
+users and enterprises to catch
+up with their security. 
+Read our security predictions
+for 2018.
+
+Business Process
+Compromise
+
+Attackers are starting to
+invest in long-term
+operations that target specific
+processes enterprises rely on.
+They scout for vulnerable
+practices, susceptible
+systems and operational
+loopholes that they can
+leverage or abuse. To learn
+more, read our Security 101:
+Business Process
+Compromise.
+
+Latest Ransomware Posts
+
+Deciphering Confucius’ Cyberespionage Operations
+Posted on: February 13, 2018 at 5:01 am Posted in: Targeted Attacks
+Author:
+Trend Micro Cyber Safety Solutions Team
+
+by Daniel Lunghi and Jaromir Horejsi
+
+In today’s online chat and dating scene, romance scams are not uncommon, what
+with catfishers and West African cybercriminals potently toying with their victims’ emotions to
+cash in on their bank accounts. It’s quite odd (and probably underreported), however, to see it used
+as a vector for cyberespionage.
+
+We stumbled upon the Confucius hacking group while delving into Patchwork’s cyberespionage
+operations, and found a number of similarities. Code in their custom malware bore similarities, for
+instance. Confucius targeted a particular set of individuals in South Asian countries, such as
+military personnel and businessmen, among others.
+
+Are Patchwork and Confucius the same group? The commands in their backdoors do resemble each
+other. The config files have a similar, custom structure, and both groups have infrastructure overlap.
+However, we construe them to be different groups, possibly within the same community, with
+different objectives and modi operandi. While Patchwork may be more straightforward with its
+predominantly malware-based attacks, Confucius’ can be inferred to be more nuanced, relying
+heavily on social engineering.
+
+Exploiting the human psyche with chat apps 
+Probing Confucius’ infrastructure, we came across websites offering Windows and Android chat
+applications, most likely iterations of its predecessor, Simple Chat Point: Secret Chat Point, and
+Tweety Chat. We are admittedly uncertain of the extent — and success — of their use, but it’s one
+of the ingredients of the group’s operations.
+
+While the chat applications indeed have real chat features (although the communication is not
+anonymous, as advertised), they have backdoor routines and file-stealing behaviors that get
+triggered when specific words are sent to the app: collecting and harvesting all SMS messages,
+contacts, and accounts. Tweety Chat’s Android version can record audio, too. Its latest version can
+mute the device (i.e., take out the ringtone and vibration features) and sync call logs and SMSs.
+
+We further tested Tweety Chat and saw red flags indicating their targets of interest: verification
+emails with a physical address whose postal code is assigned to a provincial capital that also
+appears (upon logging in) as a chat channel in Tweety Chat.
+
+0
+
+Home CategoriesSearch:
+
+https://www.trendmicro.com/
+https://blog.trendmicro.com/trendlabs-security-intelligence/about-us/
+https://blog.trendmicro.com/trendlabs-security-intelligence/
+https://blog.trendmicro.com/trendlabs-security-intelligence/category/targeted_attacks/
+http://blog.trendmicro.com/trendlabs-security-intelligence/systemd-vulnerability-leads-to-denial-of-service-on-linux/
+http://blog.trendmicro.com/trendlabs-security-intelligence/qkg-filecoder-self-replicating-document-encrypting-ransomware/
+http://blog.trendmicro.com/trendlabs-security-intelligence/mitigating-cve-2017-5689-intel-management-engine-vulnerability/
+http://blog.trendmicro.com/trendlabs-security-intelligence/a-closer-look-at-north-koreas-internet/
+http://blog.trendmicro.com/trendlabs-security-intelligence/from-cybercrime-to-cyberpropaganda/
+https://www.trendmicro.com/vinfo/us/security/research-and-analysis/predictions/2018
+https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/security-101-business-process-compromise
+https://blog.trendmicro.com/trendlabs-security-intelligence/2018/02/
+https://blog.trendmicro.com/trendlabs-security-intelligence/category/targeted_attacks/
+https://blog.trendmicro.com/trendlabs-security-intelligence/author/cybersafety/
+https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/tainted-love-online-scams-cashing-in-on-romance
+https://blog.trendmicro.com/trendlabs-security-intelligence/west-africa-poised-underground-market/
+https://blog.trendmicro.com/trendlabs-security-intelligence/can-online-dating-apps-be-used-to-target-your-company/
+https://www.scmagazine.com/cc-attacks-used-plain-text-to-drop-malware-on-quora-and-yahoo-answers/article/529775/
+https://blog.trendmicro.com/trendlabs-security-intelligence/untangling-the-patchwork-cyberespionage-group/
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2018/02/confucius-cyberespionage-1-1.jpg
+https://blog.trendmicro.com/trendlabs-security-intelligence/
+http://blog.trendmicro.com/trendlabs-security-intelligence/
+https://twitter.com/trendlabs
+http://www.facebook.com/trendmicro
+http://www.linkedin.com/company/trend-micro
+http://www.youtube.com/user/TrendMicroInc
+http://feeds.trendmicro.com/Anti-MalwareBlog
+
+
+Digital Extortion: A Forward-
+looking View
+
+qkG Filecoder: Self-
+Replicating, Document-
+Encrypting Ransomware
+
+Bad Rabbit Ransomware
+Spreads via Network, Hits
+Ukraine and Russia
+
+A Look at Locky
+Ransomware’s Recent Spam
+Activities
+
+Magnitude Exploit Kit Now
+Targeting South Korea With
+Magniber Ransomware
+
+Recent Posts
+
+Tropic Trooper’s New
+Strategy
+March Patch Tuesday
+Fixes 75 Security Issues,
+Drops Registry Key
+Requirement in Windows
+10
+Detecting Attacks that
+Exploit Meltdown and
+Spectre with Performance
+Counters
+Campaign Possibly
+Connected to
+“MuddyWater” Surfaces
+in the Middle East and
+Central Asia
+Cryptocurrency-Mining
+Malware: 2018’s New
+Menace?
+
+Ransomware 101
+
+This infographic shows how
+ransomware has evolved,
+how big the problem has
+become, and ways to avoid
+being a ransomware victim.  
+Check the infographic
+
+Popular Posts
+
+Homemade Browser
+Targeting Banco do Brasil
+Users
+Vulnerabilities in Apache
+CouchDB Open the Door to
+Monero Miners
+
+ 
+Figure 1: Tweety Chat’s interface (top), and code snippets showing the file types it steals (bottom)
+
+Romance in cyberespionage 
+The user list, chat room names, and content of the applications were stored in a remote server
+without any authentication. The chat logs shed light on the social engineering used by the operators
+to persuade victims to install the cyberespionage malware on their Android devices. The first user
+and chatroom were created on August 27, 2017, and were probably the app authors’ testing ground.
+The succeeding users and chatrooms were created on October 31 and December 12 the latest.
+
+A certain hayat22 and love piqued our interest. hayat22, supposedly a female student, engaged in
+an online romance with a target whose handle was love, describing himself as living in South Asia
+working in garments manufacturing and wholesaling.
+
+Over the course of their correspondence, love suggested using WhatsApp to
+communicate. hayat22 declined, saying she felt safer using Tweety Chat. love refused, but
+when hayat22 demurred and gave love an online cold shoulder, love tried installing Tweety Chat —
+and failed. He claimed that he wasn’t able to install the app. hayat22 quickly lost interest and
+stopped replying to him altogether. She also sent him a screenshot to show what Tweety Chat
+looked like.
+
+We’re not sure how love wound up in the chat room or how he met hayat22. He was probably
+either using the Windows version of Secret Chat Point or its web interface, which explains
+why hayat22 was urging him to install Android Tweety Chat.
+
+In an earlier chat group, an operator called Heena urged the members to install Secret Chat Point on
+other people’s mobile devices to get perks like credits or the ability to “go invisible”. In another
+chat room called “Maira’s room”, a target of interest disclosed he was a government officer
+traveling back from a northern city near the country’s provincial capital. A few days after, the
+operator stopped answering in the chat room, and her user account was deleted from the server.
+
+ 
+Figure 2: ByeBye Shell’s interface showing Confucius’ campaigns 
+
+ 
+Figure 3: Screenshot showing a group chat where the moderator is urging users to install Tweety
+
+Chat 
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/digital-extortion-forward-looking-view/
+https://blog.trendmicro.com/trendlabs-security-intelligence/qkg-filecoder-self-replicating-document-encrypting-ransomware/
+https://blog.trendmicro.com/trendlabs-security-intelligence/bad-rabbit-ransomware-spreads-via-network-hits-ukraine-russia/
+https://blog.trendmicro.com/trendlabs-security-intelligence/look-locky-ransomwares-recent-spam-activities/
+https://blog.trendmicro.com/trendlabs-security-intelligence/magnitude-exploit-kit-now-targeting-korea-with-magniber-ransomware/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tropic-trooper-new-strategy/
+https://blog.trendmicro.com/trendlabs-security-intelligence/march-patch-tuesday-fixes-75-security-issues-drops-registry-key-requirement-in-windows-10/
+https://blog.trendmicro.com/trendlabs-security-intelligence/detecting-attacks-that-exploit-meltdown-and-spectre-with-performance-counters/
+https://blog.trendmicro.com/trendlabs-security-intelligence/campaign-possibly-connected-muddywater-surfaces-middle-east-central-asia/
+https://blog.trendmicro.com/trendlabs-security-intelligence/cryptocurrency-mining-malware-2018-new-menace/
+http://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/ransomware-101-what-it-is-and-how-it-works
+http://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/ransomware-101-what-it-is-and-how-it-works
+https://blog.trendmicro.com/trendlabs-security-intelligence/homemade-browser-targeting-banco-do-brasil-users/
+https://blog.trendmicro.com/trendlabs-security-intelligence/vulnerabilities-apache-couchdb-open-door-monero-miners/
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2018/02/confucius-cyberespionage-1-2.jpg-1.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2018/02/confucius-cyberespionage-2-1.png
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2018/02/confucius-cyberespionage-3-1.png
+
+
+Oracle Server Vulnerability
+Exploited to Deliver Double
+Monero Miner Payloads
+Cryptocurrency-Mining
+Malware: 2018’s New
+Menace?
+New AndroRAT Exploits
+Dated Privilege Escalation
+Vulnerability, Allows
+Permanent Rooting
+
+Stay Updated
+
+Email Subscription
+Your email here
+
+Subscribe
+
+Tags: Confucius CVE-2015-1641 CVE-2017-11882 Patchwork Romance Scam
+
+ 
+Figure 4: Screenshot showing Tweety Chat promoted in social media
+
+A tangled web of malware 
+Confucius’ operations include deploying bespoke backdoors and stealing files from their victim’s
+systems with tailored file stealers, some of which bore resemblances to Patchwork’s. The stolen
+files are then exfiltrated by abusing a cloud storage service. Some of these file stealers specifically
+target files from USB devices, probably to overcome air-gapped environments.
+
+Compared to Patchwork, whose Trojanized documents exploit at least five security flaws,
+Confucius’ backdoors are delivered through Office files exploiting memory corruption
+vulnerabilities CVE-2015-1641 and CVE-2017-11882. Their malware’s resemblance to that of
+Patchwork’s is also notable. The use of an exploit for a security flaw disclosed in December 2017
+and their recent activities suggest Confucius is keenly trailing their targets.
+
+Confucius has a miscellany of backdoors: sctrls, ByeBye Shell, remote-access-c3, and
+sip_telephone, to name a few. One of its file stealers, swissknife2, abuses a cloud storage service as
+a repository of exfiltrated files. At the time of research, there were around 60 victims whose data
+were uploaded to Confucius-owned cloud storage account. There were also a few thousand files in
+the account that were later deleted.
+
+Our research, Deciphering Confucius: A Look at the Group’s Cyberespionage Operations,
+delves into the group’s operations, the social engineering methods and gamut of malware it uses,
+and the countermeasures that organizations can adopt to mitigate them. The list of indicators of
+compromise, which includes Trend Micro’s corresponding detections and solutions, is in
+this appendix.
+
+Related Posts:
+Untangling the Patchwork Cyberespionage Group
+ChessMaster Makes its Move: A Look into the Campaign’s Cyberespionage Arsenal
+Cyberespionage Campaign Sphinx Goes Mobile With AnubisSpy
+Hacking Group Spies on Android Users in India Using PoriewSpy
+
+Learn how to protect Enterprises, Small Businesses, and Home Users from ransomware:
+
+ENTERPRISE SMALL BUSINESS HOME» » »
+
+https://blog.trendmicro.com/trendlabs-security-intelligence/oracle-server-vulnerability-exploited-deliver-double-monero-miner-payloads/
+https://blog.trendmicro.com/trendlabs-security-intelligence/cryptocurrency-mining-malware-2018-new-menace/
+https://blog.trendmicro.com/trendlabs-security-intelligence/new-androrat-exploits-dated-permanent-rooting-vulnerability-allows-privilege-escalation/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/confucius/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/cve-2015-1641/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/cve-2017-11882/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/patchwork/
+https://blog.trendmicro.com/trendlabs-security-intelligence/tag/romance-scam/
+https://blog.trendmicro.com/trendlabs-security-intelligence/files/2018/02/confucius-cyberespionage-4-1.png
+https://www.trendmicro.com/vinfo/us/threat-encyclopedia/vulnerability/7404/microsoft-office-memory-corruption-vulnerability-cve20151641
+https://blog.trendmicro.com/trendlabs-security-intelligence/cve-2017-11882-exploited-deliver-cracked-version-loki-infostealer/
+https://documents.trendmicro.com/assets/research-deciphering-confucius-cyberespionage-operations.pdf
+https://documents.trendmicro.com/assets/appendix-deciphering-confucius-cyberespionage-operations.pdf
+https://blog.trendmicro.com/trendlabs-security-intelligence/untangling-the-patchwork-cyberespionage-group/
+https://blog.trendmicro.com/trendlabs-security-intelligence/chessmaster-cyber-espionage-campaign/
+https://blog.trendmicro.com/trendlabs-security-intelligence/cyberespionage-campaign-sphinx-goes-mobile-anubisspy/
+https://blog.trendmicro.com/trendlabs-security-intelligence/hacking-group-spies-android-users-india-using-poriewspy/
+http://www.trendmicro.com/us/security-intelligence/enterprise-ransomware/index.html
+http://www.trendmicro.com/us/security-intelligence/small-business-ransomware/index.html
+http://www.trendmicro.com/us/home/consumer-ransomware/index.html
+
+
+Comments for this thread are now closed. ×
+
+0 Comments TrendLabs Login1
+
+ Share⤤ Sort by Best
+
+This discussion has been closed.
+
+Subscribe✉ Add Disqus to your siteAdd DisqusAddd Privacy�
+
+ Recommend
+
+Privacy Statement Legal Policies Copyright © 2018 Trend Micro Incorporated. All rights reserved.
+
+Home and Home Office
+|
+For Business
+|
+Security Intelligence
+|
+About Trend Micro
+Asia Pacific Region (APAC): Australia / New Zealand, 中国, 日本, 대한민국, 台灣
+Latin America Region (LAR): Brasil, México
+North America Region (NABU): United States, Canada 
+Europe, Middle East, & Africa Region (EMEA): France, Deutschland / Österreich / Schweiz, Italia, Россия, España, United Kingdom / Ireland
+
+https://disqus.com/
+https://disqus.com/home/forums/trendlabs/
+https://disqus.com/home/inbox/
+https://publishers.disqus.com/engage?utm_source=trendlabs&utm_medium=Disqus-Footer
+https://help.disqus.com/customer/portal/articles/466259-privacy-policy
+http://www.trendmicro.com/us/about-us/legal-policies/privacy-statement/index.html
+http://www.trendmicro.com/us/about-us/legal-policies/index.html
+http://www.trendmicro.com/us/home/index.html
+http://www.trendmicro.com/us/business/index.html
+http://www.trendmicro.com/us/security-intelligence/index.html
+http://www.trendmicro.com/us/about-us/index.html
+http://www.trendmicro.com.au/au/home/index.html
+http://www.trendmicro.co.nz/nz/home/index.html
+http://cn.trendmicro.com/cn/home/index.html
+http://jp.trendmicro.com/jp/home/index.html
+http://www.trendmicro.co.kr/index.html
+http://tw.trendmicro.com/tw/home/index.html
+http://br.trendmicro.com/br/home/index.html
+http://la.trendmicro.com/la/home/index.html
+http://www.trendmicro.com/us/index.html
+http://ca.trendmicro.com/ca/home/index.html
+http://www.trendmicro.fr/
+http://www.trendmicro.de/
+http://www.trendmicro.it/
+http://www.trendmicro.com.ru/
+http://www.trendmicro.es/
+http://www.trendmicro.co.uk/
+

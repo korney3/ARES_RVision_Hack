@@ -1,0 +1,390 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+During the last weeks of January (2018), nation state actors from APT32 (Lotus Blossom)  conducted  a
+
+targeted malspam campaign against the Association of Southeast Asian Nations (ASEAN) countries.   This
+
+isn't terribly surprising considering the group's watering hole activity against ASEAN websites   as
+
+observed in the Fall of 2017.   In another apparent prong of attack, the new campaign delivers a malicious
+
+RTF document   posing as an ASEAN Defence Minister's Meeting (ADMM) directory (decoy) that also
+
+carries an executable (payload) embedded as an OLE object, the Elise backdoor.  
+
+ 
+
+APT32 Continues ASEAN Targeting
+Blog Post created by Kevin Stear  on Jan 30, 2018 
+
+ • Comment  • 
+
+
+
+Like 0  0
+
+All Places  > Products  > RSA NetWitness Suite  > Blog  > Blog Posts
+
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fsecurelist.com%2Fapt-trends-report-q3-2017%2F83162%2F
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.virustotal.com%2F%23%2Ffile%2Fd3fc69a9f2ae2c446434abbfbe1693ef0f81a5da0a7f39d27c80d85f4a49c411%2Fdetection
+https://community.rsa.com/people/en2fBGHnC4m6d7LYssUW1tPEr9auDjtSWfYHyvRdBRA%3D
+https://community.rsa.com/people/en2fBGHnC4m6d7LYssUW1tPEr9auDjtSWfYHyvRdBRA%3D
+https://community.rsa.com/places
+https://community.rsa.com/community/products
+https://community.rsa.com/community/products/netwitness
+https://community.rsa.com/community/products/netwitness/blog
+https://community.rsa.com/community/products/netwitness/content?filterID=contentstatus%5Bpublished%5D~objecttype~objecttype%5Bblogpost%5D
+
+
+    
+
+The Elise backdoor is not new malware and has been successfully diagnosed  in the past by Industry
+
+researchers (e.g. Palo Alto Unit 42's 2015 report )  and more recently by Volexity   and  Accenture . 
+
+Each  of these are valuable resources to understanding the Elise malcode, infection process,  and  known
+
+capabilities of the backdoor.  In addition, a current ANY.RUN playback of our observed Elise infection  is
+
+also available.
+
+ 
+
+Upon opening of the MS Word document, our embedded file exploits CVE­2017­11882  to drop a
+
+malicious  fake Norton Security Shell Extension module, 'NavShExt.dll ', which is then injected into
+
+iexplore.exe to install the backdoor, begin collection, and activate command and control.  
+
+ 
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396647/post-detonate-decoy.png
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.paloaltonetworks.com%2Fapps%2Fpan%2Fpublic%2FdownloadResource%3FpagePath%3D%2Fcontent%2Fpan%2Fen_US%2Fresources%2Fresearch%2Funit42-operation-lotus-blossom
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.volexity.com%2Fblog%2F2017%2F11%2F06%2Foceanlotus-blossoms-mass-digital-surveillance-and-exploitation-of-asean-nations-the-media-human-rights-and-civil-society%2F
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.accenture.com%2Ft20180127T003755Z__w__%2Fus-en%2F_acnmedia%2FPDF-46%2FAccenture-Security-Dragonfish-Threat-Analysis.pdf%23zoom%3D50
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fapp.any.run%2Ftasks%2F05b68865-529e-44e4-882f-0c184b162f12
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.cvedetails.com%2Fcve%2Fcve-2017-11882
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.virustotal.com%2F%23%2Ffile%2F6dc2a49d58dc568944fef8285ad7a03b772b9bdf1fe4bddff3f1ade3862eae79%2Fdetection
+
+
+ 
+Moving through the infection process, NetWitness Endpoint detects the initial exploit (CVE­2017­1182 ) in
+
+action as the Microsoft Equation Editor, 'EQNEDT32.exe', scores high for potentially malicious activity.  This
+
+same process was also flagged in our any.run playback.
+
+ 
+
+ 
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396683/image+%286%29.png
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.cvedetails.com%2Fcve%2Fcve-2017-11882
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396684/post-detonate-NWE-scan.png
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396656/Screen+Shot+2018-01-30+at+12.14.47+PM.png
+
+
+Our malware then spins up an instance of 'iexplore.exe' and injects 'NavShExt.dll ' into that process.
+
+ 
+
+ 
+
+While this is happening, the malware establishes persistence by creating an autorun in the registry and then
+
+also creates 'thumbcache_1CD60.db' at 'Users\admin\AppData\Local\Microsoft\Windows\Explorer\' to
+
+store harvested data.
+
+ 
+
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.virustotal.com%2F%23%2Ffile%2F6dc2a49d58dc568944fef8285ad7a03b772b9bdf1fe4bddff3f1ade3862eae79%2Fdetection
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396681/NavShExt.dll.png
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396682/files-tab.png
+
+
+ 
+
+As the infection process completes, we now observe Elise network activity (e.g., exfil of victim data and C2)
+
+through a conveniently hidden instance of Internet Explorer. 
+
+ 
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396667/Screen+Shot+2018-01-26+at+10.01.21+PM.png
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396668/Screen+Shot+2018-01-26+at+10.09.41+PM.png
+
+
+ 
+
+This traffic was also observed in  NetWitness Packets,  as the  malware verifies the host IP address  prior
+
+to kicking off C2 out to 103.236.150[.]14 , which is likely compromised infrastructure.
+
+   
+
+ 
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396685/image+%287%29.png
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fcommunity.riskiq.com%2Fsearch%2F103.236.150.14
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396649/elise-firstrun-network.png
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396650/elise-firstrun-session.png
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396669/elise-firstrun-meta.png
+
+
+Take note of the cookie set in this HTTP POST, because Lotus Blossom actors go to significant lengths to
+
+protect this data via both B64 encoding and AES encryption.   The  actual  C2 for Elise takes place over
+
+"cookie" code and (rarely) body content.
+
+ 
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396665/image+%284%29.png
+
+
+ 
+
+Other infections (from the identical payload) each generated their own decoy domains to populate the host
+
+header, but in every case actually used the same hard­coded IP address, 103.236.150[.]14 .
+
+ 
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396666/image+%285%29.png
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fcommunity.riskiq.com%2Fsearch%2F103.236.150.14
+
+
+   
+
+The threat actors actually went to significant efforts to generate these seemingly random domains, likely in
+
+an attempt at obfuscating C2 traffic and avoiding domain­based detection/mitigation.
+
+    
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396651/elise-secondrun-session.png
+
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396662/image+%283%29.png
+
+
+   
+
+ 
+
+Based on both previous activity and this current Lotus Blossom campaign, it is clear that we are witnessing
+
+the continued rise of cyber tradecraft and activity from nation­states in the Southeast Asian theater.
+
+  
+
+Thanks to  Kent Backman,  Justin Lamarre, and Ahmed Sonbol for their assistance with this research.
+
+ 
+
+The following samples were used for this analysis:
+
+Malicious RTF Dropper  (SHA256):  d3fc69a9f2ae2c446434abbfbe1693ef0f81a5da0a7f39d27c80d85f4a49c411
+
+NavShExt.dll  (SHA256):  6dc2a49d58dc568944fef8285ad7a03b772b9bdf1fe4bddff3f1ade3862eae79
+
+ 
+
+ 
+League of Legends banner art credit: Riot Games  
+
+Visibility: RSA NetWitness Suite 355 Views
+
+Last modified on Jan 30, 2018 6:29 PM
+
+•
+
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396659/image+%281%29.png
+https://community.rsa.com/people/Gl8LOTl4A2rCbPZkifuse3cHH75XbzVWfnhIYrQRH4A=
+https://community.rsa.com/people/ebeaINpJCPQvueBuILnImsMW49IGrBKoVOB6f66tRCQ=
+https://community.rsa.com/people/B2QKZMrDo53ui48qarO9kYZN09ujo2snbEzRAeJQqZU=
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.virustotal.com%2F%23%2Ffile%2Fd3fc69a9f2ae2c446434abbfbe1693ef0f81a5da0a7f39d27c80d85f4a49c411%2Fdetection
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.virustotal.com%2F%23%2Ffile%2F6dc2a49d58dc568944fef8285ad7a03b772b9bdf1fe4bddff3f1ade3862eae79%2Fdetection
+https://community.rsa.com/servlet/JiveServlet/showImage/38-2371-396671/FirstWatch_banner.png
+https://community.rsa.com/external-link.jspa?url=https%3A%2F%2Fwww.riotgames.com%2Fen
+https://community.rsa.com/community/products/netwitness/blog
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=ecat
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=elise
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=firstwatch
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=trojan
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=rsa%20firstwatch
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=netwitness%20packet
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=backdoor
+
+
+Recommended Content
+
+Manage Authentication Sources
+
+000032873 ‑ Tips for troubleshooting Advanced Workflow in RSA Archer 6.0
+
+000034499 ‑ RSA Archer Advanced Workflow Service is not working and displays error: Service not
+available.
+
+Configure a Custom Portal Page for Web Applications
+
+Alerting Using ESA Guide
+
+Products & Solutions
+RSA® Access Manager
+RSA® Adaptive
+Authentication
+RSA® Adaptive Auth. for
+eCommerce
+RSA® Adaptive Directory
+RSA Archer® Suite
+RSA BSAFE®
+RSA® Data Loss
+Prevention (DLP)
+RSA® Data Protection
+Manager (DPM)
+RSA® Digital Certificate
+Solutions
+
+ 
+RSA enVision®
+RSA® Federated
+Identity Manager (FIM)
+RSA® FraudAction
+Services
+RSA® Identity
+Governance &
+Lifecycle
+RSA NetWitness®
+Endpoint
+RSA NetWitness®
+Logs & Packets
+RSA SecurID® Suite
+RSA® Web Threat
+Detection
+
+  Support
+My RSA
+RSA Labs
+RSA Ready
+ 
+Activity
+Feed
+About RSA
+Link
+Terms &
+Conditions
+Submit
+Feedback
+
+RSA University
+RSA Archer® Suite
+Training
+RSA NetWitness® Suite
+Training
+RSA SecurID® Suite
+Training
+
+© 2018 Jive Software  | Powered by Home | Top of page | Help 
+
+Tags:
+
+Categories:  
+
+ecat elise firstwatch trojan rsa firstwatch netwitness packet backdoor
+
+netwithess apt32 lotus blossom vietnam
+
+RSA NetWitness Endpoint RSA NetWitness Packets
+
+0 Comments
+
+https://community.rsa.com/docs/DOC-54089
+https://community.rsa.com/docs/DOC-47309
+https://community.rsa.com/docs/DOC-64723
+https://community.rsa.com/docs/DOC-54151
+https://community.rsa.com/docs/DOC-42083
+https://community.rsa.com/community/products/access-manager
+https://community.rsa.com/community/products/adaptive-authentication
+https://community.rsa.com/community/products/adaptive-authentication-ecommerce
+https://community.rsa.com/community/products/adaptive-directory
+https://community.rsa.com/community/products/archer-grc
+https://community.rsa.com/community/products/bsafe
+https://community.rsa.com/community/products/data-loss-prevention
+https://community.rsa.com/community/products/data-protection-manager
+https://community.rsa.com/community/products/digital-certificate-solutions
+https://community.rsa.com/community/products/envision
+https://community.rsa.com/community/products/federated-identity-manager
+https://community.rsa.com/community/products/fraudaction
+https://community.rsa.com/community/products/governance-and-lifecycle
+https://community.rsa.com/community/products/netwitness
+https://community.rsa.com/community/products/netwitness
+https://community.rsa.com/community/products/securid
+https://community.rsa.com/community/products/web-threat-detection
+https://community.rsa.com/community/support
+https://rsaportal.force.com/customer/home/home.jsp
+https://community.rsa.com/community/labs
+https://community.rsa.com/community/products/rsa-ready
+https://community.rsa.com/news
+https://community.rsa.com/docs/DOC-1085
+https://community.rsa.com/docs/DOC-67224
+https://community.rsa.com/survey
+https://community.rsa.com/community/training/archer
+https://community.rsa.com/community/training/netwitness
+https://community.rsa.com/community/training/securid
+http://www.jivesoftware.com/poweredby/
+http://www.jivesoftware.com/poweredby/
+https://community.rsa.com/
+http://docs.jivesoftware.com/cloud_ext/end_user/jive.help.core
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=ecat
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=elise
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=firstwatch
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=trojan
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=rsa%20firstwatch
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=netwitness%20packet
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=backdoor
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=netwithess
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=apt32
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=lotus%20blossom
+https://community.rsa.com/community/products/netwitness/blog/tags#/?tags=vietnam
+https://community.rsa.com/community/products/netwitness/content?filterID=contentstatus[published]~category[rsa-netwitness-endpoint]
+https://community.rsa.com/community/products/netwitness/content?filterID=contentstatus[published]~category[rsa-netwitness-packets]
+
