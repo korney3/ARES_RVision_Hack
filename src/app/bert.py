@@ -105,7 +105,7 @@ def annotate_text():
               prev_label='O'
             original_text.append(subtree[0])
     annotation+=[tokenizer.convert_tokens_to_string(original_text)]
-  json_string = json.dumps({'parse':'\n'.join(annotation)}, ensure_ascii=False)
+  json_string = json.dumps({'parse':'\n'.join(annotation),'f1_macro':macro_f1[-1], 'prec_macro':macro_prec[-1], 'rec_macro':macro_rec[-1]}, ensure_ascii=False)
 
   response = Response(json_string, content_type="application/json; charset=utf-8")
   return '\n'.join(annotation)
@@ -123,6 +123,15 @@ if __name__ == '__main__':
     
     DATA_PATH = '../../data/processed/'
     LOG_PATH = '../../models/BERT_baseline/'
+    
+    with open(os.path.join(LOG_PATH,'macro_prec.txt'),'r') as f:
+        macro_prec = f.read().strip().split('\n')
+    
+    with open(os.path.join(LOG_PATH,'macro_rec.txt'),'r') as f:
+        macro_rec = f.read().strip().split('\n')
+    
+    with open(os.path.join(LOG_PATH,'macro_f1.txt'),'r') as f:
+        macro_f1 = f.read().strip().split('\n')
     
     tokenizer = BertTokenizer.from_pretrained(os.path.join(LOG_PATH), do_lower_case=False)
     
