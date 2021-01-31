@@ -153,7 +153,7 @@ Project Organization
 
 Egor Yusupov - Front-end, Design - @EgorYusupov
 
-Alexandr Sarachakov - Data Scientist - @@asarachakov
+Alexandr Sarachakov - Data Scientist - @asarachakov
 
 Alisa Alenicheva  - Data Scientist - @korney3
 
