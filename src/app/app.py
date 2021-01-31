@@ -19,7 +19,7 @@ cors = CORS(app)
 def file_list():
     not_parsed_tags = []
     for i in range(len(not_parsed_texts)):
-        not_parsed_tags.append({'DocName':not_parsed_texts.iloc[i]['DocName'],'Stats':{"KeyWords": '', "Sum": 0},'Parsed':False})
+        not_parsed_tags.append({'DocName':not_parsed_texts.iloc[i]['DocName'],'Stats':{"KeyWords": '', "Sum": 0},'Parsed':False, 'Year':not_parsed_texts.iloc[i]['Year']})
     json_string = json.dumps(tags_dicts+not_parsed_tags, ensure_ascii=False)
     response = Response(json_string, content_type="application/json; charset=utf-8")
     return response
